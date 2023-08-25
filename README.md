@@ -1,2 +1,4 @@
-# prajit.github.io
-Personal homepage for Prajit Das
+Profile
+=======
+
+Personal [webpage](https://prajitdas.com) of Prajit Kumar Das.
