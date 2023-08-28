@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:ror="http://rorweb.com/0.1/" >
 <channel>
-  <title>ROR Sitemap for http://prajitdas.com/</title>
-  <link>http://prajitdas.com/</link>
+  <title>ROR Sitemap for https://prajitdas.github.io/</title>
+  <link>https://prajitdas.github.io/</link>
 
 <item>
-     <link>https://prajitdas.com/</link>
+     <link>https://prajitdas.github.io/</link>
      <title>Welcome to personal homepage of Prajit!</title>
      <description>This is a personal website for the person who at least as of early 2017 was known as Mr. Prajit Kumar Das. We are not capable of predicting what he will be called in the future!</description>
      <ror:updatePeriod></ror:updatePeriod>
