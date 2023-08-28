@@ -1,0 +1,539 @@
+<!-- 
+
+This ontology document is licensed under the Creative Commons
+Attribution License. To view a copy of this license, visit
+http://creativecommons.org/licenses/by/2.0/ or send a letter to
+Creative Commons, 559 Nathan Abbott Way, Stanford, California
+94305, USA.
+
+ -->
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:cc="http://web.resource.org/cc/#"
+	xmlns:person="http://ebiquity.umbc.edu/ontology/person.owl#"
+	xmlns:project="http://ebiquity.umbc.edu/ontology/project.owl#"
+	xmlns:pub="http://ebiquity.umbc.edu/ontology/publication.owl#"
+	xmlns:contact="http://ebiquity.umbc.edu/ontology/contact.owl#"
+	xmlns:assoc="http://ebiquity.umbc.edu/ontology/association.owl#"
+	xmlns:assert="http://ebiquity.umbc.edu/ontology/assertion.owl#">
+	<person:PhDAlumnus rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+		<rdfs:label>
+			<![CDATA[ Prajit Kumar Das ]]>
+		</rdfs:label>
+		<rdf:type rdf:resource="http://ebiquity.umbc.edu/ontology/person.owl#Alumnus"/>
+		<rdf:type rdf:resource="http://ebiquity.umbc.edu/ontology/person.owl#PhDAlumnus"/>
+		<person:face>
+			<![CDATA[ http://ebiquity.umbc.edu/media/faces/620.jpeg ]]>
+		</person:face>
+		<person:name>
+			<![CDATA[ Prajit Kumar Das ]]>
+		</person:name>
+		<person:firstName>
+			<![CDATA[ Prajit ]]>
+		</person:firstName>
+		<person:middleName>
+			<![CDATA[ Kumar ]]>
+		</person:middleName>
+		<person:lastName>
+			<![CDATA[ Das ]]>
+		</person:lastName>
+		<person:graduationDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-12-01T00:00:00-05:00</person:graduationDate>
+		<person:workContact>
+			<contact:ContactInformation>
+				<contact:company>
+					<![CDATA[ Cisco Systems, Inc. ]]>
+				</contact:company>
+				<contact:city>
+					<![CDATA[ Fulton ]]>
+				</contact:city>
+				<contact:state>
+					<![CDATA[ Maryland ]]>
+				</contact:state>
+				<contact:postalCode>
+					<![CDATA[ 21227 ]]>
+				</contact:postalCode>
+				<contact:country>
+					<![CDATA[ United States ]]>
+				</contact:country>
+				<contact:url>
+					<![CDATA[ https://prajitdas.github.io ]]>
+				</contact:url>
+			</contact:ContactInformation>
+		</person:workContact>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/887/Context-Sensitive-Access-Control-in-Smart-Home-Environments">
+				<pub:title>
+					<![CDATA[ Context Sensitive Access Control in Smart Home Environments ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Context Sensitive Access Control in Smart Home Environments ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ 6th IEEE International Conference on Big Data Security on Cloud (BigDataSecurity 2020) ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ IEEE ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-05-25T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Sofia/Dutta">
+						<person:name>
+							<![CDATA[ Sofia Dutta ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Sofia Dutta ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/783/Personalizing-context-aware-access-control-on-mobile-platforms">
+				<pub:title>
+					<![CDATA[ Personalizing context-aware access control on mobile platforms ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Personalizing context-aware access control on mobile platforms ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ 3rd IEEE International Conference on Collaboration and Internet Computing ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ IEEE ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-10-15T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+						<person:name>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:PhdThesis rdf:about="http://ebiquity.umbc.edu/paper/html/id/781/Context-Dependent-Privacy-and-Security-Management-on-Mobile-Devices">
+				<pub:title>
+					<![CDATA[ Context-Dependent Privacy and Security Management on Mobile Devices ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Context-Dependent Privacy and Security Management on Mobile Devices ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ Ph.D. Dissertation ]]>
+				</pub:booktitle>
+				<pub:school>
+					<![CDATA[ University of Maryland Baltimore County ]]>
+				</pub:school>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-08-22T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+						<person:name>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:PhdThesis>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/771/App-behavioral-analysis-using-system-calls">
+				<pub:title>
+					<![CDATA[ App behavioral analysis using system calls ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ App behavioral analysis using system calls ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ 2017 IEEE Conference on Computer Communications Workshops (INFOCOM WKSHPS): MobiSec 2017: Security, Privacy, and Digital Forensics of Mobile Systems and Networks ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ IEEE ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-05-01T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+						<person:name>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/763/Capturing-policies-for-fine-grained-access-control-on-mobile-devices">
+				<pub:title>
+					<![CDATA[ Capturing policies for fine-grained access control on mobile devices ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Capturing policies for fine-grained access control on mobile devices ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ 2nd IEEE International Conference on Collaboration and Internet Computing (CIC 2016), Pittsburgh, PA, USA, November 1-3, 2016 ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ IEEE Computer Society ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-11-01T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+						<person:name>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InBook rdf:about="http://ebiquity.umbc.edu/paper/html/id/757/Preserving-User-Privacy-and-Security-in-Context-Aware-Mobile-Platforms">
+				<pub:title>
+					<![CDATA[ Preserving User Privacy and Security in Context-Aware Mobile Platforms ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Preserving User Privacy and Security in Context-Aware Mobile Platforms ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ Mobile Application Development, Usability, and Security ]]>
+				</pub:booktitle>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-10-31T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+						<person:name>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InBook>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/758/Semantic-knowledge-and-privacy-in-the-physical-web">
+				<pub:title>
+					<![CDATA[ Semantic knowledge and privacy in the physical web ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Semantic knowledge and privacy in the physical web ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ Proceedings of the 4th Workshop on Society, Privacy and the Semantic Web - Policy and Technology (PrivOn2016) co-located with 15th International Semantic Web Conference (ISWC 2016) ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ CEUR ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-10-18T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+						<person:name>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/752/CyberTwitter-Using-Twitter-to-generate-alerts-for-Cybersecurity-Threats-and-Vulnerabilities">
+				<pub:title>
+					<![CDATA[ CyberTwitter: Using Twitter to generate alerts for Cybersecurity Threats and Vulnerabilities ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ CyberTwitter: Using Twitter to generate alerts for Cybersecurity Threats and Vulnerabilities ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ International Symposium on Foundations of Open Source Intelligence and Security Informatics ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ IEEE Computer Society ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-08-19T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Sudip/Mittal">
+						<person:name>
+							<![CDATA[ Sudip Mittal ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Sudip Mittal ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/728/Context-Sensitive-Policy-Based-Security-in-Internet-of-Things">
+				<pub:title>
+					<![CDATA[ Context-Sensitive Policy Based Security in Internet of Things ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Context-Sensitive Policy Based Security in Internet of Things ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ 2016 IEEE International Conference on Smart Computing (SMARTCOMP) ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ IEEE Computer Society ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-05-18T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+						<person:name>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/710/Building-a-Mobile-Applications-Knowledge-Base-for-the-Linked-Data-Cloud">
+				<pub:title>
+					<![CDATA[ Building a Mobile Applications Knowledge Base for the Linked Data Cloud ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Building a Mobile Applications Knowledge Base for the Linked Data Cloud ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ 1st International Workshop on Mobile Deployment of Semantic Technologies (MoDeST 2015), co-located with the 14th International Semantic Web Conference (ISWC 2015), Bethlehem, PA (USA) ]]>
+				</pub:booktitle>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2015-10-12T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Primal/Pappachan">
+						<person:name>
+							<![CDATA[ Primal Pappachan ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Primal Pappachan ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/709/Mobipedia-Mobile-Applications-Linked-Data">
+				<pub:title>
+					<![CDATA[ Mobipedia: Mobile Applications Linked Data ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Mobipedia: Mobile Applications Linked Data ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ 14th International Semantic Web Conference (ISWC 2015), Bethlehem, PA (USA) ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ CEUR ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2015-10-11T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Primal/Pappachan">
+						<person:name>
+							<![CDATA[ Primal Pappachan ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Primal Pappachan ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/677/Semantics-for-Privacy-and-Shared-Context">
+				<pub:title>
+					<![CDATA[ Semantics for Privacy and Shared Context ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Semantics for Privacy and Shared Context ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ Second International Workshop on Society, Privacy and the Semantic Web - Policy and Technology (PrivOn 2014), Riva del Garda (Italy), October 2014 ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ CEUR Workshop Proceedings ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-10-20T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Roberto/Yus">
+						<person:name>
+							<![CDATA[ Roberto Yus ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Roberto Yus ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/666/A-Semantic-Context-Aware-Privacy-Model-for-FaceBlock">
+				<pub:title>
+					<![CDATA[ A Semantic Context-Aware Privacy Model for FaceBlock ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ A Semantic Context-Aware Privacy Model for FaceBlock ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ Second International Workshop on Society, Privacy and the Semantic Web - Policy and Technology (PrivOn 2014), Riva del Garda (Italy) ]]>
+				</pub:booktitle>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-10-19T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Primal/Pappachan">
+						<person:name>
+							<![CDATA[ Primal Pappachan ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Primal Pappachan ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/695/Privacy-in-a-World-of-Mobile-Devices">
+				<pub:title>
+					<![CDATA[ Privacy in a World of Mobile Devices ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Privacy in a World of Mobile Devices ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ NSF Workshop on Big Data Security and Privacy ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ University of Texas at Dallas ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-09-15T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Tim/Finin">
+						<person:name>
+							<![CDATA[ Tim Finin ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Tim Finin ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/652/FaceBlock-Privacy-Aware-Pictures-for-Google-Glass">
+				<pub:title>
+					<![CDATA[ FaceBlock: Privacy-Aware Pictures for Google Glass ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ FaceBlock: Privacy-Aware Pictures for Google Glass ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ Proceedings of the 12th Annual International Conference on Mobile Systems, Applications, and Services ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ ACM SIGMOBILE ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-06-16T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Roberto/Yus">
+						<person:name>
+							<![CDATA[ Roberto Yus ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Roberto Yus ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:InProceedings rdf:about="http://ebiquity.umbc.edu/paper/html/id/632/Energy-efficient-sensing-for-managing-context-and-privacy-on-smartphones">
+				<pub:title>
+					<![CDATA[ Energy efficient sensing for managing context and privacy on smartphones ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ Energy efficient sensing for managing context and privacy on smartphones ]]>
+				</rdfs:label>
+				<pub:booktitle>
+					<![CDATA[ First Workshop on Society, Privacy and the Semantic Web - Policy and Technology (PrivOn 2013) co-located with the 12th International Semantic Web Conference (ISWC 2013), Sydney, Australia. ]]>
+				</pub:booktitle>
+				<pub:publisher>
+					<![CDATA[ CEUR Workshop Proceedings ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-10-21T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+						<person:name>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:InProceedings>
+		</project:relatedPublication>
+		<project:relatedPublication>
+			<pub:Article rdf:about="http://ebiquity.umbc.edu/paper/html/id/617/ACM-HotMobile-2013-Poster-An-Energy-Efficient-Semantic-Context-Model-for-Managing-Privacy-on-Smartphones">
+				<pub:title>
+					<![CDATA[ ACM HotMobile 2013 Poster: An Energy Efficient Semantic Context Model for Managing Privacy on Smartphones ]]>
+				</pub:title>
+				<rdfs:label>
+					<![CDATA[ ACM HotMobile 2013 Poster: An Energy Efficient Semantic Context Model for Managing Privacy on Smartphones ]]>
+				</rdfs:label>
+				<pub:journal>
+					<![CDATA[ SIGMOBILE Mob. Comput. Commun. Rev. ]]>
+				</pub:journal>
+				<pub:publisher>
+					<![CDATA[ ACM ]]>
+				</pub:publisher>
+				<pub:publishedOn rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-07-01T00:00:00-05:00</pub:publishedOn>
+				<pub:firstAuthor>
+					<person:Person rdf:about="http://ebiquity.umbc.edu/person/html/Prajit/Das">
+						<person:name>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</person:name>
+						<rdfs:label>
+							<![CDATA[ Prajit Kumar Das ]]>
+						</rdfs:label>
+					</person:Person>
+				</pub:firstAuthor>
+			</pub:Article>
+		</project:relatedPublication>
+		<person:associatedWith>
+			<assoc:PersonProjectAssociation>
+				<assoc:project>
+					<project:PastProject rdf:about="http://ebiquity.umbc.edu/project/html/id/92/Platys-From-Position-to-Place-in-Next-Generation-Networks">
+						<project:title>
+							<![CDATA[ Platys: From Position to Place in Next Generation Networks ]]>
+						</project:title>
+						<rdfs:label>
+							<![CDATA[ Platys: From Position to Place in Next Generation Networks ]]>
+						</rdfs:label>
+					</project:PastProject>
+				</assoc:project>
+				<assoc:role rdf:resource="http://ebiquity.umbc.edu/ontology/person.owl#PhDAlumnus"/>
+			</assoc:PersonProjectAssociation>
+		</person:associatedWith>
+		<assert:advisedBy rdf:resource="http://ebiquity.umbc.edu/person/html/Anupam/Joshi"/>
+		<assert:advises rdf:resource="http://ebiquity.umbc.edu/person/html/Prajit/Das"/>
+		<assert:advisedBy rdf:resource="http://ebiquity.umbc.edu/person/html/Tim/Finin"/>
+		<assert:advises rdf:resource="http://ebiquity.umbc.edu/person/html/Prajit/Das"/>
+	</person:PhDAlumnus>
+	<rdf:Description rdf:about="">
+		<cc:License rdf:resource="http://creativecommons.org/licenses/by/2.0/"/>
+	</rdf:Description>
+</rdf:RDF>

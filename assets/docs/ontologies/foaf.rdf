@@ -1,0 +1,61 @@
+<!-- 
+
+This ontology document is licensed under the Creative Commons
+Attribution License. To view a copy of this license, visit
+http://creativecommons.org/licenses/by/2.0/ or send a letter to
+Creative Commons, 559 Nathan Abbott Way, Stanford, California
+94305, USA.
+
+ -->
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:cc="http://web.resource.org/cc/#"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:contact="http://www.w3.org/2000/10/swap/pim/contact#"
+	xmlns:air="http://www.daml.org/2001/10/html/airport-ont#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	xmlns:wn="http://xmlns.com/wordnet/1.6/">
+	<rdf:Description rdf:about="">
+		<dc:title>FOAF for Prajit Kumar Das</dc:title>
+		<rdfs:label>FOAF for Prajit Kumar Das</rdfs:label>
+		<dc:description>Friend-of-a-Friend description for Prajit Kumar Das</dc:description>
+	</rdf:Description>
+	<foaf:Person rdf:about="#me">
+		<foaf:name>Prajit Kumar Das</foaf:name>
+		<foaf:firstName>Prajit</foaf:firstName>
+		<foaf:surname>Das</foaf:surname>
+		<foaf:publications>/papers/select/person/Prajit/Das/</foaf:publications>
+		<foaf:homepage rdf:resource="https://prajitdas.github.io"/>
+		<foaf:workInfoHomepage rdf:resource="https://prajitdas.github.io/"/>
+		<foaf:depiction rdf:resource="http://ebiquity.umbc.edu/media/faces/620.jpeg"/>
+		<foaf:workplaceHomepage rdf:resource="http://umbc.edu/"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Anupam/Joshi/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Karuna/Joshi/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Varish/Mulwad/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Tim/Finin/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Pramod/Jagtap/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Dibyajyoti/Ghosh/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Prajit/Das/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Abhay/Kashyap/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Primal/Pappachan/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Roberto/Yus/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Eduardo/Mena/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Sharad/Mehrotra/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Sudip/Mittal/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Sandeep/Narayanan/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Nitin/Sharma/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Gurpreet/Singh/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Cynthia/Matuszek/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Sofia/Dutta/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Sai Sree Laya/Chukkapalli/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Madhura/Sulgekar/foaf.rdf#me"/>
+		<foaf:knows rdf:resource="http://ebiquity.umbc.edu/person/foaf/Swathi/Krithivasan/foaf.rdf#me"/>
+	</foaf:Person>
+	<rdf:Description rdf:about="">
+		<cc:License rdf:resource="http://creativecommons.org/licenses/by/2.0/"/>
+	</rdf:Description>
+</rdf:RDF>

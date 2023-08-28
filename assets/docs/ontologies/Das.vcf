@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:2.1
+N:Das;Prajit;
+FN:Prajit  Das
+ORG:Cisco Systems, Inc.;
+TITLE:
+TEL;WORK;VOICE:
+TEL;WORK;FAX:
+ADR;WORK:;;;Fulton;Maryland;21227;United States
+URL;WORK:https://prajitdas.github.io
+LABEL;WORK;ENCODING=QUOTED-PRINTABLE:=0D=0A=0D=0AFulton, Maryland 21227=0D=0AUnited States
+REV:20230828T153314Z
+END:VCARD
