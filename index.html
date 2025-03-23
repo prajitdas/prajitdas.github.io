@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang=en>
 <head><title>Welcome to personal homepage of Prajit!</title>
+	<meta charset="UTF-8">
 	<meta name="msvalidate.01" content="099D16F143ECFFC65FB206BD2DE7A789"/>
-	<meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name=description
 		  content="This is a personal website for the person who at least as of early 2017 was known as Mr. Prajit Kumar Das. We are not capable of predicting what he will be called in the future!">
 	<meta name=author content="Prajit Kumar Das">
@@ -10,7 +11,7 @@
 	<meta name=msapplication-TileImage content="assets/img/favicon-144.png">
 	<meta name=msapplication-config content="assets/img/browserconfig.xml">
 	<meta http-equiv=X-UA-Compatible content="IE=edge">
-	<meta name=viewport content="width=device-width, initial-scale=1.0">
+	<!-- Removed duplicate viewport meta tag -->
 	<meta name="google-site-verification" content="hz6fKqgJ6o854wtK59XUbk0NtKR_tbJX0RfuTqvQ2P0"/>
 	<link rel="shortcut icon" href="assets/img/favicon.ico">
 	<link rel=icon sizes="16x16 32x32 64x64" href="assets/img/favicon.ico">
@@ -47,7 +48,7 @@
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class=container>
 				<div class=navbar-header>
-					<button type=button class=navbar-toggle data-toggle=collapse data-target=.navbar-collapse><span
+					<button type=button class=navbar-toggle data-toggle=collapse data-target=.navbar-collapse title="Toggle navigation"><span
 							class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button>
 					<a class=navbar-brand href="#">Prajit's homepage</a></div>
 				<div class="navbar-collapse collapse">
@@ -70,11 +71,11 @@
 					<a href="https://www.cisco.com" target=_blank rel="noopener">Cisco Systems Inc.</a></br>
 				</h2>
 				<ul class="social list-inline">
-					<li><a href="https://scholar.google.com/citations?user=mfs-XBIAAAAJ&hl=en" target=_blank rel="noopener"><i class="fa fa-graduation-cap"></i></a></li>
-					<li><a href="https://github.com/prajitdas" target=_blank rel="noopener"><i class="fa fa-github-alt"></i></a></li>
-					<li><a href="https://www.linkedin.com/in/prajitdas" target=_blank rel="noopener"><i class="fa fa-linkedin"></i></a></li>
-					<li><a href="https://twitter.com/docprajit" target=_blank rel="noopener"> <i class="fa fa-twitter"></i> </a></li>
-					<li><a href="https://stackoverflow.com/users/1816861/docpkd" target=_blank rel="noopener"><i class="fa fa-stack-overflow"></i></a></li>
+					<li><a href="https://scholar.google.com/citations?user=mfs-XBIAAAAJ&hl=en" target=_blank rel="noopener" title="Google Scholar Profile"><i class="fa fa-graduation-cap"></i></a></li>
+					<li><a href="https://github.com/prajitdas" target=_blank rel="noopener" title="GitHub Profile"><i class="fa fa-github-alt"></i></a></li>
+					<li><a href="https://www.linkedin.com/in/prajitdas" target=_blank rel="noopener" title="Visit my LinkedIn profile"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="https://twitter.com/docprajit" target=_blank rel="noopener" title="Visit my Twitter profile"> <i class="fa fa-twitter"></i> </a></li>
+					<li><a href="https://stackoverflow.com/users/1816861/docpkd" target=_blank rel="noopener" title="Visit my Stack Overflow profile"><i class="fa fa-stack-overflow"></i></a></li>
 				</ul>
 			</div>
 	</header>
@@ -316,7 +317,7 @@
 							<h4 class=title>
 								<i class="fa fa-bookmark"></i> Was a finalist for the 3 Minute Thesis competition in the 38th UMBC Graduate Research Conference, 2016. Check out my talk in the video below:
 							</h4>
-							<iframe width="100%" height="400px" src="https://www.youtube.com/embed/qv_a9YfG_20" frameborder="0" allowfullscreen></iframe>
+							<iframe width="100%" height="400px" src="https://www.youtube.com/embed/qv_a9YfG_20" frameborder="0" allowfullscreen title="3 Minute Thesis competition video"></iframe>
 						</div>
 					</div>
 				</div>
@@ -337,7 +338,7 @@
 				<div class=section-inner>
 					<h2 class=heading>Publication word cloud</h2>
 					<div class=content>
-						<img src="assets/docs/publications/wordcloud.png" width="100%">
+						<img src="assets/docs/publications/wordcloud.png" width="100%" alt="Word cloud of publications">
 					</div>
 				</div>
 			</aside>
