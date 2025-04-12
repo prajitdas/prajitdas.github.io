@@ -101,13 +101,13 @@ ErrorDocument 403 assets/error-pages/404/404.html
 # https://serverfault.com/questions/213422/how-to-create-robots-txt-file-for-all-domains-on-apache-server
 RewriteEngine on
 RewriteBase /
-RewriteRule ^robots.txt$ /var/www/prajitdas.com/robots.txt [NC,L]
+RewriteRule ^robots.txt$ ./prajitdas.github.io/robots.txt [NC,L]
 
 RewriteCond %{HTTP_HOST} ^www\.prajitdas\.com$
-RewriteRule ^/?$ "https\:\/\/prajitdas\.com\/" [R=301,L]
+RewriteRule ^/?$ "https\:\/\/prajitdas\.github\.io\/" [R=301,L]
 
 RewriteCond %{HTTP_HOST} ^64\.227\.19\.194
-RewriteRule (.*) https://prajitdas.com/$1 [R=301,L]
+RewriteRule (.*) https://prajitdas.github.io/$1 [R=301,L]
 
 RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
 RewriteRule .* ? [F,L]

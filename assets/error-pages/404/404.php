@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>... 404 Error: Now what??? ...</title>
-	<link rel=stylesheet href="https://www.prajitdas.com/assets/css/style.css" type="text/css">
+	<link rel=stylesheet href="https://www.prajitdas.github.io/assets/css/style.css" type="text/css">
 </head>
 <style>
 	#footer {
@@ -41,7 +41,7 @@
 		You are in an open field west of a big white house with a boarded<br />
 		front door.<br />
 		There is a small mailbox here.<br />
-		<form name="prompt" action="https://www.prajitdas.com/assets/error-pages/404/404.php" method="post">
+		<form name="prompt" action="https://www.prajitdas.github.io/assets/error-pages/404/404.php" method="post">
 			&gt;&nbsp;
 			<input class="prompt" type="text" name="inputPrompt" size="64" autocomplete="off">
 		</form>
@@ -57,6 +57,6 @@
 	</script>
 </body>
 <div id="footer">
-	<p>Original inspiration from: <a href="https://thcnet.net/zork/index.php">thcnet</a> Return to the <a href="https://www.prajitdas.com">homepage</a></p>
+	<p>Original inspiration from: <a href="https://thcnet.net/zork/index.php">thcnet</a> Return to the <a href="https://www.prajitdas.github.io">homepage</a></p>
 </div>
 </html>
