@@ -103,7 +103,7 @@ RewriteEngine on
 RewriteBase /
 RewriteRule ^robots.txt$ ./prajitdas.github.io/robots.txt [NC,L]
 
-RewriteCond %{HTTP_HOST} ^www\.prajitdas\.com$
+RewriteCond %{HTTP_HOST} ^www\.prajitdas\.github\.io$
 RewriteRule ^/?$ "https\:\/\/prajitdas\.github\.io\/" [R=301,L]
 
 RewriteCond %{HTTP_HOST} ^64\.227\.19\.194
