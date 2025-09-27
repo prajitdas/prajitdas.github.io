@@ -1,11 +1,7 @@
 Profile
 =======
 
-Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das. [![CodeQL1. **Install test dependencies:**
-
-   ```bash
-   pip install -r .config/requirements.txt
-   ```ps://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
+Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das. [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
 
 Latest Website Validation Results
 ---------------------------------
@@ -99,10 +95,10 @@ Running Tests
 
 Local Development:
 
-1. **Install dependencies:**
+1. **Install test dependencies:**
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r .config/requirements.txt
    ```
 
 2. **Run all tests:**
