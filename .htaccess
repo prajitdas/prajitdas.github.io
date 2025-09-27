@@ -57,19 +57,17 @@
 ## EXPIRES CACHING ##
 
 
-#Alternative caching using Apache's "mod_headers", if it's installed.
-#Caching of common files - ENABLED
+# Alternative caching using Apache's "mod_headers", if it's installed.
+# Caching of common files - ENABLED
 <IfModule mod_headers.c>
-  <FilesMatch "\.(ico|pdf|flv|swf|js|css|gif|png|jpg|jpeg|ico|txt|html|htm)$">
+  <FilesMatch "\.(ico|pdf|flv|swf|js|css|gif|png|jpg|jpeg|txt|html|htm)$">
     Header set Cache-Control "max-age=2592000, public"
   </FilesMatch>
-</IfModule>
-
-
-<IfModule mod_headers.c>
   <FilesMatch "\.(js|css|xml|gz)$">
     Header append Vary Accept-Encoding
   </FilesMatch>
+  # Set Keep Alive Header
+  Header set Connection keep-alive
 </IfModule>
 
 <IfModule mod_gzip.c>
@@ -83,10 +81,7 @@
   mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
 </IfModule>
 
-# Set Keep Alive Header
-<IfModule mod_headers.c>
-  Header set Connection keep-alive
-</IfModule>
+
 
 # If your server supports ETags activate it with "All" otherwise deactivate with "None"
 # FileETag All
@@ -126,22 +121,7 @@
   Deny from all
 </FilesMatch>
 
-# Specific protection for publications directory scripts
-<Files "assets/docs/publications/genWordCloud.py">
-  Order Allow,Deny
-  Deny from all
-</Files>
-
-<Files "assets/docs/publications/genPubHTML.sh">
-  Order Allow,Deny
-  Deny from all
-</Files>
-
-# Block access to common development/config files
-<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini|_config\.yml|\.codacy\.yml|\.trivyignore)$">
-  Order Allow,Deny
-  Deny from all
-</FilesMatch>
+# Note: Specific file protections removed - covered by pattern-based rules above
 
 # Block access to ALL YAML files (development configurations)
 <FilesMatch "\.(yml|yaml)$">
@@ -149,53 +129,37 @@
   Deny from all
 </FilesMatch>
 
-# Block access to ALL package.json files (Node.js configurations)
-<FilesMatch "^package\.json$">
+# Block access to common development/config files
+<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini|\.trivyignore)$">
   Order Allow,Deny
   Deny from all
 </FilesMatch>
 
-# Block access to ALL Gruntfile.js files (build configurations)
-<FilesMatch "^Gruntfile\.js$">
+# Block access to ALL Node.js configuration files
+<FilesMatch "^(package\.json|Gruntfile\.js)$">
   Order Allow,Deny
   Deny from all
 </FilesMatch>
 
-# Block access to configuration and build files in assets directories
-# Use more specific patterns for nested files
+# Block access to renamed development files (dev-* prefix for security)
+<FilesMatch "^dev-(package\.json|Gruntfile\.js)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Comprehensive rewrite rules for security
 <IfModule mod_rewrite.c>
-  RewriteRule ^assets/.*/package\.json$ - [F,L]
-  RewriteRule ^assets/.*/Gruntfile\.js$ - [F,L]
+  # Block all package.json and Gruntfile.js files (including dev-* versions)
   RewriteRule ^.*/package\.json$ - [F,L]
   RewriteRule ^.*/Gruntfile\.js$ - [F,L]
-</IfModule>
-
-# Fallback: Block specific files
-<Files "assets/js/package.json">
-  Order Allow,Deny
-  Deny from all
-</Files>
-
-<Files "assets/js/Gruntfile.js">
-  Order Allow,Deny
-  Deny from all
-</Files>
-
-<Files "assets/plugins/github-activity/package.json">
-  Order Allow,Deny
-  Deny from all
-</Files>
-
-
-
-# Block access to Python cache directories
-<IfModule mod_rewrite.c>
+  RewriteRule ^.*/dev-package\.json$ - [F,L]
+  RewriteRule ^.*/dev-Gruntfile\.js$ - [F,L]
+  
+  # Block Python cache directories
   RewriteRule __pycache__/ - [F,L]
   RewriteRule \.pytest_cache/ - [F,L]
-</IfModule>
-
-# Block access to hidden files and directories
-<IfModule mod_rewrite.c>
+  
+  # Block access to hidden files and directories (except .well-known)
   RewriteRule (^|/)\.(?!well-known/) - [F,L]
 </IfModule>
 
@@ -205,16 +169,22 @@ IndexIgnore *
 ErrorDocument 404 assets/error-pages/404/404.html
 ErrorDocument 403 assets/error-pages/404/404.html
 
-# https://serverfault.com/questions/213422/how-to-create-robots-txt-file-for-all-domains-on-apache-server
-RewriteEngine on
-RewriteBase /
-RewriteRule ^robots.txt$ ./prajitdas.github.io/robots.txt [NC,L]
+# Domain and URL rewrite rules
+<IfModule mod_rewrite.c>
+  # https://serverfault.com/questions/213422/how-to-create-robots-txt-file-for-all-domains-on-apache-server
+  RewriteEngine on
+  RewriteBase /
+  RewriteRule ^robots.txt$ ./prajitdas.github.io/robots.txt [NC,L]
 
-RewriteCond %{HTTP_HOST} ^www\.prajitdas\.github\.io$
-RewriteRule ^/?$ "https\:\/\/prajitdas\.github\.io\/" [R=301,L]
+  # Redirect www to non-www
+  RewriteCond %{HTTP_HOST} ^www\.prajitdas\.github\.io$
+  RewriteRule ^/?$ "https\:\/\/prajitdas\.github\.io\/" [R=301,L]
 
-RewriteCond %{HTTP_HOST} ^64\.227\.19\.194
-RewriteRule (.*) https://prajitdas.github.io/$1 [R=301,L]
+  # Redirect IP to domain
+  RewriteCond %{HTTP_HOST} ^64\.227\.19\.194
+  RewriteRule (.*) https://prajitdas.github.io/$1 [R=301,L]
 
-RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
-RewriteRule .* ? [F,L]
+  # Block libwww-perl user agents
+  RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
+  RewriteRule .* ? [F,L]
+</IfModule>
