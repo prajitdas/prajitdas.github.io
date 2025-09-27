@@ -1,7 +1,7 @@
 #!/bin/bash
 # Look here for more help https://www.lri.fr/~filliatr/bibtex2html/doc/manual.html#sec7
 
-bibtex2html --reverse-sort -d -nokeywords -both 'my-publications.bib'
+bibtex2html --reverse-sort -d -nokeywords -both my-publications.bib
 
 sed -i 's/my-publications_bib.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-bib.html/g' my-publications.html
 sed -i 's/my-publications_abstracts.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-abstracts.html/g' my-publications.html
