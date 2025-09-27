@@ -60,7 +60,7 @@ This repository includes comprehensive automated tests that validate the structu
 **Web Security Score:** 🟢 **EXCELLENT** (100% protection)  
 **Files Scanned:** 65 text-based files  
 **Security Issues:** 0 critical, 0 warnings
-**Protected Files:** All sensitive development files secured  
+**Protected Files:** All sensitive development files secured (including new Codacy configs)
 **Last Security Scan:** September 27, 2025
 
 ### Running Tests Locally
@@ -156,6 +156,8 @@ This repository implements multiple layers of security to prevent sensitive deve
 - Test suites and development tools
 - Environment and package management files
 - GitHub workflow configurations
+- Codacy and security analyzer configurations
+- Jekyll and build configuration files
 
 ## 🛠️ Dependencies
 
