@@ -5,11 +5,35 @@ Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das.
 
 [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
 
-# Website Validation Tests
+Latest Website Validation Results
+---------------------------------
+
+| Test Category | Status | Description | Files Validated |
+|---------------|--------|-------------|-----------------|
+| 🏗️ **HTML Structure** | ✅ PASSED | DOCTYPE declarations, proper nesting, required elements | 6 HTML files |
+| 🏷️ **Meta Tags** | ✅ PASSED | SEO tags, viewport, Google verification, security headers | index.html |
+| 🔗 **Internal Links** | ✅ PASSED | All internal links point to existing files | All HTML files |
+| 📁 **Asset Links** | ✅ PASSED | CSS, JavaScript, images, and icons exist | All referenced assets |
+| 🎨 **CSS Files** | ✅ PASSED | Files exist, not empty, balanced braces | 12 CSS files |
+| ⚡ **JavaScript Files** | ✅ PASSED | Files exist, basic syntax validation | 15 JS files |
+| 🖼️ **Image Assets** | ✅ PASSED | All referenced images exist and accessible | All image references |
+| 🛡️ **Security Headers** | ✅ PASSED | X-UA-Compatible and security configurations | index.html |
+| 📱 **Responsive Design** | ✅ PASSED | Viewport meta tags for mobile compatibility | index.html |
+| 📚 **Publication Files** | ✅ PASSED | Generated publication HTML files valid | bibtex2html output |
+| 🚫 **Deprecated Elements** | ✅ PASSED | No deprecated HTML tags (excl. auto-generated) | Main HTML files |
+| 📋 **Required Files** | ✅ PASSED | Essential files and directories exist | Project structure |
+
+**Last Updated:** September 27, 2025  
+**Total Tests:** 12/12 passing ✅  
+**Test Runtime:** 0.26 seconds  
+
+Website Validation Tests
+------------------------
 
 This directory contains automated tests that validate the structure, content, and integrity of the website.
 
-## Test Coverage
+Test Coverage
+-------------
 
 The test suite validates:
 
@@ -22,9 +46,10 @@ The test suite validates:
 - ✅ **Publications**: Generated publication files are valid
 - ✅ **File Structure**: Required files and directories exist
 
-## Running Tests
+Running Tests
+-------------
 
-### Local Development
+Local Development:
 
 1. **Install dependencies:**
 
@@ -55,7 +80,7 @@ The test suite validates:
    pytest -k "test_meta" -v          # Meta tag tests
    ```
 
-### GitHub Actions
+GitHub Actions:
 
 Tests run automatically on:
 
@@ -64,13 +89,15 @@ Tests run automatically on:
 - Weekly schedule (Sundays at 2 AM UTC)
 - Manual trigger via GitHub Actions UI
 
-## Test Results
+Test Results
+------------
 
 - ✅ **Pass**: All validations successful
 - ❌ **Fail**: Issues found that need attention
 - ⚠️ **Warning**: Non-critical issues detected
 
-## Adding New Tests
+Adding New Tests
+----------------
 
 To add new validation tests:
 
@@ -79,7 +106,8 @@ To add new validation tests:
 3. Use `self.subTest()` for testing multiple files
 4. Add appropriate assertions with descriptive error messages
 
-## Files
+Files
+-----
 
 - `test_website_validation.py` - Main test suite
 - `requirements.txt` - Python dependencies
@@ -87,7 +115,8 @@ To add new validation tests:
 - `pytest.ini` - Pytest configuration
 - `.github/workflows/validate-website.yml` - GitHub Actions workflow
 
-## Dependencies
+Dependencies
+------------
 
 - **beautifulsoup4**: HTML parsing and validation
 - **requests**: HTTP requests for link checking
@@ -95,15 +124,16 @@ To add new validation tests:
 - **html5lib**: HTML5 parsing
 - **pytest**: Test framework and runner
 
-## Troubleshooting
+Troubleshooting
+---------------
 
-### Common Issues
+Common Issues:
 
 1. **Import Errors**: Install dependencies with `pip install -r tests/requirements.txt`
 2. **Path Issues**: Run tests from project root or tests directory
 3. **Permission Errors**: Ensure test runner has execute permissions
 
-### Test Failures
+Test Failures:
 
 When tests fail:
 
@@ -112,7 +142,8 @@ When tests fail:
 3. Ensure all assets exist and are properly linked
 4. Check HTML syntax and structure
 
-## Integration
+Integration
+-----------
 
 These tests integrate with:
 
