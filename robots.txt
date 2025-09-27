@@ -16,6 +16,13 @@ Disallow: /.well-known/
 # Asset directories (if you want to keep them private)
 Disallow: /assets/
 
+# Python files and related patterns
+Disallow: /*.py
+Disallow: /*.pyc
+Disallow: /*.pyo
+Disallow: /__pycache__/
+Disallow: /.pytest_cache/
+
 # Common development files patterns
 Disallow: /*.env
 Disallow: /*.log

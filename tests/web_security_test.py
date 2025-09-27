@@ -76,14 +76,17 @@ def main():
         "tests/",
         "tests/test_website_validation.py",
         "tests/security_scan.py",
+        "tests/run_tests.py",
+        "tests/web_security_test.py",
         "tests/requirements.txt",
         ".github/workflows/validate-website.yml",
         ".config/requirements.txt",
         ".config/pyproject.toml", 
+        ".config/setup.py",
+        ".config/genWordCloud.py",
         ".env",
         "package.json",
         "composer.json",
-        "setup.py",
     ]
     
     # Test with your domain
