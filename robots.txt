@@ -1,6 +1,26 @@
 User-agent: *
-Disallow: /.idea
-Disallow: /assets
-Disallow: /.well-known
-Disallow: /.git
+# Development and configuration files
+Disallow: /README.md
+Disallow: /requirements.txt
+Disallow: /pyproject.toml
+Disallow: /.gitattributes
 Disallow: /.gitignore
+Disallow: /.htaccess
+
+# Development directories
+Disallow: /tests/
+Disallow: /.github/
+Disallow: /.git/
+Disallow: /.idea/
+Disallow: /.well-known/
+
+# Asset directories (if you want to keep them private)
+Disallow: /assets/
+
+# Common development files patterns
+Disallow: /*.env
+Disallow: /*.log
+Disallow: /package.json
+Disallow: /composer.json
+Disallow: /setup.py
+Disallow: /Pipfile

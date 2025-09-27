@@ -1,22 +1,6 @@
-# Test dependencies for website validation
+# Website validation and testing dependencies
 beautifulsoup4==4.12.2
 requests==2.31.0
-lxml==6.0.1
+lxml==4.9.3
 html5lib==1.1
 pytest>=7.0.0
-chardet==5.2.0
-command-not-found==0.3
-language-selector==0.1
-np==1.0.2
-Pillow==11.3.0
-pycurl==7.43.0
-pygobject==3.20.0
-python-apt==1.1.0
-python-debian==1.0.1
-python-systemd==0.0.9
-requests==2.32.4
-six==1.10.0
-ssh-import-id==5.5
-ufw==0.35
-unattended-upgrades==0.1
-urllib3==2.5.0

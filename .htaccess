@@ -92,6 +92,49 @@
 # FileETag All
 # FileETag None
 
+# Security: Block access to sensitive development files
+<Files "README.md">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files "requirements.txt">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files "pyproject.toml">
+  Order Allow,Deny  
+  Deny from all
+</Files>
+
+<Files ".gitattributes">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files ".gitignore">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+# Block access to common development/config files
+<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Block access to tests directory
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^tests/ - [F,L]
+</IfModule>
+
+# Block access to hidden files and directories
+<IfModule mod_rewrite.c>
+  RewriteRule (^|/)\.(?!well-known/) - [F,L]
+</IfModule>
+
 #To enforce or deny complete folder listing
 IndexIgnore *
 

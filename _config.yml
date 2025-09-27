@@ -1,0 +1,28 @@
+# GitHub Pages Jekyll configuration to exclude files from site generation
+# This ensures these files are not processed or made available on the website
+
+# Exclude development and configuration files
+exclude:
+  - README.md
+  - requirements.txt
+  - pyproject.toml
+  - .gitattributes
+  - .gitignore
+  - .htaccess
+  - tests/
+  - .github/
+  - "*.py"
+  - "*.pyc"
+  - __pycache__/
+  - .pytest_cache/
+  - .env*
+  - node_modules/
+  - package*.json
+  - composer.json
+  - setup.py
+  - Pipfile*
+  - tox.ini
+
+# Keep these files/directories accessible
+include:
+  - .well-known/

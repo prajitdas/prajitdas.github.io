@@ -1,11 +1,7 @@
 Profile
 =======
 
-Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das.
-
-[![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
-
-> **Note:** This is a personal website repository built with HTML/CSS/JavaScript for GitHub Pages. The Python files in the `tests/` directory are automated validation tools, not the main project.
+Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das. [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
 
 Latest Website Validation Results
 ---------------------------------
@@ -75,7 +71,7 @@ Local Development:
 1. **Install dependencies:**
 
    ```bash
-   pip install -r tests/requirements.txt
+   pip install -r requirements.txt
    ```
 
 2. **Run all tests:**
@@ -145,10 +141,37 @@ Files
 
 - `test_website_validation.py` - Main test suite
 - `security_scan.py` - Security credential scanner
+- `web_security_test.py` - Web file access security tester
 - `requirements.txt` - Python dependencies
 - `run_tests.py` - Local test runner script
 - `pytest.ini` - Pytest configuration
 - `.github/workflows/validate-website.yml` - GitHub Actions workflow
+
+Web Security
+------------
+
+This repository implements multiple layers of security to prevent sensitive development files from being accessible via the web:
+
+**Protection Methods:**
+
+- **`.htaccess`**: Server-level blocking of sensitive files and directories
+- **`robots.txt`**: Search engine directive to not crawl development files
+- **`_config.yml`**: Jekyll exclusion of files from site generation
+- **Web Security Tests**: Automated verification that files are not web-accessible
+
+**Protected Files/Directories:**
+
+- `README.md`, `requirements.txt`, `pyproject.toml`
+- `.gitattributes`, `.gitignore`, `.htaccess`
+- `tests/` directory and all Python files
+- `.github/` workflows and configuration
+- Environment and package files (`.env`, `package.json`, etc.)
+
+**Testing Security:**
+
+```bash
+python tests/web_security_test.py    # Test file access protection
+```
 
 Dependencies
 ------------
@@ -164,7 +187,7 @@ Troubleshooting
 
 Common Issues:
 
-1. **Import Errors**: Install dependencies with `pip install -r tests/requirements.txt`
+1. **Import Errors**: Install dependencies with `pip install -r requirements.txt`
 2. **Path Issues**: Run tests from project root or tests directory
 3. **Permission Errors**: Ensure test runner has execute permissions
 
@@ -185,3 +208,5 @@ These tests integrate with:
 - **GitHub Actions**: Automated CI/CD validation
 - **Local Development**: Pre-commit validation
 - **Publication Pipeline**: Validates generated content
+
+> **Note:** This is a personal website repository built with HTML/CSS/JavaScript for GitHub Pages. The Python files in the `tests/` directory are automated validation tools, not the main project.
