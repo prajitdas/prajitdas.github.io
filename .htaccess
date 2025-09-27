@@ -138,7 +138,7 @@
 </Files>
 
 # Block access to common development/config files
-<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini|_config\.yml)$">
+<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini|_config\.yml|\.codacy\.yml|\.trivyignore)$">
   Order Allow,Deny
   Deny from all
 </FilesMatch>
