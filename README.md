@@ -88,6 +88,34 @@ This repository includes comprehensive automated tests that validate the structu
    pytest -k "test_html" -v          # HTML structure tests
    pytest -k "test_links" -v         # Link validation tests
    pytest -k "test_asset" -v         # Asset validation tests
+   ```
+
+4. **Run SARIF validation test:**
+
+   ```bash
+   python .github/tests/sarif_validation_test.py
+   ```
+
+### 🔧 Recent Improvements
+
+**SARIF JSON Syntax Error Fix (September 27, 2025):**
+
+- ✅ **Resolved**: "Invalid SARIF. JSON syntax error: Unexpected end of JSON input"
+- ✅ **Enhanced**: Codacy workflow with robust SARIF validation and fallback generation
+- ✅ **Added**: Comprehensive SARIF validation test suite
+- ✅ **Improved**: Error handling with `continue-on-error` for workflow reliability
+- ✅ **Simplified**: SARIF creation logic to prevent YAML parsing issues
+
+The enhanced Codacy security workflow now ensures:
+
+- Always generates valid SARIF 2.1.0 format files
+- Prevents JSON syntax errors that cause workflow failures
+- Provides fallback SARIF creation when analysis fails
+- Includes comprehensive validation before file upload
+
+## 🚀 Additional Testing
+
+1. **Run security scans:**
    pytest -k "test_meta" -v          # Meta tag tests
    ```
 
@@ -134,7 +162,8 @@ The automated workflow includes:
 │   ├── tests/                    # Website validation test suite
 │   │   ├── test_website_validation.py
 │   │   ├── security_scan.py
-│   │   └── web_security_test.py
+│   │   ├── web_security_test.py
+│   │   └── sarif_validation_test.py
 │   └── workflows/               # GitHub Actions CI/CD
 └── README.md                    # This file
 ```
