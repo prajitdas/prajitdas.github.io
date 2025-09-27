@@ -35,6 +35,10 @@ Disallow: /_config.yml
 Disallow: /.codacy.yml
 Disallow: /.trivyignore
 
+# Block all YAML configuration files
+Disallow: /*.yml
+Disallow: /*.yaml
+
 # Configuration files in assets directories
 Disallow: /assets/js/package.json
 Disallow: /assets/js/Gruntfile.js

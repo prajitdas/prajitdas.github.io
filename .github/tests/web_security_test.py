@@ -73,11 +73,18 @@ def main():
         ".gitattributes",
         ".gitignore",
         ".htaccess",
-        "_config.yml",
-        ".codacy.yml",
         ".trivyignore",
-
+        
+        # ALL YAML configuration files (development configurations)
+        "_config.yml",
+        ".codacy.yml", 
+        ".github/dependabot.yml",
+        ".github/labeler.yml",
+        ".github/workflows/codacy.yml",
+        ".github/workflows/label.yml",
+        ".github/workflows/static.yml",
         ".github/workflows/validate-website.yml",
+
         ".github/config/requirements.txt",
         ".github/config/genWordCloud.py",
         ".github/config/genPubHTML.sh",
@@ -103,7 +110,7 @@ def main():
     
     print("🔍 Web Security File Access Test")
     print(f"Testing URL: {base_url}")
-    print(f"Files to test: {len(sensitive_files)}")
+    print(f"Files to test: {len(sensitive_files)} (including all YAML configs)")
     print()
     
     return test_file_access(base_url, sensitive_files)

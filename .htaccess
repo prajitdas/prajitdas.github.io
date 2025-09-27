@@ -143,6 +143,12 @@
   Deny from all
 </FilesMatch>
 
+# Block access to ALL YAML files (development configurations)
+<FilesMatch "\.(yml|yaml)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
 # Block access to configuration and build files in assets directories
 <Files "assets/js/package.json">
   Order Allow,Deny

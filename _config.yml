@@ -11,6 +11,8 @@ exclude:
   - _config.yml
   - .codacy.yml
   - .trivyignore
+  - "*.yml"
+  - "*.yaml"
   - "*.py"
   - "*.pyc"  
   - "*.sh"
