@@ -31,3 +31,14 @@ Disallow: /package.json
 Disallow: /composer.json
 Disallow: /setup.py
 Disallow: /Pipfile
+Disallow: /_config.yml
+
+# Configuration files in assets directories
+Disallow: /assets/js/package.json
+Disallow: /assets/js/Gruntfile.js
+Disallow: /assets/plugins/github-activity/package.json
+
+# Documentation files that may contain sensitive info
+Disallow: /assets/HELP-US-OUT.txt
+Disallow: /assets/img/Developer-ReadMe.txt
+Disallow: /assets/img/faviconit-instructions.txt

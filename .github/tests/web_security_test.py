@@ -73,12 +73,24 @@ def main():
         ".gitattributes",
         ".gitignore",
         ".htaccess",
+        "_config.yml",
 
         ".github/workflows/validate-website.yml",
         ".github/config/requirements.txt",
         ".github/config/genWordCloud.py",
         ".github/config/genPubHTML.sh",
         "assets/docs/publications/generate.sh",
+        
+        # Configuration files in assets directories
+        "assets/js/package.json",
+        "assets/js/Gruntfile.js",
+        "assets/plugins/github-activity/package.json",
+        
+        # Developer documentation files
+        "assets/HELP-US-OUT.txt",
+        "assets/img/Developer-ReadMe.txt",
+        "assets/img/faviconit-instructions.txt",
+        
         ".env",
         "package.json",
         "composer.json",

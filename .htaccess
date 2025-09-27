@@ -138,10 +138,26 @@
 </Files>
 
 # Block access to common development/config files
-<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini)$">
+<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini|_config\.yml)$">
   Order Allow,Deny
   Deny from all
 </FilesMatch>
+
+# Block access to configuration and build files in assets directories
+<Files "assets/js/package.json">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files "assets/js/Gruntfile.js">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files "assets/plugins/github-activity/package.json">
+  Order Allow,Deny
+  Deny from all
+</Files>
 
 
 
