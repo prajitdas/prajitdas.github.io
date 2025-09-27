@@ -47,3 +47,8 @@ venv/
 *.sublime-workspace
 config.ini
 secrets.py
+
+# Codacy temporary files
+.codacy/
+results.sarif
+*.sarif

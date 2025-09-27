@@ -38,6 +38,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Clean any potential uncommitted changes to avoid Codacy warnings
+      - name: Clean repository
+        run: |
+          git clean -fd
+          git reset --hard HEAD
+          git status
+
       # Execute Codacy Analysis CLI and generate a SARIF output with the security issues identified during the analysis
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@master

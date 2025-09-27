@@ -1,0 +1,36 @@
+# Codacy configuration file
+# This helps avoid false warnings and configures analysis behavior
+
+engines:
+  # Enable specific analysis engines
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+  
+exclude_patterns:
+  # Exclude minified files and external libraries
+  - 'assets/js/**/*.min.js'
+  - 'assets/css/**/*.min.css'
+  - 'assets/plugins/**'
+  - 'assets/fonts/**'
+  - 'node_modules/**'
+  - '_site/**'
+  - '.git/**'
+  - '.github/**'
+  
+# Ignore common false positives
+duplication:
+  config:
+    languages:
+      - javascript:
+          mass_threshold: 100
+      - css:
+          mass_threshold: 50
+
+# Tool-specific configurations
+tools:
+  eslint:
+    exclude_patterns:
+      - 'assets/js/bootstrap*.js'
+      - 'assets/js/jquery*.js'
