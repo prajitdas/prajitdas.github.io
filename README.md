@@ -2,7 +2,7 @@
 
 Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das - Researcher specializing in Security & Privacy, and Generative AI.
 
-[![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql) [![Website Validation](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml)
+[![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql) [![Website Validation Tests](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml)
 
 ## 🛡️ Security Assessment
 
