@@ -5,7 +5,16 @@
 
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  # Update Python dependencies in .github/config/requirements.txt
+  - package-ecosystem: "pip"
+    directory: "/.github/config"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 5
+    
+  # Update GitHub Actions in workflow files
+  - package-ecosystem: "github-actions"
+    directory: "/.github/workflows"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
