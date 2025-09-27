@@ -5,13 +5,44 @@ Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das - Researcher
 [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql) [![Website Validation](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml)
 
 
+## 🛡️ Security Assessment
+
+| Security Check | Status | Description | Files Scanned |
+|----------------|--------|-------------|---------------|
+| 🔐 **Credential Scanning** | ✅ SECURE | No hardcoded API keys, passwords, or tokens | 65 text files |
+| 🔑 **Private Keys** | ✅ SECURE | No SSH/SSL private keys exposed | All code files |
+| 💾 **Database Credentials** | ✅ SECURE | No connection strings or DB passwords | All config files |
+| 🌐 **Environment Files** | ✅ SECURE | No .env or sensitive config files committed | Git history |
+| 👤 **Personal Information** | ✅ SECURE | No phone numbers or sensitive PII exposed | All documents |
+| 📧 **Email Exposure** | ✅ MINIMAL | Only third-party attribution emails found | 2 files (acceptable) |
+| 🔍 **Git History** | ✅ CLEAN | No accidentally committed sensitive files | Complete history |
+| 🛡️ **GitHub Actions** | ✅ SECURE | Proper use of secrets and secure practices | Workflow files |
+
 ## 🔒 Security Status
 
 **Web Security Score:** 🟢 **EXCELLENT** (100% protection)  
+**Files Scanned:** 65 text-based files  
+**Security Issues:** 0 critical, 0 warnings
 **Protected Files:** All sensitive development files secured  
 **Last Security Scan:** September 27, 2025
 
-## 📊 Latest Website Validation Results
+## 🔧 Development & Testing
+
+### Website Validation Tests
+
+This repository includes comprehensive automated tests that validate the structure, content, and integrity of the website.
+
+**Test Coverage:**
+- ✅ **HTML Structure**: Valid DOCTYPE, proper tag nesting, required elements
+- ✅ **Meta Tags**: Essential SEO and responsive design meta tags
+- ✅ **Internal Links**: All internal links point to existing files
+- ✅ **Assets**: CSS, JavaScript, and image files exist and are valid
+- ✅ **Security**: Basic security headers and no exposed sensitive files
+- ✅ **Accessibility**: Responsive design elements and proper HTML semantics
+- ✅ **Publications**: Generated publication files are valid
+- ✅ **File Structure**: Required files and directories exist
+
+### 📊 Latest Website Validation Results
 
 | Test Category | Status | Description | Files Validated |
 |---------------|--------|-------------|-----------------|
@@ -31,40 +62,6 @@ Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das - Researcher
 **Last Updated:** September 27, 2025  
 **Total Tests:** 12/12 passing ✅  
 **Test Runtime:** 0.34 seconds
-
-## 🛡️ Security Assessment
-
-| Security Check | Status | Description | Files Scanned |
-|----------------|--------|-------------|---------------|
-| 🔐 **Credential Scanning** | ✅ SECURE | No hardcoded API keys, passwords, or tokens | 65 text files |
-| 🔑 **Private Keys** | ✅ SECURE | No SSH/SSL private keys exposed | All code files |
-| 💾 **Database Credentials** | ✅ SECURE | No connection strings or DB passwords | All config files |
-| 🌐 **Environment Files** | ✅ SECURE | No .env or sensitive config files committed | Git history |
-| 👤 **Personal Information** | ✅ SECURE | No phone numbers or sensitive PII exposed | All documents |
-| 📧 **Email Exposure** | ✅ MINIMAL | Only third-party attribution emails found | 2 files (acceptable) |
-| 🔍 **Git History** | ✅ CLEAN | No accidentally committed sensitive files | Complete history |
-| 🛡️ **GitHub Actions** | ✅ SECURE | Proper use of secrets and secure practices | Workflow files |
-
-**Security Score:** 🟢 **EXCELLENT** (10/10)  
-**Files Scanned:** 65 text-based files  
-**Security Issues:** 0 critical, 0 warnings
-
-## 🔧 Development & Testing
-
-### Website Validation Tests
-
-This repository includes comprehensive automated tests that validate the structure, content, and integrity of the website.
-
-**Test Coverage:**
-- ✅ **HTML Structure**: Valid DOCTYPE, proper tag nesting, required elements
-- ✅ **Meta Tags**: Essential SEO and responsive design meta tags
-- ✅ **Internal Links**: All internal links point to existing files
-- ✅ **Assets**: CSS, JavaScript, and image files exist and are valid
-- ✅ **Security**: Basic security headers and no exposed sensitive files
-- ✅ **Accessibility**: Responsive design elements and proper HTML semantics
-- ✅ **Publications**: Generated publication files are valid
-- ✅ **File Structure**: Required files and directories exist
-
 ### Running Tests Locally
 
 1. **Install test dependencies:**
