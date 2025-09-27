@@ -65,33 +65,65 @@ jobs:
           tool: eslint,csslint
         continue-on-error: true
         
-      # Ensure SARIF file exists and is valid
+      # Create a simple SARIF creation script
+      - name: Create SARIF generator script
+        run: |
+          cat > create_sarif.py << 'EOF'
+          import json
+          import sys
+          import os
+          
+          def create_minimal_sarif():
+              sarif_data = {
+                  "version": "2.1.0",
+                  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0.json",
+                  "runs": [
+                      {
+                          "tool": {
+                              "driver": {
+                                  "name": "Codacy Analysis CLI",
+                                  "version": "1.0.0"
+                              }
+                          },
+                          "results": []
+                      }
+                  ]
+              }
+              
+              try:
+                  with open('results.sarif', 'w') as f:
+                      json.dump(sarif_data, f, indent=2)
+                  print("✅ SARIF file created successfully")
+                  return True
+              except Exception as e:
+                  print(f"❌ Error creating SARIF: {e}")
+                  return False
+          
+          if __name__ == "__main__":
+              create_minimal_sarif()
+          EOF
+      
+      # Ensure SARIF file exists and is valid  
       - name: Ensure valid SARIF file
         run: |
           echo "🔍 Checking SARIF file..."
+          echo "📁 Working directory: $(pwd)"
+          ls -la . | head -3
           
-          # Always create a valid SARIF file to prevent JSON syntax errors
-          if [[ ! -f "results.sarif" ]] || [[ ! -s "results.sarif" ]] || ! python3 -m json.tool results.sarif >/dev/null 2>&1; then
-            echo "🔧 Creating valid SARIF file..."
-            echo '{
-              "version": "2.1.0",
-              "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0.json",
-              "runs": [
-                {
-                  "tool": {
-                    "driver": {
-                      "name": "Codacy Analysis CLI",
-                      "version": "1.0.0"
-                    }
-                  },
-                  "results": []
-                }
-              ]
-            }' > results.sarif
+          # Check if valid SARIF already exists
+          if [[ -f "results.sarif" ]] && [[ -s "results.sarif" ]] && python3 -m json.tool results.sarif >/dev/null 2>&1; then
+            echo "✅ Valid SARIF file already exists"
+          else
+            echo "🔧 Creating minimal SARIF file..."
+            python3 create_sarif.py
           fi
           
-          echo "✅ SARIF file ready for upload"
-          ls -la results.sarif
+          echo "📊 Final SARIF status:"
+          ls -la results.sarif 2>/dev/null || echo "❌ SARIF file missing"
+          python3 -m json.tool results.sarif >/dev/null 2>&1 && echo "✅ SARIF JSON valid" || echo "❌ SARIF JSON invalid"
+          
+          # Clean up temporary script
+          rm -f create_sarif.py
 
       # Upload the SARIF file generated in the previous step
       - name: Upload SARIF results file
