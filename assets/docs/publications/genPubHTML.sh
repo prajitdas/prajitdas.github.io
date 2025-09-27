@@ -24,5 +24,5 @@ fi
 
 rm word-cloud.txt
 name=`date +%F-%T | tr ':' '-'`
-git commit -am"lazygit commit $name"
+git commit -S -am"lazygit commit $name"
 git push
