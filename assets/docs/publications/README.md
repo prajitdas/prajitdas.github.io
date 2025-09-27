@@ -7,6 +7,7 @@ This directory contains publication-related documents and assets.
 **Security Note:** Generation scripts are now stored in `.github/config/` for security and are not web-accessible.
 
 This directory contains:
+
 - `generate.sh` - Wrapper script to run secure publication generation
 - `my-publications.bib` - BibTeX file with all publications  
 - Generated HTML files and word cloud images
@@ -26,12 +27,14 @@ bash .github/config/genPubHTML.sh [mask_name]
 ```
 
 The generation process will:
+
 1. Generate HTML files from BibTeX using `bibtex2html`
 2. Create a word cloud from publication abstracts
 3. Optionally use mask images (vader, yoda, etc.) for shaped word clouds
 4. Place all output files in this directory
 
 **Security Features:**
+
 - Scripts are stored in `.github/config/` (web-blocked)
 - Generated content remains in this directory
 - Wrapper script provides convenient access
