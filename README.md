@@ -4,7 +4,6 @@ Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das - Researcher
 
 [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql) [![Website Validation](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml)
 
-
 ## 🛡️ Security Assessment
 
 | Security Check | Status | Description | Files Scanned |
