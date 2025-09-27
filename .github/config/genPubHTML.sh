@@ -1,6 +1,13 @@
 #!/bin/bash
 # Look here for more help https://www.lri.fr/~filliatr/bibtex2html/doc/manual.html#sec7
 
+# Script is in .github/config but works with publications directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PUBLICATIONS_DIR="$SCRIPT_DIR/../../assets/docs/publications"
+
+# Change to publications directory to work with files there
+cd "$PUBLICATIONS_DIR"
+
 bibtex2html --reverse-sort -d -nokeywords -both my-publications.bib
 
 # On Mac do sed -i '' then the rest of it on linux remove the trailing '' after -i
@@ -17,9 +24,9 @@ cat my-publications.bib | grep Abstract > word-cloud.txt
 
 if [ -z $1 ]; then
 	echo "Mask not provided, using default mask 'None'..."
-	python genWordCloud.py None
+	python "$SCRIPT_DIR/genWordCloud.py" None
 else
-	python genWordCloud.py $1
+	python "$SCRIPT_DIR/genWordCloud.py" $1
 fi
 
 rm word-cloud.txt

@@ -9,12 +9,16 @@ import time
 import sys
 
 def doTask(mask=None):
-	d = path.dirname(__file__)
+	# Script is in .github/config but works with publications directory
+	script_dir = path.dirname(__file__)
+	publications_dir = path.join(script_dir, '..', '..', 'assets', 'docs', 'publications')
+	publications_dir = path.abspath(publications_dir)  # Resolve to absolute path
+	
 	mask_provided = mask != "None"
 	mask_array = None
 
-	# Read the whole file_data.
-	file_data = open(path.join(d, 'word-cloud.txt')).read()
+	# Read the whole file_data from publications directory
+	file_data = open(path.join(publications_dir, 'word-cloud.txt')).read()
 
 	#removed all the punctuation
 	tokens = nltk.wordpunct_tokenize(file_data)
@@ -54,10 +58,10 @@ def doTask(mask=None):
 		# mask_name="vader"
 		mask_image_filename=mask+".png"
 
-		# read the mask image
+		# read the mask image from publications directory
 		# taken from
 		# http://www.stencilry.org/stencils/movies/alice%20in%20wonderland/255fk.jpg
-		mask_image = Image.open(path.join(d, mask_image_filename))
+		mask_image = Image.open(path.join(publications_dir, mask_image_filename))
 		# Convert to grayscale if needed and ensure proper numeric format
 		if mask_image.mode != 'L':
 			mask_image = mask_image.convert('L')
@@ -70,8 +74,8 @@ def doTask(mask=None):
 	# generate word cloud
 	wordcloud.generate(text_to_process)
 
-	# store to file
-	wordcloud.to_file(path.join(d, "wordcloud.png"))
+	# store to file in publications directory
+	wordcloud.to_file(path.join(publications_dir, "wordcloud.png"))
 
 	# show
 	# plt.imshow(wordcloud, interpolation='bilinear')

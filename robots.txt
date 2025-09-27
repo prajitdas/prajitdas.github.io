@@ -22,6 +22,9 @@ Disallow: /*.pyo
 Disallow: /__pycache__/
 Disallow: /.pytest_cache/
 
+# Shell scripts
+Disallow: /*.sh
+
 # Common development files patterns
 Disallow: /*.env
 Disallow: /*.log

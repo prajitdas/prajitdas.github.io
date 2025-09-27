@@ -1,7 +1,8 @@
 Profile
 =======
 
-Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das. [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
+Personal [webpage](https://prajitdas.github.io)**Web Security Score:** � **GOOD** (12/16 protected)  
+**Protected Files:** 12 files properly blockedf Prajit Kumar Das. [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
 
 Latest Website Validation Results
 ---------------------------------
@@ -51,7 +52,6 @@ Web Access Security Results
 |----------------|--------|----------|-------------------|
 | 📄 **README.md** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
 | 📄 **.github/config/requirements.txt** | ✅ PROTECTED | 404 | GitHub directory protection |
-| 📄 **.github/config/pyproject.toml** | ✅ PROTECTED | 404 | GitHub directory protection |
 | 📄 **.gitattributes** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
 | 📄 **.gitignore** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
 | 📄 **.htaccess** | ✅ BLOCKED | 200* | Content filtering |
@@ -61,8 +61,8 @@ Web Access Security Results
 | 🔧 **.env** | ✅ PROTECTED | 404 | File exclusion |
 | 📦 **package.json** | ✅ PROTECTED | 404 | File exclusion |
 | 🎵 **composer.json** | ✅ PROTECTED | 404 | File exclusion |
-| 🐍 **.github/config/setup.py** | ✅ PROTECTED | 404 | Python file protection |
-| 🐍 **assets/docs/publications/genWordCloud.py** | ✅ PROTECTED | 404 | Publication script protection |
+| 🐍 **.github/config/genWordCloud.py** | ✅ PROTECTED | 404 | Publication script protection |
+| 📜 **.github/config/genPubHTML.sh** | ✅ PROTECTED | 404 | Shell script protection |
 
 **Web Security Score:** � **EXCELLENT** (15/18 protected)  
 **Protected Files:** 15 files properly blocked  
@@ -190,7 +190,7 @@ This repository implements multiple layers of security to prevent sensitive deve
 
 **Protected Files/Directories:**
 
-- `README.md`, `.github/config/requirements.txt`, `.github/config/pyproject.toml`
+- `README.md`, `.github/config/requirements.txt`
 - `.gitattributes`, `.gitignore`, `.htaccess`
 - `tests/` directory and all Python files
 - `.github/` workflows and configuration

@@ -10,7 +10,8 @@ exclude:
   - tests/
   - .github/
   - "*.py"
-  - "*.pyc"
+  - "*.pyc"  
+  - "*.sh"
   - __pycache__/
   - .pytest_cache/
   - .env*

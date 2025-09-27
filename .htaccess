@@ -120,6 +120,23 @@
   Deny from all
 </FilesMatch>
 
+# Block access to shell scripts 
+<FilesMatch "\.sh$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Specific protection for publications directory scripts
+<Files "assets/docs/publications/genWordCloud.py">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files "assets/docs/publications/genPubHTML.sh">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
 # Block access to common development/config files
 <FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini)$">
   Order Allow,Deny

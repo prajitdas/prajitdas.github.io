@@ -4,24 +4,34 @@ This directory contains publication-related documents and assets.
 
 ## Scripts and Generation
 
+**Security Note:** Generation scripts are now stored in `.github/config/` for security and are not web-accessible.
+
 This directory contains:
-- `genPubHTML.sh` - Shell script to generate publication HTML files from BibTeX
-- `genWordCloud.py` - Python script to generate word clouds from publication abstracts
-- `my-publications.bib` - BibTeX file with all publications
+- `generate.sh` - Wrapper script to run secure publication generation
+- `my-publications.bib` - BibTeX file with all publications  
 - Generated HTML files and word cloud images
+- Mask images (vader.png, yoda.png, etc.) for shaped word clouds
 
 ## Usage
 
 To generate publication files:
 
 ```bash
+# From publications directory (recommended)
 cd assets/docs/publications
-./genPubHTML.sh [mask_name]
+./generate.sh [mask_name]
+
+# Or run directly (advanced)
+bash .github/config/genPubHTML.sh [mask_name]
 ```
 
-The script will:
+The generation process will:
 1. Generate HTML files from BibTeX using `bibtex2html`
 2. Create a word cloud from publication abstracts
 3. Optionally use mask images (vader, yoda, etc.) for shaped word clouds
+4. Place all output files in this directory
 
-**Note:** The Python script is blocked from web access for security but remains functional for local generation.
+**Security Features:**
+- Scripts are stored in `.github/config/` (web-blocked)
+- Generated content remains in this directory
+- Wrapper script provides convenient access
