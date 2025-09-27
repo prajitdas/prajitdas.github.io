@@ -12,6 +12,8 @@ def test_file_access(base_url, files_to_test):
     
     print(f"🔐 Testing file access security for: {base_url}")
     print("=" * 60)
+    print("ℹ️  Note: GitHub Pages may override some .htaccess rules")
+    print("=" * 60)
     
     results = []
     

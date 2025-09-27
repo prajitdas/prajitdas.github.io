@@ -71,12 +71,10 @@ jobs:
         ! find . -name "*.env" -o -name "*.key" -o -name "*.pem" -o -name "*.p12" | grep -q .
         echo "✅ No obvious sensitive files found"
         
-    - name: Test web file access security (on main branch only)
-      if: github.ref == 'refs/heads/main'
+    - name: Test web file access security
       run: |
         echo "Testing if sensitive files are accessible via web..."
-        # Only run this on main branch after deployment
-        python tests/web_security_test.py || echo "⚠️ Web security test completed with warnings"
+        python tests/web_security_test.py || echo "⚠️ Web security test completed - see results for GitHub Pages limitations"
         
     - name: Generate test report
       if: always()

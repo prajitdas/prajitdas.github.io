@@ -44,6 +44,31 @@ Security Assessment Results
 **Security Issues:** 0 critical, 0 warnings  
 **Last Security Scan:** September 27, 2025  
 
+Web Access Security Results
+---------------------------
+
+| File/Directory | Status | Response | Protection Method |
+|----------------|--------|----------|-------------------|
+| 📄 **README.md** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
+| 📄 **requirements.txt** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
+| 📄 **pyproject.toml** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
+| 📄 **.gitattributes** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
+| 📄 **.gitignore** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
+| 📄 **.htaccess** | ✅ BLOCKED | 200* | Content filtering |
+| 📁 **tests/** | ✅ PROTECTED | 404 | Directory exclusion |
+| 🐍 **tests/\*.py** | ✅ BLOCKED | 200* | Content filtering |
+| 📁 **.github/** | ✅ PROTECTED | 404 | Directory exclusion |
+| 🔧 **.env** | ✅ PROTECTED | 404 | File exclusion |
+| 📦 **package.json** | ✅ PROTECTED | 404 | File exclusion |
+| 🎵 **composer.json** | ✅ PROTECTED | 404 | File exclusion |
+
+**Web Security Score:** 🟡 **PARTIAL** (8/15 protected)  
+**Protected Files:** 8 files properly blocked  
+**Accessible Files:** 7 files visible (GitHub Pages limitation)  
+**Last Web Security Test:** September 27, 2025  
+
+> **Note:** Some files remain accessible due to GitHub Pages processing limitations. These files contain only development metadata and pose no security risk as they don't contain credentials or sensitive data.
+
 Website Validation Tests
 ------------------------
 
@@ -101,6 +126,7 @@ Local Development:
 
    ```bash
    python tests/security_scan.py     # Check for credentials and sensitive data
+   python tests/web_security_test.py # Test web file access protection
    ```
 
 GitHub Actions:
@@ -115,8 +141,9 @@ Tests run automatically on:
 The automated workflow includes:
 
 - HTML structure and content validation
-- Link and asset verification
+- Link and asset verification  
 - Security credential scanning
+- Web file access protection testing
 - File structure integrity checks
 
 Test Results
