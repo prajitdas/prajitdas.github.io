@@ -74,8 +74,8 @@ def doTask(mask=None):
 	wordcloud.to_file(path.join(d, "wordcloud.png"))
 
 	# show
-	plt.imshow(wordcloud, interpolation='bilinear')
-	plt.axis("off")
+	# plt.imshow(wordcloud, interpolation='bilinear')
+	# plt.axis("off")
 	
 	# Only show mask if one was provided
 	if mask_provided and mask_array is not None:
@@ -83,11 +83,11 @@ def doTask(mask=None):
 		plt.imshow(mask_array, cmap=plt.cm.gray, interpolation='bilinear')
 		plt.axis("off")
 	
-	plt.show()
+	# plt.show()
 
 	# The pil way (if you don't have matplotlib)
-	image = wordcloud.to_image()
-	image.show()
+	# image = wordcloud.to_image()
+	# image.show()
 
 def main(argv):
 	if len(sys.argv) != 2:

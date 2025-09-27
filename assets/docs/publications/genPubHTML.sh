@@ -25,5 +25,5 @@ fi
 rm word-cloud.txt
 date_time=`date +%F-%T | tr ':' '-'`
 git add .
-git commit -S -m "Commit done on $date_time"
+git commit -S -am"Commit done on $date_time"
 git push
