@@ -5,6 +5,8 @@ Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das.
 
 [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
 
+> **Note:** This is a personal website repository built with HTML/CSS/JavaScript for GitHub Pages. The Python files in the `tests/` directory are automated validation tools, not the main project.
+
 Latest Website Validation Results
 ---------------------------------
 

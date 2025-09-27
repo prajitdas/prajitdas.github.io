@@ -1,0 +1,16 @@
+# This is a personal website project (Jekyll/HTML/CSS/JS)
+# Python files are only for testing and automation
+
+# Mark the primary languages for GitHub language detection
+*.html linguist-language=HTML
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript
+*.md linguist-language=Markdown
+
+# Python files are utilities/tooling, not the main project
+tests/*.py linguist-language=Python
+tests/ linguist-detectable=false
+
+# Documentation and config files
+*.yml linguist-language=YAML
+*.json linguist-language=JSON

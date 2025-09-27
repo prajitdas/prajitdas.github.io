@@ -1,0 +1,26 @@
+# Labeler configuration for GitHub Actions
+# Automatically label PRs based on files changed
+
+"website":
+  - "*.html"
+  - "*.css" 
+  - "*.js"
+  - "assets/**/*"
+
+"documentation":
+  - "*.md"
+  - "README*"
+
+"testing":
+  - "tests/**/*"
+  - "*.py"
+
+"configuration":
+  - "*.yml"
+  - "*.yaml"
+  - "*.json"
+  - ".github/**/*"
+
+"dependencies":
+  - "*requirements*.txt"
+  - "pyproject.toml"

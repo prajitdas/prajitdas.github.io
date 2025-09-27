@@ -1,0 +1,14 @@
+# This file indicates that this is NOT a Python package
+# This repository is a personal website with HTML/CSS/JavaScript
+
+[tool.not-a-python-project]
+description = "Personal website repository - contains HTML/CSS/JS, not a Python package"
+website-url = "https://prajitdas.github.io"
+project-type = "website"
+
+[tool.pytest.ini_options]
+# Testing configuration for the validation tools in tests/ directory
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+addopts = "-v --tb=short"
