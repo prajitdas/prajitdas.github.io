@@ -116,15 +116,17 @@ The enhanced Codacy security workflow now ensures:
 ## 🚀 Additional Testing
 
 1. **Run security scans:**
-   pytest -k "test_meta" -v          # Meta tag tests
-   ```
 
-4. **Run security scans:**
+    ```python
+    pytest -k "test_meta" -v          # Meta tag tests
+    ```
 
-   ```bash
-   python .github/tests/security_scan.py     # Check for credentials and sensitive data
-   python .github/tests/web_security_test.py # Test web file access protection
-   ```
+2. **Run security scans:**
+
+    ```bash
+    python .github/tests/security_scan.py     # Check for credentials and sensitive data
+    python .github/tests/web_security_test.py # Test web file access protection
+    ```
 
 ### GitHub Actions
 
