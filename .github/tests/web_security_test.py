@@ -88,14 +88,11 @@ def main():
         ".github/config/requirements.txt",
         ".github/config/genWordCloud.py",
         ".github/config/genPubHTML.sh",
-        "assets/docs/publications/generate.sh",
-        
-        # Configuration files in assets directories (renamed for security)
+        # Test old locations (should be 404 after moving to .github/dev-docs/)
         "assets/js/dev-package.json",
         "assets/js/dev-Gruntfile.js", 
         "assets/plugins/github-activity/dev-package.json",
-        
-        # Developer documentation files
+        "assets/docs/publications/generate.sh",
         "assets/HELP-US-OUT.txt",
         "assets/img/Developer-ReadMe.txt",
         "assets/img/faviconit-instructions.txt",
