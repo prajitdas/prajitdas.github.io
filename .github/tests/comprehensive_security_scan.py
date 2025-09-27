@@ -109,17 +109,26 @@ def main():
     print("📁 Discovering potentially sensitive files...")
     discovered_files = discover_files()
     
-    print(f"📋 Found {len(discovered_files)} files to test:")
-    for file in discovered_files[:10]:  # Show first 10
-        print(f"   - {file}")
-    if len(discovered_files) > 10:
-        print(f"   ... and {len(discovered_files) - 10} more files")
+    # Add high-priority files from basic security test (removed duplicates)
+    high_priority_files = [
+        "README.md", ".gitattributes", ".gitignore", ".htaccess", ".trivyignore",
+        "_config.yml", ".codacy.yml", ".env", "package.json", "composer.json"
+    ]
     
-    print(f"\n🔍 Testing all {len(discovered_files)} files...")
+    # Combine and deduplicate
+    all_test_files = list(set(discovered_files + high_priority_files))
+    
+    print(f"📋 Found {len(all_test_files)} files to test:")
+    for file in all_test_files[:10]:  # Show first 10
+        print(f"   - {file}")
+    if len(all_test_files) > 10:
+        print(f"   ... and {len(all_test_files) - 10} more files")
+    
+    print(f"\n🔍 Testing all {len(all_test_files)} files...")
     print("=" * 50)
     
-    # Test all discovered files
-    success = test_file_access(base_url, discovered_files)
+    # Test all discovered files (now includes high-priority files)
+    success = test_file_access(base_url, all_test_files)
     
     return 0 if success else 1
 

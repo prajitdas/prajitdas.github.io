@@ -131,11 +131,7 @@
   RewriteEngine on
   RewriteBase /
   
-  # Security rules - Block sensitive files and directories
-  RewriteRule ^.*/package\.json$ - [F,L]
-  RewriteRule ^.*/Gruntfile\.js$ - [F,L]
-  RewriteRule ^.*/dev-package\.json$ - [F,L]
-  RewriteRule ^.*/dev-Gruntfile\.js$ - [F,L]
+  # Security rules - Block cache directories and hidden files
   RewriteRule __pycache__/ - [F,L]
   RewriteRule \.pytest_cache/ - [F,L]
   RewriteRule (^|/)\.(?!well-known/) - [F,L]

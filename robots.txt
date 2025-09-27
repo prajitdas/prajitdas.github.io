@@ -1,49 +1,17 @@
 User-agent: *
 
-# Development and configuration directories
+# Allow essential website files
+Allow: /
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/img/
+Allow: /assets/docs/resume/
+Allow: /robots.txt
+Allow: /sitemap.xml
+Allow: /ror.xml
+
+# Only block directories that need blocking (minimal disclosure)
 Disallow: /.github/
-Disallow: /.git/
-Disallow: /.idea/
-Disallow: /.well-known/
 
-# Asset directories (keep private for security)
-Disallow: /assets/
-
-# Root level development files
-Disallow: /README.md
-Disallow: /SECURITY.md
-Disallow: /LICENSE
-Disallow: /_config.yml
-Disallow: /.gitattributes
-Disallow: /.gitignore
-Disallow: /.htaccess
-Disallow: /.codacy.yml
-Disallow: /.trivyignore
-
-# Development file patterns
-Disallow: /*.py
-Disallow: /*.pyc
-Disallow: /*.pyo
-Disallow: /*.sh
-Disallow: /*.env
-Disallow: /*.log
-Disallow: /*.yml
-Disallow: /*.yaml
-Disallow: /package.json
-Disallow: /composer.json
-Disallow: /setup.py
-Disallow: /Pipfile
-
-# Python cache directories
-Disallow: /__pycache__/
-Disallow: /.pytest_cache/
-
-# Node.js and build configuration patterns
-Disallow: /*/package.json
-Disallow: /*/Gruntfile.js
-Disallow: /*/bower.json
-Disallow: /*/dev-*
-
-# Assets patterns (moved files now in .github/ - no longer needed here)
-Disallow: /assets/**/README.md
-Disallow: /assets/**/LICENSE*
+# Security note: Files are protected by server configuration and file relocation
+# Minimal robots.txt reduces information disclosure to potential attackers
