@@ -1,9 +1,4 @@
 User-agent: *
-# Development and configuration files
-Disallow: /README.md
-Disallow: /.gitattributes
-Disallow: /.gitignore
-Disallow: /.htaccess
 
 # Development and configuration directories
 Disallow: /.github/
@@ -11,28 +6,25 @@ Disallow: /.git/
 Disallow: /.idea/
 Disallow: /.well-known/
 
-# Asset directories (if you want to keep them private)
+# Asset directories (keep private for security)
 Disallow: /assets/
 
-# Python files and related patterns
-Disallow: /*.py
-Disallow: /*.pyc
-Disallow: /*.pyo
-Disallow: /__pycache__/
-Disallow: /.pytest_cache/
-
-# Shell scripts
-Disallow: /*.sh
-
-# Root level documentation and configuration files
+# Root level development files
 Disallow: /README.md
 Disallow: /SECURITY.md
 Disallow: /LICENSE
 Disallow: /_config.yml
+Disallow: /.gitattributes
+Disallow: /.gitignore
+Disallow: /.htaccess
 Disallow: /.codacy.yml
 Disallow: /.trivyignore
 
 # Development file patterns
+Disallow: /*.py
+Disallow: /*.pyc
+Disallow: /*.pyo
+Disallow: /*.sh
 Disallow: /*.env
 Disallow: /*.log
 Disallow: /*.yml
@@ -42,28 +34,16 @@ Disallow: /composer.json
 Disallow: /setup.py
 Disallow: /Pipfile
 
-# Node.js and build configuration files
+# Python cache directories
+Disallow: /__pycache__/
+Disallow: /.pytest_cache/
+
+# Node.js and build configuration patterns
 Disallow: /*/package.json
 Disallow: /*/Gruntfile.js
 Disallow: /*/bower.json
 Disallow: /*/dev-*
 
-# Development documentation in assets
-Disallow: /assets/HELP-US-OUT.txt
-Disallow: /assets/MANIFEST
-Disallow: /assets/img/Developer-ReadMe.txt
-Disallow: /assets/img/faviconit-instructions.txt
-Disallow: /assets/docs/publications/README.md
-Disallow: /assets/docs/publications/generate.sh
+# Assets patterns (moved files now in .github/ - no longer needed here)
 Disallow: /assets/**/README.md
 Disallow: /assets/**/LICENSE*
-
-# Configuration files in assets directories (renamed for security)
-Disallow: /assets/js/dev-package.json
-Disallow: /assets/js/dev-Gruntfile.js
-Disallow: /assets/plugins/github-activity/dev-package.json
-
-# Documentation files that may contain sensitive info
-Disallow: /assets/HELP-US-OUT.txt
-Disallow: /assets/img/Developer-ReadMe.txt
-Disallow: /assets/img/faviconit-instructions.txt

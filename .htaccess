@@ -86,20 +86,7 @@
 # FileETag None
 
 # Security: Block access to sensitive development files
-<Files "README.md">
-  Order Allow,Deny
-  Deny from all
-</Files>
-
-<Files ".gitattributes">
-  Order Allow,Deny
-  Deny from all
-</Files>
-
-<Files ".gitignore">
-  Order Allow,Deny
-  Deny from all
-</Files>
+# Note: README.md, .gitattributes, .gitignore covered by pattern rules below
 
 # Block access to ALL Python files
 <FilesMatch "\.py$">
@@ -127,80 +114,51 @@
   Deny from all
 </FilesMatch>
 
-# Block access to common development/config files
-<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini|\.trivyignore)$">
+# Block access to development files (consolidated patterns)
+<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|\.gitattributes|\.gitignore|\.trivyignore|README\.md|SECURITY\.md|LICENSE|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini)$">
   Order Allow,Deny
   Deny from all
 </FilesMatch>
 
-# Block access to development documentation and instruction files
-<FilesMatch "^(README\.md|SECURITY\.md|LICENSE)$">
+# Block access to build and configuration files (consolidated)
+<FilesMatch "^(bower\.json|Gruntfile\.js|gulpfile\.js|webpack\.config\.js|package\.json|dev-.*\.(json|js))$">
   Order Allow,Deny
   Deny from all
 </FilesMatch>
 
-# Block access to build and configuration files
-<FilesMatch "^(bower\.json|Gruntfile\.js|gulpfile\.js|webpack\.config\.js)$">
-  Order Allow,Deny
-  Deny from all
-</FilesMatch>
-
-# Block development files with dev- prefix
-<FilesMatch "^dev-.*\.(json|js)$">
-  Order Allow,Deny
-  Deny from all
-</FilesMatch>
-
-# Block access to ALL Node.js configuration files
-<FilesMatch "^(package\.json|Gruntfile\.js)$">
-  Order Allow,Deny
-  Deny from all
-</FilesMatch>
-
-# Block access to renamed development files (dev-* prefix for security)
-<FilesMatch "^dev-(package\.json|Gruntfile\.js)$">
-  Order Allow,Deny
-  Deny from all
-</FilesMatch>
-
-# Comprehensive rewrite rules for security
+# Consolidated rewrite rules
 <IfModule mod_rewrite.c>
-  # Block all package.json and Gruntfile.js files (including dev-* versions)
+  RewriteEngine on
+  RewriteBase /
+  
+  # Security rules - Block sensitive files and directories
   RewriteRule ^.*/package\.json$ - [F,L]
   RewriteRule ^.*/Gruntfile\.js$ - [F,L]
   RewriteRule ^.*/dev-package\.json$ - [F,L]
   RewriteRule ^.*/dev-Gruntfile\.js$ - [F,L]
-  
-  # Block Python cache directories
   RewriteRule __pycache__/ - [F,L]
   RewriteRule \.pytest_cache/ - [F,L]
-  
-  # Block access to hidden files and directories (except .well-known)
   RewriteRule (^|/)\.(?!well-known/) - [F,L]
-</IfModule>
-
-#To enforce or deny complete folder listing
-IndexIgnore *
-
-ErrorDocument 404 assets/error-pages/404/404.html
-ErrorDocument 403 assets/error-pages/404/404.html
-
-# Domain and URL rewrite rules
-<IfModule mod_rewrite.c>
-  # https://serverfault.com/questions/213422/how-to-create-robots-txt-file-for-all-domains-on-apache-server
-  RewriteEngine on
-  RewriteBase /
+  
+  # Domain and URL management
   RewriteRule ^robots.txt$ ./prajitdas.github.io/robots.txt [NC,L]
-
+  
   # Redirect www to non-www
   RewriteCond %{HTTP_HOST} ^www\.prajitdas\.github\.io$
   RewriteRule ^/?$ "https\:\/\/prajitdas\.github\.io\/" [R=301,L]
-
+  
   # Redirect IP to domain
   RewriteCond %{HTTP_HOST} ^64\.227\.19\.194
   RewriteRule (.*) https://prajitdas.github.io/$1 [R=301,L]
-
+  
   # Block libwww-perl user agents
   RewriteCond %{HTTP_USER_AGENT} libwww-perl.*
   RewriteRule .* ? [F,L]
 </IfModule>
+
+# Enforce or deny complete folder listing
+IndexIgnore *
+
+# Error page configuration
+ErrorDocument 404 assets/error-pages/404/404.html
+ErrorDocument 403 assets/error-pages/404/404.html
