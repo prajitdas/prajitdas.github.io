@@ -10,8 +10,5 @@ Allow: /robots.txt
 Allow: /sitemap.xml
 Allow: /ror.xml
 
-# Only block directories that need blocking (minimal disclosure)
-Disallow: /.github/
-
 # Security note: Files are protected by server configuration and file relocation
 # Minimal robots.txt reduces information disclosure to potential attackers

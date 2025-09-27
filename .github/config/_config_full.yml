@@ -1,0 +1,68 @@
+# Full Jekyll configuration (PROTECTED VERSION)
+# This file contains the complete exclusion list and is stored securely
+
+# GitHub Pages Jekyll configuration to exclude files from site generation
+# This ensures these files are not processed or made available on the website
+
+# Exclude development and configuration files
+exclude:
+  # Root level documentation and config
+  - README.md
+  - SECURITY.md
+  - LICENSE
+  - _config.yml
+  - .gitattributes
+  - .gitignore
+  - .htaccess
+  - .github/
+  - .codacy.yml
+  - .trivyignore
+  
+  # File patterns
+  - "*.yml"
+  - "*.yaml"
+  - "*.py"
+  - "*.pyc"  
+  - "*.sh"
+  - "**/package.json"
+  - "**/Gruntfile.js"
+  - "**/bower.json"
+  - "**/*README.md"
+  - "**/*LICENSE*"
+  - "**/dev-*"
+  
+  # Directories and caches
+  - __pycache__/
+  - .pytest_cache/
+  - node_modules/
+  
+  # Environment and build files
+  - .env*
+  - package*.json
+  - composer.json
+  - setup.py
+  - Pipfile*
+  - tox.ini
+  
+  # Development documentation
+  - assets/HELP-US-OUT.txt
+  - assets/MANIFEST
+  - assets/img/Developer-ReadMe.txt
+  - assets/img/faviconit-instructions.txt
+  - assets/docs/publications/README.md
+  - assets/docs/publications/generate.sh
+  
+  # Build and config files
+  - assets/js/dev-package.json
+  - assets/js/dev-Gruntfile.js
+  - assets/plugins/github-activity/dev-package.json
+  - assets/plugins/github-activity/Gruntfile.js
+  - assets/plugins/github-activity/bower.json
+
+# Keep these files/directories accessible
+include:
+  - .well-known/
+
+# Site settings
+plugins:
+  - jekyll-sitemap
