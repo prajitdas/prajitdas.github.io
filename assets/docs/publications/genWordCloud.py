@@ -67,17 +67,17 @@ def doTask(mask):
 	# store to file
 	wordcloud.to_file(path.join(d, "wordcloud.png"))
 
-	# # show
-	# plt.imshow(wordcloud, interpolation='bilinear')
-	# plt.axis("off")
-	# plt.figure()
-	# plt.imshow(mask, cmap=plt.cm.gray, interpolation='bilinear')
-	# plt.axis("off")
-	# plt.show()
+	# show
+	plt.imshow(wordcloud, interpolation='bilinear')
+	plt.axis("off")
+	plt.figure()
+	plt.imshow(mask, cmap=plt.cm.gray, interpolation='bilinear')
+	plt.axis("off")
+	plt.show()
 
 	# The pil way (if you don't have matplotlib)
-	# image = wordcloud.to_image()
-	# image.show()
+	image = wordcloud.to_image()
+	image.show()
 
 def main(argv):
 	if len(sys.argv) != 2:
