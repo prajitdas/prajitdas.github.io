@@ -8,7 +8,7 @@ import nltk
 import time
 import sys
 
-def doTask(mask):
+def doTask(mask=None):
 	d = path.dirname(__file__)
 
 	# Read the whole file_data.
