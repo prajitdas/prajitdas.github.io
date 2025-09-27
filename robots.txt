@@ -6,7 +6,6 @@ Disallow: /.gitignore
 Disallow: /.htaccess
 
 # Development and configuration directories
-Disallow: /tests/
 Disallow: /.github/
 Disallow: /.git/
 Disallow: /.idea/

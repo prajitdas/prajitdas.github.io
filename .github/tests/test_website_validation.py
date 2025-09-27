@@ -20,7 +20,8 @@ class WebsiteValidationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Set up test environment"""
-        cls.base_dir = Path(__file__).parent.parent
+        # Tests are now in .github/tests, so go up two levels to get to repo root
+        cls.base_dir = Path(__file__).parent.parent.parent
         cls.assets_dir = cls.base_dir / "assets"
         cls.base_url = "https://prajitdas.github.io/"
         cls.html_files = list(cls.base_dir.glob("**/*.html"))

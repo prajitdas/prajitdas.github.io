@@ -1,7 +1,10 @@
 Profile
 =======
 
-Personal [webpage](https://prajitdas.github.io)**Web Security Score:** � **GOOD** (12/16 protected)  
+Personal [webpage](https://prajitdas.github.io)****Web Security Score:** 🟢 **EXCELLENT** (12/16 protected)  
+**Protected Files:** 12 files properly blocked  
+**Accessible Files:** 4 files visible (GitHub Pages limitation)eb Security Score:** � **EXCELLENT** (14/18 protected)  
+**Protected Files:** 14 files properly blockedb Security Score:** � **GOOD** (12/16 protected)  
 **Protected Files:** 12 files properly blockedf Prajit Kumar Das. [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
 
 Latest Website Validation Results
@@ -55,8 +58,7 @@ Web Access Security Results
 | 📄 **.gitattributes** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
 | 📄 **.gitignore** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
 | 📄 **.htaccess** | ✅ BLOCKED | 200* | Content filtering |
-| 📁 **tests/** | ✅ PROTECTED | 404 | Directory exclusion |
-| 🐍 **tests/\*.py** | ✅ BLOCKED | 200* | Content filtering |
+
 | 📁 **.github/** | ✅ PROTECTED | 404 | Directory exclusion |
 | 🔧 **.env** | ✅ PROTECTED | 404 | File exclusion |
 | 📦 **package.json** | ✅ PROTECTED | 404 | File exclusion |
@@ -66,7 +68,7 @@ Web Access Security Results
 
 **Web Security Score:** � **EXCELLENT** (15/18 protected)  
 **Protected Files:** 15 files properly blocked  
-**Accessible Files:** 7 files visible (GitHub Pages limitation)  
+**Accessible Files:** 4 files visible (GitHub Pages limitation)  
 **Last Web Security Test:** September 27, 2025  
 
 > **Note:** Some files remain accessible due to GitHub Pages processing limitations. These files contain only development metadata and pose no security risk as they don't contain credentials or sensitive data.
@@ -105,19 +107,19 @@ Local Development:
 
    ```bash
    # Using the test runner
-   python tests/run_tests.py
+   python .github/tests/run_tests.py
    
    # Or using pytest directly
-   cd tests && pytest test_website_validation.py -v
+   cd .github/tests && pytest test_website_validation.py -v
    
    # Or using unittest
-   python tests/test_website_validation.py
+   python .github/tests/test_website_validation.py
    ```
 
 3. **Run specific test categories:**
 
    ```bash
-   cd tests
+   cd .github/tests
    pytest -k "test_html" -v          # HTML structure tests
    pytest -k "test_links" -v         # Link validation tests
    pytest -k "test_asset" -v         # Asset validation tests
@@ -127,8 +129,8 @@ Local Development:
 4. **Run security scans:**
 
    ```bash
-   python tests/security_scan.py     # Check for credentials and sensitive data
-   python tests/web_security_test.py # Test web file access protection
+   python .github/tests/security_scan.py     # Check for credentials and sensitive data
+   python .github/tests/web_security_test.py # Test web file access protection
    ```
 
 GitHub Actions:
@@ -192,14 +194,14 @@ This repository implements multiple layers of security to prevent sensitive deve
 
 - `README.md`, `.github/config/requirements.txt`
 - `.gitattributes`, `.gitignore`, `.htaccess`
-- `tests/` directory and all Python files
+- `.github/tests/` directory and all Python files (secure location)
 - `.github/` workflows and configuration
 - Environment and package files (`.env`, `package.json`, etc.)
 
 **Testing Security:**
 
 ```bash
-python tests/web_security_test.py    # Test file access protection
+python .github/tests/web_security_test.py    # Test file access protection
 ```
 
 Dependencies
@@ -217,7 +219,7 @@ Troubleshooting
 Common Issues:
 
 1. **Import Errors**: Install dependencies with `pip install -r .github/config/requirements.txt`
-2. **Path Issues**: Run tests from project root or tests directory
+2. **Path Issues**: Run tests from project root or .github/tests directory
 3. **Permission Errors**: Ensure test runner has execute permissions
 
 Test Failures:
@@ -238,4 +240,4 @@ These tests integrate with:
 - **Local Development**: Pre-commit validation
 - **Publication Pipeline**: Validates generated content
 
-> **Note:** This is a personal website repository built with HTML/CSS/JavaScript for GitHub Pages. The Python files in the `tests/` directory are automated validation tools, not the main project.
+> **Note:** This is a personal website repository built with HTML/CSS/JavaScript for GitHub Pages. The Python files in the `.github/tests/` directory are automated validation tools, not the main project.

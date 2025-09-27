@@ -143,11 +143,7 @@
   Deny from all
 </FilesMatch>
 
-# Block access to tests directory
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteRule ^tests/ - [F,L]
-</IfModule>
+
 
 # Block access to Python cache directories
 <IfModule mod_rewrite.c>
