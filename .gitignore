@@ -35,3 +35,15 @@
 *.bcf
 *.xml
 *.tps
+*.pyc
+*.pyo
+__pycache__/
+.venv/
+env/
+venv/
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+config.ini
+secrets.py
