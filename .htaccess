@@ -133,6 +133,24 @@
   Deny from all
 </FilesMatch>
 
+# Block access to development documentation and instruction files
+<FilesMatch "^(README\.md|SECURITY\.md|LICENSE)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Block access to build and configuration files
+<FilesMatch "^(bower\.json|Gruntfile\.js|gulpfile\.js|webpack\.config\.js)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Block development files with dev- prefix
+<FilesMatch "^dev-.*\.(json|js)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
 # Block access to ALL Node.js configuration files
 <FilesMatch "^(package\.json|Gruntfile\.js)$">
   Order Allow,Deny

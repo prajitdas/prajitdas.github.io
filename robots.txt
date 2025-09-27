@@ -24,26 +24,39 @@ Disallow: /.pytest_cache/
 # Shell scripts
 Disallow: /*.sh
 
-# Common development files patterns
-Disallow: /*.env
-Disallow: /*.log
-Disallow: /package.json
-Disallow: /composer.json
-Disallow: /setup.py
-Disallow: /Pipfile
+# Root level documentation and configuration files
+Disallow: /README.md
+Disallow: /SECURITY.md
+Disallow: /LICENSE
 Disallow: /_config.yml
 Disallow: /.codacy.yml
 Disallow: /.trivyignore
 
-# Block all YAML configuration files
+# Development file patterns
+Disallow: /*.env
+Disallow: /*.log
 Disallow: /*.yml
 Disallow: /*.yaml
-
-# Block all Node.js configuration files
-Disallow: /*/package.json
 Disallow: /package.json
+Disallow: /composer.json
+Disallow: /setup.py
+Disallow: /Pipfile
+
+# Node.js and build configuration files
+Disallow: /*/package.json
 Disallow: /*/Gruntfile.js
-Disallow: /Gruntfile.js
+Disallow: /*/bower.json
+Disallow: /*/dev-*
+
+# Development documentation in assets
+Disallow: /assets/HELP-US-OUT.txt
+Disallow: /assets/MANIFEST
+Disallow: /assets/img/Developer-ReadMe.txt
+Disallow: /assets/img/faviconit-instructions.txt
+Disallow: /assets/docs/publications/README.md
+Disallow: /assets/docs/publications/generate.sh
+Disallow: /assets/**/README.md
+Disallow: /assets/**/LICENSE*
 
 # Configuration files in assets directories (renamed for security)
 Disallow: /assets/js/dev-package.json

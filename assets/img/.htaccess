@@ -1,0 +1,10 @@
+# Block access to developer documentation files
+<Files "Developer-ReadMe.txt">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files "faviconit-instructions.txt">
+  Order Allow,Deny
+  Deny from all
+</Files>

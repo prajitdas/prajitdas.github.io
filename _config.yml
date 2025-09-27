@@ -3,39 +3,58 @@
 
 # Exclude development and configuration files
 exclude:
+  # Root level documentation and config
   - README.md
+  - SECURITY.md
+  - LICENSE
+  - _config.yml
   - .gitattributes
   - .gitignore
   - .htaccess
   - .github/
-  - _config.yml
   - .codacy.yml
   - .trivyignore
+  
+  # File patterns
   - "*.yml"
   - "*.yaml"
-  - "**/package.json"
-  - "**/Gruntfile.js"
-  - "assets/js/dev-package.json"
-  - "assets/js/dev-Gruntfile.js"
-  - "assets/plugins/github-activity/dev-package.json"
   - "*.py"
   - "*.pyc"  
   - "*.sh"
+  - "**/package.json"
+  - "**/Gruntfile.js"
+  - "**/bower.json"
+  - "**/*README.md"
+  - "**/*LICENSE*"
+  - "**/dev-*"
+  
+  # Directories and caches
   - __pycache__/
   - .pytest_cache/
-  - .env*
   - node_modules/
+  
+  # Environment and build files
+  - .env*
   - package*.json
   - composer.json
   - setup.py
   - Pipfile*
   - tox.ini
-  - assets/js/package.json
-  - assets/js/Gruntfile.js
-  - assets/plugins/github-activity/package.json
+  
+  # Development documentation
   - assets/HELP-US-OUT.txt
+  - assets/MANIFEST
   - assets/img/Developer-ReadMe.txt
   - assets/img/faviconit-instructions.txt
+  - assets/docs/publications/README.md
+  - assets/docs/publications/generate.sh
+  
+  # Build and config files
+  - assets/js/dev-package.json
+  - assets/js/dev-Gruntfile.js
+  - assets/plugins/github-activity/dev-package.json
+  - assets/plugins/github-activity/Gruntfile.js
+  - assets/plugins/github-activity/bower.json
 
 # Keep these files/directories accessible
 include:
