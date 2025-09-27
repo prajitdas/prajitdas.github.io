@@ -74,6 +74,8 @@ def main():
         ".gitignore",
         ".htaccess",
         "_config.yml",
+        ".codacy.yml",
+        ".trivyignore",
 
         ".github/workflows/validate-website.yml",
         ".github/config/requirements.txt",

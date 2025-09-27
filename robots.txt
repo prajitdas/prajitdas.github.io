@@ -32,6 +32,8 @@ Disallow: /composer.json
 Disallow: /setup.py
 Disallow: /Pipfile
 Disallow: /_config.yml
+Disallow: /.codacy.yml
+Disallow: /.trivyignore
 
 # Configuration files in assets directories
 Disallow: /assets/js/package.json

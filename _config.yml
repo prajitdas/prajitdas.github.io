@@ -9,6 +9,8 @@ exclude:
   - .htaccess
   - .github/
   - _config.yml
+  - .codacy.yml
+  - .trivyignore
   - "*.py"
   - "*.pyc"  
   - "*.sh"
