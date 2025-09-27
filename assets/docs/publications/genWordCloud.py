@@ -10,6 +10,8 @@ import sys
 
 def doTask(mask=None):
 	d = path.dirname(__file__)
+	mask_provided = mask != "None"
+	mask_array = None
 
 	# Read the whole file_data.
 	file_data = open(path.join(d, 'word-cloud.txt')).read()
@@ -55,10 +57,14 @@ def doTask(mask=None):
 		# read the mask image
 		# taken from
 		# http://www.stencilry.org/stencils/movies/alice%20in%20wonderland/255fk.jpg
-		mask = np.array(Image.open(path.join(d, mask_image_filename)))
+		mask_image = Image.open(path.join(d, mask_image_filename))
+		# Convert to grayscale if needed and ensure proper numeric format
+		if mask_image.mode != 'L':
+			mask_image = mask_image.convert('L')
+		mask_array = np.array(mask_image, dtype=np.uint8)
 
 		# lower max_font_size
-		wordcloud = WordCloud(background_color="white", mask=mask, stopwords=stopwords)
+		wordcloud = WordCloud(background_color="white", mask=mask_array, stopwords=stopwords)
 		# max_font_size=60
 
 	# generate word cloud
@@ -70,9 +76,13 @@ def doTask(mask=None):
 	# show
 	plt.imshow(wordcloud, interpolation='bilinear')
 	plt.axis("off")
-	plt.figure()
-	plt.imshow(mask, cmap=plt.cm.gray, interpolation='bilinear')
-	plt.axis("off")
+	
+	# Only show mask if one was provided
+	if mask_provided and mask_array is not None:
+		plt.figure()
+		plt.imshow(mask_array, cmap=plt.cm.gray, interpolation='bilinear')
+		plt.axis("off")
+	
 	plt.show()
 
 	# The pil way (if you don't have matplotlib)

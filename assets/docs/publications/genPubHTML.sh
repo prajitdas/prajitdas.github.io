@@ -17,9 +17,9 @@ cat my-publications.bib | grep Abstract > word-cloud.txt
 
 if [ -z $1 ]; then
 	echo "Mask not provided, using default mask 'None'..."
-	python3 genWordCloud.py None
+	python genWordCloud.py None
 else
-	python3 genWordCloud.py $1
+	python genWordCloud.py $1
 fi
 
 rm word-cloud.txt
