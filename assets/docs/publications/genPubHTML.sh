@@ -3,10 +3,12 @@
 
 bibtex2html --reverse-sort -d -nokeywords -both my-publications.bib
 
-sed -i 's/my-publications_bib.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-bib.html/g' my-publications.html
-sed -i 's/my-publications_abstracts.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-abstracts.html/g' my-publications.html
-sed -i 's/my-publications_bib.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-bib.html/g' my-publications_abstracts.html
-sed -i 's/my-publications_bib.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-bib.html/g' my-publications_bib.html
+# On Mac do sed -i '' then the rest of it on linux remove the trailing '' after -i
+# sed -i 's/my-publications_bib.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-bib.html/g' my-publications.html
+sed -i '' 's/my-publications_bib.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-bib.html/g' my-publications.html
+sed -i '' 's/my-publications_abstracts.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-abstracts.html/g' my-publications.html
+sed -i '' 's/my-publications_bib.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-bib.html/g' my-publications_abstracts.html
+sed -i '' 's/my-publications_bib.html/https:\/\/prajitdas.github.io\/assets\/docs\/publications\/my-publications-bib.html/g' my-publications_bib.html
 
 mv my-publications_abstracts.html my-publications-abstracts.html 
 mv my-publications_bib.html my-publications-bib.html
