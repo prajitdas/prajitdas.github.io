@@ -1,14 +1,126 @@
 #!/usr/bin/env python3
 """
-Comprehensive Web Security Scanner
-Tests all potentially sensitive files for web accessibility
+Comprehensive Security Analysis Suite
+Combines web accessibility testing, credential scanning, and high-risk file analysis
 """
 
 import requests
 import sys
 import os
+import re
+import time
 from urllib.parse import urljoin
 from pathlib import Path
+
+def scan_for_credentials(base_dir):
+    """Scan repository for potential credential leakage and sensitive information"""
+    
+    # Security patterns to check for
+    patterns = {
+        'api_keys': r'(api[_-]?key\s*[:=]\s*["\'][^"\']+["\'])',
+        'aws_keys': r'(AKIA[0-9A-Z]{16}|aws_access_key_id\s*[:=])',
+        'github_tokens': r'(gh[pousr]_[A-Za-z0-9]{36}|github_pat_[a-zA-Z0-9]{22}_[a-zA-Z0-9]{59})',
+        'passwords': r'(password\s*[:=]\s*["\'][^"\']+["\'])',
+        'private_keys': r'-----BEGIN.*(PRIVATE|RSA).*KEY-----',
+        'connection_strings': r'(mysql://[^\\s]+@|postgres://[^\\s]+@|mongodb://[^\\s]+@)',
+        'hardcoded_secrets': r'(secret\s*[:=]\s*["\'][^"\']+["\'])',
+    }
+    
+    # Files to skip (known safe files)
+    skip_patterns = [
+        'keybase.txt', 'github-activity', 'Developer-ReadMe.txt', 'bower.json',
+        'font', '.svg', 'security_scan.py', 'comprehensive_security_scan.py'
+    ]
+    
+    issues = []
+    scanned_files = 0
+    
+    for file_path in base_dir.rglob('*'):
+        if not file_path.is_file():
+            continue
+            
+        # Skip hidden directories and git files
+        if any(part.startswith('.git') for part in file_path.parts):
+            continue
+            
+        # Skip known safe files
+        if any(skip in str(file_path) for skip in skip_patterns):
+            continue
+            
+        # Only scan text-based files
+        if file_path.suffix not in ['.txt', '.html', '.js', '.json', '.yml', '.yaml', '.md', '.py', '.sh', '.css']:
+            continue
+            
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+                scanned_files += 1
+                
+            for pattern_name, pattern in patterns.items():
+                matches = re.findall(pattern, content, re.IGNORECASE | re.MULTILINE)
+                if matches:
+                    # Filter out false positives
+                    real_matches = []
+                    for match in matches:
+                        match_text = match if isinstance(match, str) else match[0]
+                        
+                        # Skip template variables and examples
+                        if any(template in match_text.lower() for template in [
+                            'example', 'your_', 'placeholder', 'template', 'xxx', 'yyy', 'zzz',
+                            'client_id', 'client_secret'  # These are just parameter names
+                        ]):
+                            continue
+                            
+                        real_matches.append(match_text[:50] + '...' if len(match_text) > 50 else match_text)
+                    
+                    if real_matches:
+                        issues.append({
+                            'file': file_path.relative_to(base_dir),
+                            'type': pattern_name,
+                            'matches': real_matches[:3]  # Limit to first 3 matches
+                        })
+        except Exception as e:
+            print(f"⚠️ Error scanning {file_path}: {e}")
+    
+    return issues, scanned_files
+
+def test_high_risk_files(base_url):
+    """Test specifically high-risk files that should be protected"""
+    
+    # Files that DEFINITELY should not be accessible
+    high_risk_files = [
+        "_config.yml", "assets/MANIFEST", "assets/docs/publications/generate.sh",
+        "assets/js/dev-package.json", "assets/js/dev-Gruntfile.js",
+        "assets/plugins/github-activity/dev-package.json",
+        "assets/plugins/github-activity/Gruntfile.js",
+        "assets/plugins/github-activity/bower.json",
+        "assets/HELP-US-OUT.txt", "assets/img/Developer-ReadMe.txt",
+        "assets/img/faviconit-instructions.txt",
+        "assets/docs/publications/README.md", "assets/js/README.md",
+        "assets/plugins/github-activity/README.md",
+    ]
+    
+    accessible_high_risk = []
+    protected_files = []
+    
+    for file_path in high_risk_files:
+        try:
+            test_url = urljoin(base_url, file_path)
+            response = requests.get(test_url, timeout=10, allow_redirects=True)
+            
+            if response.status_code == 200:
+                accessible_high_risk.append(file_path)
+                print(f"🚨 HIGH RISK: {file_path:<35} → ACCESSIBLE ({response.status_code})")
+            else:
+                protected_files.append(file_path)
+                print(f"✅ PROTECTED: {file_path:<35} → Blocked ({response.status_code})")
+                
+        except requests.RequestException as e:
+            print(f"⚠️ ERROR: {file_path:<35} → {str(e)[:50]}")
+            
+        time.sleep(0.1)  # Rate limiting
+    
+    return accessible_high_risk, protected_files
 
 def test_file_access(base_url, files_to_test):
     """Test that sensitive files return 403/404 errors"""
@@ -97,13 +209,56 @@ def discover_files():
     return sorted(list(set(all_files)))
 
 def main():
-    """Run comprehensive security test"""
+    """Run comprehensive security analysis suite"""
     
-    # Base URL for testing
     base_url = "https://prajitdas.github.io/"
+    base_dir = Path(__file__).parent.parent.parent  # Repository root
     
-    print("🔍 COMPREHENSIVE WEB SECURITY SCAN")
-    print("=" * 50)
+    print("🛡️ COMPREHENSIVE SECURITY ANALYSIS SUITE")
+    print("=" * 60)
+    print("Running three-tier security analysis:")
+    print("  1. Credential & Sensitive Data Scanning (File System)")
+    print("  2. High-Risk File Protection Testing (Web Access)")
+    print("  3. General Web Security Scanning (Web Access)")
+    print("=" * 60)
+    
+    all_issues = []
+    
+    # === PHASE 1: CREDENTIAL SCANNING ===
+    print("\n🔍 PHASE 1: CREDENTIAL & SENSITIVE DATA SCANNING")
+    print("-" * 50)
+    print("📁 Scanning local files for credentials and sensitive information...")
+    
+    credential_issues, scanned_files = scan_for_credentials(base_dir)
+    
+    if credential_issues:
+        print(f"\n🚨 CREDENTIAL SECURITY ISSUES FOUND ({len(credential_issues)}):")
+        for issue in credential_issues:
+            print(f"   📁 {issue['file']} → {issue['type']}")
+            for match in issue['matches']:
+                print(f"      • {match}")
+        all_issues.extend(credential_issues)
+    else:
+        print(f"✅ No credential issues found in {scanned_files} files")
+    
+    # === PHASE 2: HIGH-RISK FILE TESTING ===
+    print(f"\n🔥 PHASE 2: HIGH-RISK FILE PROTECTION TESTING")
+    print("-" * 50)
+    print("🎯 Testing critical files that must be protected...")
+    
+    accessible_high_risk, protected_high_risk = test_high_risk_files(base_url)
+    
+    if accessible_high_risk:
+        print(f"\n🚨 HIGH-RISK FILES ACCESSIBLE ({len(accessible_high_risk)}):")
+        for file_path in accessible_high_risk:
+            print(f"   🚨 {file_path}")
+        all_issues.extend([{'type': 'high_risk_accessible', 'file': f} for f in accessible_high_risk])
+    else:
+        print(f"✅ All {len(protected_high_risk)} high-risk files properly protected")
+    
+    # === PHASE 3: GENERAL WEB SECURITY SCANNING ===
+    print(f"\n🌐 PHASE 3: GENERAL WEB SECURITY SCANNING")
+    print("-" * 50)
     
     # Discover all potentially sensitive files
     print("📁 Discovering potentially sensitive files...")
@@ -128,9 +283,33 @@ def main():
     print("=" * 50)
     
     # Test all discovered files (now includes high-priority files)
-    success = test_file_access(base_url, all_test_files)
+    web_security_success = test_file_access(base_url, all_test_files)
     
-    return 0 if success else 1
+    # === FINAL ASSESSMENT ===
+    print(f"\n📊 COMPREHENSIVE SECURITY SUMMARY:")
+    print("=" * 60)
+    
+    total_issues = len(all_issues)
+    credential_issues_count = len(credential_issues)
+    high_risk_issues_count = len(accessible_high_risk)
+    
+    print(f"🔍 Files Scanned for Credentials: {scanned_files}")
+    print(f"🎯 High-Risk Files Tested: {len(protected_high_risk) + len(accessible_high_risk)}")  
+    print(f"🌐 Web Security Files Tested: {len(all_test_files)}")
+    print(f"🚨 Total Security Issues: {total_issues}")
+    
+    if total_issues == 0:
+        print(f"\n🏆 SECURITY STATUS: ✅ EXCELLENT")
+        print("   All security checks passed successfully!")
+        return 0
+    elif credential_issues_count > 0 or high_risk_issues_count > 0:
+        print(f"\n🏆 SECURITY STATUS: ❌ CRITICAL ISSUES")
+        print("   High-severity security issues found!")
+        return 2
+    else:
+        print(f"\n🏆 SECURITY STATUS: ⚠️ MINOR ISSUES")
+        print("   Some security concerns identified")
+        return 1
 
 if __name__ == "__main__":
     sys.exit(main())
