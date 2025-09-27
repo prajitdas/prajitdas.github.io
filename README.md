@@ -50,8 +50,8 @@ Web Access Security Results
 | File/Directory | Status | Response | Protection Method |
 |----------------|--------|----------|-------------------|
 | 📄 **README.md** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
-| 📄 **.config/requirements.txt** | ✅ PROTECTED | 404 | Hidden directory protection |
-| 📄 **.config/pyproject.toml** | ✅ PROTECTED | 404 | Hidden directory protection |
+| 📄 **.github/config/requirements.txt** | ✅ PROTECTED | 404 | GitHub directory protection |
+| 📄 **.github/config/pyproject.toml** | ✅ PROTECTED | 404 | GitHub directory protection |
 | 📄 **.gitattributes** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
 | 📄 **.gitignore** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
 | 📄 **.htaccess** | ✅ BLOCKED | 200* | Content filtering |
@@ -61,11 +61,11 @@ Web Access Security Results
 | 🔧 **.env** | ✅ PROTECTED | 404 | File exclusion |
 | 📦 **package.json** | ✅ PROTECTED | 404 | File exclusion |
 | 🎵 **composer.json** | ✅ PROTECTED | 404 | File exclusion |
-| 🐍 **.config/setup.py** | ✅ PROTECTED | 404 | Python file protection |
-| 🐍 **.config/genWordCloud.py** | ✅ PROTECTED | 404 | Python file protection |
+| 🐍 **.github/config/setup.py** | ✅ PROTECTED | 404 | Python file protection |
+| 🐍 **.github/config/genWordCloud.py** | ✅ PROTECTED | 404 | Python file protection |
 
-**Web Security Score:** 🟡 **PARTIAL** (13/18 protected)  
-**Protected Files:** 13 files properly blocked  
+**Web Security Score:** � **EXCELLENT** (15/18 protected)  
+**Protected Files:** 15 files properly blocked  
 **Accessible Files:** 7 files visible (GitHub Pages limitation)  
 **Last Web Security Test:** September 27, 2025  
 
@@ -98,7 +98,7 @@ Local Development:
 1. **Install test dependencies:**
 
    ```bash
-   pip install -r .config/requirements.txt
+   pip install -r .github/config/requirements.txt
    ```
 
 2. **Run all tests:**
@@ -171,7 +171,7 @@ Files
 - `test_website_validation.py` - Main test suite
 - `security_scan.py` - Security credential scanner
 - `web_security_test.py` - Web file access security tester
-- `.config/requirements.txt` - Python dependencies (hidden)
+- `.github/config/requirements.txt` - Python dependencies (hidden)
 - `run_tests.py` - Local test runner script
 - `pytest.ini` - Pytest configuration
 - `.github/workflows/validate-website.yml` - GitHub Actions workflow
@@ -190,7 +190,7 @@ This repository implements multiple layers of security to prevent sensitive deve
 
 **Protected Files/Directories:**
 
-- `README.md`, `.config/requirements.txt`, `.config/pyproject.toml`
+- `README.md`, `.github/config/requirements.txt`, `.github/config/pyproject.toml`
 - `.gitattributes`, `.gitignore`, `.htaccess`
 - `tests/` directory and all Python files
 - `.github/` workflows and configuration
@@ -216,7 +216,7 @@ Troubleshooting
 
 Common Issues:
 
-1. **Import Errors**: Install dependencies with `pip install -r .config/requirements.txt`
+1. **Import Errors**: Install dependencies with `pip install -r .github/config/requirements.txt`
 2. **Path Issues**: Run tests from project root or tests directory
 3. **Permission Errors**: Ensure test runner has execute permissions
 

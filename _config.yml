@@ -4,7 +4,6 @@
 # Exclude development and configuration files
 exclude:
   - README.md
-  - .config/
   - .gitattributes
   - .gitignore
   - .htaccess

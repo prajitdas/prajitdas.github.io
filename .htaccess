@@ -98,11 +98,6 @@
   Deny from all
 </Files>
 
-# Block access to .config directory and its contents
-<IfModule mod_rewrite.c>
-  RewriteRule ^\.config/ - [F,L]
-</IfModule>
-
 <Files ".gitattributes">
   Order Allow,Deny
   Deny from all

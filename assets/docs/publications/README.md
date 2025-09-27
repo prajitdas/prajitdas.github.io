@@ -4,9 +4,9 @@ This directory contains publication-related documents and assets.
 
 ## Python Scripts
 
-For security reasons, Python scripts have been moved to the `.config/` directory in the repository root:
+For security reasons, Python scripts have been moved to the `.github/config/` directory in the repository root:
 
-- `genWordCloud.py` → `.config/genWordCloud.py`
+- `genWordCloud.py` → `.github/config/genWordCloud.py`
 
 These scripts are used for generating publication-related content but should not be accessible via the web.
 
@@ -16,5 +16,5 @@ To run the scripts:
 
 ```bash
 cd /path/to/repository
-python .config/genWordCloud.py
+python .github/config/genWordCloud.py
 ```
