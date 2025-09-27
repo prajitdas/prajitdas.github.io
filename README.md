@@ -62,7 +62,7 @@ Web Access Security Results
 | 📦 **package.json** | ✅ PROTECTED | 404 | File exclusion |
 | 🎵 **composer.json** | ✅ PROTECTED | 404 | File exclusion |
 | 🐍 **.github/config/setup.py** | ✅ PROTECTED | 404 | Python file protection |
-| 🐍 **.github/config/genWordCloud.py** | ✅ PROTECTED | 404 | Python file protection |
+| 🐍 **assets/docs/publications/genWordCloud.py** | ✅ PROTECTED | 404 | Publication script protection |
 
 **Web Security Score:** � **EXCELLENT** (15/18 protected)  
 **Protected Files:** 15 files properly blocked  
