@@ -90,10 +90,10 @@ def main():
         ".github/config/genPubHTML.sh",
         "assets/docs/publications/generate.sh",
         
-        # Configuration files in assets directories
-        "assets/js/package.json",
-        "assets/js/Gruntfile.js",
-        "assets/plugins/github-activity/package.json",
+        # Configuration files in assets directories (renamed for security)
+        "assets/js/dev-package.json",
+        "assets/js/dev-Gruntfile.js", 
+        "assets/plugins/github-activity/dev-package.json",
         
         # Developer documentation files
         "assets/HELP-US-OUT.txt",

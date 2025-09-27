@@ -1,0 +1,5 @@
+# Block access to development configuration files
+<Files "dev-package.json">
+  Order Allow,Deny
+  Deny from all
+</Files>

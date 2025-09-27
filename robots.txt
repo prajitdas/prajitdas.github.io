@@ -39,10 +39,16 @@ Disallow: /.trivyignore
 Disallow: /*.yml
 Disallow: /*.yaml
 
-# Configuration files in assets directories
-Disallow: /assets/js/package.json
-Disallow: /assets/js/Gruntfile.js
-Disallow: /assets/plugins/github-activity/package.json
+# Block all Node.js configuration files
+Disallow: /*/package.json
+Disallow: /package.json
+Disallow: /*/Gruntfile.js
+Disallow: /Gruntfile.js
+
+# Configuration files in assets directories (renamed for security)
+Disallow: /assets/js/dev-package.json
+Disallow: /assets/js/dev-Gruntfile.js
+Disallow: /assets/plugins/github-activity/dev-package.json
 
 # Documentation files that may contain sensitive info
 Disallow: /assets/HELP-US-OUT.txt

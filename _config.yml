@@ -13,6 +13,11 @@ exclude:
   - .trivyignore
   - "*.yml"
   - "*.yaml"
+  - "**/package.json"
+  - "**/Gruntfile.js"
+  - "assets/js/dev-package.json"
+  - "assets/js/dev-Gruntfile.js"
+  - "assets/plugins/github-activity/dev-package.json"
   - "*.py"
   - "*.pyc"  
   - "*.sh"

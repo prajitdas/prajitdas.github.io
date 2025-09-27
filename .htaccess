@@ -149,7 +149,28 @@
   Deny from all
 </FilesMatch>
 
+# Block access to ALL package.json files (Node.js configurations)
+<FilesMatch "^package\.json$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Block access to ALL Gruntfile.js files (build configurations)
+<FilesMatch "^Gruntfile\.js$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
 # Block access to configuration and build files in assets directories
+# Use more specific patterns for nested files
+<IfModule mod_rewrite.c>
+  RewriteRule ^assets/.*/package\.json$ - [F,L]
+  RewriteRule ^assets/.*/Gruntfile\.js$ - [F,L]
+  RewriteRule ^.*/package\.json$ - [F,L]
+  RewriteRule ^.*/Gruntfile\.js$ - [F,L]
+</IfModule>
+
+# Fallback: Block specific files
 <Files "assets/js/package.json">
   Order Allow,Deny
   Deny from all
