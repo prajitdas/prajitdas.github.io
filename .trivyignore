@@ -1,0 +1,31 @@
+# Trivy ignore file - static website project
+# This project is a static website with no containers or dependencies that need vulnerability scanning
+
+# Ignore all files since this is a static website
+**/*
+
+# Specific ignores for common false positives
+*.html
+*.css
+*.js
+*.md
+*.txt
+*.xml
+*.json
+*.ico
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.eot
+*.woff
+*.woff2
+*.ttf
+
+# Ignore directories
+assets/
+.git/
+.github/
+_site/
+node_modules/

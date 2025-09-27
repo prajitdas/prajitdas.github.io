@@ -52,3 +52,7 @@ secrets.py
 .codacy/
 results.sarif
 *.sarif
+
+# Trivy cache and temporary files
+.trivy/
+trivy-cache/

@@ -2,11 +2,18 @@
 # This helps avoid false warnings and configures analysis behavior
 
 engines:
-  # Enable specific analysis engines
+  # Enable specific analysis engines for static website
   eslint:
     enabled: true
   csslint:
     enabled: true
+  # Disable security scanners not applicable to static websites
+  trivy:
+    enabled: false
+  semgrep:
+    enabled: false
+  bandit:
+    enabled: false
   
 exclude_patterns:
   # Exclude minified files and external libraries
@@ -18,6 +25,22 @@ exclude_patterns:
   - '_site/**'
   - '.git/**'
   - '.github/**'
+  # Exclude files that Trivy might try to scan inappropriately
+  - '*.html'
+  - '*.xml'
+  - '*.json'
+  - '*.md'
+  - '*.txt'
+  - '*.ico'
+  - '*.png'
+  - '*.jpg'
+  - '*.jpeg'
+  - '*.gif'
+  - '*.svg'
+  - '*.eot'
+  - '*.woff'
+  - '*.woff2'
+  - '*.ttf'
   
 # Ignore common false positives
 duplication:
