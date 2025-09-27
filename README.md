@@ -2,7 +2,7 @@
 
 Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das - Researcher specializing in Security & Privacy, and Generative AI.
 
-[![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql) [![Website Validation Tests](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml)
+[![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
 
 ## 🛡️ Security Assessment
 
@@ -27,11 +27,12 @@ Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das - Researcher
 
 ## 🔧 Development & Testing
 
-### Website Validation Tests
+### Website Validation Tests [![Website Validation Tests](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/validate-website.yml)
 
 This repository includes comprehensive automated tests that validate the structure, content, and integrity of the website.
 
 **Test Coverage:**
+
 - ✅ **HTML Structure**: Valid DOCTYPE, proper tag nesting, required elements
 - ✅ **Meta Tags**: Essential SEO and responsive design meta tags
 - ✅ **Internal Links**: All internal links point to existing files
