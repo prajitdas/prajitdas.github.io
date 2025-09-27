@@ -70,8 +70,6 @@ def main():
     # Files that should NOT be accessible via web
     sensitive_files = [
         "README.md",
-        "requirements.txt", 
-        "pyproject.toml",
         ".gitattributes",
         ".gitignore",
         ".htaccess",
@@ -80,6 +78,8 @@ def main():
         "tests/security_scan.py",
         "tests/requirements.txt",
         ".github/workflows/validate-website.yml",
+        ".config/requirements.txt",
+        ".config/pyproject.toml", 
         ".env",
         "package.json",
         "composer.json",

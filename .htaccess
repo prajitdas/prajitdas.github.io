@@ -98,15 +98,10 @@
   Deny from all
 </Files>
 
-<Files "requirements.txt">
-  Order Allow,Deny
-  Deny from all
-</Files>
-
-<Files "pyproject.toml">
-  Order Allow,Deny  
-  Deny from all
-</Files>
+# Block access to .config directory and its contents
+<IfModule mod_rewrite.c>
+  RewriteRule ^\.config/ - [F,L]
+</IfModule>
 
 <Files ".gitattributes">
   Order Allow,Deny
@@ -118,6 +113,18 @@
   Deny from all
 </Files>
 
+# Block access to ALL Python files
+<FilesMatch "\.py$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Block access to Python compiled files and caches
+<FilesMatch "\.(pyc|pyo)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
 # Block access to common development/config files
 <FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini)$">
   Order Allow,Deny
@@ -128,6 +135,12 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteRule ^tests/ - [F,L]
+</IfModule>
+
+# Block access to Python cache directories
+<IfModule mod_rewrite.c>
+  RewriteRule __pycache__/ - [F,L]
+  RewriteRule \.pytest_cache/ - [F,L]
 </IfModule>
 
 # Block access to hidden files and directories

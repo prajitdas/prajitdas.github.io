@@ -4,8 +4,7 @@
 # Exclude development and configuration files
 exclude:
   - README.md
-  - requirements.txt
-  - pyproject.toml
+  - .config/
   - .gitattributes
   - .gitignore
   - .htaccess

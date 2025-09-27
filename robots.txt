@@ -1,13 +1,12 @@
 User-agent: *
 # Development and configuration files
 Disallow: /README.md
-Disallow: /requirements.txt
-Disallow: /pyproject.toml
 Disallow: /.gitattributes
 Disallow: /.gitignore
 Disallow: /.htaccess
 
-# Development directories
+# Development and configuration directories
+Disallow: /.config/
 Disallow: /tests/
 Disallow: /.github/
 Disallow: /.git/

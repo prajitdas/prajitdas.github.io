@@ -1,7 +1,11 @@
 Profile
 =======
 
-Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das. [![CodeQL](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
+Personal [webpage](https://prajitdas.github.io) of Prajit Kumar Das. [![CodeQL1. **Install test dependencies:**
+
+   ```bash
+   pip install -r .config/requirements.txt
+   ```ps://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/prajitdas/prajitdas.github.io/actions/workflows/github-code-scanning/codeql)
 
 Latest Website Validation Results
 ---------------------------------
@@ -50,8 +54,8 @@ Web Access Security Results
 | File/Directory | Status | Response | Protection Method |
 |----------------|--------|----------|-------------------|
 | 📄 **README.md** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
-| 📄 **requirements.txt** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
-| 📄 **pyproject.toml** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
+| 📄 **.config/requirements.txt** | ✅ PROTECTED | 404 | Hidden directory protection |
+| 📄 **.config/pyproject.toml** | ✅ PROTECTED | 404 | Hidden directory protection |
 | 📄 **.gitattributes** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
 | 📄 **.gitignore** | ⚠️ ACCESSIBLE | 200 | GitHub Pages limitation |
 | 📄 **.htaccess** | ✅ BLOCKED | 200* | Content filtering |
@@ -169,7 +173,7 @@ Files
 - `test_website_validation.py` - Main test suite
 - `security_scan.py` - Security credential scanner
 - `web_security_test.py` - Web file access security tester
-- `requirements.txt` - Python dependencies
+- `.config/requirements.txt` - Python dependencies (hidden)
 - `run_tests.py` - Local test runner script
 - `pytest.ini` - Pytest configuration
 - `.github/workflows/validate-website.yml` - GitHub Actions workflow
@@ -188,7 +192,7 @@ This repository implements multiple layers of security to prevent sensitive deve
 
 **Protected Files/Directories:**
 
-- `README.md`, `requirements.txt`, `pyproject.toml`
+- `README.md`, `.config/requirements.txt`, `.config/pyproject.toml`
 - `.gitattributes`, `.gitignore`, `.htaccess`
 - `tests/` directory and all Python files
 - `.github/` workflows and configuration
@@ -214,7 +218,7 @@ Troubleshooting
 
 Common Issues:
 
-1. **Import Errors**: Install dependencies with `pip install -r requirements.txt`
+1. **Import Errors**: Install dependencies with `pip install -r .config/requirements.txt`
 2. **Path Issues**: Run tests from project root or tests directory
 3. **Permission Errors**: Ensure test runner has execute permissions
 
