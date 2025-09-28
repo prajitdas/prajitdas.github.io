@@ -59,8 +59,15 @@ def run_test(test_name, script_path):
 def main():
     """Run all tests and provide summary"""
     
+    # Check for quick mode
+    quick_mode = '--quick' in sys.argv or os.environ.get('FAST_VALIDATION', '').lower() in ('1', 'true', 'yes')
+    if quick_mode:
+        os.environ['FAST_VALIDATION'] = '1'
+    
     print("🚀 WEBSITE SECURITY & FUNCTIONALITY VALIDATION SUITE")
     print("=" * 60)
+    if quick_mode:
+        print("⚡ QUICK MODE: External link validation skipped for speed")
     print(f"📅 Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     
@@ -159,5 +166,14 @@ def main():
     return exit_code
 
 if __name__ == "__main__":
+    if '--help' in sys.argv or '-h' in sys.argv:
+        print("Website Validation Test Suite")
+        print("Usage:")
+        print("  python run_all_validation.py           # Full validation (slow)")
+        print("  python run_all_validation.py --quick   # Quick validation (fast)")
+        print("  FAST_VALIDATION=1 python run_all_validation.py  # Quick via env var")
+        print()
+        print("Quick mode skips external link validation for 10x faster execution.")
+        sys.exit(0)
     exit_code = main()
     sys.exit(exit_code)
