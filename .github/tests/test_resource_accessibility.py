@@ -101,27 +101,46 @@ class WebsiteResourceTester:
         else:
             return 'OTHER'
 
-    def test_local_file_exists(self, file_path):
-        """Test if a local file exists"""
-        if file_path.startswith(('http://', 'https://')):
+    def test_local_file_exists(self, resource_url):
+        """Test if a resource exists locally, including anchor validation for HTML fragments"""
+        if resource_url.startswith(('http://', 'https://')):
             return False  # External URLs don't have local files
         
-        # Remove query parameters and anchors
-        clean_path = file_path.lstrip('/')
-        clean_path = clean_path.split('?')[0].split('#')[0]
+        # Parse URL to separate path and fragment
+        if '#' in resource_url:
+            clean_path, fragment = resource_url.split('#', 1)
+            clean_path = clean_path.split('?')[0]  # Remove query parameters
+        else:
+            clean_path = resource_url.split('?')[0]  # Remove query parameters
+            fragment = None
+        
         full_path = self.local_path / clean_path
-        file_exists = full_path.exists() and full_path.is_file()
+        base_exists = full_path.exists()
         
-        # Log local file failure
-        if not file_exists and LOCAL_LOGGING_ENABLED:
-            log_file_failure(
-                file_path=str(full_path),
-                error_type="FILE_NOT_FOUND",
-                error_message=f"Local file does not exist: {file_path}",
-                test_category="Resource Accessibility"
-            )
+        # If base file doesn't exist, fail
+        if not base_exists:
+            if hasattr(self, 'logger'):
+                self.logger.log_file_failure(resource_url, f"File not found: {full_path}")
+            return False
         
-        return file_exists
+        # If there's a fragment and it's an HTML file, check if anchor exists
+        if fragment and clean_path.endswith('.html'):
+            try:
+                with open(full_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    # Check for anchor existence: name="fragment" or id="fragment"
+                    import re
+                    anchor_pattern = rf'(name="{re.escape(fragment)}"|id="{re.escape(fragment)}")'
+                    if not re.search(anchor_pattern, content):
+                        if hasattr(self, 'logger'):
+                            self.logger.log_file_failure(resource_url, f"Anchor #{fragment} not found in {clean_path}")
+                        return False
+            except Exception as e:
+                if hasattr(self, 'logger'):
+                    self.logger.log_file_failure(resource_url, f"Error reading file for anchor check: {e}")
+                return False
+        
+        return True
 
     def test_web_accessibility(self, url):
         """Test if a resource is accessible via web"""
@@ -136,8 +155,14 @@ class WebsiteResourceTester:
             
             response = self.session.head(test_url, timeout=10, allow_redirects=True)
             
-            # Log URL failure if status code is not 200
-            if response.status_code != 200 and LOCAL_LOGGING_ENABLED:
+            # Determine if the resource is accessible
+            # DOI links often return 418 (teapot) to block automated requests, but are still valid
+            is_doi_link = 'doi.org' in test_url or 'dx.doi.org' in test_url
+            is_accessible = (response.status_code == 200 or
+                           (is_doi_link and response.status_code == 418))
+            
+            # Log URL failure if status code is not acceptable
+            if not is_accessible and LOCAL_LOGGING_ENABLED:
                 error_type = f"HTTP_{response.status_code}"
                 log_url_failure(
                     url=test_url,
@@ -148,7 +173,7 @@ class WebsiteResourceTester:
             
             return {
                 'status_code': response.status_code,
-                'accessible': response.status_code == 200,
+                'accessible': is_accessible,
                 'url': test_url
             }
         except Exception as e:

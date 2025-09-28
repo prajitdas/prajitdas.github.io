@@ -24,3 +24,6 @@ Disallow: /.htaccess
 
 # Security note: Files are protected by server configuration
 # This robots.txt provides additional layer of protection from web crawlers
+
+# Sitemap location
+Sitemap: https://prajitdas.github.io/sitemap.xml
