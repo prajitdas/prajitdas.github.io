@@ -73,6 +73,11 @@ def main():
             'description': 'Verifies all critical website components are working'
         },
         {
+            'name': 'Critical Request Chain Optimization Test',
+            'script': os.path.join(script_dir, 'critical_request_chain_optimization_test.py'),
+            'description': 'Validates critical request chain optimization for improved LCP performance'
+        },
+        {
             'name': 'Comprehensive Security Scan',
             'script': os.path.join(script_dir, 'comprehensive_security_scan.py'),
             'description': 'Scans for potentially sensitive files that should be protected'
