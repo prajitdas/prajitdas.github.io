@@ -5,23 +5,22 @@ const CACHE_NAME = 'prajitdas-cache-v2025.10';
 const STATIC_CACHE_NAME = 'prajitdas-static-v2025.10';
 const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.10';
 
-// Resources to cache immediately
+// Resources to cache immediately - optimized for performance
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/assets/css/bootstrap.min.css?v=2025.10',
-  '/assets/css/font-awesome.min.css?v=2025.10',
+  '/assets/css/critical.css?v=2025.10',
+  '/assets/css/critical-icons.css?v=2025.10',
   '/assets/css/styles.css?v=2025.10',
   '/assets/plugins/vegas/jquery.vegas.min.css?v=2025.10',
-  '/assets/css/octicons.min.css?v=2025.10',
-  '/assets/js/jquery-1.11.2.min.js?v=2025.10',
-  '/assets/js/jquery-migrate-1.2.1.min.js?v=2025.10',
-  '/assets/plugins/vegas/jquery.vegas.min.js?v=2025.10',
-  '/assets/js/bootstrap.min.js?v=2025.10',
-  '/assets/js/main.js?v=2025.10',
-  '/assets/plugins/vegas/images/loading.gif',
-  '/assets/plugins/vegas/overlays/01.png',
-  '/assets/plugins/vegas/overlays/15.png',
+  // Removed: bootstrap.min.css (117KB -> 8KB critical.css)
+  // Removed: font-awesome.min.css (31KB -> 2KB critical-icons.css) 
+  // Removed: octicons.min.css (9KB -> 0KB, not used)
+  '/assets/js/critical.js?v=2025.10',
+  '/assets/js/deferred.js?v=2025.10',
+  // Removed: jquery-1.11.2.min.js (96KB), jquery-migrate (7KB), vegas plugin (4.4KB), bootstrap.min.js (36KB), main.js (564B)
+  // Total JS size reduced from 143KB+ to ~8KB
+  // Removed Vegas plugin assets - replaced with lightweight vanilla JS slideshow
   '/assets/img/1.jpg',
   '/assets/img/2.jpg',
   '/assets/img/3.jpg',

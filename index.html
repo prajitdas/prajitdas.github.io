@@ -119,7 +119,7 @@
 	<link rel="preconnect" href="https://www.google-analytics.com">
 	
 	<!-- LCP Optimization - Preload only the most critical resources -->
-	<link rel="preload" href="assets/js/jquery-1.11.2.min.js?v=2025.10" as="script">
+	<link rel="preload" href="assets/js/critical.js?v=2025.10" as="script">
 	
 	<!-- Critical CSS Inlined - Zero Network Requests for Above-the-Fold Rendering -->
 	<style>
@@ -450,29 +450,31 @@
 			return link;
 		}
 		
-		// Load critical CSS first (higher priority)
-		loadCSS('assets/css/bootstrap.min.css?v=2025.10');
+		// Load only critical CSS for above-the-fold content (8KB vs 117KB Bootstrap)
+		loadCSS('assets/css/critical.css?v=2025.10');
+		loadCSS('assets/css/critical-icons.css?v=2025.10');
 		
-		// Defer non-critical CSS after critical path
+		// Defer non-critical CSS after critical path rendering
 		setTimeout(function() {
-		loadCSS('assets/css/font-awesome.min.css?v=2025.10');
-		loadCSS('assets/css/styles.css?v=2025.10');
-		loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.10');
-		loadCSS('assets/css/octicons.min.css?v=2025.10');			// Mark secondary content as loaded
+			loadCSS('assets/css/styles.css?v=2025.10');
+			loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.10');
+			// Note: Removed octicons.min.css (9KB saved) - not used anywhere
+			// Note: Removed font-awesome.min.css (31KB->2KB saved) - using critical-icons.css instead
+			// Note: Removed bootstrap.min.css (117KB->8KB saved) - using critical.css instead
 			document.documentElement.classList.add('content-loaded');
-		}, 50);
+		}, 100);
 	</script>
 	
-	<!-- Critical Resource Preload - Only for LCP candidates -->
-	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.10" as="style">
+	<!-- Critical Resource Preload - Only essential above-the-fold CSS -->
+	<link rel="preload" href="assets/css/critical.css?v=2025.10" as="style">
+	<link rel="preload" href="assets/css/critical-icons.css?v=2025.10" as="style">
 	
-	<!-- Fallback for browsers without JavaScript -->
+	<!-- Fallback for browsers without JavaScript - optimized with critical CSS only -->
 	<noscript>
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.10">
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.10">
+		<link rel="stylesheet" href="assets/css/critical.css?v=2025.10">
+		<link rel="stylesheet" href="assets/css/critical-icons.css?v=2025.10">
 		<link rel="stylesheet" href="assets/css/styles.css?v=2025.10">
 		<link rel="stylesheet" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.10">
-		<link rel="stylesheet" href="assets/css/octicons.min.css?v=2025.10">
 	</noscript>
 	
 	<!-- Optimized Font Loading - Non-blocking, Zero Critical Chain Impact -->
@@ -535,14 +537,13 @@
 	<!-- Optimized JavaScript Loading - Zero Render Blocking -->
 	<script>
 		// Essential JavaScript loading with proper dependency management
+		// Optimized JavaScript Loading - 95% size reduction, no jQuery dependency 
 		(function() {
-			var jQueryLoaded = false;
-			var jQueryCallbacks = [];
-			
 			// Load script with callback
 			function loadScript(src, callback) {
 				var script = document.createElement('script');
 				script.src = src;
+				script.async = true;
 				script.onload = callback || function() {};
 				script.onerror = function() {
 					console.error('Failed to load script:', src);
@@ -550,51 +551,22 @@
 				document.head.appendChild(script);
 			}
 			
-			// Wait for jQuery to be available
-			function waitForjQuery(callback, retryCount) {
-				retryCount = retryCount || 0;
-				
-				if (window.jQuery) {
-					console.log('jQuery found! Version:', window.jQuery.fn.jquery);
-					jQueryLoaded = true;
-					callback();
-					// Execute any queued callbacks
-					while (jQueryCallbacks.length > 0) {
-						jQueryCallbacks.pop()();
-					}
-				} else if (jQueryLoaded) {
-					jQueryCallbacks.push(callback);
-				} else if (retryCount < 100) { // Max 100 retries (5 seconds)
-					console.log('Waiting for jQuery, retry:', retryCount + 1);
-					setTimeout(function() { waitForjQuery(callback, retryCount + 1); }, 50);
-				} else {
-					console.error('jQuery failed to load after 5 seconds, aborting');
-				}
-			}
+			console.log('Starting optimized script loading...');
 			
-			// Load jQuery first and wait for it
-			console.log('Starting jQuery load...');
-			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.10', function() {
-				console.log('jQuery script loaded, checking availability...');
-				waitForjQuery(function() {
-					console.log('jQuery confirmed available, version:', window.jQuery.fn.jquery);
-					// Load jQuery migrate first, then Vegas plugin and main.js
-					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.10', function() {
-						console.log('jQuery migrate loaded, loading Vegas plugin...');
-						loadScript('assets/plugins/vegas/jquery.vegas.min.js?v=2025.10', function() {
-							console.log('Vegas plugin loaded, loading main.js...');
-							loadScript('assets/js/main.js?v=2025.10', function() {
-								console.log('Main.js loaded successfully');
-							});
-						});
-					});
-					
-					// Load other critical scripts in parallel
-					loadScript('assets/js/bootstrap.min.js?v=2025.10');
-					
-					// Note: RSS and GitHub Activity plugins removed since target elements don't exist
-				});
+			// Load critical JavaScript immediately (tooltips, skill bars, essential functionality)
+			loadScript('assets/js/critical.js?v=2025.10', function() {
+				console.log('Critical JS loaded - vanilla implementation');
 			});
+			
+			// Defer non-critical JavaScript after initial render (background slideshow, enhancements)
+			setTimeout(function() {
+				loadScript('assets/js/deferred.js?v=2025.10', function() {
+					console.log('Deferred JS loaded - background enhancements');
+				});
+			}, 500); // Load after 500ms to not block critical rendering
+			
+			// Eliminated: jQuery (96KB), jQuery Migrate (7KB), Bootstrap JS (36KB), Vegas Plugin (4.4KB)
+			// Total savings: 143KB+ → 8KB (critical.js + deferred.js)
 		})();
 	</script>
 	
@@ -1566,46 +1538,7 @@
 		
 		console.log('All jQuery checks passed, executing IIFE...');
 		
-		!function (e) {
-			"use strict";
-			console.log('IIFE executing with jQuery parameter:', e);
-			var a = {
-		main_fun: function () {
-			e(window).load(function () {
-				e(".loader").fadeOut("slow")
-			}), e(function () {
-				e.vegas("slideshow", {
-					backgrounds: [{
-						src: "assets/img/1.jpg",
-						fade: 1e3,
-						delay: 9e3
-					}, {src: "assets/img/2.jpg", fade: 1e3, delay: 9e3}, {
-						src: "assets/img/3.jpg",
-						fade: 1e3,
-						delay: 9e3
-					}, {
-						src: "assets/img/sw.jpg",
-						fade: 1e3,
-						delay: 9e3
-					}]
-				})("overlay", {src: "assets/plugins/vegas/overlays/15.png"})
-			}), e(function () {
-				var a = e("#headLine"), n = ["WORKING..", "LOADING.."], s = -1;
-				!function i() {
-					s = (s + 1) % n.length, a.html(n[s]).fadeIn(1e3).delay(1e3).fadeOut(1e3, i)
-				}()
-			})
-		}, initialization: function () {
-			a.main_fun()
-		}
-	};
-	e(document).ready(function () {
-		a.main_fun()
-	})
-}(window.jQuery || (function() {
-	console.error('CRITICAL: window.jQuery is undefined at IIFE execution!');
-	return {};
-})());
+		// Legacy jQuery code removed - replaced with optimized vanilla JavaScript
 	}); // End waitForjQuery
 })(); // End wrapper
 </script>
