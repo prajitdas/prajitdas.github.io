@@ -453,29 +453,29 @@
 		}
 		
 		// Load critical CSS first (higher priority)
-		loadCSS('assets/css/bootstrap.min.css?v=2025.09');
+		loadCSS('assets/css/bootstrap.min.css?v=2025.10');
 		
 		// Defer non-critical CSS after critical path
 		setTimeout(function() {
-		loadCSS('assets/css/font-awesome.min.css?v=2025.09');
-		loadCSS('assets/css/styles.css?v=2025.09');
+		loadCSS('assets/css/font-awesome.min.css?v=2025.10');
+		loadCSS('assets/css/styles.css?v=2025.10');
 		// Removed github-activity CSS since no target elements exist on page
-		loadCSS('assets/css/octicons.min.css?v=2025.09');			// Mark secondary content as loaded
+		loadCSS('assets/css/octicons.min.css?v=2025.10');			// Mark secondary content as loaded
 			document.documentElement.classList.add('content-loaded');
 		}, 50);
 	</script>
 	
 	<!-- Critical Resource Preload - Only for LCP candidates -->
-	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.09" as="style">
-	<link rel="preload" href="assets/img/Profile.jpg?v=2025.09" as="image" crossorigin>
+	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.10" as="style">
+	<link rel="preload" href="assets/img/Profile.jpg?v=2025.10" as="image" crossorigin>
 	
 	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.09">
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.09">
-		<link rel="stylesheet" href="assets/css/styles.css?v=2025.09">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.10">
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.10">
+		<link rel="stylesheet" href="assets/css/styles.css?v=2025.10">
 		<!-- Removed github-activity CSS since no target elements exist on page -->
-		<link rel="stylesheet" href="assets/css/octicons.min.css?v=2025.09">
+		<link rel="stylesheet" href="assets/css/octicons.min.css?v=2025.10">
 	</noscript>
 	
 	<!-- Optimized Font Loading - Non-blocking, Zero Critical Chain Impact -->
@@ -577,20 +577,20 @@
 			
 			// Load jQuery first and wait for it
 			console.log('Starting jQuery load...');
-			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.09', function() {
+			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.10', function() {
 				console.log('jQuery script loaded, checking availability...');
 				waitForjQuery(function() {
 					console.log('jQuery confirmed available, version:', window.jQuery.fn.jquery);
 					// Load jQuery migrate first, then main.js (no RSS/GitHub Activity plugins needed)
-					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.09', function() {
+					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.10', function() {
 						console.log('jQuery migrate loaded, loading main.js...');
-						loadScript('assets/js/main.js?v=2025.09', function() {
+						loadScript('assets/js/main.js?v=2025.10', function() {
 							console.log('Main.js loaded successfully');
 						});
 					});
 					
 					// Load other critical scripts in parallel
-					loadScript('assets/js/bootstrap.min.js?v=2025.09');
+					loadScript('assets/js/bootstrap.min.js?v=2025.10');
 					
 					// Note: RSS and GitHub Activity plugins removed since target elements don't exist
 				});
