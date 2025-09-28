@@ -10,5 +10,17 @@ Allow: /robots.txt
 Allow: /sitemap.xml
 Allow: /ror.xml
 
-# Security note: Files are protected by server configuration and file relocation
-# Minimal robots.txt reduces information disclosure to potential attackers
+# Block development directories and files
+Disallow: /.github/
+Disallow: /scripts/
+Disallow: /reports/
+Disallow: /node_modules/
+Disallow: *.json
+Disallow: *.yml
+Disallow: *.yaml
+Disallow: *.md
+Disallow: /.git
+Disallow: /.htaccess
+
+# Security note: Files are protected by server configuration
+# This robots.txt provides additional layer of protection from web crawlers

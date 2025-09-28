@@ -78,17 +78,17 @@ trivy-cache/
 # GitHub Activity Plugin Generated Files
 assets/plugins/github-activity/index.html
 
-# Development and Build Files (not needed for website functionality)
-package.json
+# Development and Build Files (generated files that shouldn't be tracked)
 package-lock.json
-.jslintrc
-.jslintignore
-scripts/
+node_modules/
 reports/
-JSLINT_README.md
-*.md
-!README.md
-
-# JSLint and Development Tools
-jslint-report.html
 *.log
+
+# JSLint and Development Tools (generated files)
+jslint-report.html
+
+# Temporary development files
+.DS_Store
+*.tmp
+*.swp
+*~

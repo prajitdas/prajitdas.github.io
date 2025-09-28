@@ -124,7 +124,7 @@
 </FilesMatch>
 
 # Block access to development files (consolidated patterns)
-<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|\.gitattributes|\.gitignore|\.trivyignore|README\.md|SECURITY\.md|LICENSE|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini)$">
+<FilesMatch "^(\.env|\.env\..+|\.htaccess|\.htpasswd|\.gitattributes|\.gitignore|\.trivyignore|\.codacy\.yml|\.jslintrc|\.jslintignore|README\.md|SECURITY\.md|LICENSE|composer\.(json|lock)|package\.(json|lock)|yarn\.lock|Pipfile|Pipfile\.lock|setup\.py|setup\.cfg|tox\.ini|pytest\.ini|JSLINT_README\.md)$">
   Order Allow,Deny
   Deny from all
 </FilesMatch>
@@ -134,6 +134,40 @@
   Order Allow,Deny
   Deny from all
 </FilesMatch>
+
+# Block access to development directories
+<DirectoryMatch "^.*/\.(github|git)(/.*)?$">
+  Order Allow,Deny
+  Deny from all
+</DirectoryMatch>
+
+# Block access to scripts and reports directories
+<DirectoryMatch "^.*/scripts(/.*)?$">
+  Order Allow,Deny
+  Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^.*/reports(/.*)?$">
+  Order Allow,Deny
+  Deny from all
+</DirectoryMatch>
+
+# Block access to node_modules if they exist
+<DirectoryMatch "^.*/node_modules(/.*)?$">
+  Order Allow,Deny
+  Deny from all
+</DirectoryMatch>
+
+# Block access to dev-docs and tests directories
+<DirectoryMatch "^.*/.github/dev-docs(/.*)?$">
+  Order Allow,Deny
+  Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^.*/.github/tests(/.*)?$">
+  Order Allow,Deny
+  Deny from all
+</DirectoryMatch>
 
 # Consolidated rewrite rules
 <IfModule mod_rewrite.c>
