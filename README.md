@@ -19,7 +19,7 @@ This repository hosts a professional personal website built with HTML/CSS/JavaSc
 
 ## 🧪 Comprehensive Website Validation Suite
 
-This repository features a complete, non-redundant test suite validating website functionality, security, performance, and accessibility across **8 comprehensive categories**:
+This repository features a complete, non-redundant test suite validating website functionality, security, performance, and accessibility across **11 comprehensive categories**:
 
 ### 🎯 Test Categories Overview
 
@@ -31,14 +31,18 @@ This repository features a complete, non-redundant test suite validating website
 6. **🔒 Vulnerability Assessment** - Security headers, SSL/TLS, information disclosure (~30s)
 7. **📹 YouTube Performance** - Lazy loading optimization, mobile performance (~10s)
 8. **📁 Resource Accessibility** - All 186+ resources tested (HTML, PDF, images, CSS, JS) (~60s)
+9. **🔧 Local File Integrity** - File permissions, content integrity, configuration consistency (~15s)
+10. **📱 Performance & Accessibility** - Core Web Vitals, accessibility, mobile optimization, technical SEO (~20s)
+11. **🔒 Content Security & Privacy** - CSP validation, privacy compliance, data protection (~15s)
 
 ### 📊 Current Performance Metrics
 
 - **🎯 Overall Success Rate:** 87.5%
 - **🔥 Critical Resources Success:** 100% (PDFs, CSS, JS, Images)
-- **⚡ Quick Mode Execution:** ~3 minutes
-- **🔍 Full Mode Execution:** ~10 minutes
+- **⚡ Quick Mode Execution:** ~4 minutes (11 test categories)
+- **🔍 Full Mode Execution:** ~11 minutes (with external link validation)
 - **📁 Total Resources Tested:** 186+ per run
+- **🔧 Local Tests Added:** +3 fast local validation categories
 
 ### � Quick Start
 
@@ -113,20 +117,29 @@ pytest>=7.0.0          # Test framework
 - **JSHint** (via npm) - JavaScript linting
 - **GitHub Actions** - CI/CD execution
 
-### **Coverage Matrix**
+### **Enhanced Coverage Matrix**
 
-| Test Category | Local Files | Web Files | External Links | Security | Performance |
-|---------------|-------------|-----------|----------------|----------|-------------|
-| Website Validation | ✅ | ✅ | ⚡ (quick skip) | ✅ Basic | ❌ |
-| JavaScript Quality | ✅ | ❌ | ❌ | ❌ | ❌ |
-| Performance Optimization | ❌ | ✅ | ❌ | ❌ | ✅ |
-| Security Scanning | ✅ | ✅ | ❌ | ✅ Advanced | ❌ |
-| SEO Validation | ✅ | ✅ | ❌ | ❌ | ❌ |
-| Vulnerability Assessment | ❌ | ✅ | ❌ | ✅ Advanced | ❌ |
-| YouTube Performance | ✅ | ✅ | ❌ | ❌ | ✅ |
-| Resource Accessibility | ✅ | ✅ | ✅ | ❌ | ❌ |
+| Test Category | Local Files | Web Files | External Links | Security | Performance | Accessibility | Privacy |
+|---------------|-------------|-----------|----------------|----------|-------------|---------------|---------|
+| Website Validation | ✅ | ✅ | ⚡ (quick skip) | ✅ Basic | ❌ | ❌ | ❌ |
+| JavaScript Quality | ✅ | ❌ | ❌ | ✅ Basic | ❌ | ❌ | ❌ |
+| Performance Optimization | ❌ | ✅ | ❌ | ❌ | ✅ Advanced | ❌ | ❌ |
+| Security Scanning | ✅ | ✅ | ❌ | ✅ Advanced | ❌ | ❌ | ❌ |
+| SEO Validation | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Vulnerability Assessment | ❌ | ✅ | ❌ | ✅ Advanced | ❌ | ❌ | ❌ |
+| YouTube Performance | ✅ | ✅ | ❌ | ❌ | ✅ Advanced | ❌ | ❌ |
+| Resource Accessibility | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| **🆕 Local File Integrity** | ✅ | ❌ | ❌ | ✅ Basic | ❌ | ❌ | ❌ |
+| **🆕 Performance & Accessibility** | ✅ | ❌ | ❌ | ❌ | ✅ Advanced | ✅ Advanced | ❌ |
+| **🆕 Content Security & Privacy** | ✅ | ❌ | ❌ | ✅ Advanced | ❌ | ❌ | ✅ Advanced |
 
 **Legend:** ✅ Full Coverage, ⚡ Conditional, ❌ Not Covered
+
+**🎯 Coverage Improvements:**
+- **Local File Security:** File permissions, configuration integrity, asset validation
+- **Comprehensive Accessibility:** WCAG compliance, semantic HTML, mobile optimization  
+- **Privacy & Data Protection:** CSP validation, GDPR compliance, data protection measures
+- **Enhanced Performance:** Core Web Vitals optimization, mobile performance analysis
 
 ## 🛡️ Security Features
 

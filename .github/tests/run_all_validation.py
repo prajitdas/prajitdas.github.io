@@ -166,6 +166,21 @@ def main():
             'name': 'Resource Accessibility',
             'script': os.path.join(script_dir, 'test_resource_accessibility.py'),
             'description': 'Comprehensive validation of all website resources (HTML, PDF, images, CSS, JS, and text files)'
+        },
+        {
+            'name': 'Local File Integrity',
+            'script': os.path.join(script_dir, 'local_file_integrity.py'),
+            'description': 'File permissions, content integrity, configuration consistency, and asset validation'
+        },
+        {
+            'name': 'Performance & Accessibility',
+            'script': os.path.join(script_dir, 'performance_accessibility.py'),
+            'description': 'Core Web Vitals optimization, accessibility features, mobile performance, and technical SEO'
+        },
+        {
+            'name': 'Content Security & Privacy',
+            'script': os.path.join(script_dir, 'content_security_privacy.py'),
+            'description': 'Content Security Policy, privacy compliance, data protection, and content integrity'
         }
     ]
     
