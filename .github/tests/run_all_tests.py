@@ -86,6 +86,11 @@ def main():
             'name': 'Vulnerability Assessment',
             'script': os.path.join(script_dir, 'vulnerability_assessment.py'),
             'description': 'Advanced security testing beyond basic file protection'
+        },
+        {
+            'name': 'YouTube Performance Test',
+            'script': os.path.join(script_dir, 'youtube_performance_test.py'),
+            'description': 'Validates YouTube lazy loading for improved mobile performance'
         }
     ]
     
