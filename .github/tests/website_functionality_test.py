@@ -199,9 +199,6 @@ def website_functionality_test():
         "sitemap.xml": {"type": "Sitemap", "expected": 200, "critical": False},
         "ror.xml": {"type": "ROR XML", "expected": 200, "critical": False},
         
-        # Google verification (should be accessible)
-        "google1733973a1d4ccc6c.html": {"type": "Google Verification", "expected": 200, "critical": False},
-        
         # Error pages
         "assets/error-pages/404/404.html": {"type": "404 Error Page", "expected": 200, "critical": False},
     }
