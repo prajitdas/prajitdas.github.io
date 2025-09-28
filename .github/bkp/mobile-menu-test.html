@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Menu Test</title>
+<style>
+/* Mobile styles */
+@media (max-width: 767px) {
+    .navbar-toggle { display: block; background: #333; color: white; border: 1px solid #fff; padding: 10px; }
+    .navbar-collapse { display: none !important; border-top: 1px solid #333; padding-top: 10px; }
+    .navbar-collapse.in { display: block !important; }
+    .navbar-nav { display: block; }
+    .navbar-nav li { display: block; margin: 5px 0; }
+}
+@media (min-width: 768px) {
+    .navbar-toggle { display: none; }
+    .navbar-collapse { display: block !important; }
+}
+</style>
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" title="Toggle navigation">
+            <span>☰</span>
+        </button>
+        <a class="navbar-brand" href="#">Test Site</a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+</div>
+
+<p>Resize your browser window to mobile size (< 768px) and test the hamburger menu.</p>
+
+<script>
+// Mobile menu functionality
+function setupMobileMenu() {
+    var toggleButton = document.querySelector('.navbar-toggle');
+    var navbarCollapse = document.querySelector('.navbar-collapse');
+    
+    if (toggleButton && navbarCollapse) {
+        console.log('Setting up mobile menu');
+        
+        toggleButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Menu clicked');
+            if (navbarCollapse.classList.contains('in')) {
+                navbarCollapse.classList.remove('in');
+                console.log('Menu closed');
+            } else {
+                navbarCollapse.classList.add('in');
+                console.log('Menu opened');
+            }
+        });
+        
+        // Touch event for mobile
+        toggleButton.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            
+            if (navbarCollapse.classList.contains('in')) {
+                navbarCollapse.classList.remove('in');
+            } else {
+                navbarCollapse.classList.add('in');
+            }
+        });
+        
+        console.log('Mobile menu setup complete');
+    } else {
+        console.error('Mobile menu elements not found');
+    }
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMobileMenu);
+} else {
+    setupMobileMenu();
+}
+</script>
+</body>
+</html>
