@@ -82,6 +82,11 @@ def main():
             'description': 'Comprehensive HTML validation, link checking, security headers, and functionality testing'
         },
         {
+            'name': 'JavaScript Code Quality',
+            'script': os.path.join(script_dir, 'jslint_validation.py'),
+            'description': 'JavaScript linting, syntax validation, and code quality analysis using JSHint'
+        },
+        {
             'name': 'Critical Request Chain Optimization',
             'script': os.path.join(script_dir, 'critical_request_chain_optimization.py'),
             'description': 'Validates critical request chain optimization for improved LCP performance'

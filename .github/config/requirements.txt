@@ -4,3 +4,6 @@ requests==2.32.5
 lxml==6.0.2
 html5lib==1.1
 pytest>=7.0.0
+
+# JavaScript linting and validation
+# Note: JSHint will be installed via npm if available
