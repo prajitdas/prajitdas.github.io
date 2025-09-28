@@ -23,6 +23,10 @@ const STATIC_ASSETS = [
   '/assets/plugins/vegas/images/loading.gif',
   '/assets/plugins/vegas/overlays/01.png',
   '/assets/plugins/vegas/overlays/15.png',
+  '/assets/img/1.jpg',
+  '/assets/img/2.jpg',
+  '/assets/img/3.jpg',
+  '/assets/img/sw.jpg',
   '/assets/img/favicon.ico'
 ];
 
