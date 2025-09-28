@@ -18,8 +18,8 @@
         let currentIndex = 0;
         const body = document.body;
         
-        // Create background container
-        const bgContainer = document.createElement('div');
+        // Create background container (use let since it will be reassigned)
+        let bgContainer = document.createElement('div');
         bgContainer.style.cssText = `
             position: fixed;
             top: 0;
@@ -39,7 +39,9 @@
         setBackground(0);
         
         function setBackground(index) {
-            bgContainer.style.backgroundImage = `url('${images[index]}')`;
+            if (bgContainer && bgContainer.style) {
+                bgContainer.style.backgroundImage = `url('${images[index]}')`;
+            }
         }
         
         function nextSlide() {
@@ -50,16 +52,21 @@
             newBg.style.backgroundImage = `url('${images[currentIndex]}')`;
             newBg.style.opacity = '0';
             
-            body.insertBefore(newBg, bgContainer);
-            
-            // Fade in new background
-            setTimeout(() => {
-                newBg.style.opacity = '1';
+            // Insert new background before current one
+            if (bgContainer.parentNode) {
+                bgContainer.parentNode.insertBefore(newBg, bgContainer);
+                
+                // Fade in new background
                 setTimeout(() => {
-                    bgContainer.remove();
-                    bgContainer = newBg;
-                }, 1000);
-            }, 50);
+                    newBg.style.opacity = '1';
+                    setTimeout(() => {
+                        if (bgContainer.parentNode) {
+                            bgContainer.remove();
+                        }
+                        bgContainer = newBg;
+                    }, 1000);
+                }, 50);
+            }
         }
         
         // Change slide every 5 seconds
