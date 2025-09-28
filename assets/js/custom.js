@@ -1,4 +1,4 @@
-/*jslint browser: true, node: true, es6: true */
+/*jslint browser, node */
 /*global jQuery */
 
 (function (e) {
