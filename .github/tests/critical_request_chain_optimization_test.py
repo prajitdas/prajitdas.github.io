@@ -257,7 +257,16 @@ def test_lcp_optimization():
         
         # 3. Check for non-blocking JavaScript
         script_tags = soup.find_all('script', src=True)
-        blocking_scripts = [s for s in script_tags if not (s.get('async') or s.get('defer'))]
+        
+        # Filter out scripts inside noscript tags
+        noscript_sections = soup.find_all('noscript')
+        noscript_scripts = []
+        for noscript in noscript_sections:
+            noscript_scripts.extend(noscript.find_all('script', src=True))
+        
+        actual_scripts = [s for s in script_tags if s not in noscript_scripts]
+        blocking_scripts = [s for s in actual_scripts if not (s.get('async') or s.get('defer'))]
+        
         if len(blocking_scripts) == 0:
             lcp_factors.append("✅ No render-blocking JavaScript")
         else:
