@@ -574,13 +574,16 @@
 			// Load jQuery first and wait for it
 			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.09', function() {
 				waitForjQuery(function() {
-					// Load jQuery-dependent scripts
-					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.09');
-					loadScript('assets/js/jquery.rss.min.js?v=2025.09');
+					// Load jQuery-dependent scripts sequentially
+					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.09', function() {
+						loadScript('assets/js/jquery.rss.min.js?v=2025.09', function() {
+							// Load main.js after RSS plugin is ready
+							loadScript('assets/js/main.js?v=2025.09');
+						});
+					});
 					
-					// Load other critical scripts
+					// Load other critical scripts in parallel
 					loadScript('assets/js/bootstrap.min.js?v=2025.09');
-					loadScript('assets/js/main.js?v=2025.09');
 					
 					// Load non-critical scripts after a delay
 					setTimeout(function() {
