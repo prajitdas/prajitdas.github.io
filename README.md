@@ -43,6 +43,7 @@ This repository features a complete, non-redundant test suite validating website
 ### � Quick Start
 
 #### **Local Testing**
+
 ```bash
 # Navigate to tests directory
 cd .github/tests
@@ -59,7 +60,9 @@ python test_resource_accessibility.py  # Resource testing
 ```
 
 #### **GitHub Actions**
+
 The test suite runs automatically on:
+
 - **Push to main branch** (quick mode)
 - **Pull requests** (quick mode)  
 - **Weekly schedule** (full mode)
@@ -68,6 +71,7 @@ The test suite runs automatically on:
 ### 🎯 Success Criteria
 
 #### **Critical Resources (Must Pass 100%)**
+
 - ✅ All PDF files accessible
 - ✅ All CSS files loadable  
 - ✅ All JavaScript files valid
@@ -75,11 +79,13 @@ The test suite runs automatically on:
 - ✅ Key files (keybase.txt, robots.txt, sitemap.xml)
 
 #### **Overall Targets**
+
 - **Minimum:** 75% success rate
 - **Target:** 85%+ success rate
 - **Current Achievement:** 87.5% success rate
 
 #### **Expected Failures (Non-Critical)**
+
 - External DOI links (anti-bot protection)
 - Fragment identifiers (#anchor links)
 - Temporary external image issues
@@ -87,11 +93,13 @@ The test suite runs automatically on:
 ## � Configuration & Dependencies
 
 ### **Test Modes**
+
 - **Quick Mode:** Skips external link validation (3 minutes)
 - **Full Mode:** Tests all external links (10 minutes)
 - **Environment Variable:** `FAST_VALIDATION=1` forces quick mode
 
 ### **Python Dependencies**
+
 ```txt
 beautifulsoup4==4.14.0  # HTML parsing and validation
 requests==2.32.5        # HTTP requests for web testing
@@ -101,6 +109,7 @@ pytest>=7.0.0          # Test framework
 ```
 
 ### **External Tools**
+
 - **JSHint** (via npm) - JavaScript linting
 - **GitHub Actions** - CI/CD execution
 
@@ -124,12 +133,14 @@ pytest>=7.0.0          # Test framework
 This repository implements multiple layers of security with **EXCELLENT** (100% protection) security score:
 
 ### **Security Layers**
+
 - **`.htaccess`**: Server-level blocking of sensitive files and directories
 - **`robots.txt`**: Search engine directive to not crawl development files  
 - **`_config.yml`**: Jekyll exclusion of files from site generation
 - **`.github/` Directory**: GitHub Pages never serves files from this directory
 
 ### **Security Assessment Results**
+
 - 🔐 **Credential Scanning:** ✅ SECURE (65 files scanned)
 - 🔑 **Private Keys:** ✅ SECURE (No SSH/SSL keys exposed)
 - 💾 **Database Credentials:** ✅ SECURE (No connection strings)
@@ -137,17 +148,20 @@ This repository implements multiple layers of security with **EXCELLENT** (100% 
 - 🛡️ **GitHub Actions:** ✅ SECURE (Proper secrets usage)
 
 ### **Protected Files**
+
 All Python scripts, configuration files, test suites, development tools, environment files, GitHub workflows, and security analyzer configurations are protected from web access.
 
 ## � Troubleshooting
 
 ### **Common Issues**
+
 1. **High failure rate (>25%):** Check external links and network connectivity
 2. **JavaScript errors:** Ensure JSHint is installed (`npm install -g jshint`)
 3. **Import errors:** Verify all dependencies in requirements.txt are installed
 4. **Timeout issues:** Use quick mode for faster execution
 
 ### **Debug Mode**
+
 ```bash
 # Run individual tests for debugging
 python -c "from test_resource_accessibility import WebsiteResourceTester; t = WebsiteResourceTester(); t.run_comprehensive_test()"
@@ -160,6 +174,7 @@ python seo_optimization.py            # SEO validation only
 ```
 
 ### **Test Results Interpretation**
+
 - ✅ **Pass**: All validations successful
 - ❌ **Fail**: Issues found that need attention  
 - ⚠️ **Warning**: Non-critical issues detected
@@ -167,18 +182,21 @@ python seo_optimization.py            # SEO validation only
 ## 🏆 Benefits & Features
 
 ### **Comprehensive Coverage**
+
 - **186+ resources** tested per run
 - **8 different validation categories**
 - **Zero redundancy** between tests
 - **Efficient execution** (3-10 minutes)
 
 ### **Production Ready**
+
 - **Automated CI/CD integration** with GitHub Actions
-- **Detailed reporting and artifacts** 
+- **Detailed reporting and artifacts**
 - **Configurable execution modes** (quick/full)
 - **Non-blocking for development workflow**
 
 ### **Maintainable Architecture**
+
 - **Clear separation of concerns** across test categories
 - **Well-documented test categories** with execution times
 - **Easy to extend or modify** individual test components
