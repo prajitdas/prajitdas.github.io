@@ -37,14 +37,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r .github/config/requirements.txt
         
-    - name: Run consolidated website validation
+    - name: Run complete validation suite
       run: |
         cd .github/tests
-        python website_validation.py -v
-        
-    - name: Run comprehensive security scan
-      run: |
-        python .github/tests/comprehensive_security_scan.py
+        python run_all_validation.py
         
     - name: Generate test report
       if: always()
