@@ -177,7 +177,7 @@
   # Security rules - Block cache directories and hidden files
   RewriteRule __pycache__/ - [F,L]
   RewriteRule \.pytest_cache/ - [F,L]
-  RewriteRule (^|/)\.(?!well-known/) - [F,L]
+  RewriteRule (^|/)\. - [F,L]
   
   # Domain and URL management
   RewriteRule ^robots.txt$ ./prajitdas.github.io/robots.txt [NC,L]

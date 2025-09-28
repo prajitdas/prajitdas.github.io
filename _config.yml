@@ -11,10 +11,6 @@ exclude:
   - .pytest_cache/
   - node_modules/
 
-# Essential inclusions
-include:
-  - .well-known/
-
 # Site settings (if needed)
 plugins:
   - jekyll-sitemap

@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/prajit
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://prajitdas.github.io
+  * I am prajit (https://keybase.io/prajit) on keybase.
+  * I have a public key with fingerprint D868 3099 2D12 B415 B179  527E 779C 2A73 5BA0 24C8
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01203e4ea5d7349ba09802b4dad58b79a10010a6a74606f0d4167a61aad4fb3e9fa00a",
+      "fingerprint": "d86830992d12b415b179527e779c2a735ba024c8",
+      "host": "keybase.io",
+      "key_id": "779c2a735ba024c8",
+      "kid": "0101cb23c5df4cf0d80c779e53fd9c0f55d0a7af3344db7f9a14f8a19694eb50628b0a",
+      "uid": "4cd56ae838d15835018ff03a6f501319",
+      "username": "prajit"
+    },
+    "service": {
+      "hostname": "prajitdas.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1759085059,
+  "expire_in": 157680000,
+  "prev": "e7283aa3ad6e329eb08ea4fd760186cc155d45dc6830706ac23bd6a7925db235",
+  "seqno": 94,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.17
+Comment: https://keybase.io/crypto
+
+yMNyAnicbVJ7UFVFGL8IQWAQVIqJk3AMcuwGe+45ex6QzWAQTtbQ08F47jm753IE
+7r3ce3iJMMAgKkygaTbDQ8QRnVKhAWeyh5NKKIyRPCyzQU0iBIXG1GAYpNpL+Ucz
+7T+7++3v+32/3/ftN/6eJj+PgsY1ruQDz/Z4XDjTlGfKvFLhWcwodlzERBczWWRh
+I9mYuIz0LB0z0QxgLYAjPEEQixwvKwjIErAoPEYYSoooIxYAFiABibwABA1gnhVE
+JLAIYV5TOCJrCADEmBlNt1mJ0+HUbQalxZIgcUCWLZilZCxUWFGGFpGIoqxakMhB
+WsjCqxJNzLS73BlUnIJcJFK30xi9pC/I+x/8Q92AVRULp0Ks8SrVJQGVggnkNCyr
+QIMQAyQijeN4HiuiRo3wmoRYWZB5okAgWCRlQXfeAh2vYiggInESZqHEQcBKmgY4
+JGj0yLGyG+giThvKIRTtcKLNusGUmBkay9dV4m6r28d/3jFyRVp1IzNP+ceUw2k3
+7Ko9mwIyDcPhinYTGEUOd0YBUdL/5UpXdBumzaQZ+cTp0u02JpqlSNXQ3eSsCGUg
+QQBlM0MKHbqTpOtuBBQFCdDlrkPyKSURLRKHEIewQDiLTBQgEcRrWBSoOUFVWdoi
+HmLVPSgRCEi1cAqmc5YtENPGQsbtLtdmZ6JlnupEVsrp0q02ZOQ5CVNy9kyKl8nD
+z+T9yCL3LzP5+QY+/HtB1YGmC+G1We/N3xp+p3lZYNJL7Vn9mx3Bh1J3BZFfPp9I
+e7lbiH0eZF7fjULk96e6KzqzxgzP+uFTty9vWuFzrqVrQ0aZXvBJ2uhoR/nupy7p
+1h2mhJR9yRe9ak+nNM0k/nD6VrOxVNkAwn1O2LbFn6+Oujf8WqCXnuDV29iS6Hdp
+/6HcUH923H9oGgab2xomK/NPJLXrazaVdnQdW714r8cbhUH3Wnu0uIuVZnE8rK82
+IyCm8WRYXawRkDr56MiW2ZiwgeSZKf3JtuTnwHxqIfCNi7pzZDSion0jmeP83xoa
+eyVile/Hsa+fqsqvGdK+rMsoXfvhM5mxS9jwt5f5wN++2/PiQd8jD3aNfHu8K9w5
+0bPRerttZXlSj3dZ8XSYObyoIvFTfX762Oob8XvW3986uhIGPfFTTUjl2tZ19u59
+OZV1swdTqt6sXud/c+/ho4kj5S1+H8R81dAY2hzZW788t1TXy5ecHQqOWPRn10w+
+3t86OD883yfYx370+nWgPPzK+sDvJ1y1zPnSnMG2++/m5azauqWiaPQymTtw9bpz
++R9Dg4W9234uni56LH57XEhURFl2QIj5zorJqqc7fs/InR6d/TrB3/qF/FdJ092l
+ndOLh1r6anDa4YbtoXjlzYH++OM3Phro9z7XdHfms6mdV8cf4ISBnLmTjS90XvMq
+qXz18R31xrVGWAiP+uo7/wYvIMNO
+=slRf
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/prajit
+
+==================================================================
