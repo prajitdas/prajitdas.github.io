@@ -458,7 +458,7 @@
 		setTimeout(function() {
 		loadCSS('assets/css/font-awesome.min.css?v=2025.10');
 		loadCSS('assets/css/styles.css?v=2025.10');
-		// Removed github-activity CSS since no target elements exist on page
+		loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.10');
 		loadCSS('assets/css/octicons.min.css?v=2025.10');			// Mark secondary content as loaded
 			document.documentElement.classList.add('content-loaded');
 		}, 50);
@@ -473,7 +473,7 @@
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.10">
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.10">
 		<link rel="stylesheet" href="assets/css/styles.css?v=2025.10">
-		<!-- Removed github-activity CSS since no target elements exist on page -->
+		<link rel="stylesheet" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.10">
 		<link rel="stylesheet" href="assets/css/octicons.min.css?v=2025.10">
 	</noscript>
 	
@@ -580,11 +580,14 @@
 				console.log('jQuery script loaded, checking availability...');
 				waitForjQuery(function() {
 					console.log('jQuery confirmed available, version:', window.jQuery.fn.jquery);
-					// Load jQuery migrate first, then main.js (no RSS/GitHub Activity plugins needed)
+					// Load jQuery migrate first, then Vegas plugin and main.js
 					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.10', function() {
-						console.log('jQuery migrate loaded, loading main.js...');
-						loadScript('assets/js/main.js?v=2025.10', function() {
-							console.log('Main.js loaded successfully');
+						console.log('jQuery migrate loaded, loading Vegas plugin...');
+						loadScript('assets/plugins/vegas/jquery.vegas.min.js?v=2025.10', function() {
+							console.log('Vegas plugin loaded, loading main.js...');
+							loadScript('assets/js/main.js?v=2025.10', function() {
+								console.log('Main.js loaded successfully');
+							});
 						});
 					});
 					
@@ -620,7 +623,9 @@
 				'/assets/css/bootstrap.min.css?v=2025.10',
 				'/assets/css/font-awesome.min.css?v=2025.10',
 				'/assets/css/styles.css?v=2025.10',
+				'/assets/plugins/vegas/jquery.vegas.min.css?v=2025.10',
 				'/assets/js/jquery-1.11.2.min.js?v=2025.10',
+				'/assets/plugins/vegas/jquery.vegas.min.js?v=2025.10',
 				'/assets/js/bootstrap.min.js?v=2025.10',
 				'/assets/js/main.js?v=2025.10',
 				'/assets/img/Profile.jpg?v=2025.10'
