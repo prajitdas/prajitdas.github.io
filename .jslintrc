@@ -1,7 +1,4 @@
 {
-  "browser": true,
-  "node": true,
-  "es6": true,
   "maxlen": 120,
   "indent": 4,
   "predef": [
@@ -19,24 +16,5 @@
     "clearInterval",
     "gtag",
     "dataLayer"
-  ],
-  "white": true,
-  "single": true,
-  "undef": true,
-  "nomen": true,
-  "regexp": true,
-  "unparam": true,
-  "sloppy": true,
-  "stupid": true,
-  "vars": true,
-  "bitwise": true,
-  "continue": true,
-  "devel": true,
-  "eqeq": true,
-  "evil": true,
-  "forin": true,
-  "newcap": true,
-  "plusplus": true,
-  "sub": true,
-  "this": true
+  ]
 }

@@ -1,4 +1,4 @@
-/*jslint browser, node */
+/*jslint browser: true, node: true */
 /*global jQuery, console */
 
 (function () {
