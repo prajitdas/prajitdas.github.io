@@ -113,14 +113,10 @@
 	<link rel="preconnect" href="https://ajax.googleapis.com">
 	<link rel="preconnect" href="https://www.google-analytics.com">
 	
-	<!-- Preload LCP candidate - Profile image with cache optimization -->
-	<link rel="preload" href="assets/img/Profile.jpg?v=2025.09" as="image" crossorigin>
-	
-	<!-- Preload critical JavaScript with cache versioning -->
+	<!-- LCP Optimization - Preload only the most critical resources -->
 	<link rel="preload" href="assets/js/jquery-1.11.2.min.js?v=2025.09" as="script" crossorigin>
-	<link rel="preload" href="assets/js/bootstrap.min.js?v=2025.09" as="script" crossorigin>
 	
-	<!-- Inline Critical CSS for Above-the-Fold Content -->
+	<!-- Critical CSS Inlined - Zero Network Requests for Above-the-Fold Rendering -->
 	<style>
 		/* Font fallback definitions with metric overrides to prevent layout shift */
 		@font-face {
@@ -153,18 +149,86 @@
 			size-adjust: 102.1%;
 		}
 		
-		/* Critical inline CSS with optimized font stacks */
+		/* Critical path CSS - everything needed for above-the-fold rendering */
+		*{box-sizing:border-box}
+		html{line-height:1.15;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 		body{
+			margin:0;
 			font-family: 'Lato', 'Lato-fallback', Arial, sans-serif;
 			color:#434343;
 			background:#DAE3E7;
 			font-size:14px;
+			line-height:1.6;
 			-webkit-font-smoothing:antialiased;
 			-moz-osx-font-smoothing:grayscale;
 			font-display: swap;
 		}
-		.header{padding:30px 0;background:#42A8C0;color:#fff}
-		.profile-image{max-width:100px;margin-bottom:30px;border:5px solid #fff;border-radius:50%}
+		
+		/* Header and navigation - critical for first paint */
+		.header{padding:30px 0;background:#42A8C0;color:#fff;position:relative}
+		.navbar{
+			border:0;
+			background:#42A8C0;
+			margin-bottom:0;
+			border-radius:0;
+			min-height:50px;
+			position:relative;
+		}
+		.navbar-brand{
+			color:#fff!important;
+			font-size:18px;
+			font-weight:700;
+			font-family: 'Montserrat', 'Montserrat-fallback', Arial, sans-serif;
+			font-display: swap;
+			float:left;
+			padding:15px 15px;
+			text-decoration:none;
+		}
+		.navbar-nav{
+			margin:0;
+			padding:0;
+			list-style:none;
+			float:right;
+		}
+		.navbar-nav li{display:inline-block}
+		.navbar-nav a{
+			color:#fff;
+			text-decoration:none;
+			padding:15px;
+			display:block;
+		}
+		.navbar-toggle{
+			display:none;
+			background:transparent;
+			border:1px solid #fff;
+			border-radius:4px;
+			padding:9px 10px;
+			margin:8px 15px 8px 0;
+			float:right;
+		}
+		.icon-bar{
+			display:block;
+			width:22px;
+			height:2px;
+			background:#fff;
+			border-radius:1px;
+			margin:3px 0;
+		}
+		
+		/* Profile section - critical above-the-fold content */
+		.profile-image{
+			max-width:100px;
+			margin-bottom:30px;
+			border:5px solid #fff;
+			border-radius:50%;
+			float:left;
+			display:block;
+			height:auto;
+		}
+		.profile-content{
+			padding-left:20px;
+			overflow:hidden;
+		}
 		.profile-content .name{
 			color:#fff;
 			font-size:38px;
@@ -172,6 +236,8 @@
 			margin-top:30px;
 			font-family: 'Montserrat', 'Montserrat-fallback', Arial, sans-serif;
 			font-display: swap;
+			font-weight:700;
+			line-height:1.2;
 		}
 		.profile-content .desc{
 			color:#fff;
@@ -181,43 +247,172 @@
 			margin-top:0;
 			margin-bottom:15px;
 			font-display: swap;
+			line-height:1.3;
 		}
-		.container{max-width:1140px;margin:0 auto;padding:0 15px}
-		.navbar{border:0;background:#42A8C0}
-		.navbar-brand{
-			color:#fff!important;
+		.social{
+			list-style:none;
+			padding:0;
+			margin:15px 0;
+		}
+		.social li{
+			display:inline-block;
+			margin-right:10px;
+		}
+		.social a{
+			color:#fff;
 			font-size:18px;
-			font-weight:700;
-			font-family: 'Montserrat', 'Montserrat-fallback', Arial, sans-serif;
-			font-display: swap;
+			text-decoration:none;
+			padding:5px;
+			display:block;
 		}
-		.sections-wrapper{padding:60px 0}
+		
+		/* Layout containers - essential for proper rendering */
+		.container{
+			max-width:1140px;
+			margin:0 auto;
+			padding:0 15px;
+			position:relative;
+		}
+		.sections-wrapper{padding:60px 0;background:#fff}
 		.section{margin-bottom:30px}
-		.section .section-inner{background:#fff;padding:30px}
+		.section .section-inner{
+			background:#fff;
+			padding:30px;
+			border:1px solid #e8e8e8;
+			border-radius:4px;
+		}
+		.section h2{
+			color:#3F4650;
+			font-size:24px;
+			margin-top:0;
+			margin-bottom:20px;
+			font-weight:600;
+		}
+		
+		/* Content styling */
 		.about .content{
 			color:#5f6b77;
 			font-family: 'Open Sans', 'OpenSans-fallback', Arial, sans-serif;
 			font-display: swap;
+			line-height:1.8;
 		}
-		/* Minimal Bootstrap grid */
-		.row{display:flex;flex-wrap:wrap;margin:0 -15px}
-		.col-md-8{flex:0 0 66.666667%;max-width:66.666667%;padding:0 15px}
-		.col-md-4{flex:0 0 33.333333%;max-width:33.333333%;padding:0 15px}
-		@media (max-width:768px){.col-md-8,.col-md-4{flex:0 0 100%;max-width:100%}}
+		.about .content p{margin-bottom:15px}
+		.about .content a{color:#42A8C0;text-decoration:none}
+		.about .content a:hover{text-decoration:underline}
 		
-		/* Font loading optimization - hide text flash */
+		/* Essential grid system - minimal bootstrap grid */
+		.row{
+			display:flex;
+			flex-wrap:wrap;
+			margin:0 -15px;
+		}
+		.col-md-8{
+			flex:0 0 66.666667%;
+			max-width:66.666667%;
+			padding:0 15px;
+			position:relative;
+		}
+		.col-md-4{
+			flex:0 0 33.333333%;
+			max-width:33.333333%;
+			padding:0 15px;
+			position:relative;
+		}
+		
+		/* Mobile responsive - critical breakpoints */
+		@media (max-width:768px){
+			.col-md-8,.col-md-4{
+				flex:0 0 100%;
+				max-width:100%;
+			}
+			.profile-image{
+				float:none;
+				margin:0 auto 20px;
+				display:block;
+			}
+			.profile-content{
+				padding-left:0;
+				text-align:center;
+			}
+			.profile-content .name{
+				font-size:28px;
+				margin-top:0;
+			}
+			.profile-content .desc{
+				font-size:18px;
+			}
+			.navbar-toggle{display:block}
+			.navbar-nav{
+				display:none;
+				float:none;
+				width:100%;
+				margin-top:15px;
+			}
+			.navbar-nav li{
+				display:block;
+				float:none;
+			}
+			.sections-wrapper{padding:30px 0}
+		}
+		
+		/* Font loading optimization - prevent FOIT */
 		.font-loading body { visibility: hidden; }
 		.font-loaded body { visibility: visible; }
+		
+		/* Utility classes for immediate use */
+		.text-center{text-align:center}
+		.pull-left{float:left}
+		.pull-right{float:right}
+		.img-responsive{max-width:100%;height:auto}
+		.img-circle{border-radius:50%}
+		.list-inline{list-style:none;padding:0}
+		.list-inline li{display:inline-block;margin-right:10px}
+		.list-unstyled{list-style:none;padding:0}
+		
+		/* Hide non-critical content during initial load */
+		.secondary{opacity:0;transition:opacity 0.3s ease}
+		.content-loaded .secondary{opacity:1}
 	</style>
 	
-	<!-- Preload and defer CSS files with cache optimization -->
-	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
-	<link rel="preload" href="assets/css/font-awesome.min.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
-	<link rel="preload" href="assets/css/styles.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
-	<link rel="preload" href="assets/css/github-activity-0.1.1.min.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
-	<link rel="preload" href="assets/css/octicons.min.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+	<!-- Non-Critical CSS Loading Strategy - Reduces Critical Request Chain Length -->
+	<!-- Load CSS asynchronously to prevent render blocking -->
+	<script>
+		// Optimized CSS loading function to avoid render blocking
+		function loadCSS(href, before, media, callback) {
+			var link = document.createElement('link');
+			var ref = before || document.head.lastChild;
+			var sheets = document.styleSheets;
+			link.rel = 'stylesheet';
+			link.href = href;
+			link.media = 'only x'; // Temp media to avoid blocking
+			if (callback) link.onload = callback;
+			ref.parentNode.insertBefore(link, ref);
+			
+			// Set media after insert to trigger loading
+			setTimeout(function() { link.media = media || 'all'; });
+			return link;
+		}
+		
+		// Load critical CSS first (higher priority)
+		loadCSS('assets/css/bootstrap.min.css?v=2025.09');
+		
+		// Defer non-critical CSS after critical path
+		setTimeout(function() {
+			loadCSS('assets/css/font-awesome.min.css?v=2025.09');
+			loadCSS('assets/css/styles.css?v=2025.09');
+			loadCSS('assets/css/github-activity-0.1.1.min.css?v=2025.09');
+			loadCSS('assets/css/octicons.min.css?v=2025.09');
+			
+			// Mark secondary content as loaded
+			document.documentElement.classList.add('content-loaded');
+		}, 50);
+	</script>
 	
-	<!-- Fallback for browsers without JavaScript with cache versioning -->
+	<!-- Critical Resource Preload - Only for LCP candidates -->
+	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.09" as="style">
+	<link rel="preload" href="assets/img/Profile.jpg?v=2025.09" as="image" crossorigin>
+	
+	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.09">
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.09">
@@ -226,8 +421,21 @@
 		<link rel="stylesheet" href="assets/css/octicons.min.css?v=2025.09">
 	</noscript>
 	
-	<!-- Advanced Font Loading Strategy with CLS Prevention -->
-	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<!-- Optimized Font Loading - Non-blocking, Zero Critical Chain Impact -->
+	<script>
+		// Defer font loading to not impact critical rendering path
+		(function() {
+			// Only load fonts after critical content is rendered
+			setTimeout(function() {
+				var fontLink = document.createElement('link');
+				fontLink.rel = 'stylesheet';
+				fontLink.href = 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional';
+				document.head.appendChild(fontLink);
+			}, 200); // Delay font loading until after critical content
+		})();
+	</script>
+	
+	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
 		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional" rel="stylesheet">
 	</noscript>
@@ -270,14 +478,49 @@
 		})();
 	</script>
 	
-	<!-- Critical JavaScript loaded asynchronously -->
+	<!-- Optimized JavaScript Loading - Zero Render Blocking -->
 	<script>
-		// Load csi.min.js asynchronously to avoid blocking render
+		// Essential JavaScript loading with request chain optimization
 		(function() {
-			const script = document.createElement('script');
-			script.async = true;
-			script.src = 'assets/js/csi.min.js';
-			document.head.appendChild(script);
+			var scripts = [
+				// Critical scripts first
+				'assets/js/jquery-1.11.2.min.js?v=2025.09',
+				'assets/js/bootstrap.min.js?v=2025.09',
+				'assets/js/main.js?v=2025.09'
+			];
+			
+			var nonCriticalScripts = [
+				// Non-critical scripts - loaded after critical path
+				'assets/js/csi.min.js',
+				'assets/js/jquery-migrate-1.2.1.min.js?v=2025.09',
+				'assets/js/jquery.rss.min.js?v=2025.09',
+				'assets/js/github-activity-0.1.1.min.js?v=2025.09',
+				'assets/js/mustache.min.js?v=2025.09'
+			];
+			
+			// Load critical scripts sequentially
+			function loadScript(src, callback) {
+				var script = document.createElement('script');
+				script.async = true;
+				script.src = src;
+				if (callback) script.onload = callback;
+				document.head.appendChild(script);
+			}
+			
+			// Load jQuery first, then other critical scripts
+			loadScript(scripts[0], function() {
+				// jQuery loaded, now load dependent scripts in parallel
+				for (var i = 1; i < scripts.length; i++) {
+					loadScript(scripts[i]);
+				}
+				
+				// Load non-critical scripts after a delay
+				setTimeout(function() {
+					for (var j = 0; j < nonCriticalScripts.length; j++) {
+						loadScript(nonCriticalScripts[j]);
+					}
+				}, 100);
+			});
 		})();
 	</script>
 	
@@ -1037,34 +1280,7 @@
 		<a href="https://www.digitalocean.com/?refcode=54acfffa198d&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg" alt="DigitalOcean Referral Badge" /></a>
 	</div>
 </footer>
-<!-- Fully Optimized JavaScript Loading - Async to prevent render blocking -->
-<script>
-// Load critical JavaScript asynchronously to avoid blocking initial render
-(function() {
-    function loadScript(src, callback) {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = src;
-        if (callback) script.onload = callback;
-        document.head.appendChild(script);
-    }
-    
-    // Load jQuery first, then dependent scripts with cache versioning
-    loadScript('assets/js/jquery-1.11.2.min.js?v=2025.09', function() {
-        loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.09');
-        loadScript('assets/js/bootstrap.min.js?v=2025.09');
-        loadScript('assets/js/main.js?v=2025.09');
-        
-        // Load non-critical scripts after core functionality with cache versioning
-        setTimeout(function() {
-            loadScript('assets/js/jquery.rss.min.js?v=2025.09');
-            loadScript('assets/plugins/vegas/jquery.vegas.min.js?v=2025.09');
-            loadScript('assets/js/mustache.min.js?v=2025.09');
-            loadScript('assets/js/github-activity-0.1.1.min.js?v=2025.09');
-        }, 100);
-    });
-})();
-</script>
+<!-- JavaScript Already Loaded Optimally in Head - No Additional Loading Needed -->
 <script>!function (e) {
 	"use strict";
 	var a = {
