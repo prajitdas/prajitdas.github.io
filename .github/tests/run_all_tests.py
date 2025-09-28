@@ -78,9 +78,9 @@ def main():
             'description': 'Scans for potentially sensitive files that should be protected'
         },
         {
-            'name': 'SEO Optimization Test',
+            'name': 'SEO & Sitemap Optimization Test',
             'script': os.path.join(script_dir, 'seo_optimization_test.py'),
-            'description': 'Validates SEO improvements and optimizations'
+            'description': 'Comprehensive SEO improvements, sitemap synchronization, and optimization validation'
         },
         {
             'name': 'Vulnerability Assessment',
