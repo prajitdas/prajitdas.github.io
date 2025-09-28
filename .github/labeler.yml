@@ -1,26 +1,22 @@
-# Labeler configuration for GitHub Actions
+# Labeler configuration for GitHub Actions v6
 # Automatically label PRs based on files changed
 
-"website":
-  - "*.html"
-  - "*.css" 
-  - "*.js"
-  - "assets/**/*"
+website:
+  - changed-files:
+    - any-glob-to-any-file: ['*.html', '*.css', '*.js', 'assets/**/*']
 
-"documentation":
-  - "*.md"
-  - "README*"
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: ['*.md', 'README*']
 
-"testing":
-  - "tests/**/*"
-  - "*.py"
+testing:
+  - changed-files:
+    - any-glob-to-any-file: ['tests/**/*', '*.py', '.github/tests/**/*']
 
-"configuration":
-  - "*.yml"
-  - "*.yaml"
-  - "*.json"
-  - ".github/**/*"
+configuration:
+  - changed-files:
+    - any-glob-to-any-file: ['*.yml', '*.yaml', '*.json', '.github/**/*']
 
-"dependencies":
-  - "*requirements*.txt"
-  - "pyproject.toml"
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file: ['*requirements*.txt', 'pyproject.toml', 'package*.json']
