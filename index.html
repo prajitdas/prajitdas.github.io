@@ -107,24 +107,60 @@
 	<link rel="preload" href="assets/js/jquery-1.11.2.min.js" as="script">
 	<link rel="preload" href="assets/js/bootstrap.min.js" as="script">
 	
-	<!-- Critical CSS - Load only essential styles first -->
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/styles.css">
+	<!-- Inline Critical CSS for Above-the-Fold Content -->
+	<style>
+		/* Critical inline CSS for immediate render */
+		body{font-family:Lato,Arial,sans-serif;color:#434343;background:#DAE3E7;font-size:14px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+		.header{padding:30px 0;background:#42A8C0;color:#fff}
+		.profile-image{max-width:100px;margin-bottom:30px;border:5px solid #fff;border-radius:50%}
+		.profile-content .name{color:#fff;font-size:38px;margin-bottom:5px;margin-top:30px}
+		.profile-content .desc{color:#fff;font-family:Lato;font-weight:400;font-size:24px;margin-top:0;margin-bottom:15px}
+		.container{max-width:1140px;margin:0 auto;padding:0 15px}
+		.navbar{border:0;background:#42A8C0}
+		.navbar-brand{color:#fff!important;font-size:18px;font-weight:700}
+		.sections-wrapper{padding:60px 0}
+		.section{margin-bottom:30px}
+		.section .section-inner{background:#fff;padding:30px}
+		.about .content{color:#5f6b77}
+		/* Minimal Bootstrap grid */
+		.row{display:flex;flex-wrap:wrap;margin:0 -15px}
+		.col-md-8{flex:0 0 66.666667%;max-width:66.666667%;padding:0 15px}
+		.col-md-4{flex:0 0 33.333333%;max-width:33.333333%;padding:0 15px}
+		@media (max-width:768px){.col-md-8,.col-md-4{flex:0 0 100%;max-width:100%}}
+	</style>
 	
-	<!-- Optimized Font Loading with font-display: swap -->
-	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
-	
-	<!-- Defer Non-Critical CSS -->
+	<!-- Preload and defer all CSS files to avoid render blocking -->
+	<link rel="preload" href="assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="assets/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="assets/css/github-activity-0.1.1.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="assets/css/octicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	
+	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/github-activity-0.1.1.min.css">
 		<link rel="stylesheet" href="assets/css/octicons.min.css">
 	</noscript>
 	
-	<!-- Critical JavaScript for immediate functionality -->
-	<script src="assets/js/csi.min.js" defer></script>
+	<!-- Optimized Font Loading - defer to prevent render blocking -->
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+	</noscript>
+	
+	<!-- Critical JavaScript loaded asynchronously -->
+	<script>
+		// Load csi.min.js asynchronously to avoid blocking render
+		(function() {
+			const script = document.createElement('script');
+			script.async = true;
+			script.src = 'assets/js/csi.min.js';
+			document.head.appendChild(script);
+		})();
+	</script>
 	
 	<!-- YouTube Lazy Loading Optimization -->
 	<style>
@@ -846,17 +882,34 @@
 		<a href="https://www.digitalocean.com/?refcode=54acfffa198d&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg" alt="DigitalOcean Referral Badge" /></a>
 	</div>
 </footer>
-<!-- Optimized JavaScript Loading - Single jQuery version, defer non-critical -->
-<script src="assets/js/jquery-1.11.2.min.js"></script>
-<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/main.js"></script>
-
-<!-- Defer Non-Critical JavaScript -->
-<script src="assets/js/jquery.rss.min.js" defer></script>
-<script src="assets/plugins/vegas/jquery.vegas.min.js" defer></script>
-<script src="assets/js/mustache.min.js" defer></script>
-<script src="assets/js/github-activity-0.1.1.min.js" defer></script>
+<!-- Fully Optimized JavaScript Loading - Async to prevent render blocking -->
+<script>
+// Load critical JavaScript asynchronously to avoid blocking initial render
+(function() {
+    function loadScript(src, callback) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = src;
+        if (callback) script.onload = callback;
+        document.head.appendChild(script);
+    }
+    
+    // Load jQuery first, then dependent scripts
+    loadScript('assets/js/jquery-1.11.2.min.js', function() {
+        loadScript('assets/js/jquery-migrate-1.2.1.min.js');
+        loadScript('assets/js/bootstrap.min.js');
+        loadScript('assets/js/main.js');
+        
+        // Load non-critical scripts after core functionality
+        setTimeout(function() {
+            loadScript('assets/js/jquery.rss.min.js');
+            loadScript('assets/plugins/vegas/jquery.vegas.min.js');
+            loadScript('assets/js/mustache.min.js');
+            loadScript('assets/js/github-activity-0.1.1.min.js');
+        }, 100);
+    });
+})();
+</script>
 <script>!function (e) {
 	"use strict";
 	var a = {
