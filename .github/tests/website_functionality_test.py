@@ -7,6 +7,7 @@ Verifies that all essential assets, pages, and features are accessible.
 
 import requests
 import sys
+import re
 from urllib.parse import urljoin, urlparse
 import time
 import re
@@ -107,25 +108,63 @@ def test_website_links(base_url, max_links=50):
             
             time.sleep(0.2)  # Rate limiting
         
-        # Test a few external links (sample)
+        # Test external links with special handling for specific domains
         working_external = 0
         broken_external = []
-        sample_external = external_links[:5]  # Test only first 5 external links
+        
+        # Filter out problematic base domains and replace with actual working URLs
+        filtered_external = []
+        google_fonts_css_found = False
+        
+        for link in external_links[:10]:  # Check more links to find actual CSS URLs
+            # Skip base domains that are expected to return 404
+            if link in ['https://fonts.googleapis.com', 'https://fonts.gstatic.com']:
+                continue
+            # Check if we found the actual Google Fonts CSS URL
+            elif 'fonts.googleapis.com/css' in link:
+                google_fonts_css_found = True
+                filtered_external.append(link)
+            else:
+                filtered_external.append(link)
+        
+        # If we didn't find the CSS URL in links, add it manually for testing
+        if not google_fonts_css_found:
+            # Extract the actual Google Fonts CSS URL from the HTML
+            google_fonts_match = re.search(r'https://fonts\.googleapis\.com/css2\?[^"\']*', response.text)
+            if google_fonts_match:
+                filtered_external.insert(0, google_fonts_match.group(0))
+        
+        sample_external = filtered_external[:5]  # Test only first 5 filtered external links
         
         if sample_external:
             print(f"\n🌐 Testing {len(sample_external)} sample external links:")
             for i, link in enumerate(sample_external, 1):
                 try:
-                    response = requests.get(link, timeout=10, allow_redirects=True)
-                    if response.status_code == 200:
-                        working_external += 1
-                        print(f"  ✅ [{i}] {link[:60]}{'...' if len(link) > 60 else ''}")
+                    # Special handling for different link types
+                    if 'fonts.googleapis.com/css' in link:
+                        # Test Google Fonts CSS specifically
+                        response = requests.get(link, timeout=10, allow_redirects=True)
+                        if response.status_code == 200:
+                            working_external += 1
+                            print(f"  ✅ [{i}] Google Fonts CSS")
+                        else:
+                            broken_external.append({"url": link, "status": response.status_code})
+                            print(f"  ❌ [{i}] Google Fonts CSS ({response.status_code})")
                     else:
-                        broken_external.append({"url": link, "status": response.status_code})
-                        print(f"  ❌ [{i}] {link[:60]}{'...' if len(link) > 60 else ''} ({response.status_code})")
+                        # Test other external links normally
+                        response = requests.head(link, timeout=10, allow_redirects=True)  # Use HEAD for faster testing
+                        if response.status_code == 200:
+                            working_external += 1
+                            domain = urlparse(link).netloc
+                            print(f"  ✅ [{i}] {domain}")
+                        else:
+                            broken_external.append({"url": link, "status": response.status_code})
+                            domain = urlparse(link).netloc
+                            print(f"  ❌ [{i}] {domain} ({response.status_code})")
                 except requests.RequestException:
                     broken_external.append({"url": link, "status": "error"})
-                    print(f"  ⚠️ [{i}] {link[:60]}{'...' if len(link) > 60 else ''} (Timeout/Error)")
+                    domain = urlparse(link).netloc if link.startswith('http') else link[:30]
+                    print(f"  ⚠️ [{i}] {domain} (Timeout/Error)")
                 
                 time.sleep(0.5)  # More conservative rate limiting for external
         
