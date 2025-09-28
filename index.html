@@ -42,11 +42,9 @@
 	<meta http-equiv="Pragma" content="cache">
 	<meta name="cache-control" content="public, max-age=86400, stale-while-revalidate=31536000">
 	
-	<!-- Security Headers for Enhanced Protection -->
-	<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+	<!-- Security Headers for Enhanced Protection (Meta tag compatible) -->
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
 	<meta http-equiv="X-XSS-Protection" content="1; mode=block">
-	<meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
 	<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; media-src 'self' https:; object-src 'none'; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';">
 	<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
@@ -541,45 +539,55 @@
 	
 	<!-- Optimized JavaScript Loading - Zero Render Blocking -->
 	<script>
-		// Essential JavaScript loading with request chain optimization
+		// Essential JavaScript loading with proper dependency management
 		(function() {
-			var scripts = [
-				// Critical scripts first
-				'assets/js/jquery-1.11.2.min.js?v=2025.09',
-				'assets/js/bootstrap.min.js?v=2025.09',
-				'assets/js/main.js?v=2025.09'
-			];
+			var jQueryLoaded = false;
+			var jQueryCallbacks = [];
 			
-			var nonCriticalScripts = [
-				// Non-critical scripts - loaded after critical path
-				'assets/js/jquery-migrate-1.2.1.min.js?v=2025.09',
-				'assets/js/jquery.rss.min.js?v=2025.09',
-				'assets/js/github-activity-0.1.1.min.js?v=2025.09',
-				'assets/js/mustache.min.js?v=2025.09'
-			];
-			
-			// Load critical scripts sequentially
+			// Load script with callback
 			function loadScript(src, callback) {
 				var script = document.createElement('script');
-				script.async = true;
 				script.src = src;
-				if (callback) script.onload = callback;
+				script.onload = callback || function() {};
+				script.onerror = function() {
+					console.error('Failed to load script:', src);
+				};
 				document.head.appendChild(script);
 			}
 			
-			// Load jQuery first, then other critical scripts
-			loadScript(scripts[0], function() {
-				// jQuery loaded, now load dependent scripts in parallel
-				for (var i = 1; i < scripts.length; i++) {
-					loadScript(scripts[i]);
-				}
-				
-				// Load non-critical scripts after a delay
-				setTimeout(function() {
-					for (var j = 0; j < nonCriticalScripts.length; j++) {
-						loadScript(nonCriticalScripts[j]);
+			// Wait for jQuery to be available
+			function waitForjQuery(callback) {
+				if (window.jQuery) {
+					jQueryLoaded = true;
+					callback();
+					// Execute any queued callbacks
+					while (jQueryCallbacks.length > 0) {
+						jQueryCallbacks.pop()();
 					}
-				}, 100);
+				} else if (jQueryLoaded) {
+					jQueryCallbacks.push(callback);
+				} else {
+					setTimeout(function() { waitForjQuery(callback); }, 50);
+				}
+			}
+			
+			// Load jQuery first and wait for it
+			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.09', function() {
+				waitForjQuery(function() {
+					// Load jQuery-dependent scripts
+					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.09');
+					loadScript('assets/js/jquery.rss.min.js?v=2025.09');
+					
+					// Load other critical scripts
+					loadScript('assets/js/bootstrap.min.js?v=2025.09');
+					loadScript('assets/js/main.js?v=2025.09');
+					
+					// Load non-critical scripts after a delay
+					setTimeout(function() {
+						loadScript('assets/js/github-activity-0.1.1.min.js?v=2025.09');
+						loadScript('assets/js/mustache.min.js?v=2025.09');
+					}, 100);
+				});
 			});
 		})();
 	</script>
@@ -916,7 +924,7 @@
 							<div class="desc col-md-8 col-sm-8 col-xs-12"><h3 class=title><a
 									href="https://ebiquity.umbc.edu/paper/html/id/763/Capturing-policies-for-fine-grained-access-control-on-mobile-devices" target=_blank rel="noopener">MITHRIL - PhD dissertation project</a>
 							</h3>
-								<p>As part of my Doctoral research, I developed Mithril, a framework for capturing user access control policies that were
+								<p>As part of my Doctoral dissertation, I built Mithril, a framework for capturing user access control policies that were
 									fine-grained, context-sensitive and were represented using Semantic Web technologies
 									and thereby managed access control decisions for user data on mobile devices. Read
 									the paper from IEEE CIC 2016 <a class=more-link href="http://ebiquity.umbc.edu/paper/html/id/763/Capturing-policies-for-fine-grained-access-control-on-mobile-devices" target="_blank rel="noopener"">here <i class="fa fa-external-link"></i></a></br>
@@ -1249,11 +1257,14 @@
 								<i class="fa fa-bookmark"></i> <a href="https://www.csee.umbc.edu/2015/09/anupam-joshi-quoted-in-nature-news-article-on-wearable-technology/?utm_campaign=19420&utm_medium=twitter&utm_source=twitter" target=_blank rel="noopener">
 								Prof. Anupam Joshi quoted in Nature news article on wearable technology</a>
 							</h4>
-							<object data="assets/docs/nature-article/kat-austen-the-trouble-with-wearables.pdf" type="application/pdf" width="100%" height=400px>
-								<p>
-									It appears you don't have a PDF plugin for this browser. Please click <a href="assets/docs/nature-article/kat-austen-the-trouble-with-wearables.pdf">here</a> to download the PDF file.
-								</p>
-							</object>
+							<div class="pdf-link-container" style="border: 1px solid #ddd; padding: 20px; text-align: center; background-color: #f9f9f9; border-radius: 5px;">
+								<i class="fa fa-file-pdf-o" style="font-size: 48px; color: #d32f2f; margin-bottom: 10px;"></i>
+								<h5>Nature News Article</h5>
+								<p>The Trouble with Wearables - by Kat Austen</p>
+								<a href="assets/docs/nature-article/kat-austen-the-trouble-with-wearables.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+									<i class="fa fa-download"></i> View PDF Article
+								</a>
+							</div>
 						</div>
 					</div>
 					<div class=content>
@@ -1532,9 +1543,21 @@
 	</div>
 </footer>
 <!-- JavaScript Already Loaded Optimally in Head - No Additional Loading Needed -->
-<script>!function (e) {
-	"use strict";
-	var a = {
+<script>
+// Wait for jQuery to be available before executing jQuery-dependent code
+(function() {
+	function waitForjQuery(callback) {
+		if (window.jQuery) {
+			callback();
+		} else {
+			setTimeout(function() { waitForjQuery(callback); }, 50);
+		}
+	}
+	
+	waitForjQuery(function() {
+		!function (e) {
+			"use strict";
+			var a = {
 		main_fun: function () {
 			e(window).load(function () {
 				e(".loader").fadeOut("slow")
@@ -1567,13 +1590,37 @@
 	e(document).ready(function () {
 		a.main_fun()
 	})
-}(jQuery);</script>
-<!-- Google Analytics - Defer for better LCP -->
-<script async src="https://www.google-analytics.com/analytics.js"></script>
+}(jQuery);
+	}); // End waitForjQuery
+})(); // End wrapper
+</script>
+<!-- Google Analytics - Defer for better LCP, handle ad blockers gracefully -->
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-44772125-1', 'auto');
-ga('send', 'pageview');
+(function() {
+	// Check if analytics should be loaded (respects ad blockers)
+	if (navigator.doNotTrack === '1' || window.doNotTrack === '1') {
+		return; // Respect Do Not Track
+	}
+	
+	// Load gtag with error handling
+	var script = document.createElement('script');
+	script.async = true;
+	script.src = 'https://www.googletagmanager.com/gtag/js?id=G-GT4GRDDMVN';
+	script.onerror = function() {
+		// Silently handle ad blocker or network errors
+		console.log('Analytics blocked or unavailable');
+	};
+	document.head.appendChild(script);
+	
+	// Initialize gtag
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-GT4GRDDMVN', {
+		anonymize_ip: true,
+		respect_dnt: true
+	});
+})();
 </script>
 </body>
 </html>
