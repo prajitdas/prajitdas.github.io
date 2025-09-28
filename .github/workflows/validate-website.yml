@@ -37,44 +37,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r .github/config/requirements.txt
         
-    - name: Run website validation tests
+    - name: Run consolidated website validation tests
       run: |
         cd .github/tests
-        python -m pytest test_website_validation.py -v --tb=short
+        python website_validation.py -v
         
     - name: Run comprehensive security scan
       run: |
         python .github/tests/comprehensive_security_scan.py
-        
-    - name: Run basic HTML validation (alternative)
-      run: |
-        cd .github/tests
-        python test_website_validation.py
-        
-    - name: Check for broken links (HTML files only)
-      run: |
-        echo "Checking for HTML files that might have issues..."
-        find . -name "*.html" -type f -exec echo "Checking: {}" \;
-        
-    - name: Validate file structure
-      run: |
-        echo "Validating required files exist..."
-        test -f index.html || (echo "ERROR: index.html not found" && exit 1)
-        test -f sitemap.html || (echo "ERROR: sitemap.html not found" && exit 1)
-        test -d assets || (echo "ERROR: assets directory not found" && exit 1)
-        echo "✅ Basic file structure validation passed"
-        
-    - name: Check for security issues
-      run: |
-        echo "Checking for potential security issues..."
-        # Check for exposed sensitive files
-        ! find . -name "*.env" -o -name "*.key" -o -name "*.pem" -o -name "*.p12" | grep -q .
-        echo "✅ No obvious sensitive files found"
-        
-    - name: Run website functionality test
-      run: |
-        echo "Testing website functionality and accessibility..."
-        python .github/tests/website_functionality_test.py
         
     - name: Generate test report
       if: always()

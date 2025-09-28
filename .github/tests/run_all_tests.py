@@ -68,9 +68,9 @@ def main():
     # Define test suite
     tests = [
         {
-            'name': 'Website Functionality Test',
-            'script': os.path.join(script_dir, 'website_functionality_test.py'),
-            'description': 'Verifies all critical website components are working'
+            'name': 'Website Validation Test',
+            'script': os.path.join(script_dir, 'website_validation.py'),
+            'description': 'Comprehensive HTML validation, link checking, security headers, and functionality testing'
         },
         {
             'name': 'Critical Request Chain Optimization Test',
