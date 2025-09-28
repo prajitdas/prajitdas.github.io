@@ -1,9 +1,9 @@
 // Service Worker for Advanced Caching Strategy
-// Version: 2025.09
+// Version: 2025.10
 
-const CACHE_NAME = 'prajitdas-cache-v2025.09';
-const STATIC_CACHE_NAME = 'prajitdas-static-v2025.09';
-const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.09';
+const CACHE_NAME = 'prajitdas-cache-v2025.10';
+const STATIC_CACHE_NAME = 'prajitdas-static-v2025.10';
+const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.10';
 
 // Resources to cache immediately
 const STATIC_ASSETS = [
