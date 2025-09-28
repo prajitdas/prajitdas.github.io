@@ -9,8 +9,6 @@ Allow: /assets/docs/resume/
 Allow: /robots.txt
 Allow: /sitemap.xml
 Allow: /ror.xml
-Allow: /.well-known/
-Allow: /.well-known/keybase.txt
 
 # Block development directories and files
 Disallow: /.github/
