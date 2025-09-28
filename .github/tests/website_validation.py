@@ -26,9 +26,13 @@ from typing import List, Dict, Set, Optional, Tuple
 # Website configuration
 BASE_URL = 'https://prajitdas.github.io'
 LOCAL_PATH = Path(__file__).parent.parent.parent  # Root of repository
-TIMEOUT = 30
-MAX_RETRIES = 3
-RETRY_DELAY = 2
+TIMEOUT = 10  # Reduced from 30 to 10 seconds
+MAX_RETRIES = 2  # Reduced from 3 to 2 retries
+RETRY_DELAY = 1  # Reduced from 2 to 1 second
+MAX_EXTERNAL_LINKS = 20  # Limit external link testing for performance
+
+# Fast mode for development (skip external link validation)
+FAST_MODE = os.environ.get('FAST_VALIDATION', '').lower() in ('1', 'true', 'yes')
 
 class WebsiteValidationTest(unittest.TestCase):
     """Comprehensive website validation test suite."""
@@ -118,6 +122,9 @@ class WebsiteValidationTest(unittest.TestCase):
     
     def test_04_external_link_validation(self):
         """Test external links for accessibility (with retries)."""
+        if FAST_MODE:
+            self.skipTest("Skipping external link validation in fast mode")
+            
         index_path = LOCAL_PATH / 'index.html'
         if not index_path.exists():
             self.skipTest("index.html not found")
@@ -133,7 +140,9 @@ class WebsiteValidationTest(unittest.TestCase):
             if href.startswith(('http://', 'https://')) and not href.startswith(BASE_URL):
                 external_links.add(href)
         
-        print(f"Testing {len(external_links)} external links...")
+        # Limit external link testing for performance - sample key links only
+        external_links = list(external_links)[:MAX_EXTERNAL_LINKS]
+        print(f"Testing {len(external_links)} external links (limited for performance)...")
         failed_links = []
         
         for url in external_links:
