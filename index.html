@@ -54,8 +54,6 @@
 	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 	<link rel="dns-prefetch" href="https://www.google-analytics.com">
 	<link rel="dns-prefetch" href="https://www.gravatar.com">
-	<link rel="dns-prefetch" href="https://img.youtube.com">
-	<link rel="dns-prefetch" href="https://www.googletagmanager.com">
 	
 	<!-- JSON-LD Structured Data -->
 	<script type="application/ld+json">
@@ -120,9 +118,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="preconnect" href="https://www.google-analytics.com">
 	
-	<!-- LCP Optimization - Preload critical resources for faster rendering -->
-	<link rel="preload" href="assets/img/Profile.jpg?v=2025.10" as="image" type="image/jpeg" crossorigin>
-	<link rel="preload" href="assets/js/jquery-1.11.2.min.js?v=2025.10" as="script">
+	<!-- LCP Optimization - Preload only the most critical LCP resource -->
 	<link rel="preload" href="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200" as="image" type="image/jpeg" crossorigin>
 	
 	<!-- Critical CSS Inlined - Zero Network Requests for Above-the-Fold Rendering -->
@@ -776,7 +772,6 @@
 			width="200" 
 			height="200"
 			loading="eager"
-			fetchpriority="high"
 			onerror="this.onerror=null; this.src='assets/img/Profile.jpg?v=2025.10';">
 			<div class="profile-content pull-left">
 				<h1 class=name>
@@ -1748,98 +1743,26 @@
 })();
 </script>
 
-<!-- Advanced Performance Optimizations -->
+<!-- Performance Optimizations -->
 <script>
+// Idle resource prefetching and analytics
 (function() {
-	// Intersection Observer for lazy loading improvements
-	if ('IntersectionObserver' in window) {
-		const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-		const imageObserver = new IntersectionObserver((entries, observer) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					const img = entry.target;
-					// Prefetch next images for smoother scrolling
-					const nextImages = Array.from(lazyImages).slice(
-						Array.from(lazyImages).indexOf(img) + 1, 
-						Array.from(lazyImages).indexOf(img) + 3
-					);
-					nextImages.forEach(nextImg => {
-						if (nextImg.dataset.src) {
-							nextImg.src = nextImg.dataset.src;
-						}
-					});
-					observer.unobserve(img);
-				}
-			});
-		}, {
-			rootMargin: '50px 0px',
-			threshold: 0.01
-		});
-
-		lazyImages.forEach(img => imageObserver.observe(img));
-	}
-
-	// Prefetch critical resources on idle
 	if ('requestIdleCallback' in window) {
 		requestIdleCallback(() => {
-			// Prefetch resume PDF
-			const resumeLink = document.createElement('link');
-			resumeLink.rel = 'prefetch';
-			resumeLink.href = 'assets/docs/resume/resume-prajit-das-032225.pdf';
-			document.head.appendChild(resumeLink);
-
-			// Prefetch critical images
-			const criticalImages = [
-				'assets/img/projects/MobipediaLogo.png',
-				'assets/docs/publications/wordcloud.png?v=2025.10'
-			];
-			
-			criticalImages.forEach(src => {
+			['assets/docs/resume/resume-prajit-das-032225.pdf', 'assets/img/projects/MobipediaLogo.png'].forEach(href => {
 				const link = document.createElement('link');
 				link.rel = 'prefetch';
-				link.href = src;
-				link.as = 'image';
+				link.href = href;
 				document.head.appendChild(link);
 			});
 		});
 	}
-
-	// Performance monitoring and optimization
 	window.addEventListener('load', () => {
-		// Report performance metrics
-		setTimeout(() => {
-			if ('performance' in window && 'timing' in performance) {
-				const timing = performance.timing;
-				const loadTime = timing.loadEventEnd - timing.navigationStart;
-				const domReady = timing.domContentLoadedEventEnd - timing.navigationStart;
-				const firstPaint = performance.getEntriesByType('paint').find(entry => entry.name === 'first-contentful-paint');
-				
-				console.log('Performance Metrics:');
-				console.log('- Load Time:', loadTime + 'ms');
-				console.log('- DOM Ready:', domReady + 'ms');
-				if (firstPaint) {
-					console.log('- First Contentful Paint:', firstPaint.startTime.toFixed(2) + 'ms');
-				}
-				
-				// Send to analytics if available
-				if (window.gtag && loadTime > 0) {
-					gtag('event', 'page_load_time', {
-						event_category: 'Performance',
-						event_label: 'Load Time',
-						value: Math.round(loadTime)
-					});
-				}
-			}
-		}, 0);
-	});
-
-	// Optimize animations based on user preferences
-	if ('matchMedia' in window) {
-		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-		if (prefersReducedMotion.matches) {
-			document.documentElement.style.setProperty('--animation-duration', '0s');
+		if (window.gtag && performance.timing) {
+			const t = performance.timing.loadEventEnd - performance.timing.navigationStart;
+			if (t > 0) gtag('event', 'page_load_time', {event_category: 'Performance', value: Math.round(t)});
 		}
-	}
+	});
 })();
 </script>
 </body>
