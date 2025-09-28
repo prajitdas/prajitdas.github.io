@@ -42,22 +42,30 @@ jobs:
         cd .github/tests
         python run_all_validation.py
         
-    - name: Generate test report
+    - name: Generate validation report
       if: always()
       run: |
-        echo "# Website Validation Report" > test-report.md
-        echo "Date: $(date)" >> test-report.md
-        echo "Commit: ${{ github.sha }}" >> test-report.md
-        echo "" >> test-report.md
-        echo "## Files Checked:" >> test-report.md
-        find . -name "*.html" -type f | head -20 >> test-report.md
-        echo "" >> test-report.md
-        echo "## Validation Status: ${{ job.status }}" >> test-report.md
+        echo "# Complete Website Validation Report" > validation-report.md
+        echo "Date: $(date)" >> validation-report.md
+        echo "Commit: ${{ github.sha }}" >> validation-report.md
+        echo "" >> validation-report.md
+        echo "## Validation Suite Executed:" >> validation-report.md
+        echo "- Website Validation (HTML, links, assets, security headers)" >> validation-report.md
+        echo "- Critical Request Chain Optimization" >> validation-report.md
+        echo "- Comprehensive Security Scan" >> validation-report.md
+        echo "- SEO & Sitemap Optimization" >> validation-report.md
+        echo "- Vulnerability Assessment" >> validation-report.md
+        echo "- YouTube Performance Validation" >> validation-report.md
+        echo "" >> validation-report.md
+        echo "## Files Checked:" >> validation-report.md
+        find . -name "*.html" -type f | head -20 >> validation-report.md
+        echo "" >> validation-report.md
+        echo "## Overall Status: ${{ job.status }}" >> validation-report.md
         
-    - name: Upload test report
+    - name: Upload validation report
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: validation-report
-        path: test-report.md
+        name: complete-validation-report
+        path: validation-report.md
         retention-days: 30
