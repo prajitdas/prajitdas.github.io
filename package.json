@@ -4,8 +4,8 @@
   "description": "Dr. Prajit Kumar Das - Personal Website with JSLint Testing",
   "main": "index.html",
   "scripts": {
-    "lint": "jslint assets/js/*.js",
-    "lint:verbose": "jslint assets/js/*.js --verbose",
+    "lint": "jslint assets/js/main.js assets/js/custom.js",
+    "lint:verbose": "jslint assets/js/main.js assets/js/custom.js --verbose",
     "lint:main": "jslint assets/js/main.js",
     "lint:custom": "jslint assets/js/custom.js",
     "lint:fix": "npm run lint -- --fix",
