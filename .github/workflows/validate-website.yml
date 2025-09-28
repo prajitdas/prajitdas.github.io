@@ -1,4 +1,4 @@
-name: Website Validation Tests
+name: Website Validation
 
 on:
   push:
@@ -37,7 +37,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r .github/config/requirements.txt
         
-    - name: Run consolidated website validation tests
+    - name: Run consolidated website validation
       run: |
         cd .github/tests
         python website_validation.py -v
@@ -56,7 +56,7 @@ jobs:
         echo "## Files Checked:" >> test-report.md
         find . -name "*.html" -type f | head -20 >> test-report.md
         echo "" >> test-report.md
-        echo "## Test Status: ${{ job.status }}" >> test-report.md
+        echo "## Validation Status: ${{ job.status }}" >> test-report.md
         
     - name: Upload test report
       if: always()

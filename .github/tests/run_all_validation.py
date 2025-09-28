@@ -17,10 +17,12 @@ def run_test(test_name, script_path):
     
     try:
         # Run the test script
+        # Set longer timeout for comprehensive tests
+        timeout = 180 if 'website_validation.py' in script_path else 60
         result = subprocess.run([sys.executable, script_path], 
                               capture_output=True, 
                               text=True, 
-                              timeout=60)
+                              timeout=timeout)
         
         # Print the output
         print(result.stdout)
@@ -57,7 +59,7 @@ def run_test(test_name, script_path):
 def main():
     """Run all tests and provide summary"""
     
-    print("🚀 WEBSITE SECURITY & FUNCTIONALITY TEST SUITE")
+    print("🚀 WEBSITE SECURITY & FUNCTIONALITY VALIDATION SUITE")
     print("=" * 60)
     print(f"📅 Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
@@ -68,13 +70,13 @@ def main():
     # Define test suite
     tests = [
         {
-            'name': 'Website Validation Test',
+            'name': 'Website Validation',
             'script': os.path.join(script_dir, 'website_validation.py'),
             'description': 'Comprehensive HTML validation, link checking, security headers, and functionality testing'
         },
         {
-            'name': 'Critical Request Chain Optimization Test',
-            'script': os.path.join(script_dir, 'critical_request_chain_optimization_test.py'),
+            'name': 'Critical Request Chain Optimization',
+            'script': os.path.join(script_dir, 'critical_request_chain_optimization.py'),
             'description': 'Validates critical request chain optimization for improved LCP performance'
         },
         {
@@ -83,8 +85,8 @@ def main():
             'description': 'Scans for potentially sensitive files that should be protected'
         },
         {
-            'name': 'SEO & Sitemap Optimization Test',
-            'script': os.path.join(script_dir, 'seo_optimization_test.py'),
+            'name': 'SEO & Sitemap Optimization',
+            'script': os.path.join(script_dir, 'seo_optimization.py'),
             'description': 'Comprehensive SEO improvements, sitemap synchronization, and optimization validation'
         },
         {
@@ -93,8 +95,8 @@ def main():
             'description': 'Advanced security testing beyond basic file protection'
         },
         {
-            'name': 'YouTube Performance Test',
-            'script': os.path.join(script_dir, 'youtube_performance_test.py'),
+            'name': 'YouTube Performance',
+            'script': os.path.join(script_dir, 'youtube_performance.py'),
             'description': 'Validates YouTube lazy loading for improved mobile performance'
         }
     ]
@@ -118,21 +120,21 @@ def main():
     
     # Generate summary
     print("\n" + "=" * 60)
-    print("📊 TEST SUITE SUMMARY")
+    print("📊 VALIDATION SUITE SUMMARY")
     print("=" * 60)
     
-    total_tests = len(results)
-    passed_tests = sum(1 for r in results if r['success'])
-    failed_tests = total_tests - passed_tests
+    total_validations = len(results)
+    passed_validations = sum(1 for r in results if r['success'])
+    failed_validations = total_validations - passed_validations
     
-    print(f"📈 TOTAL TESTS: {total_tests}")
-    print(f"✅ PASSED: {passed_tests}")
-    print(f"❌ FAILED: {failed_tests}")
-    print(f"📊 SUCCESS RATE: {(passed_tests/total_tests*100):.1f}%")
+    print(f"📈 TOTAL VALIDATIONS: {total_validations}")
+    print(f"✅ PASSED: {passed_validations}")
+    print(f"❌ FAILED: {failed_validations}")
+    print(f"📊 SUCCESS RATE: {(passed_validations/total_validations*100):.1f}%")
     
-    # Show failed tests
-    if failed_tests > 0:
-        print(f"\n❌ FAILED TESTS ({failed_tests}):")
+    # Show failed validations
+    if failed_validations > 0:
+        print(f"\n❌ FAILED VALIDATIONS ({failed_validations}):")
         for result in results:
             if not result['success']:
                 print(f"   • {result['name']} (Exit Code: {result['exit_code']})")
@@ -141,14 +143,14 @@ def main():
     
     # Overall status
     print(f"\n🏆 OVERALL STATUS:")
-    if failed_tests == 0:
-        print("   ✅ ALL TESTS PASSED - Website is secure and functional")
+    if failed_validations == 0:
+        print("   ✅ ALL VALIDATIONS PASSED - Website is secure and functional")
         exit_code = 0
-    elif passed_tests >= total_tests * 0.67:  # At least 2/3 passing
+    elif passed_validations >= total_validations * 0.67:  # At least 2/3 passing
         print("   ⚠️ MOSTLY PASSING - Minor issues detected")
         exit_code = 1
     else:
-        print("   ❌ SIGNIFICANT ISSUES - Multiple test failures")
+        print("   ❌ SIGNIFICANT ISSUES - Multiple validation failures")
         exit_code = 2
     
     print(f"📅 Completed: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
