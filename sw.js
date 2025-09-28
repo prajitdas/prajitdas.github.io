@@ -5,10 +5,16 @@ const CACHE_NAME = 'prajitdas-cache-v2025.10';
 const STATIC_CACHE_NAME = 'prajitdas-static-v2025.10';
 const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.10';
 
-// Resources to cache immediately
-const STATIC_ASSETS = [
+// Critical resources for immediate caching (LCP optimization)
+const CRITICAL_ASSETS = [
   '/',
   '/index.html',
+  '/assets/img/Profile.jpg?v=2025.10'
+];
+
+// Resources to cache immediately
+const STATIC_ASSETS = [
+  ...CRITICAL_ASSETS,
   '/assets/css/bootstrap.min.css?v=2025.10',
   '/assets/css/font-awesome.min.css?v=2025.10',
   '/assets/css/styles.css?v=2025.10',
@@ -26,7 +32,9 @@ const STATIC_ASSETS = [
   '/assets/img/2.jpg',
   '/assets/img/3.jpg',
   '/assets/img/sw.jpg',
-  '/assets/img/favicon.ico'
+  '/assets/img/favicon.ico',
+  '/assets/docs/publications/wordcloud.png?v=2025.10',
+  '/assets/img/projects/MobipediaLogo.png'
 ];
 
 // Cache strategies for different resource types

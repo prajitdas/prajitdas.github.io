@@ -49,11 +49,13 @@
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; media-src 'self' https:; object-src 'self' data: http://ceur-ws.org; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';">
 	<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 	
-	<!-- Resource Hints for Improved Caching -->
+	<!-- Resource Hints for Improved Performance -->
 	<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 	<link rel="dns-prefetch" href="https://www.google-analytics.com">
 	<link rel="dns-prefetch" href="https://www.gravatar.com">
+	<link rel="dns-prefetch" href="https://img.youtube.com">
+	<link rel="dns-prefetch" href="https://www.googletagmanager.com">
 	
 	<!-- JSON-LD Structured Data -->
 	<script type="application/ld+json">
@@ -118,8 +120,10 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="preconnect" href="https://www.google-analytics.com">
 	
-	<!-- LCP Optimization - Preload only the most critical resources -->
+	<!-- LCP Optimization - Preload critical resources for faster rendering -->
+	<link rel="preload" href="assets/img/Profile.jpg?v=2025.10" as="image" type="image/jpeg" crossorigin>
 	<link rel="preload" href="assets/js/jquery-1.11.2.min.js?v=2025.10" as="script">
+	<link rel="preload" href="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200" as="image" type="image/jpeg" crossorigin>
 	
 	<!-- Critical CSS Inlined - Zero Network Requests for Above-the-Fold Rendering -->
 	<style>
@@ -763,7 +767,17 @@
 		</div>
 	</div>
 	<header class=header>
-		<div class=container><img src="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200" class="profile-image img-responsive pull-left pull-down img-circle" alt="Prajit Kumar Das" id=donottouch onerror="this.onerror=null; this.src='assets/img/Profile.jpg?v=2025.10';">
+		<div class=container><img 
+			src="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200" 
+			srcset="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200 1x, https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=400 2x"
+			class="profile-image img-responsive pull-left pull-down img-circle" 
+			alt="Prajit Kumar Das" 
+			id="donottouch" 
+			width="200" 
+			height="200"
+			loading="eager"
+			fetchpriority="high"
+			onerror="this.onerror=null; this.src='assets/img/Profile.jpg?v=2025.10';">
 			<div class="profile-content pull-left">
 				<h1 class=name>
 					Prajit Kumar Das
@@ -1269,7 +1283,17 @@
 							</h4>
 							<div class="youtube-embed-container" id="youtube-qv_a9YfG_20">
 								<div class="youtube-thumbnail" onclick="loadYouTubeVideo('qv_a9YfG_20')">
-									<img src="https://img.youtube.com/vi/qv_a9YfG_20/maxresdefault.jpg" alt="3 Minute Thesis competition video thumbnail" loading="lazy">
+									<img 
+										src="https://img.youtube.com/vi/qv_a9YfG_20/sddefault.jpg" 
+										srcset="https://img.youtube.com/vi/qv_a9YfG_20/mqdefault.jpg 320w,
+												https://img.youtube.com/vi/qv_a9YfG_20/hqdefault.jpg 480w,
+												https://img.youtube.com/vi/qv_a9YfG_20/sddefault.jpg 640w,
+												https://img.youtube.com/vi/qv_a9YfG_20/maxresdefault.jpg 1280w"
+										sizes="(max-width: 480px) 320px, (max-width: 768px) 480px, 640px"
+										alt="3 Minute Thesis competition video thumbnail" 
+										loading="lazy"
+										width="640"
+										height="360">
 									<div class="youtube-play-button">
 										<svg width="68" height="48" viewBox="0 0 68 48">
 											<path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.63-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/>
@@ -1299,7 +1323,11 @@
 				<div class=section-inner>
 					<h2 class=heading>Publication word cloud</h2>
 					<div class=content>
-						<img src="assets/docs/publications/wordcloud.png" width="100%" alt="Word cloud of publications">
+						<img src="assets/docs/publications/wordcloud.png?v=2025.10" 
+							 width="100%" 
+							 alt="Word cloud of publications"
+							 loading="lazy"
+							 decoding="async">
 					</div>
 				</div>
 			</aside>
@@ -1609,6 +1637,68 @@
 	}); // End waitForjQuery
 })(); // End wrapper
 </script>
+<!-- Performance Monitoring with Web Vitals -->
+<script>
+(function() {
+	// Monitor Core Web Vitals
+	function sendWebVitals() {
+		if ('PerformanceObserver' in window) {
+			// Largest Contentful Paint (LCP)
+			new PerformanceObserver((entryList) => {
+				const entries = entryList.getEntries();
+				const lastEntry = entries[entries.length - 1];
+				console.log('LCP:', lastEntry.startTime.toFixed(2) + 'ms');
+				if (window.gtag) {
+					gtag('event', 'web_vitals', {
+						name: 'LCP',
+						value: Math.round(lastEntry.startTime),
+						custom_parameter_1: 'performance'
+					});
+				}
+			}).observe({entryTypes: ['largest-contentful-paint']});
+
+			// First Input Delay (FID)
+			new PerformanceObserver((entryList) => {
+				const firstInput = entryList.getEntries()[0];
+				console.log('FID:', firstInput.processingStart - firstInput.startTime + 'ms');
+				if (window.gtag) {
+					gtag('event', 'web_vitals', {
+						name: 'FID',
+						value: Math.round(firstInput.processingStart - firstInput.startTime),
+						custom_parameter_1: 'performance'
+					});
+				}
+			}).observe({entryTypes: ['first-input']});
+
+			// Cumulative Layout Shift (CLS)
+			let clsValue = 0;
+			new PerformanceObserver((entryList) => {
+				for (const entry of entryList.getEntries()) {
+					if (!entry.hadRecentInput) {
+						clsValue += entry.value;
+					}
+				}
+				console.log('CLS:', clsValue.toFixed(4));
+				if (window.gtag) {
+					gtag('event', 'web_vitals', {
+						name: 'CLS',
+						value: Math.round(clsValue * 1000),
+						custom_parameter_1: 'performance'
+					});
+				}
+			}).observe({entryTypes: ['layout-shift']});
+		}
+	}
+
+	// Load Web Vitals monitoring after page load
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', sendWebVitals);
+	} else {
+		sendWebVitals();
+	}
+})();
+</script>
+
 <!-- Google Analytics - Defer for better LCP, handle ad blockers gracefully -->
 <script>
 (function() {
@@ -1654,6 +1744,101 @@
 	const yearsElement = document.getElementById('years-experience');
 	if (yearsElement) {
 		yearsElement.textContent = Math.floor(years) + ' years';
+	}
+})();
+</script>
+
+<!-- Advanced Performance Optimizations -->
+<script>
+(function() {
+	// Intersection Observer for lazy loading improvements
+	if ('IntersectionObserver' in window) {
+		const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+		const imageObserver = new IntersectionObserver((entries, observer) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const img = entry.target;
+					// Prefetch next images for smoother scrolling
+					const nextImages = Array.from(lazyImages).slice(
+						Array.from(lazyImages).indexOf(img) + 1, 
+						Array.from(lazyImages).indexOf(img) + 3
+					);
+					nextImages.forEach(nextImg => {
+						if (nextImg.dataset.src) {
+							nextImg.src = nextImg.dataset.src;
+						}
+					});
+					observer.unobserve(img);
+				}
+			});
+		}, {
+			rootMargin: '50px 0px',
+			threshold: 0.01
+		});
+
+		lazyImages.forEach(img => imageObserver.observe(img));
+	}
+
+	// Prefetch critical resources on idle
+	if ('requestIdleCallback' in window) {
+		requestIdleCallback(() => {
+			// Prefetch resume PDF
+			const resumeLink = document.createElement('link');
+			resumeLink.rel = 'prefetch';
+			resumeLink.href = 'assets/docs/resume/resume-prajit-das-032225.pdf';
+			document.head.appendChild(resumeLink);
+
+			// Prefetch critical images
+			const criticalImages = [
+				'assets/img/projects/MobipediaLogo.png',
+				'assets/docs/publications/wordcloud.png?v=2025.10'
+			];
+			
+			criticalImages.forEach(src => {
+				const link = document.createElement('link');
+				link.rel = 'prefetch';
+				link.href = src;
+				link.as = 'image';
+				document.head.appendChild(link);
+			});
+		});
+	}
+
+	// Performance monitoring and optimization
+	window.addEventListener('load', () => {
+		// Report performance metrics
+		setTimeout(() => {
+			if ('performance' in window && 'timing' in performance) {
+				const timing = performance.timing;
+				const loadTime = timing.loadEventEnd - timing.navigationStart;
+				const domReady = timing.domContentLoadedEventEnd - timing.navigationStart;
+				const firstPaint = performance.getEntriesByType('paint').find(entry => entry.name === 'first-contentful-paint');
+				
+				console.log('Performance Metrics:');
+				console.log('- Load Time:', loadTime + 'ms');
+				console.log('- DOM Ready:', domReady + 'ms');
+				if (firstPaint) {
+					console.log('- First Contentful Paint:', firstPaint.startTime.toFixed(2) + 'ms');
+				}
+				
+				// Send to analytics if available
+				if (window.gtag && loadTime > 0) {
+					gtag('event', 'page_load_time', {
+						event_category: 'Performance',
+						event_label: 'Load Time',
+						value: Math.round(loadTime)
+					});
+				}
+			}
+		}, 0);
+	});
+
+	// Optimize animations based on user preferences
+	if ('matchMedia' in window) {
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+		if (prefersReducedMotion.matches) {
+			document.documentElement.style.setProperty('--animation-duration', '0s');
+		}
 	}
 })();
 </script>
