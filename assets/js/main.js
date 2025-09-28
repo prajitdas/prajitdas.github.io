@@ -38,15 +38,23 @@ jQuery(document).ready(function(e){
 	setTimeout(initRSSFeeds, 50);
 	
 	// GitHub activity feed - only if GitHubActivity is available
-	function initGitHubFeed() {
+	function initGitHubFeed(retryCount) {
+		retryCount = retryCount || 0;
+		
 		if (typeof GitHubActivity !== 'undefined') {
-			GitHubActivity.feed({username:"caseyscarborough",selector:"#ghfeed"});
-		} else {
+			try {
+				GitHubActivity.feed({username:"caseyscarborough",selector:"#ghfeed"});
+			} catch(err) {
+				console.log('GitHub Activity plugin error:', err);
+			}
+		} else if (retryCount < 30) { // Max 30 retries (3 seconds) - GitHub activity loads later
 			// Retry after a short delay if GitHubActivity not loaded yet
-			setTimeout(initGitHubFeed, 100);
+			setTimeout(function() { initGitHubFeed(retryCount + 1); }, 100);
+		} else {
+			console.log('GitHub Activity plugin not available after retries');
 		}
 	}
 	
-	// Initialize GitHub feed
-	setTimeout(initGitHubFeed, 100);
+	// Initialize GitHub feed with longer delay since it loads later
+	setTimeout(initGitHubFeed, 200);
 });
