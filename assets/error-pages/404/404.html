@@ -29,13 +29,69 @@
         background-size: cover;
     }
     
+    #wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .error-template {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .error-template h1 {
+        font-size: 2.5em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    .error-details h3 {
+        color: #666;
+        margin-bottom: 30px;
+    }
+    
+    #footer {
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    #footer a {
+        color: #ccc;
+        text-decoration: none;
+    }
+    
+    #footer a:hover {
+        color: white;
+    }
+    
     @media screen and (orientation: portrait) {
         body {
-            background-position-y: top;
-            -webkit-background-size: contain;
-            -moz-background-size: contain;
-            -o-background-size: contain;
-            background-size: contain;
+            background-position: center top;
+            background-attachment: scroll;
+        }
+        
+        .error-template {
+            padding: 20px;
+        }
+        
+        .error-template h1 {
+            font-size: 2em;
         }
     }
 </style>
@@ -64,8 +120,8 @@
             <div class="error-actions"><a href="https://i.imgflip.com/o4lkj.jpg">Made at imgflip.com</a> </div>
         </div>
     </div>
-    <script src="https://prajitdas.github.io/assets/js/jquery-1.10.0.min.js"></script>
-    <script src="https://prajitdas.github.io/assets/js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://prajitdas.github.io/assets/js/jquery-1.11.2.min.js"></script>
+    <script src="https://prajitdas.github.io/assets/js/bootstrap.min.js"></script>
 </body>
 
 </html>
