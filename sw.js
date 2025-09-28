@@ -9,16 +9,15 @@ const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.09';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/assets/css/bootstrap.min.css?v=2025.09',
-  '/assets/css/font-awesome.min.css?v=2025.09',
-  '/assets/css/styles.css?v=2025.09',
-  '/assets/css/github-activity-0.1.1.min.css?v=2025.09',
-  '/assets/css/octicons.min.css?v=2025.09',
-  '/assets/js/jquery-1.11.2.min.js?v=2025.09',
-  '/assets/js/jquery-migrate-1.2.1.min.js?v=2025.09',
-  '/assets/js/bootstrap.min.js?v=2025.09',
-  '/assets/js/main.js?v=2025.09',
-  '/assets/img/Profile.jpg?v=2025.09',
+  '/assets/css/bootstrap.min.css?v=2025.10',
+  '/assets/css/font-awesome.min.css?v=2025.10',
+  '/assets/css/styles.css?v=2025.10',
+  '/assets/css/octicons.min.css?v=2025.10',
+  '/assets/js/jquery-1.11.2.min.js?v=2025.10',
+  '/assets/js/jquery-migrate-1.2.1.min.js?v=2025.10',
+  '/assets/js/bootstrap.min.js?v=2025.10',
+  '/assets/js/main.js?v=2025.10',
+  '/assets/img/Profile.jpg?v=2025.10',
   '/assets/img/favicon.ico'
 ];
 
