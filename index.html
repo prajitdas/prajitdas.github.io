@@ -118,8 +118,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="preconnect" href="https://www.google-analytics.com">
 	
-	<!-- LCP Optimization - Preload only the most critical LCP resource -->
-	<link rel="preload" href="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200" as="image" type="image/jpeg" crossorigin>
+	<!-- LCP Optimization - Preload the fallback image which is more reliable -->
+	<link rel="preload" href="assets/img/Profile.jpg?v=2025.10" as="image" type="image/jpeg">
 	
 	<!-- Critical CSS Inlined - Zero Network Requests for Above-the-Fold Rendering -->
 	<style>
@@ -764,15 +764,13 @@
 	</div>
 	<header class=header>
 		<div class=container><img 
-			src="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200" 
-			srcset="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200 1x, https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=400 2x"
+			src="assets/img/Profile.jpg?v=2025.10"
 			class="profile-image img-responsive pull-left pull-down img-circle" 
 			alt="Prajit Kumar Das" 
 			id="donottouch" 
 			width="200" 
 			height="200"
-			loading="eager"
-			onerror="this.onerror=null; this.src='assets/img/Profile.jpg?v=2025.10';">
+			loading="eager">
 			<div class="profile-content pull-left">
 				<h1 class=name>
 					Prajit Kumar Das
@@ -1747,6 +1745,17 @@
 <script>
 // Idle resource prefetching and analytics
 (function() {
+	// Load Gravatar asynchronously to avoid preload timing issues
+	const gravatarImg = new Image();
+	gravatarImg.onload = function() {
+		const profileImg = document.getElementById('donottouch');
+		if (profileImg) {
+			profileImg.src = 'https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200';
+			profileImg.srcset = 'https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200 1x, https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=400 2x';
+		}
+	};
+	gravatarImg.src = 'https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200';
+	
 	if ('requestIdleCallback' in window) {
 		requestIdleCallback(() => {
 			['assets/docs/resume/resume-prajit-das-032225.pdf', 'assets/img/projects/MobipediaLogo.png'].forEach(href => {
