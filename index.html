@@ -596,7 +596,6 @@
 				retryCount = retryCount || 0;
 				
 				if (window.jQuery) {
-					console.log('jQuery found! Version:', window.jQuery.fn.jquery);
 					jQueryLoaded = true;
 					callback();
 					// Execute any queued callbacks
@@ -606,7 +605,6 @@
 				} else if (jQueryLoaded) {
 					jQueryCallbacks.push(callback);
 				} else if (retryCount < 100) { // Max 100 retries (5 seconds)
-					console.log('Waiting for jQuery, retry:', retryCount + 1);
 					setTimeout(function() { waitForjQuery(callback, retryCount + 1); }, 50);
 				} else {
 					console.error('jQuery failed to load after 5 seconds, aborting');
@@ -614,18 +612,13 @@
 			}
 			
 			// Load jQuery first and wait for it
-			console.log('Starting jQuery load...');
 			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.10', function() {
-				console.log('jQuery script loaded, checking availability...');
 				waitForjQuery(function() {
-					console.log('jQuery confirmed available, version:', window.jQuery.fn.jquery);
 					// Load jQuery migrate first, then Vegas plugin and main.js
 					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.10', function() {
-						console.log('jQuery migrate loaded, loading Vegas plugin...');
 						loadScript('assets/plugins/vegas/jquery.vegas.min.js?v=2025.10', function() {
-							console.log('Vegas plugin loaded, loading main.js...');
 							loadScript('assets/js/main.js?v=2025.10', function() {
-								console.log('Main.js loaded successfully');
+								// Main.js loaded
 							});
 						});
 					});
@@ -647,9 +640,9 @@
 				navigator.serviceWorker.register('/sw.js', {
 					scope: '/'
 				}).then(function(registration) {
-					console.log('ServiceWorker registration successful');
+					// ServiceWorker registered
 				}).catch(function(err) {
-					console.log('ServiceWorker registration failed');
+					// ServiceWorker registration failed
 				});
 			});
 		}
@@ -1615,8 +1608,6 @@
 		// Triple-check jQuery is available and functional
 		if (!window.jQuery || typeof window.jQuery !== 'function') {
 			console.error('jQuery still not available or not functional in waitForjQuery callback');
-			console.log('window.jQuery:', window.jQuery);
-			console.log('typeof window.jQuery:', typeof window.jQuery);
 			return;
 		}
 		
@@ -1626,11 +1617,8 @@
 			return;
 		}
 		
-		console.log('All jQuery checks passed, executing IIFE...');
-		
 		!function (e) {
 			"use strict";
-			console.log('IIFE executing with jQuery parameter:', e);
 			var a = {
 		main_fun: function () {
 			e(window).load(function () {
@@ -1681,7 +1669,6 @@
 			new PerformanceObserver((entryList) => {
 				const entries = entryList.getEntries();
 				const lastEntry = entries[entries.length - 1];
-				console.log('LCP:', lastEntry.startTime.toFixed(2) + 'ms');
 				if (window.gtag) {
 					gtag('event', 'web_vitals', {
 						name: 'LCP',
@@ -1694,7 +1681,6 @@
 			// First Input Delay (FID)
 			new PerformanceObserver((entryList) => {
 				const firstInput = entryList.getEntries()[0];
-				console.log('FID:', firstInput.processingStart - firstInput.startTime + 'ms');
 				if (window.gtag) {
 					gtag('event', 'web_vitals', {
 						name: 'FID',
@@ -1704,41 +1690,14 @@
 				}
 			}).observe({entryTypes: ['first-input']});
 
-			// Enhanced Cumulative Layout Shift (CLS) monitoring
+			// Cumulative Layout Shift (CLS) - basic monitoring
 			let clsValue = 0;
 			new PerformanceObserver((entryList) => {
 				for (const entry of entryList.getEntries()) {
 					if (!entry.hadRecentInput) {
 						clsValue += entry.value;
-						
-						// Detailed layout shift logging
-						console.log('Layout shift detected:', {
-							value: entry.value.toFixed(4),
-							cumulativeValue: clsValue.toFixed(4),
-							time: entry.startTime.toFixed(2) + 'ms',
-							sources: entry.sources?.map(source => ({
-								element: source.node?.tagName,
-								id: source.node?.id,
-								className: source.node?.className.substring(0, 50)
-							})) || []
-						});
-						
-						// Log specific shift causes for debugging
-						if (entry.sources && entry.sources.length > 0) {
-							entry.sources.forEach(source => {
-								if (source.node) {
-									console.warn('Layout shift caused by element:', {
-										tag: source.node.tagName,
-										id: source.node.id,
-										classes: source.node.className,
-										rect: source.currentRect
-									});
-								}
-							});
-						}
 					}
 				}
-				console.log('Current CLS:', clsValue.toFixed(4));
 				if (window.gtag) {
 					gtag('event', 'web_vitals', {
 						name: 'CLS',
