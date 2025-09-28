@@ -1,26 +1,28 @@
-# Labeler configuration for GitHub Actions
-# Automatically label PRs based on files changed
+# Compatible configuration for actions/labeler v5/v6
+# The error expects "array of config options" so let's provide exactly that
 
-"website":
-  - "*.html"
-  - "*.css" 
-  - "*.js"
-  - "assets/**/*"
+website:
+  - any-glob-to-any-file: "*.html"
+  - any-glob-to-any-file: "*.css"
+  - any-glob-to-any-file: "*.js"
+  - any-glob-to-any-file: "assets/**/*"
 
-"documentation":
-  - "*.md"
-  - "README*"
+documentation:
+  - any-glob-to-any-file: "*.md"
+  - any-glob-to-any-file: "README*"
 
-"testing":
-  - "tests/**/*"
-  - "*.py"
+testing:
+  - any-glob-to-any-file: "tests/**/*"
+  - any-glob-to-any-file: "*.py"
+  - any-glob-to-any-file: ".github/tests/**/*"
 
-"configuration":
-  - "*.yml"
-  - "*.yaml"
-  - "*.json"
-  - ".github/**/*"
+configuration:
+  - any-glob-to-any-file: "*.yml"
+  - any-glob-to-any-file: "*.yaml" 
+  - any-glob-to-any-file: "*.json"
+  - any-glob-to-any-file: ".github/**/*"
 
-"dependencies":
-  - "*requirements*.txt"
-  - "pyproject.toml"
+dependencies:
+  - any-glob-to-any-file: "*requirements*.txt"
+  - any-glob-to-any-file: "pyproject.toml"
+  - any-glob-to-any-file: "package*.json"
