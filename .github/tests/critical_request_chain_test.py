@@ -44,10 +44,12 @@ def test_css_optimization():
     results = []
     
     # Check for optimized font loading with font-display
-    if 'display=swap' in content:
-        results.append("✅ Font-display swap optimization: Implemented")
+    if 'display=optional' in content:
+        results.append("✅ Font-display optimization: Optional (best for CLS)")
+    elif 'display=swap' in content:
+        results.append("✅ Font-display optimization: Swap implemented")
     else:
-        results.append("❌ Font-display swap optimization: Missing")
+        results.append("❌ Font-display optimization: Missing")
     
     # Check for CSS preloading of non-critical styles
     if 'rel="preload"' in content and 'as="style"' in content:
