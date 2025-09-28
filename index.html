@@ -210,6 +210,12 @@
 			padding:9px 10px;
 			margin:8px 15px 8px 0;
 			float:right;
+			cursor:pointer;
+		}
+		.navbar-toggle:hover,
+		.navbar-toggle:focus{
+			background:rgba(255,255,255,0.1);
+			border-color:#ccc;
 		}
 		.icon-bar{
 			display:block;
@@ -399,11 +405,19 @@
 				font-size:18px;
 			}
 			.navbar-toggle{display:block}
-			.navbar-nav{
+			.navbar-collapse{
 				display:none;
+				border-top: 1px solid #333;
+				padding-top: 10px;
+			}
+			.navbar-collapse.in{
+				display:block;
+			}
+			.navbar-nav{
+				display:block;
 				float:none;
 				width:100%;
-				margin-top:15px;
+				margin-top:0;
 			}
 			.navbar-nav li{
 				display:block;
@@ -614,17 +628,17 @@
 			// Load jQuery first and wait for it
 			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.10', function() {
 				waitForjQuery(function() {
-					// Load jQuery migrate first, then Vegas plugin and main.js
-					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.10', function() {
-						loadScript('assets/plugins/vegas/jquery.vegas.min.js?v=2025.10', function() {
-							loadScript('assets/js/main.js?v=2025.10', function() {
-								// Main.js loaded
+					// Load Bootstrap JS first since navbar depends on it
+					loadScript('assets/js/bootstrap.min.js?v=2025.10', function() {
+						// Load jQuery migrate first, then Vegas plugin and main.js
+						loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.10', function() {
+							loadScript('assets/plugins/vegas/jquery.vegas.min.js?v=2025.10', function() {
+								loadScript('assets/js/main.js?v=2025.10', function() {
+									// Main.js loaded
+								});
 							});
 						});
 					});
-					
-					// Load other critical scripts in parallel
-					loadScript('assets/js/bootstrap.min.js?v=2025.10');
 					
 					// Note: RSS and GitHub Activity plugins removed since target elements don't exist
 				});
@@ -1616,6 +1630,26 @@
 			console.error('jQuery.fn not available');
 			return;
 		}
+		
+		// Mobile hamburger menu fallback (in case Bootstrap doesn't initialize properly)
+		function initMobileMenu() {
+			var toggleButton = document.querySelector('.navbar-toggle');
+			var navbarCollapse = document.querySelector('.navbar-collapse');
+			
+			if (toggleButton && navbarCollapse) {
+				toggleButton.addEventListener('click', function(e) {
+					e.preventDefault();
+					if (navbarCollapse.classList.contains('in')) {
+						navbarCollapse.classList.remove('in');
+					} else {
+						navbarCollapse.classList.add('in');
+					}
+				});
+			}
+		}
+		
+		// Initialize mobile menu
+		initMobileMenu();
 		
 		!function (e) {
 			"use strict";
