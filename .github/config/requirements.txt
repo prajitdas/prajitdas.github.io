@@ -1,9 +1,15 @@
-# Website validation and testing dependencies
-beautifulsoup4==4.14.0
-requests==2.32.5
-lxml==6.0.2
-html5lib==1.1
+# Core testing framework
 pytest>=7.0.0
 
-# JavaScript linting and validation
-# Note: JSHint will be installed via npm if available
+# HTML parsing and web validation
+beautifulsoup4==4.14.0
+lxml==6.0.2
+html5lib==1.1
+
+# HTTP requests and web testing
+requests==2.32.5
+
+# Security and performance testing
+# (All built-in Python modules used for security scanning)
+
+# Note: JSHint for JavaScript validation installed via npm in GitHub Actions
