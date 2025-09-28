@@ -1,5 +1,38 @@
+# IDE and Editor Files
 .idea/
-#LaTeX
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Python Files
+*.pyc
+*.pyo
+*$py.class
+__pycache__/
+.pytest_cache/
+
+# Python Virtual Environments
+.venv/
+env/
+venv/
+
+# Configuration and Secrets
+config.ini
+secrets.py
+
+# Node.js Dependencies
+node_modules/
+bower_components/
+
+# Test Files and Output
+test_results/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.log
+
+# LaTeX Files
 *.acn
 *.acr
 *.alg
@@ -16,7 +49,6 @@
 *.ind
 *.ist
 *.lof
-*.log
 *.lot
 *.maf
 *.mtc
@@ -35,24 +67,13 @@
 *.bcf
 *.xml
 *.tps
-*.pyc
-*.pyo
-__pycache__/
-.venv/
-env/
-venv/
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
-config.ini
-secrets.py
 
-# Codacy temporary files
+# Security Scanning and Analysis Tools  
 .codacy/
 results.sarif
 *.sarif
-
-# Trivy cache and temporary files
 .trivy/
 trivy-cache/
+
+# GitHub Activity Plugin Generated Files
+assets/plugins/github-activity/index.html
