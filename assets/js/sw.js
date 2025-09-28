@@ -19,7 +19,6 @@ const STATIC_ASSETS = [
   '/assets/plugins/vegas/jquery.vegas.min.js?v=2025.10',
   '/assets/js/bootstrap.min.js?v=2025.10',
   '/assets/js/main.js?v=2025.10',
-  '/assets/img/Profile.jpg?v=2025.10',
   '/assets/plugins/vegas/images/loading.gif',
   '/assets/plugins/vegas/overlays/01.png',
   '/assets/plugins/vegas/overlays/15.png',

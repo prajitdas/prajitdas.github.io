@@ -465,7 +465,6 @@
 	
 	<!-- Critical Resource Preload - Only for LCP candidates -->
 	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.10" as="style">
-	<link rel="preload" href="assets/img/Profile.jpg?v=2025.10" as="image">
 	
 	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
@@ -604,7 +603,7 @@
 		// Register service worker for aggressive caching strategy
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', function() {
-				navigator.serviceWorker.register('/sw.js', {
+				navigator.serviceWorker.register('/assets/js/sw.js', {
 					scope: '/'
 				}).then(function(registration) {
 					console.log('ServiceWorker registration successful');
@@ -626,8 +625,7 @@
 				'/assets/js/jquery-1.11.2.min.js?v=2025.10',
 				'/assets/plugins/vegas/jquery.vegas.min.js?v=2025.10',
 				'/assets/js/bootstrap.min.js?v=2025.10',
-				'/assets/js/main.js?v=2025.10',
-				'/assets/img/Profile.jpg?v=2025.10'
+				'/assets/js/main.js?v=2025.10'
 			];
 			
 			// Pre-cache critical resources
@@ -765,7 +763,7 @@
 		</div>
 	</div>
 	<header class=header>
-		<div class=container><img src="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200" class="profile-image img-responsive pull-left pull-down img-circle" alt="Prajit Kumar Das" id=donottouch>
+		<div class=container><img src="https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200" class="profile-image img-responsive pull-left pull-down img-circle" alt="Prajit Kumar Das" id=donottouch onerror="this.onerror=null; this.src='assets/img/Profile.jpg?v=2025.10';">
 			<div class="profile-content pull-left">
 				<h1 class=name>
 					Prajit Kumar Das
