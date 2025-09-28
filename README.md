@@ -35,14 +35,17 @@ This repository features a complete, non-redundant test suite validating website
 10. **📱 Performance & Accessibility** - Core Web Vitals, accessibility, mobile optimization, technical SEO (~20s)
 11. **🔒 Content Security & Privacy** - CSP validation, privacy compliance, data protection (~15s)
 
-### 📊 Current Performance Metrics
+### 📊 Enhanced Performance Metrics
 
-- **🎯 Overall Success Rate:** 87.5%
+- **🎯 Overall Success Rate:** 81.8% (9/11 categories passing)
 - **🔥 Critical Resources Success:** 100% (PDFs, CSS, JS, Images)
 - **⚡ Quick Mode Execution:** ~4 minutes (11 test categories)
 - **🔍 Full Mode Execution:** ~11 minutes (with external link validation)
 - **📁 Total Resources Tested:** 186+ per run
-- **🔧 Local Tests Added:** +3 fast local validation categories
+- **🔧 Enhanced Coverage:** +3 comprehensive local validation categories
+- **🛡️ Security & Privacy:** Advanced CSP, data protection, privacy compliance
+- **♿ Accessibility:** WCAG compliance, semantic HTML, mobile optimization
+- **⚡ Performance:** Core Web Vitals optimization, mobile performance analysis
 
 ### � Quick Start
 
