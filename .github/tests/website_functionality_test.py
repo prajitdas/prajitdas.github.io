@@ -32,7 +32,21 @@ def extract_links_from_html(html_content, base_url):
         for tag in soup.find_all(['a', 'link'], href=True):
             href = tag['href']
             if href and not href.startswith('#'):  # Skip anchors
-                links.append(href)
+                # Special handling for link tags - prioritize actual resources over prefetch hints
+                if tag.name == 'link':
+                    rel = tag.get('rel', [])
+                    if isinstance(rel, str):
+                        rel = [rel]
+                    
+                    # Prioritize actual resource links over optimization hints
+                    if any(r in ['stylesheet', 'preload'] for r in rel):
+                        links.append(href)
+                    elif any(r in ['dns-prefetch', 'preconnect'] for r in rel):
+                        # Only add prefetch/preconnect if we haven't seen an actual resource URL
+                        if not any(href in existing_link for existing_link in links):
+                            links.append(href)
+                else:
+                    links.append(href)
         
         # Extract src links (images, scripts)
         for tag in soup.find_all(['img', 'script'], src=True):
