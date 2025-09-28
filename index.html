@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Dr. Prajit Kumar Das - Software Engineering Leader & Security Research Expert</title>
+	<title>Dr. Prajit Kumar Das - Security Researcher and Software Engineering Leader</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!-- SEO Meta Tags -->
-	<meta name="description" content="Dr. Prajit Kumar Das - Software Engineering Leader at Cisco Systems. Expert in mobile security, privacy research & cybersecurity. Ph.D. Computer Science UMBC.">
-	<meta name="keywords" content="Prajit Kumar Das, Software Engineering Leader, Cisco Systems, Mobile Security, Privacy Research, Computer Science PhD, Technical Product Manager, Cybersecurity Expert">
+	<meta name="description" content="Dr. Prajit Kumar Das - Software Engineering Leader at Cisco Systems. Expert in mobile security, privacy research & cybersecurity. Ph.D. Computer Science.">
+	<meta name="keywords" content="Prajit Kumar Das, Software Engineering Leader, Cisco Systems, Mobile Security, Privacy Research, Computer Science PhD, Generative AI, Cybersecurity Expert">
 	<meta name="author" content="Dr. Prajit Kumar Das">
 	<meta name="robots" content="index, follow">
 	<link rel="canonical" href="https://prajitdas.github.io/">
@@ -106,6 +106,116 @@
 	<link rel=stylesheet href="assets/css/octicons.min.css">
 	<link id=theme-style rel=stylesheet href="assets/css/styles.css">
 	<script src="assets/js/csi.min.js"></script>
+	
+	<!-- YouTube Lazy Loading Optimization -->
+	<style>
+		.youtube-embed-container {
+			position: relative;
+			width: 100%;
+			height: 400px;
+			margin: 15px 0;
+			background: #000;
+			border-radius: 8px;
+			overflow: hidden;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+		}
+		
+		.youtube-thumbnail {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+			background: #000;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s ease;
+		}
+		
+		.youtube-thumbnail:hover {
+			transform: scale(1.02);
+		}
+		
+		.youtube-thumbnail img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: opacity 0.3s ease;
+		}
+		
+		.youtube-thumbnail:hover img {
+			opacity: 0.8;
+		}
+		
+		.youtube-play-button {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 2;
+			transition: all 0.3s ease;
+		}
+		
+		.youtube-thumbnail:hover .youtube-play-button {
+			transform: translate(-50%, -50%) scale(1.1);
+		}
+		
+		.youtube-click-text {
+			position: absolute;
+			bottom: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+			color: white;
+			background: rgba(0,0,0,0.7);
+			padding: 8px 16px;
+			border-radius: 20px;
+			font-size: 14px;
+			font-weight: 500;
+			z-index: 2;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+		
+		.youtube-thumbnail:hover .youtube-click-text {
+			opacity: 1;
+		}
+		
+		.youtube-embed-container iframe {
+			width: 100%;
+			height: 100%;
+			border: none;
+			border-radius: 8px;
+		}
+		
+		/* Mobile optimizations */
+		@media (max-width: 768px) {
+			.youtube-embed-container {
+				height: 250px;
+			}
+			
+			.youtube-click-text {
+				font-size: 12px;
+				padding: 6px 12px;
+				bottom: 15px;
+			}
+		}
+	</style>
+	
+	<script>
+		function loadYouTubeVideo(videoId) {
+			const container = document.getElementById('youtube-' + videoId);
+			const iframe = document.createElement('iframe');
+			
+			iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+			iframe.frameBorder = '0';
+			iframe.allowFullscreen = true;
+			iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+			iframe.title = '3 Minute Thesis competition video';
+			
+			container.innerHTML = '';
+			container.appendChild(iframe);
+		}
+	</script>
 </head>
 <body>
 <header class=header>
@@ -444,7 +554,18 @@
 							<h4 class=title>
 								<i class="fa fa-bookmark"></i> Was a finalist for the 3 Minute Thesis competition in the 38th UMBC Graduate Research Conference, 2016. Check out my talk in the video below:
 							</h4>
-							<iframe width="100%" height="400px" src="https://www.youtube.com/embed/qv_a9YfG_20" frameborder="0" allowfullscreen title="3 Minute Thesis competition video"></iframe>
+							<div class="youtube-embed-container" id="youtube-qv_a9YfG_20">
+								<div class="youtube-thumbnail" onclick="loadYouTubeVideo('qv_a9YfG_20')">
+									<img src="https://img.youtube.com/vi/qv_a9YfG_20/maxresdefault.jpg" alt="3 Minute Thesis competition video thumbnail" loading="lazy">
+									<div class="youtube-play-button">
+										<svg width="68" height="48" viewBox="0 0 68 48">
+											<path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.63-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/>
+											<path d="M45 24L27 14v20" fill="#ffffff"/>
+										</svg>
+									</div>
+									<div class="youtube-click-text">Click to play video</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
