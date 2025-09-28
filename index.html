@@ -603,7 +603,7 @@
 		// Register service worker for aggressive caching strategy
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', function() {
-				navigator.serviceWorker.register('/assets/js/sw.js', {
+				navigator.serviceWorker.register('/sw.js', {
 					scope: '/'
 				}).then(function(registration) {
 					console.log('ServiceWorker registration successful');
