@@ -7,9 +7,49 @@
 <item>
      <link>https://prajitdas.github.io/</link>
      <title>Welcome to personal homepage of Prajit!</title>
-     <description>This is a personal website for the person who at least as of early 2017 was known as Mr. Prajit Kumar Das. And then he became Dr. Prajit Kumar Das around August 2017!</description>
-     <ror:updatePeriod></ror:updatePeriod>
+     <description>Dr. Prajit Kumar Das - Software Engineering Leader at Cisco Systems. Expert in mobile security, privacy research & cybersecurity. Ph.D. Computer Science UMBC.</description>
+     <ror:updatePeriod>monthly</ror:updatePeriod>
      <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://prajitdas.github.io/assets/docs/resume/resume-prajit-das-032225.pdf</link>
+     <title>Resume - Dr. Prajit Kumar Das</title>
+     <description>Professional resume of Dr. Prajit Kumar Das, Software Engineering Leader at Cisco Systems with expertise in mobile security and cybersecurity.</description>
+     <ror:updatePeriod>yearly</ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://prajitdas.github.io/assets/docs/publications/</link>
+     <title>Publications</title>
+     <description>Academic publications and research papers by Dr. Prajit Kumar Das in mobile security, privacy research, and cybersecurity.</description>
+     <ror:updatePeriod>yearly</ror:updatePeriod>
+     <ror:sortOrder>2</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://prajitdas.github.io/assets/docs/presentations/</link>
+     <title>Presentations</title>
+     <description>Academic and professional presentations by Dr. Prajit Kumar Das on mobile security, privacy research, and cybersecurity topics.</description>
+     <ror:updatePeriod>yearly</ror:updatePeriod>
+     <ror:sortOrder>3</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://prajitdas.github.io/assets/docs/nature-article/</link>
+     <title>Nature Article</title>
+     <description>Featured research article and coverage in Nature journal related to wearable technology and privacy research.</description>
+     <ror:updatePeriod>yearly</ror:updatePeriod>
+     <ror:sortOrder>4</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://prajitdas.github.io/assets/docs/ontologies/</link>
+     <title>Ontologies</title>
+     <description>Mobile access control ontologies and semantic web research by Dr. Prajit Kumar Das.</description>
+     <ror:updatePeriod>yearly</ror:updatePeriod>
+     <ror:sortOrder>5</ror:sortOrder>
      <ror:resourceOf>sitemap</ror:resourceOf>
 </item>
 </channel>
