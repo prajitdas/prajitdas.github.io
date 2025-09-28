@@ -82,6 +82,11 @@ def main():
             'description': 'Comprehensive HTML validation, link checking, security headers, and functionality testing'
         },
         {
+            'name': 'JavaScript Runtime Testing',
+            'script': os.path.join(script_dir, 'javascript_runtime_test.py'),
+            'description': 'Tests JavaScript execution in browser environment to catch runtime errors'
+        },
+        {
             'name': 'Critical Request Chain Optimization',
             'script': os.path.join(script_dir, 'critical_request_chain_optimization.py'),
             'description': 'Validates critical request chain optimization for improved LCP performance'
