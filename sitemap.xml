@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-
+<!-- Main Pages -->
 <url>
   <loc>https://prajitdas.github.io/</loc>
-  <lastmod>2025-09-27T18:10:38+00:00</lastmod>
+  <lastmod>2025-01-26T12:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>1.0</priority>
 </url>
 
+<!-- Resume -->
+<url>
+  <loc>https://prajitdas.github.io/assets/docs/resume/resume-prajit-das-032225.pdf</loc>
+  <lastmod>2025-01-26T12:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<!-- Nature Article -->
+<url>
+  <loc>https://github.com/prajitdas/prajitdas.github.io/blob/main/assets/docs/nature-article/kat-austen-the-trouble-with-wearables.pdf</loc>
+  <lastmod>2025-01-26T12:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<!-- Ontologies -->
+<url>
+  <loc>https://github.com/prajitdas/prajitdas.github.io/blob/main/assets/docs/ontologies/MobileAccessControl.owl</loc>
+  <lastmod>2025-01-26T12:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
+</url>
 
 </urlset>

@@ -76,8 +76,17 @@ def main():
             'name': 'Comprehensive Security Scan',
             'script': os.path.join(script_dir, 'comprehensive_security_scan.py'),
             'description': 'Scans for potentially sensitive files that should be protected'
+        },
+        {
+            'name': 'SEO Optimization Test',
+            'script': os.path.join(script_dir, 'seo_optimization_test.py'),
+            'description': 'Validates SEO improvements and optimizations'
+        },
+        {
+            'name': 'Vulnerability Assessment',
+            'script': os.path.join(script_dir, 'vulnerability_assessment.py'),
+            'description': 'Advanced security testing beyond basic file protection'
         }
-
     ]
     
     # Run all tests
