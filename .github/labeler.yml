@@ -1,22 +1,44 @@
 # Labeler configuration for GitHub Actions v6
-# Automatically label PRs based on files changed
+# Each label must be an array of rule configurations
 
 website:
-  - changed-files:
-    - any-glob-to-any-file: ['*.html', '*.css', '*.js', 'assets/**/*']
+- changed-files:
+  - any-glob-to-any-file: '*.html'
+- changed-files:
+  - any-glob-to-any-file: '*.css'
+- changed-files:
+  - any-glob-to-any-file: '*.js'
+- changed-files:
+  - any-glob-to-any-file: 'assets/**/*'
 
 documentation:
-  - changed-files:
-    - any-glob-to-any-file: ['*.md', 'README*']
+- changed-files:
+  - any-glob-to-any-file: '*.md'
+- changed-files:
+  - any-glob-to-any-file: 'README*'
 
 testing:
-  - changed-files:
-    - any-glob-to-any-file: ['tests/**/*', '*.py', '.github/tests/**/*']
+- changed-files:
+  - any-glob-to-any-file: 'tests/**/*'
+- changed-files:
+  - any-glob-to-any-file: '*.py'
+- changed-files:
+  - any-glob-to-any-file: '.github/tests/**/*'
 
 configuration:
-  - changed-files:
-    - any-glob-to-any-file: ['*.yml', '*.yaml', '*.json', '.github/**/*']
+- changed-files:
+  - any-glob-to-any-file: '*.yml'
+- changed-files:
+  - any-glob-to-any-file: '*.yaml'
+- changed-files:
+  - any-glob-to-any-file: '*.json'
+- changed-files:
+  - any-glob-to-any-file: '.github/**/*'
 
 dependencies:
-  - changed-files:
-    - any-glob-to-any-file: ['*requirements*.txt', 'pyproject.toml', 'package*.json']
+- changed-files:
+  - any-glob-to-any-file: '*requirements*.txt'
+- changed-files:
+  - any-glob-to-any-file: 'pyproject.toml'
+- changed-files:
+  - any-glob-to-any-file: 'package*.json'
