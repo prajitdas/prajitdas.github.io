@@ -1,29 +1,28 @@
+# Labeler configuration for actions/labeler@v5
+# Simple glob pattern matching
+
 website:
-- changed-files:
-  - any-glob-to-any-file: "*.html"
-- changed-files:
-  - any-glob-to-any-file: "*.css"
-- changed-files:
-  - any-glob-to-any-file: "*.js"
-- changed-files:
-  - any-glob-to-any-file: "assets/**"
+  - "*.html"
+  - "*.css"
+  - "*.js"
+  - "assets/**/*"
 
 documentation:
-- changed-files:
-  - any-glob-to-any-file: "*.md"
-- changed-files:
-  - any-glob-to-any-file: "README*"
+  - "*.md"
+  - "README*"
 
 testing:
-- changed-files:
-  - any-glob-to-any-file: "tests/**"
-- changed-files:
-  - any-glob-to-any-file: "*.py"
+  - "tests/**/*"
+  - "*.py"
+  - ".github/tests/**/*"
 
 configuration:
-- changed-files:
-  - any-glob-to-any-file: "*.yml"
-- changed-files:
-  - any-glob-to-any-file: "*.yaml"
-- changed-files:
-  - any-glob-to-any-file: ".github/**"
+  - "*.yml"
+  - "*.yaml"
+  - "*.json"
+  - ".github/**/*"
+
+dependencies:
+  - "*requirements*.txt"
+  - "pyproject.toml"
+  - "package*.json"
