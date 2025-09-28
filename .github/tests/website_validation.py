@@ -218,8 +218,11 @@ class WebsiteValidationTest(unittest.TestCase):
             if src.startswith(('http://', 'https://', 'data:')):
                 continue
             
+            # Remove query parameters for file checking
+            clean_src = src.split('?')[0]
+            
             # Check local image
-            img_path = LOCAL_PATH / src.lstrip('/')
+            img_path = LOCAL_PATH / clean_src.lstrip('/')
             if not img_path.exists():
                 missing_images.append(src)
         
@@ -247,8 +250,11 @@ class WebsiteValidationTest(unittest.TestCase):
             if href.startswith(('http://', 'https://')):
                 continue
             
+            # Remove query parameters for file checking
+            clean_href = href.split('?')[0]
+            
             # Check local CSS file
-            css_path = LOCAL_PATH / href.lstrip('/')
+            css_path = LOCAL_PATH / clean_href.lstrip('/')
             if not css_path.exists():
                 missing_css.append(href)
         
@@ -276,8 +282,11 @@ class WebsiteValidationTest(unittest.TestCase):
             if src.startswith(('http://', 'https://')):
                 continue
             
+            # Remove query parameters for file checking
+            clean_src = src.split('?')[0]
+            
             # Check local JavaScript file
-            js_path = LOCAL_PATH / src.lstrip('/')
+            js_path = LOCAL_PATH / clean_src.lstrip('/')
             if not js_path.exists():
                 missing_js.append(src)
         
