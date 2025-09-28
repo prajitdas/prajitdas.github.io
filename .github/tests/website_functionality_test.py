@@ -116,9 +116,20 @@ def test_website_links(base_url, max_links=50):
         filtered_external = []
         google_fonts_css_found = False
         
+        # Always check for and include the actual Google Fonts CSS URL
+        google_fonts_match = re.search(r'https://fonts\.googleapis\.com/css2\?[^"\']*', response.text)
+        if google_fonts_match:
+            google_fonts_css_url = google_fonts_match.group(0)
+            filtered_external.append(google_fonts_css_url)
+            google_fonts_css_found = True
+            print(f"🎯 Found Google Fonts CSS URL for testing")
+        
         for link in external_links[:10]:  # Check more links to find actual CSS URLs
             # Skip base domains that are expected to return 404
             if link in ['https://fonts.googleapis.com', 'https://fonts.gstatic.com']:
+                continue
+            # Skip duplicate Google Fonts CSS URL if already added
+            elif 'fonts.googleapis.com/css' in link and google_fonts_css_found:
                 continue
             # Check if we found the actual Google Fonts CSS URL
             elif 'fonts.googleapis.com/css' in link:
@@ -126,13 +137,6 @@ def test_website_links(base_url, max_links=50):
                 filtered_external.append(link)
             else:
                 filtered_external.append(link)
-        
-        # If we didn't find the CSS URL in links, add it manually for testing
-        if not google_fonts_css_found:
-            # Extract the actual Google Fonts CSS URL from the HTML
-            google_fonts_match = re.search(r'https://fonts\.googleapis\.com/css2\?[^"\']*', response.text)
-            if google_fonts_match:
-                filtered_external.insert(0, google_fonts_match.group(0))
         
         sample_external = filtered_external[:5]  # Test only first 5 filtered external links
         
