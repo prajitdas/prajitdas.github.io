@@ -450,13 +450,13 @@
 			return link;
 		}
 		
-		// Load only critical CSS for above-the-fold content (3.4KB vs 157KB original)
+		// Load critical CSS for above-the-fold content first
 		loadCSS('assets/css/critical.css?v=2025.10');
 		loadCSS('assets/css/critical-icons.css?v=2025.10');
 		
-		// Mark content as loaded - all CSS optimizations applied
+		// Load essential styles for content sections
 		setTimeout(function() {
-			// Note: Removed styles.css (eliminated duplicate Bootstrap dependencies)
+			loadCSS('assets/css/styles.css?v=2025.10');
 			// Note: Removed vegas CSS (background slideshow now in vanilla JS)
 			// Note: Removed octicons.min.css (9KB saved) - not used anywhere
 			// Note: Removed font-awesome.min.css (31KB->1.4KB saved) - using critical-icons.css instead

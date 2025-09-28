@@ -6,11 +6,14 @@
 html{line-height:1.15;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;font-family:'Lato',Arial,sans-serif;color:#434343;background:#DAE3E7;font-size:14px;line-height:1.6}
 
-/* Critical grid system - only what's needed for header */
-.container{max-width:1200px;margin:0 auto;padding:0 15px}
+/* Complete Bootstrap grid system */
+.container{max-width:1200px;margin:0 auto;padding:0 15px;position:relative}
 .row{display:flex;flex-wrap:wrap;margin:0 -15px}
-.col-md-8{flex:0 0 66.666667%;max-width:66.666667%;padding:0 15px}
-.col-md-4{flex:0 0 33.333333%;max-width:33.333333%;padding:0 15px}
+.col-xs-12{flex:0 0 100%;max-width:100%;padding:0 15px;position:relative}
+.col-sm-8{flex:0 0 66.666667%;max-width:66.666667%;padding:0 15px;position:relative}
+.col-sm-4{flex:0 0 33.333333%;max-width:33.333333%;padding:0 15px;position:relative}
+.col-md-8{flex:0 0 66.666667%;max-width:66.666667%;padding:0 15px;position:relative}
+.col-md-4{flex:0 0 33.333333%;max-width:33.333333%;padding:0 15px;position:relative}
 
 /* Critical header styles */
 .header{
@@ -84,10 +87,25 @@ body{margin:0;font-family:'Lato',Arial,sans-serif;color:#434343;background:#DAE3
   position:relative;
 }
 
+/* Essential content sections */
+.sections-wrapper{padding:60px 0;background:#fff}
+.section{margin-bottom:30px}
+.section .section-inner{background:#fff;padding:30px;border:1px solid #e8e8e8;border-radius:4px}
+.section .heading{margin-top:0;margin-bottom:30px;color:#545e69;font-size:24px}
+
+/* Essential typography */
+h1,h2,h3,h4,h5,h6{font-family:'Montserrat',sans-serif;font-weight:700;color:#778492}
+.title{font-size:18px;margin-top:0}
+.title a{color:#778492;text-decoration:none}
+.title a:hover{color:#5f6b77}
+a{color:#3aaa64;text-decoration:none}
+a:hover{color:#2d844e;text-decoration:underline}
+
 /* Critical responsive breakpoints */
 @media (max-width:768px){
-  .col-md-8,.col-md-4{flex:0 0 100%;max-width:100%}
+  .col-md-8,.col-md-4,.col-sm-8,.col-sm-4{flex:0 0 100%;max-width:100%}
   .header{text-align:center}
   .profile-image{float:none;margin:0 auto}
   .profile-content{float:none;text-align:center;padding-left:0}
+  .sections-wrapper{padding:30px 0}
 }
