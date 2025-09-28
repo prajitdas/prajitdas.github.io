@@ -18,7 +18,7 @@ def run_test(test_name, script_path):
     try:
         # Run the test script
         # Set longer timeout for comprehensive tests
-        timeout = 180 if 'website_validation.py' in script_path else 60
+        timeout = 180 if 'website_validation.py' in script_path or 'test_resource_accessibility.py' in script_path else 60
         result = subprocess.run([sys.executable, script_path], 
                               capture_output=True, 
                               text=True, 
@@ -110,6 +110,11 @@ def main():
             'name': 'YouTube Performance',
             'script': os.path.join(script_dir, 'youtube_performance.py'),
             'description': 'Validates YouTube lazy loading for improved mobile performance'
+        },
+        {
+            'name': 'Resource Accessibility',
+            'script': os.path.join(script_dir, 'test_resource_accessibility.py'),
+            'description': 'Comprehensive validation of all website resources (HTML, PDF, images, CSS, JS, and text files)'
         }
     ]
     
