@@ -132,8 +132,8 @@ def test_resource_preloading():
     return results
 
 def test_font_optimization():
-    """Test font loading optimization"""
-    print("🔤 Testing Font Optimization...")
+    """Test advanced font loading optimization"""
+    print("🔤 Testing Advanced Font Optimization...")
     
     with open('index.html', 'r', encoding='utf-8') as file:
         content = file.read()
@@ -147,11 +147,31 @@ def test_font_optimization():
     else:
         results.append(f"⚠️ Font request consolidation: {font_requests} requests")
     
-    # Check for font-display: swap
-    if 'display=swap' in content:
-        results.append("✅ Font-display swap: Implemented")
+    # Check for font-display optimization (swap or optional)
+    if 'display=optional' in content:
+        results.append("✅ Font-display optimization: Optional (best for performance)")
+    elif 'display=swap' in content:
+        results.append("✅ Font-display optimization: Swap implemented")
     else:
-        results.append("❌ Font-display swap: Missing")
+        results.append("❌ Font-display optimization: Missing")
+    
+    # Check for font metric overrides (CLS prevention)
+    if 'ascent-override' in content and 'descent-override' in content:
+        results.append("✅ Font metric overrides: CLS prevention implemented")
+    else:
+        results.append("❌ Font metric overrides: Missing CLS prevention")
+    
+    # Check for font loading API usage
+    if 'document.fonts.load' in content:
+        results.append("✅ Font Loading API: Advanced loading implemented")
+    else:
+        results.append("❌ Font Loading API: Missing optimization")
+    
+    # Check for font fallback optimization
+    if 'font-family:' in content and 'fallback' in content:
+        results.append("✅ Font fallback stacks: Optimized with metrics")
+    else:
+        results.append("❌ Font fallback stacks: Not optimized")
     
     return results
 
@@ -193,6 +213,40 @@ def test_render_blocking_optimization():
             results.append("✅ Head script blocking elimination: No blocking scripts in head")
         else:
             results.append(f"❌ Head script blocking elimination: {blocking_scripts} blocking scripts in head")
+    
+    return results
+
+def test_cls_prevention():
+    """Test Cumulative Layout Shift (CLS) prevention optimizations"""
+    print("📏 Testing CLS Prevention...")
+    
+    with open('index.html', 'r', encoding='utf-8') as file:
+        content = file.read()
+    
+    results = []
+    
+    # Check for font metric overrides
+    metric_overrides = ['ascent-override', 'descent-override', 'line-gap-override', 'size-adjust']
+    found_overrides = sum(1 for override in metric_overrides if override in content)
+    
+    if found_overrides >= 3:
+        results.append(f"✅ Font metric overrides: {found_overrides}/4 implemented")
+    elif found_overrides > 0:
+        results.append(f"⚠️ Font metric overrides: {found_overrides}/4 partial implementation")
+    else:
+        results.append("❌ Font metric overrides: Missing")
+    
+    # Check for font loading state management
+    if 'font-loading' in content and 'font-loaded' in content:
+        results.append("✅ Font loading states: FOUT/FOIT prevention implemented")
+    else:
+        results.append("❌ Font loading states: Missing FOUT/FOIT prevention")
+    
+    # Check for session storage optimization
+    if 'sessionStorage.getItem(\'fontsLoaded\')' in content:
+        results.append("✅ Font caching optimization: Session storage implemented")
+    else:
+        results.append("❌ Font caching optimization: Missing")
     
     return results
 
@@ -241,6 +295,7 @@ def generate_optimization_summary():
     all_results.extend(test_resource_preloading())
     all_results.extend(test_font_optimization())
     all_results.extend(test_render_blocking_optimization())
+    all_results.extend(test_cls_prevention())
     all_results.extend(calculate_performance_metrics())
     
     # Count successes

@@ -109,24 +109,92 @@
 	
 	<!-- Inline Critical CSS for Above-the-Fold Content -->
 	<style>
-		/* Critical inline CSS for immediate render */
-		body{font-family:Lato,Arial,sans-serif;color:#434343;background:#DAE3E7;font-size:14px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+		/* Font fallback definitions with metric overrides to prevent layout shift */
+		@font-face {
+			font-family: 'Lato-fallback';
+			src: local('Arial'), local('Helvetica'), local('sans-serif');
+			font-display: swap;
+			ascent-override: 91.2%;
+			descent-override: 21.6%;
+			line-gap-override: 0%;
+			size-adjust: 104.2%;
+		}
+		
+		@font-face {
+			font-family: 'Montserrat-fallback';
+			src: local('Arial'), local('Helvetica'), local('sans-serif');
+			font-display: swap;
+			ascent-override: 96.8%;
+			descent-override: 25.2%;
+			line-gap-override: 0%;
+			size-adjust: 98.7%;
+		}
+		
+		@font-face {
+			font-family: 'OpenSans-fallback';
+			src: local('Arial'), local('Helvetica'), local('sans-serif');
+			font-display: swap;
+			ascent-override: 91.3%;
+			descent-override: 25.0%;
+			line-gap-override: 0%;
+			size-adjust: 102.1%;
+		}
+		
+		/* Critical inline CSS with optimized font stacks */
+		body{
+			font-family: 'Lato', 'Lato-fallback', Arial, sans-serif;
+			color:#434343;
+			background:#DAE3E7;
+			font-size:14px;
+			-webkit-font-smoothing:antialiased;
+			-moz-osx-font-smoothing:grayscale;
+			font-display: swap;
+		}
 		.header{padding:30px 0;background:#42A8C0;color:#fff}
 		.profile-image{max-width:100px;margin-bottom:30px;border:5px solid #fff;border-radius:50%}
-		.profile-content .name{color:#fff;font-size:38px;margin-bottom:5px;margin-top:30px}
-		.profile-content .desc{color:#fff;font-family:Lato;font-weight:400;font-size:24px;margin-top:0;margin-bottom:15px}
+		.profile-content .name{
+			color:#fff;
+			font-size:38px;
+			margin-bottom:5px;
+			margin-top:30px;
+			font-family: 'Montserrat', 'Montserrat-fallback', Arial, sans-serif;
+			font-display: swap;
+		}
+		.profile-content .desc{
+			color:#fff;
+			font-family: 'Lato', 'Lato-fallback', Arial, sans-serif;
+			font-weight:400;
+			font-size:24px;
+			margin-top:0;
+			margin-bottom:15px;
+			font-display: swap;
+		}
 		.container{max-width:1140px;margin:0 auto;padding:0 15px}
 		.navbar{border:0;background:#42A8C0}
-		.navbar-brand{color:#fff!important;font-size:18px;font-weight:700}
+		.navbar-brand{
+			color:#fff!important;
+			font-size:18px;
+			font-weight:700;
+			font-family: 'Montserrat', 'Montserrat-fallback', Arial, sans-serif;
+			font-display: swap;
+		}
 		.sections-wrapper{padding:60px 0}
 		.section{margin-bottom:30px}
 		.section .section-inner{background:#fff;padding:30px}
-		.about .content{color:#5f6b77}
+		.about .content{
+			color:#5f6b77;
+			font-family: 'Open Sans', 'OpenSans-fallback', Arial, sans-serif;
+			font-display: swap;
+		}
 		/* Minimal Bootstrap grid */
 		.row{display:flex;flex-wrap:wrap;margin:0 -15px}
 		.col-md-8{flex:0 0 66.666667%;max-width:66.666667%;padding:0 15px}
 		.col-md-4{flex:0 0 33.333333%;max-width:33.333333%;padding:0 15px}
 		@media (max-width:768px){.col-md-8,.col-md-4{flex:0 0 100%;max-width:100%}}
+		
+		/* Font loading optimization - hide text flash */
+		.font-loading body { visibility: hidden; }
+		.font-loaded body { visibility: visible; }
 	</style>
 	
 	<!-- Preload and defer all CSS files to avoid render blocking -->
@@ -145,11 +213,49 @@
 		<link rel="stylesheet" href="assets/css/octicons.min.css">
 	</noscript>
 	
-	<!-- Optimized Font Loading - defer to prevent render blocking -->
-	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<!-- Advanced Font Loading Strategy with CLS Prevention -->
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<noscript>
-		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional" rel="stylesheet">
 	</noscript>
+	
+	<!-- Font Loading Optimization Script -->
+	<script>
+		// Advanced font loading with performance optimization
+		(function() {
+			// Check if fonts are already cached
+			if (sessionStorage.getItem('fontsLoaded')) {
+				document.documentElement.classList.add('font-loaded');
+				return;
+			}
+			
+			// Add font loading class initially
+			document.documentElement.classList.add('font-loading');
+			
+			// Use Font Loading API if available
+			if ('fonts' in document) {
+				Promise.all([
+					document.fonts.load('400 1em Lato'),
+					document.fonts.load('700 1em Montserrat'),
+					document.fonts.load('400 1em "Open Sans"')
+				]).then(function() {
+					document.documentElement.classList.remove('font-loading');
+					document.documentElement.classList.add('font-loaded');
+					sessionStorage.setItem('fontsLoaded', 'true');
+				}).catch(function() {
+					// Fallback if font loading fails
+					document.documentElement.classList.remove('font-loading');
+					document.documentElement.classList.add('font-loaded');
+				});
+			} else {
+				// Fallback for browsers without Font Loading API
+				setTimeout(function() {
+					document.documentElement.classList.remove('font-loading');
+					document.documentElement.classList.add('font-loaded');
+				}, 3000);
+			}
+		})();
+	</script>
 	
 	<!-- Critical JavaScript loaded asynchronously -->
 	<script>
@@ -315,7 +421,7 @@
 			<section class="about section">
 				<div class=section-inner><h2 class=heading>About Me</h2>
 					<div class=content>
-						<p>I am an Software Engineering Leader at Cisco's Security Business Group (SBG), where I lead a talented team focused on the <a href=https://www.cisco.com/site/us/en/products/security/firewalls/firewall-management-center/index.html target=_blank rel="noopener">Secure Firewall Management Center</a>. Our work centers on building core platform components like Authentication, Authorization, and Auditing (AAA), REST API frameworks, and cloud service integrations. I am deeply committed to driving security-focused development and have led several key initiatives around SAML SSO, external authentication, and software compliance standardization.</p></br>
+						<p>I am a Software Engineering Leader at Cisco's Security Business Group (SBG), where I lead a talented team focused on the <a href=https://www.cisco.com/site/us/en/products/security/firewalls/firewall-management-center/index.html target=_blank rel="noopener">Secure Firewall Management Center</a>. Our work centers on building core platform components like Authentication, Authorization, and Auditing (AAA), REST API frameworks, and cloud service integrations. I am deeply committed to driving security-focused development and have led several key initiatives around SAML SSO, external authentication, and software compliance standardization.</p></br>
 						<p>A core part of my role is leading the engineering response to complex, critical vulnerabilities. For example, for the <a href=https://nvd.nist.gov/vuln/detail/cve-2024-3596 target=_blank rel="noopener">Blast-RADIUS (CVE-2024-3596)</a> CVE, my team was instrumental in the triage and effective remediation efforts across Cisco. This experience demonstrates my proficiency in managing high-stakes situations, combining deep technical knowledge with a strategic, collaborative approach to crisis management.</p></br>
 						<p>With over <script>
 							const today = new Date();
