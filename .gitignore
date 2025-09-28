@@ -87,6 +87,7 @@ package-lock.json
 node_modules/
 reports/
 *.log
+logs/
 
 # JSLint and Development Tools (generated files)
 jslint-report.html
