@@ -36,6 +36,19 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="google-site-verification" content="1733973a1d4ccc6c"/>
 	
+	<!-- Cache Control Headers for Performance Optimization -->
+	<meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
+	<meta http-equiv="Expires" content="Thu, 31 Dec 2026 23:59:59 GMT">
+	<meta http-equiv="Pragma" content="cache">
+	<meta name="cache-control" content="public, max-age=86400, stale-while-revalidate=31536000">
+	
+	<!-- Resource Hints for Improved Caching -->
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
+	<link rel="dns-prefetch" href="//www.gravatar.com">
+	
 	<!-- JSON-LD Structured Data -->
 	<script type="application/ld+json">
 	{
@@ -100,12 +113,12 @@
 	<link rel="preconnect" href="https://ajax.googleapis.com">
 	<link rel="preconnect" href="https://www.google-analytics.com">
 	
-	<!-- Preload LCP candidate - Profile image -->
-	<link rel="preload" href="assets/img/Profile.jpg" as="image">
+	<!-- Preload LCP candidate - Profile image with cache optimization -->
+	<link rel="preload" href="assets/img/Profile.jpg?v=2025.09" as="image" crossorigin>
 	
-	<!-- Preload critical JavaScript -->
-	<link rel="preload" href="assets/js/jquery-1.11.2.min.js" as="script">
-	<link rel="preload" href="assets/js/bootstrap.min.js" as="script">
+	<!-- Preload critical JavaScript with cache versioning -->
+	<link rel="preload" href="assets/js/jquery-1.11.2.min.js?v=2025.09" as="script" crossorigin>
+	<link rel="preload" href="assets/js/bootstrap.min.js?v=2025.09" as="script" crossorigin>
 	
 	<!-- Inline Critical CSS for Above-the-Fold Content -->
 	<style>
@@ -197,20 +210,20 @@
 		.font-loaded body { visibility: visible; }
 	</style>
 	
-	<!-- Preload and defer all CSS files to avoid render blocking -->
-	<link rel="preload" href="assets/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="assets/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="assets/css/github-activity-0.1.1.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="assets/css/octicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<!-- Preload and defer CSS files with cache optimization -->
+	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+	<link rel="preload" href="assets/css/font-awesome.min.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+	<link rel="preload" href="assets/css/styles.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+	<link rel="preload" href="assets/css/github-activity-0.1.1.min.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+	<link rel="preload" href="assets/css/octicons.min.css?v=2025.09" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
 	
-	<!-- Fallback for browsers without JavaScript -->
+	<!-- Fallback for browsers without JavaScript with cache versioning -->
 	<noscript>
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-		<link rel="stylesheet" href="assets/css/styles.css">
-		<link rel="stylesheet" href="assets/css/github-activity-0.1.1.min.css">
-		<link rel="stylesheet" href="assets/css/octicons.min.css">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.09">
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.09">
+		<link rel="stylesheet" href="assets/css/styles.css?v=2025.09">
+		<link rel="stylesheet" href="assets/css/github-activity-0.1.1.min.css?v=2025.09">
+		<link rel="stylesheet" href="assets/css/octicons.min.css?v=2025.09">
 	</noscript>
 	
 	<!-- Advanced Font Loading Strategy with CLS Prevention -->
@@ -266,6 +279,42 @@
 			script.src = 'assets/js/csi.min.js';
 			document.head.appendChild(script);
 		})();
+	</script>
+	
+	<!-- Service Worker for Advanced Caching -->
+	<script>
+		// Register service worker for aggressive caching strategy
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', function() {
+				navigator.serviceWorker.register('/sw.js', {
+					scope: '/'
+				}).then(function(registration) {
+					console.log('ServiceWorker registration successful');
+				}).catch(function(err) {
+					console.log('ServiceWorker registration failed');
+				});
+			});
+		}
+		
+		// Cache API implementation for manual resource caching
+		if ('caches' in window) {
+			const CACHE_NAME = 'prajitdas-v2025.09';
+			const urlsToCache = [
+				'/',
+				'/assets/css/bootstrap.min.css?v=2025.09',
+				'/assets/css/font-awesome.min.css?v=2025.09',
+				'/assets/css/styles.css?v=2025.09',
+				'/assets/js/jquery-1.11.2.min.js?v=2025.09',
+				'/assets/js/bootstrap.min.js?v=2025.09',
+				'/assets/js/main.js?v=2025.09',
+				'/assets/img/Profile.jpg?v=2025.09'
+			];
+			
+			// Pre-cache critical resources
+			caches.open(CACHE_NAME).then(function(cache) {
+				return cache.addAll(urlsToCache);
+			});
+		}
 	</script>
 	
 	<!-- YouTube Lazy Loading Optimization -->
@@ -1000,18 +1049,18 @@
         document.head.appendChild(script);
     }
     
-    // Load jQuery first, then dependent scripts
-    loadScript('assets/js/jquery-1.11.2.min.js', function() {
-        loadScript('assets/js/jquery-migrate-1.2.1.min.js');
-        loadScript('assets/js/bootstrap.min.js');
-        loadScript('assets/js/main.js');
+    // Load jQuery first, then dependent scripts with cache versioning
+    loadScript('assets/js/jquery-1.11.2.min.js?v=2025.09', function() {
+        loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.09');
+        loadScript('assets/js/bootstrap.min.js?v=2025.09');
+        loadScript('assets/js/main.js?v=2025.09');
         
-        // Load non-critical scripts after core functionality
+        // Load non-critical scripts after core functionality with cache versioning
         setTimeout(function() {
-            loadScript('assets/js/jquery.rss.min.js');
-            loadScript('assets/plugins/vegas/jquery.vegas.min.js');
-            loadScript('assets/js/mustache.min.js');
-            loadScript('assets/js/github-activity-0.1.1.min.js');
+            loadScript('assets/js/jquery.rss.min.js?v=2025.09');
+            loadScript('assets/plugins/vegas/jquery.vegas.min.js?v=2025.09');
+            loadScript('assets/js/mustache.min.js?v=2025.09');
+            loadScript('assets/js/github-activity-0.1.1.min.js?v=2025.09');
         }, 100);
     });
 })();
