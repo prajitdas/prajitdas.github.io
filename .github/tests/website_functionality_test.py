@@ -7,8 +7,10 @@ Verifies that all essential assets, pages, and features are accessible.
 
 import requests
 import sys
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 import time
+import re
+from bs4 import BeautifulSoup
 
 def test_url_accessibility(base_url, path, description=""):
     """Test if a URL is accessible and returns expected status code"""
@@ -18,6 +20,142 @@ def test_url_accessibility(base_url, path, description=""):
         return response.status_code, response.headers.get('content-type', 'unknown')
     except requests.RequestException as e:
         return 0, f"Error: {str(e)}"
+
+def extract_links_from_html(html_content, base_url):
+    """Extract all links from HTML content"""
+    try:
+        soup = BeautifulSoup(html_content, 'html.parser')
+        links = []
+        
+        # Extract href links
+        for tag in soup.find_all(['a', 'link'], href=True):
+            href = tag['href']
+            if href and not href.startswith('#'):  # Skip anchors
+                links.append(href)
+        
+        # Extract src links (images, scripts)
+        for tag in soup.find_all(['img', 'script'], src=True):
+            src = tag['src']
+            if src:
+                links.append(src)
+        
+        # Extract CSS background images
+        for tag in soup.find_all(style=True):
+            style = tag['style']
+            bg_images = re.findall(r'url\(["\']?([^"\']+)["\']?\)', style)
+            links.extend(bg_images)
+        
+        return links
+    except Exception as e:
+        print(f"⚠️ Error parsing HTML: {e}")
+        return []
+
+def test_website_links(base_url, max_links=50):
+    """Test links found on the main website page"""
+    print("\n🔗 TESTING WEBSITE LINKS:")
+    print("-" * 40)
+    
+    try:
+        # Get main page content
+        response = requests.get(base_url, timeout=10)
+        if response.status_code != 200:
+            print(f"❌ Could not fetch main page: {response.status_code}")
+            return {"total": 0, "working": 0, "broken": 0, "external": 0}
+        
+        # Extract links
+        links = extract_links_from_html(response.text, base_url)
+        
+        # Filter and categorize links
+        internal_links = []
+        external_links = []
+        
+        for link in links[:max_links]:  # Limit to prevent excessive testing
+            parsed = urlparse(link)
+            
+            # Skip data URLs, javascript, mailto, etc.
+            if link.startswith(('data:', 'javascript:', 'mailto:', 'tel:')):
+                continue
+                
+            if parsed.netloc == '' or 'prajitdas.github.io' in parsed.netloc:
+                # Internal link
+                if not link.startswith('http'):
+                    link = urljoin(base_url, link)
+                internal_links.append(link)
+            else:
+                # External link
+                external_links.append(link)
+        
+        print(f"📊 Found {len(internal_links)} internal links and {len(external_links)} external links")
+        
+        # Test internal links
+        working_internal = 0
+        broken_internal = []
+        
+        print(f"\n🏠 Testing {len(internal_links)} internal links:")
+        for i, link in enumerate(internal_links[:20], 1):  # Limit internal testing
+            try:
+                response = requests.get(link, timeout=5, allow_redirects=True)
+                if response.status_code == 200:
+                    working_internal += 1
+                    print(f"  ✅ [{i:2d}] {link.replace(base_url, '')}")
+                else:
+                    broken_internal.append({"url": link, "status": response.status_code})
+                    print(f"  ❌ [{i:2d}] {link.replace(base_url, '')} ({response.status_code})")
+            except requests.RequestException as e:
+                broken_internal.append({"url": link, "status": "error"})
+                print(f"  ❌ [{i:2d}] {link.replace(base_url, '')} (Error)")
+            
+            time.sleep(0.2)  # Rate limiting
+        
+        # Test a few external links (sample)
+        working_external = 0
+        broken_external = []
+        sample_external = external_links[:5]  # Test only first 5 external links
+        
+        if sample_external:
+            print(f"\n🌐 Testing {len(sample_external)} sample external links:")
+            for i, link in enumerate(sample_external, 1):
+                try:
+                    response = requests.get(link, timeout=10, allow_redirects=True)
+                    if response.status_code == 200:
+                        working_external += 1
+                        print(f"  ✅ [{i}] {link[:60]}{'...' if len(link) > 60 else ''}")
+                    else:
+                        broken_external.append({"url": link, "status": response.status_code})
+                        print(f"  ❌ [{i}] {link[:60]}{'...' if len(link) > 60 else ''} ({response.status_code})")
+                except requests.RequestException:
+                    broken_external.append({"url": link, "status": "error"})
+                    print(f"  ⚠️ [{i}] {link[:60]}{'...' if len(link) > 60 else ''} (Timeout/Error)")
+                
+                time.sleep(0.5)  # More conservative rate limiting for external
+        
+        # Summary
+        total_tested = len(internal_links) + len(sample_external)
+        total_working = working_internal + working_external
+        total_broken = len(broken_internal) + len(broken_external)
+        
+        print(f"\n📊 LINK TEST SUMMARY:")
+        print(f"   🔗 Internal Links: {working_internal}/{len(internal_links)} working")
+        if sample_external:
+            print(f"   🌐 External Links: {working_external}/{len(sample_external)} working (sample)")
+        print(f"   📈 Overall: {total_working}/{total_tested} links working ({(total_working/total_tested*100):.1f}%)")
+        
+        if broken_internal:
+            print(f"\n❌ BROKEN INTERNAL LINKS ({len(broken_internal)}):")
+            for link_info in broken_internal[:10]:  # Show first 10
+                print(f"   • {link_info['url'].replace(base_url, '')} [{link_info['status']}]")
+        
+        return {
+            "total": total_tested,
+            "working": total_working,
+            "broken": total_broken,
+            "internal": {"total": len(internal_links), "working": working_internal},
+            "external": {"total": len(sample_external), "working": working_external}
+        }
+        
+    except Exception as e:
+        print(f"❌ Error testing links: {e}")
+        return {"total": 0, "working": 0, "broken": 0, "external": 0}
 
 def website_functionality_test():
     """Run comprehensive website functionality test"""
@@ -126,6 +264,9 @@ def website_functionality_test():
         
         time.sleep(0.1)  # Rate limiting
     
+    # Link Testing
+    link_results = test_website_links(base_url)
+    
     # Additional functionality tests
     print("\n🔧 SECURITY VERIFICATION NOTE:")
     print("   Security file testing moved to comprehensive_security_scan.py")
@@ -148,9 +289,11 @@ def website_functionality_test():
     critical_success_rate = (results["critical_passed"] / results["critical_total"]) * 100 if results["critical_total"] > 0 else 100
     optional_success_rate = (results["optional_passed"] / results["optional_total"]) * 100 if results["optional_total"] > 0 else 100
     security_success_rate = (security_passed / len(key_moved_files)) * 100 if key_moved_files else 100
+    link_success_rate = (link_results["working"] / link_results["total"]) * 100 if link_results["total"] > 0 else 100
     
     print(f"🎯 CRITICAL COMPONENTS: {results['critical_passed']}/{results['critical_total']} ({critical_success_rate:.1f}%)")
     print(f"📋 OPTIONAL COMPONENTS: {results['optional_passed']}/{results['optional_total']} ({optional_success_rate:.1f}%)")
+    print(f"🔗 LINK VALIDATION: {link_results['working']}/{link_results['total']} ({link_success_rate:.1f}%)")
     print(f"🔒 SECURITY VERIFICATION: {security_passed}/{len(key_moved_files)} ({security_success_rate:.1f}%)")
     
     # Show failed tests
@@ -171,6 +314,13 @@ def website_functionality_test():
     else:
         print("   ❌ IMPAIRED - Critical functionality issues detected")
     
+    if link_success_rate >= 90:
+        print("   🔗 EXCELLENT LINKS - All tested links working properly")
+    elif link_success_rate >= 80:
+        print("   🔗 GOOD LINKS - Most links working properly")
+    else:
+        print("   ⚠️ LINK ISSUES - Some broken links detected")
+    
     if security_success_rate >= 80:
         print("   🔒 SECURE - Key development files properly protected")
     else:
@@ -178,9 +328,12 @@ def website_functionality_test():
     
     print(f"\n🔗 Test the website: {base_url}")
     
-    # Return appropriate exit code
+    # Return appropriate exit code (prioritize critical functionality)
     if critical_success_rate == 100:
-        return 0  # Success
+        if link_success_rate >= 80:
+            return 0  # Success
+        else:
+            return 1  # Warning (links broken but core functionality works)
     elif critical_success_rate >= 80:
         return 1  # Warning
     else:
