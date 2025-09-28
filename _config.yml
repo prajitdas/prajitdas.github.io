@@ -19,3 +19,14 @@ include:
 # Site settings (if needed)
 plugins:
   - jekyll-sitemap
+
+# Ensure .well-known files are processed correctly
+keep_files:
+  - .well-known
+
+# Disable Jekyll processing for .well-known directory
+defaults:
+  - scope:
+      path: ".well-known"
+    values:
+      sitemap: false
