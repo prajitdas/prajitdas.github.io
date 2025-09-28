@@ -556,8 +556,11 @@
 			}
 			
 			// Wait for jQuery to be available
-			function waitForjQuery(callback) {
+			function waitForjQuery(callback, retryCount) {
+				retryCount = retryCount || 0;
+				
 				if (window.jQuery) {
+					console.log('jQuery found! Version:', window.jQuery.fn.jquery);
 					jQueryLoaded = true;
 					callback();
 					// Execute any queued callbacks
@@ -566,14 +569,20 @@
 					}
 				} else if (jQueryLoaded) {
 					jQueryCallbacks.push(callback);
+				} else if (retryCount < 100) { // Max 100 retries (5 seconds)
+					console.log('Waiting for jQuery, retry:', retryCount + 1);
+					setTimeout(function() { waitForjQuery(callback, retryCount + 1); }, 50);
 				} else {
-					setTimeout(function() { waitForjQuery(callback); }, 50);
+					console.error('jQuery failed to load after 5 seconds, aborting');
 				}
 			}
 			
 			// Load jQuery first and wait for it
+			console.log('Starting jQuery load...');
 			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.09', function() {
+				console.log('jQuery script loaded, checking availability...');
 				waitForjQuery(function() {
+					console.log('jQuery confirmed available, version:', window.jQuery.fn.jquery);
 					// Load jQuery migrate first
 					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.09', function() {
 						console.log('jQuery migrate loaded');
@@ -1573,8 +1582,25 @@
 	}
 	
 	waitForjQuery(function() {
+		// Triple-check jQuery is available and functional
+		if (!window.jQuery || typeof window.jQuery !== 'function') {
+			console.error('jQuery still not available or not functional in waitForjQuery callback');
+			console.log('window.jQuery:', window.jQuery);
+			console.log('typeof window.jQuery:', typeof window.jQuery);
+			return;
+		}
+		
+		// Ensure jQuery.fn exists
+		if (!window.jQuery.fn) {
+			console.error('jQuery.fn not available');
+			return;
+		}
+		
+		console.log('All jQuery checks passed, executing IIFE...');
+		
 		!function (e) {
 			"use strict";
+			console.log('IIFE executing with jQuery parameter:', e);
 			var a = {
 		main_fun: function () {
 			e(window).load(function () {
@@ -1608,7 +1634,10 @@
 	e(document).ready(function () {
 		a.main_fun()
 	})
-}(window.jQuery);
+}(window.jQuery || (function() {
+	console.error('CRITICAL: window.jQuery is undefined at IIFE execution!');
+	return {};
+})());
 	}); // End waitForjQuery
 })(); // End wrapper
 </script>
