@@ -574,11 +574,26 @@
 			// Load jQuery first and wait for it
 			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.09', function() {
 				waitForjQuery(function() {
-					// Load jQuery-dependent scripts sequentially
+					// Load jQuery migrate first
 					loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.09', function() {
+						console.log('jQuery migrate loaded');
+						
+						// Load RSS plugin and wait for it to be available
 						loadScript('assets/js/jquery.rss.min.js?v=2025.09', function() {
-							// Load main.js after RSS plugin is ready
-							loadScript('assets/js/main.js?v=2025.09');
+							console.log('RSS plugin script loaded, checking availability...');
+							
+							// Poll for RSS plugin availability before loading main.js
+							function waitForRSSPlugin() {
+								if (window.jQuery && window.jQuery.fn.rss) {
+									console.log('RSS plugin confirmed available, loading main.js');
+									loadScript('assets/js/main.js?v=2025.09');
+								} else {
+									console.log('RSS plugin not yet available, retrying...');
+									setTimeout(waitForRSSPlugin, 50);
+								}
+							}
+							
+							waitForRSSPlugin();
 						});
 					});
 					
@@ -589,7 +604,7 @@
 					setTimeout(function() {
 						loadScript('assets/js/github-activity-0.1.1.min.js?v=2025.09');
 						loadScript('assets/js/mustache.min.js?v=2025.09');
-					}, 100);
+					}, 200);
 				});
 			});
 		})();
@@ -1018,7 +1033,7 @@
 							<div class="desc col-md-8 col-sm-8 col-xs-12"><h3 class=title><a
 									href="https://github.com/PKDLabs/SafePodAndroid" target=_blank rel="noopener">Safepod - Safer
 								together</a></h3>
-								<p>"Formally", SafePod was a mobile app that let your selected friends know if you
+								<p>SafePod was a mobile app that let your selected friends know if you
 									hadn't reached a specified place at a specified time. SafePod also provided a forum
 									for victims to share traumatic experiences anonymously. Remember that person who
 									assumed the role of the caretaker when you went out partying? SafePod brought that
