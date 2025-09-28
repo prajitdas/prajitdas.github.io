@@ -252,6 +252,57 @@ def test_cls_prevention():
     
     return results
 
+def test_caching_optimization():
+    """Test caching strategy implementation"""
+    print("💾 Testing Caching Optimization...")
+    
+    with open('index.html', 'r', encoding='utf-8') as file:
+        content = file.read()
+    
+    results = []
+    
+    # Check for cache control headers
+    cache_headers = ['Cache-Control', 'Expires', 'cache-control']
+    found_headers = sum(1 for header in cache_headers if header in content)
+    if found_headers >= 2:
+        results.append(f"✅ Cache control headers: {found_headers}/3 implemented")
+    elif found_headers > 0:
+        results.append(f"⚠️ Cache control headers: {found_headers}/3 partial implementation")
+    else:
+        results.append("❌ Cache control headers: Missing")
+    
+    # Check for resource versioning
+    versioned_resources = len(re.findall(r'\?v=202[0-9]\.[0-9]', content))
+    if versioned_resources >= 10:
+        results.append(f"✅ Resource versioning: {versioned_resources} resources versioned")
+    elif versioned_resources > 0:
+        results.append(f"⚠️ Resource versioning: {versioned_resources} resources versioned")
+    else:
+        results.append("❌ Resource versioning: Missing")
+    
+    # Check for service worker registration
+    if 'serviceWorker' in content and 'register' in content:
+        results.append("✅ Service Worker: Advanced caching implemented")
+    else:
+        results.append("❌ Service Worker: Missing")
+    
+    # Check for Cache API usage
+    if 'caches.open' in content and 'cache.addAll' in content:
+        results.append("✅ Cache API: Manual caching implemented")
+    else:
+        results.append("❌ Cache API: Missing")
+    
+    # Check for DNS prefetch hints
+    dns_prefetch = len(re.findall(r'rel="dns-prefetch"', content))
+    if dns_prefetch >= 4:
+        results.append(f"✅ DNS prefetch optimization: {dns_prefetch} domains")
+    elif dns_prefetch > 0:
+        results.append(f"⚠️ DNS prefetch optimization: {dns_prefetch} domains")
+    else:
+        results.append("❌ DNS prefetch optimization: Missing")
+    
+    return results
+
 def calculate_performance_metrics():
     """Calculate estimated performance improvements"""
     print("📊 Calculating Performance Metrics...")
@@ -265,19 +316,25 @@ def calculate_performance_metrics():
     deferred_scripts = len(re.findall(r'defer', content))
     async_scripts = len(re.findall(r'async', content))
     inline_css = 1 if '<style>' in content else 0
+    versioned_resources = len(re.findall(r'\?v=202[0-9]\.[0-9]', content))
+    service_worker = 1 if 'serviceWorker' in content else 0
     
-    # Enhanced estimate with render-blocking elimination
-    estimated_lcp_improvement = min(50, preconnects * 4 + preloads * 6 + async_scripts * 5 + inline_css * 15)
-    estimated_fcp_improvement = min(40, preconnects * 3 + async_scripts * 8 + inline_css * 12)
+    # Enhanced estimate with caching optimizations
+    estimated_lcp_improvement = min(60, preconnects * 4 + preloads * 6 + async_scripts * 5 + inline_css * 15 + service_worker * 10)
+    estimated_fcp_improvement = min(50, preconnects * 3 + async_scripts * 8 + inline_css * 12 + service_worker * 8)
+    repeat_visit_improvement = min(80, versioned_resources * 3 + service_worker * 20)
     
     results = [
         f"📈 Estimated LCP improvement: {estimated_lcp_improvement}%",
         f"📈 Estimated FCP improvement: {estimated_fcp_improvement}%",
+        f"🔄 Estimated repeat visit improvement: {repeat_visit_improvement}%",
         f"🔗 Preconnect hints: {preconnects}",
         f"🚀 Resource preloads: {preloads}",
         f"⏱️ Deferred scripts: {deferred_scripts}",
         f"⚡ Async scripts: {async_scripts}",
-        f"🎨 Inline critical CSS: {'Yes' if inline_css else 'No'}"
+        f"🎨 Inline critical CSS: {'Yes' if inline_css else 'No'}",
+        f"💾 Cache versioning: {versioned_resources} resources",
+        f"🔧 Service Worker: {'Yes' if service_worker else 'No'}"
     ]
     
     return results
@@ -298,6 +355,7 @@ def generate_optimization_summary():
     all_results.extend(test_font_optimization())
     all_results.extend(test_render_blocking_optimization())
     all_results.extend(test_cls_prevention())
+    all_results.extend(test_caching_optimization())
     all_results.extend(calculate_performance_metrics())
     
     # Count successes
