@@ -12,6 +12,16 @@ import time
 from urllib.parse import urljoin
 from pathlib import Path
 
+# Import local logging system (only for local runs, not GitHub Actions)
+try:
+    if not os.environ.get('GITHUB_ACTIONS'):
+        from local_test_logger import log_security_issue, log_url_failure
+        LOCAL_LOGGING_ENABLED = True
+    else:
+        LOCAL_LOGGING_ENABLED = False
+except ImportError:
+    LOCAL_LOGGING_ENABLED = False
+
 def scan_for_credentials(base_dir):
     """Scan repository for potential credential leakage and sensitive information"""
     

@@ -32,6 +32,10 @@ htmlcov/
 coverage.xml
 *.log
 
+# Local Test Logging (should not be uploaded to GitHub)
+.github/tests/logs/
+*test_failures*.log
+
 # LaTeX Files
 *.acn
 *.acr

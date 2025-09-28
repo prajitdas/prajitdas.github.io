@@ -9,11 +9,27 @@ import sys
 import os
 from datetime import datetime
 
-def run_test(test_name, script_path):
+# Import local logging system (only for local runs, not GitHub Actions)
+try:
+    if not os.environ.get('GITHUB_ACTIONS'):
+        from local_test_logger import get_test_logger, finalize_test_logging, log_test_start, log_test_end
+        LOCAL_LOGGING_ENABLED = True
+    else:
+        LOCAL_LOGGING_ENABLED = False
+except ImportError:
+    LOCAL_LOGGING_ENABLED = False
+
+def run_test(test_name, script_path, description=""):
     """Run a test script and return the results"""
     print(f"\n{'='*60}")
     print(f"🧪 RUNNING: {test_name}")
     print(f"{'='*60}")
+    
+    # Log test start for local logging
+    if LOCAL_LOGGING_ENABLED:
+        log_test_start(test_name, description)
+    
+    start_time = datetime.now()
     
     try:
         # Run the test script
@@ -24,36 +40,71 @@ def run_test(test_name, script_path):
                               text=True, 
                               timeout=timeout)
         
+        # Calculate execution time
+        execution_time = (datetime.now() - start_time).total_seconds()
+        
         # Print the output
         print(result.stdout)
         if result.stderr:
             print("STDERR:", result.stderr)
+        
+        # Count passed/failed from output (simple heuristic)
+        output_lines = result.stdout.split('\n')
+        passed_count = sum(1 for line in output_lines if '✅' in line or 'PASSED' in line.upper())
+        failed_count = sum(1 for line in output_lines if '❌' in line or 'FAILED' in line.upper())
+        
+        # Log test end for local logging
+        if LOCAL_LOGGING_ENABLED:
+            log_test_end(test_name, passed_count, failed_count, execution_time)
         
         return {
             'name': test_name,
             'exit_code': result.returncode,
             'success': result.returncode == 0,
             'output': result.stdout,
-            'error': result.stderr
+            'error': result.stderr,
+            'execution_time': execution_time,
+            'passed_count': passed_count,
+            'failed_count': failed_count
         }
     
     except subprocess.TimeoutExpired:
-        print(f"❌ TEST TIMEOUT: {test_name} exceeded 60 seconds")
+        execution_time = (datetime.now() - start_time).total_seconds()
+        error_msg = f"Test timed out after {timeout} seconds"
+        print(f"❌ TEST TIMEOUT: {test_name} exceeded {timeout} seconds")
+        
+        # Log test end for local logging
+        if LOCAL_LOGGING_ENABLED:
+            log_test_end(test_name, 0, 1, execution_time)
+        
         return {
             'name': test_name,
             'exit_code': 124,
             'success': False,
             'output': "",
-            'error': "Test timed out after 60 seconds"
+            'error': error_msg,
+            'execution_time': execution_time,
+            'passed_count': 0,
+            'failed_count': 1
         }
     except Exception as e:
-        print(f"❌ TEST ERROR: {test_name} failed to run: {str(e)}")
+        execution_time = (datetime.now() - start_time).total_seconds()
+        error_msg = str(e)
+        print(f"❌ TEST ERROR: {test_name} failed to run: {error_msg}")
+        
+        # Log test end for local logging
+        if LOCAL_LOGGING_ENABLED:
+            log_test_end(test_name, 0, 1, execution_time)
+        
         return {
             'name': test_name,
             'exit_code': 1,
             'success': False,
             'output': "",
-            'error': str(e)
+            'error': error_msg,
+            'execution_time': execution_time,
+            'passed_count': 0,
+            'failed_count': 1
         }
 
 def main():
@@ -123,7 +174,7 @@ def main():
     for test in tests:
         if os.path.exists(test['script']):
             print(f"📝 {test['description']}")
-            result = run_test(test['name'], test['script'])
+            result = run_test(test['name'], test['script'], test['description'])
             results.append(result)
         else:
             print(f"⚠️ SKIPPED: {test['name']} - Script not found: {test['script']}")
@@ -132,7 +183,10 @@ def main():
                 'exit_code': 127,
                 'success': False,
                 'output': "",
-                'error': f"Script not found: {test['script']}"
+                'error': f"Script not found: {test['script']}",
+                'execution_time': 0,
+                'passed_count': 0,
+                'failed_count': 1
             })
     
     # Generate summary
@@ -172,6 +226,15 @@ def main():
     
     print(f"📅 Completed: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
+    
+        # Finalize local logging
+    if LOCAL_LOGGING_ENABLED:
+        try:
+            finalize_test_logging()
+            print("\n💾 Local test logs saved for debugging")
+        except Exception as e:
+            print(f"\n⚠️ Error saving local logs: {e}")
+            print("Test suite completed successfully despite logging error")
     
     return exit_code
 

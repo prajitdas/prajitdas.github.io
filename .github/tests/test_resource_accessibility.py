@@ -12,6 +12,16 @@ import requests
 from bs4 import BeautifulSoup
 import time
 
+# Import local logging system (only for local runs, not GitHub Actions)
+try:
+    if not os.environ.get('GITHUB_ACTIONS'):
+        from local_test_logger import log_url_failure, log_file_failure, log_validation_failure
+        LOCAL_LOGGING_ENABLED = True
+    else:
+        LOCAL_LOGGING_ENABLED = False
+except ImportError:
+    LOCAL_LOGGING_ENABLED = False
+
 class WebsiteResourceTester:
     def __init__(self, base_path=None, base_url="https://prajitdas.github.io"):
         # Auto-detect if running from tests directory
@@ -92,10 +102,26 @@ class WebsiteResourceTester:
             return 'OTHER'
 
     def test_local_file_exists(self, file_path):
-        """Test if a file exists locally"""
-        clean_path = file_path.split('?')[0].split('#')[0]
+        """Test if a local file exists"""
+        if file_path.startswith(('http://', 'https://')):
+            return False  # External URLs don't have local files
+        
+        # Remove query parameters and anchors
+        clean_path = file_path.lstrip('/')
+        clean_path = clean_path.split('?')[0].split('#')[0]
         full_path = self.local_path / clean_path
-        return full_path.exists() and full_path.is_file()
+        file_exists = full_path.exists() and full_path.is_file()
+        
+        # Log local file failure
+        if not file_exists and LOCAL_LOGGING_ENABLED:
+            log_file_failure(
+                file_path=str(full_path),
+                error_type="FILE_NOT_FOUND",
+                error_message=f"Local file does not exist: {file_path}",
+                test_category="Resource Accessibility"
+            )
+        
+        return file_exists
 
     def test_web_accessibility(self, url):
         """Test if a resource is accessible via web"""
@@ -109,12 +135,32 @@ class WebsiteResourceTester:
                 test_url = url
             
             response = self.session.head(test_url, timeout=10, allow_redirects=True)
+            
+            # Log URL failure if status code is not 200
+            if response.status_code != 200 and LOCAL_LOGGING_ENABLED:
+                error_type = f"HTTP_{response.status_code}"
+                log_url_failure(
+                    url=test_url,
+                    error_type=error_type,
+                    status_code=response.status_code,
+                    test_category="Resource Accessibility"
+                )
+            
             return {
                 'status_code': response.status_code,
                 'accessible': response.status_code == 200,
                 'url': test_url
             }
         except Exception as e:
+            # Log URL failure for exceptions
+            if LOCAL_LOGGING_ENABLED:
+                log_url_failure(
+                    url=test_url if 'test_url' in locals() else url,
+                    error_type="CONNECTION_ERROR",
+                    error_message=str(e),
+                    test_category="Resource Accessibility"
+                )
+            
             return {
                 'status_code': None,
                 'accessible': False,

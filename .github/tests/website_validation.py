@@ -23,6 +23,16 @@ import json
 import re
 from typing import List, Dict, Set, Optional, Tuple
 
+# Import local logging system (only for local runs, not GitHub Actions)
+try:
+    if not os.environ.get('GITHUB_ACTIONS'):
+        from local_test_logger import log_url_failure, log_validation_failure, log_security_issue
+        LOCAL_LOGGING_ENABLED = True
+    else:
+        LOCAL_LOGGING_ENABLED = False
+except ImportError:
+    LOCAL_LOGGING_ENABLED = False
+
 # Website configuration
 BASE_URL = 'https://prajitdas.github.io'
 LOCAL_PATH = Path(__file__).parent.parent.parent  # Root of repository
