@@ -3,12 +3,12 @@
 # These headers are set via .htaccess and HTML meta tags as fallback
 
 /*
-- X-Frame-Options: "SAMEORIGIN"
-- X-Content-Type-Options: "nosniff"
-- X-XSS-Protection: "1; mode=block"
-- Referrer-Policy: "strict-origin-when-cross-origin"
-- Permissions-Policy: "camera=(), microphone=(), geolocation=()"
-- Content-Security-Policy: "default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; media-src 'self' https:; object-src 'none'; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';"
+  - X-Frame-Options: SAMEORIGIN
+  - X-Content-Type-Options: nosniff
+  - X-XSS-Protection: "1; mode=block"
+  - Referrer-Policy: strict-origin-when-cross-origin
+  - Permissions-Policy: camera=(), microphone=(), geolocation=()
+  - Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; media-src 'self' https:; object-src 'none'; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';
 
 # Note: HSTS (Strict-Transport-Security) cannot be set via meta tags
 # and requires server-level configuration not available in GitHub Pages
