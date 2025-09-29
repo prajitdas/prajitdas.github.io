@@ -260,7 +260,7 @@ python seo_optimization.py            # SEO validation only
 Publications are automatically generated from BibTeX sources using:
 
 - **bibtex2html**: Converts `.bib` files to HTML
-- **Custom scripts**: Located in `.github/config/` for security  
+- **Custom scripts**: Located in `.github/code/` for security  
 - **Automated workflow**: Generates and commits updated publication pages
 - **Word cloud generation**: Visual representation of research topics
 
@@ -272,7 +272,7 @@ git clone https://github.com/prajitdas/prajitdas.github.io.git
 cd prajitdas.github.io
 
 # Install test dependencies
-pip install -r .github/config/requirements.txt
+pip install -r .github/code/requirements.txt
 
 # Install JavaScript linting (optional, for local development)
 npm install -g jshint
