@@ -175,18 +175,17 @@ def test_seo_optimizations():
         return False
 
 def test_local_sitemap_synchronization():
-    """Test local sitemap synchronization"""
+    """Test local sitemap synchronization - skip HTML sitemap as it's not wanted"""
     
     print("\n🗺️ SITEMAP SYNCHRONIZATION TEST:")
     print("-" * 40)
     
     try:
-        # Get project root
+        # Get project root - updated for new structure  
         script_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
         
         sitemap_xml = os.path.join(project_root, 'sitemap.xml')
-        sitemap_html = os.path.join(project_root, 'sitemap.html')
         ror_xml = os.path.join(project_root, 'ror.xml')
         
         # Parse sitemap.xml
@@ -200,18 +199,6 @@ def test_local_sitemap_synchronization():
             if loc is not None:
                 xml_urls.append(loc.text)
         
-        # Parse sitemap.html
-        with open(sitemap_html, 'r', encoding='utf-8') as f:
-            html_content = f.read()
-        
-        soup = BeautifulSoup(html_content, 'html.parser')
-        html_links = []
-        
-        for link in soup.find_all('a', href=True):
-            href = link['href']
-            if href.startswith('https://prajitdas.github.io/') and 'xml-sitemaps.com' not in href:
-                html_links.append(href)
-        
         # Parse ror.xml
         ror_tree = ET.parse(ror_xml)
         ror_root = ror_tree.getroot()
@@ -223,19 +210,17 @@ def test_local_sitemap_synchronization():
                 ror_urls.append(link.text)
         
         print(f"📄 XML URLs: {len(xml_urls)}")
-        print(f"📄 HTML URLs: {len(html_links)}")
         print(f"📄 ROR URLs: {len(ror_urls)}")
         
-        # Test synchronization
+        # Test synchronization between XML and ROR (skip HTML sitemap)
         xml_urls_set = set(xml_urls)
-        html_urls_set = set(html_links)
         ror_urls_set = set(ror_urls)
         
-        if xml_urls_set == html_urls_set == ror_urls_set and len(xml_urls) >= 4:
-            print("✅ All sitemaps synchronized with specific files")
+        if xml_urls_set == ror_urls_set and len(xml_urls) >= 4:
+            print("✅ XML and ROR sitemaps synchronized with specific files")
             return True
         else:
-            print("❌ Sitemap synchronization issues detected")
+            print("❌ Sitemap synchronization issues detected between XML and ROR")
             return False
             
     except Exception as e:
@@ -298,7 +283,7 @@ def generate_consolidated_summary():
         "✅ Twitter Card meta tags for enhanced social sharing",
         "✅ JSON-LD structured data for rich snippets",
         "✅ Professional keywords meta tag",
-        "✅ Synchronized sitemaps (XML, HTML, ROR)",
+        "✅ Synchronized sitemaps (XML, ROR)",
         "✅ File-specific indexing (not directories)",
         "✅ SEO-optimized sitemap descriptions",
         "✅ Proper sitemap priorities and frequencies"
@@ -314,7 +299,7 @@ def generate_consolidated_summary():
     print("• Rich snippets in search results")
     print("• Professional keyword optimization")
     print("• Direct file access via sitemaps")
-    print("• Synchronized multi-format sitemaps")
+    print("• Synchronized multi-format sitemaps (XML, ROR)")
     print("• Improved mobile and desktop SEO performance")
 
 if __name__ == "__main__":
