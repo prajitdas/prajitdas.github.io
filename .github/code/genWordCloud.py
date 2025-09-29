@@ -9,7 +9,7 @@ import time
 import sys
 
 def doTask(mask=None):
-	# Script is in .github/config but works with publications directory
+	# Script is in .github/code but works with publications directory
 	script_dir = path.dirname(__file__)
 	publications_dir = path.join(script_dir, '..', '..', 'assets', 'docs', 'publications')
 	publications_dir = path.abspath(publications_dir)  # Resolve to absolute path

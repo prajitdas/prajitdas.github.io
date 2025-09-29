@@ -27,8 +27,8 @@ class WebsiteResourceTester:
         # Auto-detect if running from tests directory
         if base_path is None:
             current_dir = os.getcwd()
-            if '.github/tests' in current_dir:
-                base_path = os.path.abspath(os.path.join(current_dir, '..', '..'))
+            if '.github/code/tests' in current_dir:
+                base_path = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
             else:
                 base_path = current_dir
         

@@ -241,7 +241,9 @@ def main():
     print("=" * 60)
     
     # Change to repository root if we're in tests directory
-    if Path.cwd().name == 'tests':
+    if Path.cwd().name == 'tests' and '.github/code/tests' in str(Path.cwd()):
+        os.chdir('../../..')
+    elif Path.cwd().name == 'tests':
         os.chdir('../..')
     elif '.github' in str(Path.cwd()):
         # Find repository root

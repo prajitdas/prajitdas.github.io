@@ -19,7 +19,7 @@ def test_youtube_lazy_loading():
     # Get the script directory and find the project root
     import os
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.dirname(os.path.dirname(script_dir))
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
     index_file = os.path.join(project_root, 'index.html')
     
     if not os.path.exists(index_file):
