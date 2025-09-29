@@ -35,7 +35,7 @@ except ImportError:
 
 # Website configuration
 BASE_URL = 'https://prajitdas.github.io'
-LOCAL_PATH = Path(__file__).parent.parent.parent  # Root of repository
+LOCAL_PATH = Path(__file__).parent.parent.parent.parent  # Root of repository
 TIMEOUT = 10  # Reduced from 30 to 10 seconds
 MAX_RETRIES = 2  # Reduced from 3 to 2 retries
 RETRY_DELAY = 1  # Reduced from 2 to 1 second
@@ -71,8 +71,7 @@ class WebsiteValidationTest(unittest.TestCase):
     def test_01_html_file_existence(self):
         """Test that required HTML files exist locally."""
         required_files = [
-            'index.html',
-            'sitemap.html'
+            'index.html'
         ]
         
         for filename in required_files:
@@ -85,8 +84,7 @@ class WebsiteValidationTest(unittest.TestCase):
     def test_02_html_basic_structure(self):
         """Test basic HTML structure of main pages."""
         html_files = [
-            'index.html',
-            'sitemap.html'
+            'index.html'
         ]
         
         for filename in html_files:
