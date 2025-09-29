@@ -348,7 +348,7 @@ def main():
     
     # Change to repository root if needed
     if Path.cwd().name == 'tests':
-        os.chdir('../..')
+        os.chdir('../../..')
     elif '.github' in str(Path.cwd()):
         current = Path.cwd()
         while current.parent != current:
@@ -356,6 +356,12 @@ def main():
                 os.chdir(current)
                 break
             current = current.parent
+        # Additional fallback for the reorganized structure
+        if not Path('index.html').exists():
+            script_dir = Path(__file__).parent
+            project_root = script_dir.parent.parent.parent
+            if (project_root / 'index.html').exists():
+                os.chdir(project_root)
     
     print(f"📁 Testing directory: {Path.cwd()}")
     print()

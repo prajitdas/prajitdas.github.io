@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Dr. Prajit Kumar Das - Security Researcher and Software Engineering Leader</title>
+	<title>Dr. Prajit Das - Security Researcher & Engineering Leader</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -22,11 +22,11 @@
 	<meta property="og:locale" content="en_US">
 	
 	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image">
-	<meta property="twitter:url" content="https://prajitdas.github.io/">
-	<meta property="twitter:title" content="Dr. Prajit Kumar Das - Software Engineering Leader & Security Research Expert">
-	<meta property="twitter:description" content="Software Engineering Leader at Cisco Systems with expertise in mobile security, privacy research, and technical product management.">
-	<meta property="twitter:image" content="https://prajitdas.github.io/assets/img/Profile.jpg">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:url" content="https://prajitdas.github.io/">
+	<meta name="twitter:title" content="Dr. Prajit Das - Software Engineering Leader & Security Research Expert">
+	<meta name="twitter:description" content="Software Engineering Leader at Cisco Systems with expertise in mobile security, privacy research, and technical product management.">
+	<meta name="twitter:image" content="https://prajitdas.github.io/assets/img/Profile.jpg">
 	
 	<!-- Additional Meta -->
 	<meta name="msvalidate.01" content="099D16F143ECFFC65FB206BD2DE7A789"/>
@@ -46,7 +46,7 @@
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
 	<meta http-equiv="X-XSS-Protection" content="1; mode=block">
 	<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; media-src 'self' https:; object-src 'self' data: http://ceur-ws.org; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; media-src 'self' https:; object-src 'self' data: http://ceur-ws.org; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';">
 	<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 	
 	<!-- Resource Hints for Improved Performance -->
@@ -788,7 +788,10 @@
 			iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
 			iframe.title = '3 Minute Thesis competition video';
 			
-			container.innerHTML = '';
+			// Use DOM methods instead of innerHTML for security
+			while (container.firstChild) {
+				container.removeChild(container.firstChild);
+			}
 			container.appendChild(iframe);
 		}
 	</script>
@@ -824,7 +827,7 @@
 					Prajit Kumar Das
 				</h1>
 				<h2 class=desc>
-					Software Engineering Leader @ <a href="https://www.cisco.com" target="_blank" rel="noopener">Cisco Systems Inc.</a></br>
+					Security Researcher & Engineering Leader @ <a href="https://www.cisco.com" target="_blank" rel="noopener">Cisco Systems Inc.</a></br>
 				</h2>
 				<ul class="social list-inline">
 					<li><a href="https://scholar.google.com/citations?user=mfs-XBIAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar Profile"><i class="fa fa-graduation-cap"></i></a></li>
@@ -843,7 +846,7 @@
 			<section class="about section">
 				<div class=section-inner><h2 class=heading>About Me</h2>
 					<div class=content>
-						<p>I am a Software Engineering Leader at Cisco's Security Business Group (SBG), where I lead a talented team focused on the <a href=https://www.cisco.com/site/us/en/products/security/firewalls/firewall-management-center/index.html target="_blank" rel="noopener">Secure Firewall Management Center</a>. Our work centers on building core platform components like Authentication, Authorization, and Auditing (AAA), REST API frameworks, and cloud service integrations. I am deeply committed to driving security-focused development and have led several key initiatives around SAML SSO, external authentication, and software compliance standardization.</p></br>
+						<p>I am a Security Researcher & Engineering Leader at Cisco's Security Business Group (SBG), where I lead a talented team focused on the <a href=https://www.cisco.com/site/us/en/products/security/firewalls/firewall-management-center/index.html target="_blank" rel="noopener">Secure Firewall Management Center</a>. Our work centers on building core platform components like Authentication, Authorization, and Auditing (AAA), REST API frameworks, and cloud service integrations. I am deeply committed to driving security-focused development and have led several key initiatives around SAML SSO, external authentication, and software compliance standardization.</p></br>
 						<p>A core part of my role is leading the engineering response to complex, critical vulnerabilities. For example, for the <a href=https://nvd.nist.gov/vuln/detail/cve-2024-3596 target="_blank" rel="noopener">Blast-RADIUS (CVE-2024-3596)</a> CVE, my team was instrumental in the triage and effective remediation efforts across Cisco. This experience demonstrates my proficiency in managing high-stakes situations, combining deep technical knowledge with a strategic, collaborative approach to crisis management.</p></br>
 						<p>With over <span id="years-experience">18 years</span> of combined experience across industry and academia, I bring a unique perspective to software development—grounded in deep technical knowledge and a passion for security and scalable systems. My expertise includes developing solutions for Single Sign-On (SSO) and Multi-Factor Authentication (MFA), and deploying technologies using modern infrastructure like Docker and Kubernetes. My Ph.D. in Computer Science from the  University of Maryland, Baltimore County, and internships at Apple, Samsung, and Symantec have uniquely prepared me to build secure, reliable, and user-centric systems.</p></br>
 						<p>Today, I am interested in Senior Leadership positions where I can drive delivery across multiple teams, influence architectural direction, and mentor the next generation of engineering talent. While cybersecurity is my core domain, I am always open to exploring new problem spaces where I can bring value through thoughtful leadership, technical vision, and a commitment to building and delivering high-quality software.</p></br>
@@ -856,7 +859,7 @@
 					<div class=content>
 						<div class=item>
 							<h3 class=title>
-								Software Engineering Leader - <span class=place><a href="https://cisco.com" target="_blank"
+								Security Researcher & Engineering Leader - <span class=place><a href="https://cisco.com" target="_blank"
 										rel="noopener">Cisco Systems Inc.</a></span><span class=year>(October 2021 - Present)</span>
 							</h3>
 							<p>As a Software Engineering Leader, I lead a team of developers on the <a
