@@ -183,7 +183,7 @@ def test_local_sitemap_synchronization():
     try:
         # Get project root
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(os.path.dirname(script_dir))
+        project_root = os.path.dirname(os.path.dirname(os.path.dirname(script_dir)))
         
         sitemap_xml = os.path.join(project_root, 'sitemap.xml')
         sitemap_html = os.path.join(project_root, 'sitemap.html')

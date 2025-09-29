@@ -4,7 +4,7 @@ This directory contains publication-related documents and assets.
 
 ## Scripts and Generation
 
-**Security Note:** Generation scripts are now stored in `.github/config/` for security and are not web-accessible.
+**Security Note:** Generation scripts are now stored in `.github/code/` for security and are not web-accessible.
 
 This directory contains:
 
@@ -23,7 +23,7 @@ cd assets/docs/publications
 ./generate.sh [mask_name]
 
 # Or run directly (advanced)
-bash .github/config/genPubHTML.sh [mask_name]
+bash .github/code/genPubHTML.sh [mask_name]
 ```
 
 The generation process will:
@@ -35,6 +35,6 @@ The generation process will:
 
 **Security Features:**
 
-- Scripts are stored in `.github/config/` (web-blocked)
+- Scripts are stored in `.github/code/` (web-blocked)
 - Generated content remains in this directory
 - Wrapper script provides convenient access

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Look here for more help https://www.lri.fr/~filliatr/bibtex2html/doc/manual.html#sec7
 
-# Script is in .github/config but works with publications directory
+# Script is in .github/code but works with publications directory
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PUBLICATIONS_DIR="$SCRIPT_DIR/../../assets/docs/publications"
 

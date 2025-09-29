@@ -5,9 +5,9 @@
 
 version: 2
 updates:
-  # Update Python dependencies in .github/config/requirements.txt
+  # Update Python dependencies in .github/code/requirements.txt
   - package-ecosystem: "pip"
-    directory: "/.github/config"
+    directory: "/.github/code"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
