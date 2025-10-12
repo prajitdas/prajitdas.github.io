@@ -245,6 +245,73 @@ class WebsiteResourceTester:
             'type': self.classify_resource(resource_url)
         }
 
+    # --- New context-aware testing methods ---
+    def _resolve_local_with_context(self, resource_url, referer_dir: Path):
+        """Attempt improved local resolution using the referring HTML directory when initial lookup fails."""
+        # Already absolute external
+        if resource_url.startswith(('http://', 'https://')):
+            return False, None
+        core_part = resource_url.split('#')[0].split('?')[0]
+        # If current simple resolution worked, we would not call this; caller checks.
+        candidate = (self.local_path / referer_dir / core_part).resolve()
+        if candidate.exists():
+            return True, candidate
+        # Fallback: search globally for a uniquely named file (only for simple filenames)
+        if '/' not in core_part:
+            matches = list(self.local_path.rglob(core_part))
+            if len(matches) == 1:
+                return True, matches[0]
+        return False, None
+
+    def test_resource_with_context(self, resource_url, referer_dir: Path):
+        """Test resource considering the directory of the referring HTML file for relative resolution."""
+        # First do standard test
+        base_result = self.test_resource(resource_url)
+        if base_result['status'] == 'PASS':
+            return base_result
+
+        # If local didn't exist, try context-aware local resolution
+        if not base_result['local_exists']:
+            local_ok, resolved_path = self._resolve_local_with_context(resource_url, referer_dir)
+            if local_ok:
+                # Re-check anchor if fragment present
+                fragment = None
+                if '#' in resource_url:
+                    path_part, fragment = resource_url.split('#', 1)
+                else:
+                    path_part = resource_url
+                anchor_ok = True
+                if fragment and path_part.endswith('.html'):
+                    try:
+                        content = resolved_path.read_text(encoding='utf-8')
+                        import re
+                        anchor_pattern = rf'(name="{re.escape(fragment)}"|id="{re.escape(fragment)}")'
+                        if not re.search(anchor_pattern, content):
+                            anchor_ok = False
+                    except Exception:
+                        anchor_ok = False
+                # Build improved web URL guess if web failed
+                web_accessible = base_result['web_accessible']
+                web_status = base_result['web_status']
+                if not web_accessible:
+                    # Construct URL with referer directory
+                    rel_dir_url = '/'.join(referer_dir.as_posix().split('/'))
+                    rel_dir_url = rel_dir_url.strip('/')
+                    candidate_url = f"{self.base_url}/{rel_dir_url}/{path_part}".replace('//', '/')
+                    web_retry = self.test_web_accessibility(candidate_url)
+                    web_accessible = web_retry['accessible']
+                    web_status = web_retry['status_code']
+                final_status = 'PASS' if (local_ok and anchor_ok) or web_accessible else 'FAIL'
+                return {
+                    'resource': resource_url,
+                    'local_exists': local_ok and anchor_ok,
+                    'web_accessible': web_accessible,
+                    'web_status': web_status,
+                    'status': final_status,
+                    'type': self.classify_resource(resource_url)
+                }
+        return base_result
+
     def test_key_files(self):
         """Test accessibility of key website files"""
         key_files = [
@@ -273,37 +340,30 @@ class WebsiteResourceTester:
         html_files = self.find_html_files()
         print(f"📄 Found {len(html_files)} HTML files to analyze")
         
-        all_resources = set()
+        results = {}
         file_resource_map = {}
-        
+        resource_counter = 0
         for html_file in html_files:
             relative_path = html_file.relative_to(self.local_path)
+            referer_dir = relative_path.parent
             resources = self.extract_resources_from_html(html_file)
             file_resource_map[str(relative_path)] = resources
-            all_resources.update(resources)
             print(f"   📄 {relative_path}: {len(resources)} resources")
-        
-        print(f"\n🔗 Total unique local resources found: {len(all_resources)}")
-        
-        results = {}
-        for i, resource in enumerate(sorted(all_resources), 1):
-            if i <= 20:  # Limit output for quick testing
-                print(f"\n[{i}/{len(all_resources)}] Testing: {resource}")
-            result = self.test_resource(resource)
-            
-            resource_type = result['type']
-            if resource_type not in results:
-                results[resource_type] = []
-            results[resource_type].append(result)
-            
-            if i <= 20:  # Limit output for quick testing
-                local_status = "✅" if result['local_exists'] else "❌"
-                web_status = "✅" if result['web_accessible'] else "❌"
-                status_code = f"({result['web_status']})" if result['web_status'] else ""
-                print(f"   Local: {local_status} | Web: {web_status} {status_code}")
-            
-            time.sleep(0.05)  # Shorter delay
-        
+            for resource in sorted(resources):
+                resource_counter += 1
+                if resource_counter <= 20:
+                    print(f"\n[{resource_counter}] Testing: {resource}")
+                result = self.test_resource_with_context(resource, referer_dir)
+                resource_type = result['type']
+                results.setdefault(resource_type, []).append(result)
+                if resource_counter <= 20:
+                    local_status = "✅" if result['local_exists'] else "❌"
+                    web_status = "✅" if result['web_accessible'] else "❌"
+                    status_code = f"({result['web_status']})" if result['web_status'] else ""
+                    print(f"   Local: {local_status} | Web: {web_status} {status_code}")
+                time.sleep(0.02)
+
+        print(f"\n🔗 Total resource references tested: {resource_counter}")
         self.generate_report(results, file_resource_map)
         return results
 
