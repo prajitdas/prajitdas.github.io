@@ -526,7 +526,7 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
     this.options       = $.extend({}, Collapse.DEFAULTS, options)
     this.transitioning = null
 
-    if (this.options.parent) this.$parent = $(this.options.parent)
+    if (this.options.parent) this.$parent = $(document).find(this.options.parent)
     if (this.options.toggle) this.toggle()
   }
 
