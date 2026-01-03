@@ -29,7 +29,7 @@ window.onload = function() {
 			xmlhttp.open("GET", url, true);
 			xmlhttp.send();
 		} catch(err) {
-			/* todo catch error */
+			console.error(err.message);
 		}
 	}
 }
