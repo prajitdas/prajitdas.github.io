@@ -587,64 +587,12 @@
 		})();
 	</script>
 	
-	<!-- Optimized JavaScript Loading - Zero Render Blocking -->
-	<script>
-		// Essential JavaScript loading with proper dependency management
-		(function() {
-			var jQueryLoaded = false;
-			var jQueryCallbacks = [];
-			
-			// Load script with callback
-			function loadScript(src, callback) {
-				var script = document.createElement('script');
-				script.src = src;
-				script.onload = callback || function() {};
-				script.onerror = function() {
-					console.error('Failed to load script:', src);
-				};
-				document.head.appendChild(script);
-			}
-			
-			// Wait for jQuery to be available
-			function waitForjQuery(callback, retryCount) {
-				retryCount = retryCount || 0;
-				
-				if (window.jQuery) {
-					jQueryLoaded = true;
-					callback();
-					// Execute any queued callbacks
-					while (jQueryCallbacks.length > 0) {
-						jQueryCallbacks.pop()();
-					}
-				} else if (jQueryLoaded) {
-					jQueryCallbacks.push(callback);
-				} else if (retryCount < 100) { // Max 100 retries (5 seconds)
-					setTimeout(function() { waitForjQuery(callback, retryCount + 1); }, 50);
-				} else {
-					console.error('jQuery failed to load after 5 seconds, aborting');
-				}
-			}
-			
-			// Load jQuery first and wait for it
-			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.10', function() {
-				waitForjQuery(function() {
-					// Load Bootstrap JS first since navbar depends on it
-					loadScript('assets/js/bootstrap.min.js?v=2025.10', function() {
-						// Load jQuery migrate first, then Vegas plugin and main.js
-						loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.10', function() {
-							loadScript('assets/plugins/vegas/jquery.vegas.min.js?v=2025.10', function() {
-								loadScript('assets/js/main.js?v=2025.10', function() {
-									// Main.js loaded
-								});
-							});
-						});
-					});
-					
-					// Note: RSS and GitHub Activity plugins removed since target elements don't exist
-				});
-			});
-		})();
-	</script>
+	<!-- Optimized JavaScript Loading - Parallel Download, Sequential Execution -->
+	<script src="assets/js/jquery-1.11.2.min.js?v=2025.10" defer></script>
+	<script src="assets/js/bootstrap.min.js?v=2025.10" defer></script>
+	<script src="assets/js/jquery-migrate-1.2.1.min.js?v=2025.10" defer></script>
+	<script src="assets/plugins/vegas/jquery.vegas.min.js?v=2025.10" defer></script>
+	<script src="assets/js/main.js?v=2025.10" defer></script>
 	
 	<!-- Service Worker for Advanced Caching -->
 	<script>
