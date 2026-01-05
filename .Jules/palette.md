@@ -1,3 +1,3 @@
-## 2025-10-26 - Accessibility of Icon-Only Links
-**Learning:** The site relies on `title` attributes for icon-only links (social media, navbar toggle). While this provides a tooltip for mouse users, it is inconsistent for screen reader users and does not provide an accessible name in all contexts.
-**Action:** Replace or augment `title` attributes with `aria-label` for icon-only interactive elements to ensure robust accessibility.
+## 2024-05-23 - Accessibility: Skip to Content
+**Learning:** Single-page sites with fixed headers often trap keyboard users in a navigation loop unless a "Skip to Content" link is provided. This is a critical WCAG 2.1 requirement (2.4.1 Bypass Blocks).
+**Action:** Always include a visually hidden, focus-visible skip link as the first focusable element in the DOM for pages with repeated navigation headers.
