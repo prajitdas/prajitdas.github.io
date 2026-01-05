@@ -46,7 +46,7 @@
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
 	<meta http-equiv="X-XSS-Protection" content="1; mode=block">
 	<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; media-src 'self' https:; object-src 'self' data: http://ceur-ws.org; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; media-src 'self' https:; object-src 'self' data: https://ceur-ws.org; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self';">
 	<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 	
 	<!-- Resource Hints for Improved Performance -->
@@ -587,64 +587,12 @@
 		})();
 	</script>
 	
-	<!-- Optimized JavaScript Loading - Zero Render Blocking -->
-	<script>
-		// Essential JavaScript loading with proper dependency management
-		(function() {
-			var jQueryLoaded = false;
-			var jQueryCallbacks = [];
-			
-			// Load script with callback
-			function loadScript(src, callback) {
-				var script = document.createElement('script');
-				script.src = src;
-				script.onload = callback || function() {};
-				script.onerror = function() {
-					console.error('Failed to load script:', src);
-				};
-				document.head.appendChild(script);
-			}
-			
-			// Wait for jQuery to be available
-			function waitForjQuery(callback, retryCount) {
-				retryCount = retryCount || 0;
-				
-				if (window.jQuery) {
-					jQueryLoaded = true;
-					callback();
-					// Execute any queued callbacks
-					while (jQueryCallbacks.length > 0) {
-						jQueryCallbacks.pop()();
-					}
-				} else if (jQueryLoaded) {
-					jQueryCallbacks.push(callback);
-				} else if (retryCount < 100) { // Max 100 retries (5 seconds)
-					setTimeout(function() { waitForjQuery(callback, retryCount + 1); }, 50);
-				} else {
-					console.error('jQuery failed to load after 5 seconds, aborting');
-				}
-			}
-			
-			// Load jQuery first and wait for it
-			loadScript('assets/js/jquery-1.11.2.min.js?v=2025.10', function() {
-				waitForjQuery(function() {
-					// Load Bootstrap JS first since navbar depends on it
-					loadScript('assets/js/bootstrap.min.js?v=2025.10', function() {
-						// Load jQuery migrate first, then Vegas plugin and main.js
-						loadScript('assets/js/jquery-migrate-1.2.1.min.js?v=2025.10', function() {
-							loadScript('assets/plugins/vegas/jquery.vegas.min.js?v=2025.10', function() {
-								loadScript('assets/js/main.js?v=2025.10', function() {
-									// Main.js loaded
-								});
-							});
-						});
-					});
-					
-					// Note: RSS and GitHub Activity plugins removed since target elements don't exist
-				});
-			});
-		})();
-	</script>
+	<!-- Optimized JavaScript Loading - Parallel Download, Sequential Execution -->
+	<script src="assets/js/jquery-1.11.2.min.js?v=2025.10" defer></script>
+	<script src="assets/js/bootstrap.min.js?v=2025.10" defer></script>
+	<script src="assets/js/jquery-migrate-1.2.1.min.js?v=2025.10" defer></script>
+	<script src="assets/plugins/vegas/jquery.vegas.min.js?v=2025.10" defer></script>
+	<script src="assets/js/main.js?v=2025.10" defer></script>
 	
 	<!-- Service Worker for Advanced Caching -->
 	<script>
@@ -803,13 +751,13 @@
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class=container>
 				<div class=navbar-header>
-					<button type=button class=navbar-toggle data-toggle=collapse data-target=.navbar-collapse title="Toggle navigation"><span
+					<button type=button class=navbar-toggle data-toggle=collapse data-target=.navbar-collapse title="Toggle navigation" aria-label="Toggle navigation"><span
 							class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button>
 					<a class=navbar-brand href="#">Prajit's homepage</a></div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="assets/docs/resume/resume-prajit-das-032225.pdf" target="_blank" rel="noopener"><i class="fa fa-file-pdf-o"></i> R&eacute;sum&eacute;</a></li>
-						<li><a href="assets/docs/cv/cv-prajit-kumar-das.pdf" target="_blank" rel="noopener"><i class="fa fa-file-pdf-o"></i> Curriculum Vitae</a></li>
+						<li><a href="assets/docs/resume/resume-prajit-das-032225.pdf" target="_blank" rel="noopener"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> R&eacute;sum&eacute;</a></li>
+						<li><a href="assets/docs/cv/cv-prajit-kumar-das.pdf" target="_blank" rel="noopener"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Curriculum Vitae</a></li>
 					</ul>
 				</div>
 			</div>
@@ -832,12 +780,12 @@
 					Security Researcher & Software Engineering Leader @ <a href="https://www.cisco.com" target="_blank" rel="noopener">Cisco Systems Inc.</a></br>
 				</h2>
 				<ul class="social list-inline">
-					<li><a href="https://scholar.google.com/citations?user=mfs-XBIAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar Profile"><i class="fa fa-graduation-cap"></i></a></li>
-					<li><a href="https://github.com/prajitdas" target="_blank" rel="noopener" title="GitHub Profile"><i class="fa fa-github-alt"></i></a></li>
-					<li><a href="https://www.linkedin.com/in/prajitdas" target="_blank" rel="noopener" title="Visit my LinkedIn profile"><i class="fa fa-linkedin"></i></a></li>
-					<li><a href="https://twitter.com/docprajit" target="_blank" rel="noopener" title="Visit my Twitter profile"> <i class="fa fa-twitter"></i> </a></li>
-					<li><a href="https://stackoverflow.com/users/1816861/docpkd" target="_blank" rel="noopener" title="Visit my Stack Overflow profile"><i class="fa fa-stack-overflow"></i></a></li>
-					<li><a href="https://orcid.org/0000-0001-5176-1289" target="_blank" rel="noopener" title="ORCID Profile"><i class="fa fa-university"></i></a></li>
+					<li><a href="https://scholar.google.com/citations?user=mfs-XBIAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar Profile" aria-label="Google Scholar Profile"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a></li>
+					<li><a href="https://github.com/prajitdas" target="_blank" rel="noopener" title="GitHub Profile" aria-label="GitHub Profile"><i class="fa fa-github-alt" aria-hidden="true"></i></a></li>
+					<li><a href="https://www.linkedin.com/in/prajitdas" target="_blank" rel="noopener" title="Visit my LinkedIn profile" aria-label="Visit my LinkedIn profile"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+					<li><a href="https://twitter.com/docprajit" target="_blank" rel="noopener" title="Visit my Twitter profile" aria-label="Visit my Twitter profile"> <i class="fa fa-twitter" aria-hidden="true"></i> </a></li>
+					<li><a href="https://stackoverflow.com/users/1816861/docpkd" target="_blank" rel="noopener" title="Visit my Stack Overflow profile" aria-label="Visit my Stack Overflow profile"><i class="fa fa-stack-overflow" aria-hidden="true"></i></a></li>
+					<li><a href="https://orcid.org/0000-0001-5176-1289" target="_blank" rel="noopener" title="ORCID Profile" aria-label="ORCID Profile"><i class="fa fa-university" aria-hidden="true"></i></a></li>
 				</ul>
 			</div>
 	</header>
@@ -1287,7 +1235,7 @@
 											2016.</em>, volume ISWC 2016, 2016.
 										[&nbsp;<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-bib.html#10_das2016physical">bib</a>&nbsp;|
-										<a href="http://ceur-ws.org/Vol-1750/paper-01.pdf">.pdf</a>&nbsp;|
+										<a href="https://ceur-ws.org/Vol-1750/paper-01.pdf">.pdf</a>&nbsp;|
 										<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-abstracts.html#10_das2016physical">Abstract</a>&nbsp;]
 							
@@ -1330,7 +1278,7 @@
 										Proceedings (CEUR-WS.org), 2015.
 										[&nbsp;<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-bib.html#06_pappachan2015building">bib</a>&nbsp;|
-										<a href="http://ceur-ws.org/Vol-1506/paper2.pdf">.pdf</a>&nbsp;|
+										<a href="https://ceur-ws.org/Vol-1506/paper2.pdf">.pdf</a>&nbsp;|
 										<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-abstracts.html#06_pappachan2015building">Abstract</a>&nbsp;]
 							
@@ -1352,7 +1300,7 @@
 										CEUR Workshop Proceedings (CEUR-WS.org), 2015.
 										[&nbsp;<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-bib.html#07_pappachan2015mobipedia">bib</a>&nbsp;|
-										<a href="http://ceur-ws.org/Vol-1486/paper_92.pdf">.pdf</a>&nbsp;|
+										<a href="https://ceur-ws.org/Vol-1486/paper_92.pdf">.pdf</a>&nbsp;|
 										<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-abstracts.html#07_pappachan2015mobipedia">Abstract</a>&nbsp;]
 							
@@ -1395,7 +1343,7 @@
 											2014.</em>, volume 1316. CEUR Workshop Proceedings (CEUR-WS.org), 2014.
 										[&nbsp;<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-bib.html#04_yus2014semantics">bib</a>&nbsp;|
-										<a href="http://ceur-ws.org/Vol-1316/privon2014_paper1.pdf">.pdf</a>&nbsp;|
+										<a href="https://ceur-ws.org/Vol-1316/privon2014_paper1.pdf">.pdf</a>&nbsp;|
 										<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-abstracts.html#04_yus2014semantics">Abstract</a>&nbsp;]
 							
@@ -1418,7 +1366,7 @@
 										2014.
 										[&nbsp;<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-bib.html#05_pappachan2014semantic">bib</a>&nbsp;|
-										<a href="http://ceur-ws.org/Vol-1316/privon2014_paper6.pdf">.pdf</a>&nbsp;|
+										<a href="https://ceur-ws.org/Vol-1316/privon2014_paper6.pdf">.pdf</a>&nbsp;|
 										<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-abstracts.html#05_pappachan2014semantic">Abstract</a>&nbsp;]
 							
@@ -1462,7 +1410,7 @@
 										[&nbsp;<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-bib.html#02_das2013energy">bib</a>&nbsp;|
 										<a href="http://dx.doi.org/10.1145/2542095.2542114">DOI</a>&nbsp;|
-										<a href="http://ceur-ws.org/Vol-1121/privon2013_paper1.pdf">.pdf</a>&nbsp;|
+										<a href="https://ceur-ws.org/Vol-1121/privon2013_paper1.pdf">.pdf</a>&nbsp;|
 										<a
 											href="https://prajitdas.github.io/assets/docs/publications/my-publications-abstracts.html#02_das2013energy">Abstract</a>&nbsp;]
 							
