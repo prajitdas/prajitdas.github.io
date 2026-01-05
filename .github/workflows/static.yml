@@ -33,11 +33,19 @@ jobs:
         uses: actions/checkout@v6
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Build public artifact
+        run: |
+          set -euo pipefail
+          rm -rf public
+          mkdir -p public
+          cp -R assets public/assets
+          cp -R .well-known public/.well-known
+          cp 404.html index.html keybase.txt robots.txt ror.xml sitemap.xml sw.js public/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          # Upload entire repository
-          path: '.'
+          # Upload curated public site files only
+          path: 'public'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
