@@ -12,6 +12,17 @@ import time
 from urllib.parse import urljoin
 from pathlib import Path
 
+PUBLIC_ALLOWLIST = {
+    "404.html",
+    "index.html",
+    "keybase.txt",
+    "robots.txt",
+    "ror.xml",
+    "sitemap.xml",
+    "sw.js",
+}
+PUBLIC_ALLOW_PREFIXES = ("assets/", ".well-known/")
+
 # Import local logging system (only for local runs, not GitHub Actions)
 try:
     if not os.environ.get('GITHUB_ACTIONS'):
@@ -139,7 +150,13 @@ def test_file_access(base_url, files_to_test):
     print("=" * 70)
     print("ℹ️  Testing all potentially sensitive files...")
     print("=" * 70)
-    
+
+    original_count = len(files_to_test)
+    files_to_test = [f for f in files_to_test if not is_public_file(f)]
+    skipped_public = original_count - len(files_to_test)
+    if skipped_public:
+        print(f"ℹ️  Skipping {skipped_public} public site files from security scan")
+
     results = []
     accessible_files = []
     protected_files = []
@@ -223,10 +240,18 @@ def discover_files():
             if not any(part.startswith('.git') for part in file.parts):
                 # Convert to relative path string
                 rel_path = str(file.relative_to(repo_root))
+                if is_public_file(rel_path):
+                    continue
                 all_files.append(rel_path)
     
     # Remove duplicates and sort
     return sorted(list(set(all_files)))
+
+def is_public_file(rel_path):
+    normalized = rel_path.lstrip("./")
+    if normalized in PUBLIC_ALLOWLIST:
+        return True
+    return any(normalized.startswith(prefix) for prefix in PUBLIC_ALLOW_PREFIXES)
 
 def main():
     """Run comprehensive security analysis suite"""

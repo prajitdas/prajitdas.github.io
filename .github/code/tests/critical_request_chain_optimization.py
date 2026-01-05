@@ -90,8 +90,8 @@ def analyze_critical_request_chain():
             noscript_scripts.extend(noscript.find_all('script', src=True))
         
         actual_scripts = [s for s in script_tags if s not in noscript_scripts]
-        async_scripts = [s for s in actual_scripts if s.get('async') or s.get('defer')]
-        blocking_scripts = [s for s in actual_scripts if not (s.get('async') or s.get('defer'))]
+        async_scripts = [s for s in actual_scripts if s.has_attr('async') or s.has_attr('defer')]
+        blocking_scripts = [s for s in actual_scripts if not (s.has_attr('async') or s.has_attr('defer'))]
         
         results['async_js_count'] = len(async_scripts)
         results['render_blocking_js'] = len(blocking_scripts)
@@ -265,7 +265,7 @@ def test_lcp_optimization():
             noscript_scripts.extend(noscript.find_all('script', src=True))
         
         actual_scripts = [s for s in script_tags if s not in noscript_scripts]
-        blocking_scripts = [s for s in actual_scripts if not (s.get('async') or s.get('defer'))]
+        blocking_scripts = [s for s in actual_scripts if not (s.has_attr('async') or s.has_attr('defer'))]
         
         if len(blocking_scripts) == 0:
             lcp_factors.append("✅ No render-blocking JavaScript")

@@ -15,6 +15,13 @@ import time
 # CI environment detection
 IS_CI = os.environ.get('GITHUB_ACTIONS') == 'true'
 
+ACADEMIC_DOMAINS = [
+    'doi.org', 'dx.doi.org', 'arxiv.org', 'ieee.org', 'ieeexplore.ieee.org',
+    'dl.acm.org', 'acm.org', 'search.proquest.com', 'ceur-ws.org',
+    'igi-global.com', 'ebiquity.umbc.edu'
+]
+BOT_BLOCK_STATUSES = {403, 418, 429}
+
 # Import local logging system (only for local runs, not GitHub Actions)
 try:
     if not os.environ.get('GITHUB_ACTIONS'):
@@ -169,14 +176,8 @@ class WebsiteResourceTester:
             parsed = urlparse(test_url)
             domain = parsed.netloc.lower()
 
-            # Domains frequently blocking automated CI requests
-            SKIP_DOMAINS = [
-                'doi.org', 'dx.doi.org', 'arxiv.org', 'ieee.org', 'ieeexplore.ieee.org',
-                'dl.acm.org', 'acm.org', 'search.proquest.com', 'ceur-ws.org',
-                'igi-global.com', 'ebiquity.umbc.edu'
-            ]
-
-            if IS_CI and any(d in domain for d in SKIP_DOMAINS):
+            is_academic_domain = any(d in domain for d in ACADEMIC_DOMAINS)
+            if IS_CI and is_academic_domain:
                 return {
                     'status_code': None,
                     'accessible': True,  # treat as pass in CI
@@ -200,7 +201,17 @@ class WebsiteResourceTester:
                 acceptable_statuses.update({403, 418, 429})
 
             is_doi_link = 'doi.org' in domain or 'dx.doi.org' in domain
-            accessible = (status in acceptable_statuses or (is_doi_link and status == 418))
+            blocked_by_external = is_academic_domain and status in BOT_BLOCK_STATUSES
+            accessible = (status in acceptable_statuses or blocked_by_external or (is_doi_link and status == 418))
+
+            if blocked_by_external:
+                return {
+                    'status_code': status,
+                    'accessible': True,
+                    'url': test_url,
+                    'skipped': True,
+                    'reason': 'Blocked by external academic domain'
+                }
 
             if not accessible and LOCAL_LOGGING_ENABLED and not IS_CI:
                 error_type = f"HTTP_{status}"
