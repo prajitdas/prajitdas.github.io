@@ -91,6 +91,14 @@ class WebsiteResourceTester:
             for selector, attr in resource_selectors:
                 elements = soup.select(selector)
                 for element in elements:
+                    if selector == 'link[href]':
+                        rels = element.get('rel') or []
+                        if isinstance(rels, str):
+                            rels = [rels]
+                        rels = [rel.lower() for rel in rels]
+                        # Skip connection hint links; they are not real resources.
+                        if any(rel in ('preconnect', 'dns-prefetch') for rel in rels):
+                            continue
                     resource_url = element.get(attr)
                     if resource_url:
                         resource_url = resource_url.strip()
