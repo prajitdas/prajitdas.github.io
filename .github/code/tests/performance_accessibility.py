@@ -74,8 +74,8 @@ def test_core_web_vitals_optimization():
         
         # Test for async/defer JavaScript
         script_tags = soup.find_all('script', src=True)
-        async_scripts = sum(1 for script in script_tags if script.get('async'))
-        defer_scripts = sum(1 for script in script_tags if script.get('defer'))
+        async_scripts = sum(1 for script in script_tags if script.has_attr('async'))
+        defer_scripts = sum(1 for script in script_tags if script.has_attr('defer'))
         
         print(f"   🚀 Async scripts: {async_scripts}")
         print(f"   ⏳ Defer scripts: {defer_scripts}")
