@@ -46,7 +46,7 @@
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
 	<meta http-equiv="X-XSS-Protection" content="1; mode=block">
 	<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-	<meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; media-src 'self' https:; object-src 'self' data: https://ceur-ws.org; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://www.gravatar.com https://img.youtube.com https://prajitdas.github.io; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; media-src 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
 	<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 	
 	<!-- Resource Hints for Improved Performance -->
@@ -1733,20 +1733,12 @@
 </footer>
 <!-- JavaScript Already Loaded Optimally in Head - No Additional Loading Needed -->
 <script>
-// Wait for jQuery to be available before executing jQuery-dependent code
+// Wait for DOMContentLoaded to ensure deferred scripts (like jQuery) are loaded
 (function() {
-	function waitForjQuery(callback) {
-		if (window.jQuery) {
-			callback();
-		} else {
-			setTimeout(function() { waitForjQuery(callback); }, 50);
-		}
-	}
-	
-	waitForjQuery(function() {
+	document.addEventListener('DOMContentLoaded', function() {
 		// Triple-check jQuery is available and functional
 		if (!window.jQuery || typeof window.jQuery !== 'function') {
-			console.error('jQuery still not available or not functional in waitForjQuery callback');
+			console.error('jQuery still not available or not functional in DOMContentLoaded');
 			return;
 		}
 		
@@ -1763,9 +1755,6 @@
 				var toggleButton = document.querySelector('.navbar-toggle');
 				var navbarCollapse = document.querySelector('.navbar-collapse');
 				
-				console.log('Mobile menu setup - Toggle button:', toggleButton);
-				console.log('Mobile menu setup - Navbar collapse:', navbarCollapse);
-				
 				if (toggleButton && navbarCollapse) {
 					// Remove any existing listeners
 					toggleButton.onclick = null;
@@ -1774,22 +1763,14 @@
 						e.preventDefault();
 						e.stopPropagation();
 						
-						console.log('Hamburger clicked!');
-						console.log('Current classes:', navbarCollapse.className);
-						
 						if (navbarCollapse.classList.contains('in')) {
 							navbarCollapse.classList.remove('in');
-							console.log('Menu closed');
 						} else {
 							navbarCollapse.classList.add('in');
-							console.log('Menu opened');
 						}
 					});
-					
-					console.log('Mobile menu listener attached successfully');
 				} else {
 					console.error('Mobile menu elements not found');
-					console.log('Available navbar elements:', document.querySelectorAll('[class*="navbar"]'));
 				}
 			}
 			
@@ -1846,8 +1827,8 @@
 			initMobileMenu();
 		}
 		
-	}); // End waitForjQuery
-})(); // End wrapper
+	});
+})();
 </script>
 <!-- Performance Monitoring with Web Vitals -->
 <script>
@@ -2042,10 +2023,8 @@
 			newButton.style.webkitTapHighlightColor = 'rgba(0,0,0,0.1)';
 			newButton.style.userSelect = 'none';
 			
-			console.log('Final mobile menu setup complete');
 			return true;
 		}
-		console.log('Mobile menu elements not found in final setup');
 		return false;
 	}
 	
