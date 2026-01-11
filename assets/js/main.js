@@ -22,5 +22,20 @@
 
         // Note: RSS and GitHub Activity plugin initialization removed 
         // since target elements (#rss-feeds, #ghfeed) don't exist on the page
+
+        // Back to Top logic
+        var $backToTop = e('#back-to-top');
+        e(window).scroll(function () {
+            if (e(this).scrollTop() > 300) {
+                $backToTop.addClass('show');
+            } else {
+                $backToTop.removeClass('show');
+            }
+        });
+
+        $backToTop.on('click', function (event) {
+            event.preventDefault();
+            e('html, body').animate({scrollTop: 0}, 600);
+        });
     });
 }());
