@@ -5,9 +5,6 @@
     'use strict';
 
     jQuery(document).ready(function (e) {
-        // Debug: Check jQuery availability
-        console.log('Main.js loaded. jQuery version:', e.fn.jquery);
-
         // Skill level bars animation
         e('.level-bar-inner').css('width', '0');
 
