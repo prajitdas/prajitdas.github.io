@@ -9,3 +9,7 @@
 ## 2025-05-27 - Accessibility: Interactive Media Triggers
 **Learning:** Elements that trigger media playback (like custom YouTube thumbnails) must be keyboard-accessible. A clickable `div` is invisible to keyboard users. Using a semantic `<button>` ensures native keyboard support (Enter/Space) and focusability.
 **Action:** Replace `div` with `button type="button"` for custom media triggers, ensuring proper `aria-label` and style resets (`border: none`, `appearance: none`).
+
+## 2025-05-27 - UX: Navigation efficiency on long pages
+**Learning:** Users often lose context on long, single-page portfolios. A persistent 'Back to Top' button provides a quick escape hatch, improving navigation efficiency without cluttering the sticky header.
+**Action:** Implement a floating 'Back to Top' button that appears only after the user has scrolled significantly (e.g., 300px), ensuring it has an `aria-label` for accessibility.
