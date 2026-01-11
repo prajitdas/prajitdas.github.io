@@ -21,7 +21,6 @@ const STATIC_ASSETS = [
   '/assets/plugins/vegas/jquery.vegas.min.css?v=2025.10',
   '/assets/css/octicons.min.css?v=2025.10',
   '/assets/js/jquery-1.11.2.min.js?v=2025.10',
-  '/assets/js/jquery-migrate-1.2.1.min.js?v=2025.10',
   '/assets/plugins/vegas/jquery.vegas.min.js?v=2025.10',
   '/assets/js/bootstrap.min.js?v=2025.10',
   '/assets/js/main.js?v=2025.10',
