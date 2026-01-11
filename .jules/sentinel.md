@@ -1,4 +1,6 @@
-## 2024-03-24 - Malformed HTML Security Attributes
-**Vulnerability:** Detected several instances of malformed HTML attributes like `target="_blank rel=" noopener""` and `href=url` without quotes.
-**Learning:** Copy-pasting HTML code without validation can lead to nested quotes and malformed attributes, which browsers may misinterpret. This can negate security features like `rel="noopener"`, leaving the site vulnerable to reverse tabnabbing.
-**Prevention:** Always validate HTML syntax when adding security attributes. Use linters or manual inspection to ensure attributes are correctly quoted and separated.
+# Sentinel's Journal
+
+## 2025-05-23 - Critical jQuery Vulnerability Fix
+**Vulnerability:** jQuery 1.11.2 was being used, which has multiple known XSS vulnerabilities (e.g., CVE-2015-9251, CVE-2020-11022).
+**Learning:** Upgrading from 1.x to 3.x requires `jquery-migrate` to be present, and crucially, the service worker cache needs to be invalidated (by version bump) to ensure users get the new files.
+**Prevention:** Regularly check `npm audit` or equivalent for frontend libraries, even in static sites.
