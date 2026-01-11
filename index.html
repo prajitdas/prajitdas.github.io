@@ -49,6 +49,20 @@
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://www.gravatar.com https://img.youtube.com https://prajitdas.github.io; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; media-src 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
 	<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 	
+	<!-- Anti-Clickjacking (Frame-busting) script for static site security -->
+	<style id="antiClickjack">body{display:none !important;}</style>
+	<script>
+		if (self === top) {
+			var antiClickjack = document.getElementById("antiClickjack");
+			antiClickjack.parentNode.removeChild(antiClickjack);
+		} else {
+			top.location = self.location;
+		}
+	</script>
+	<noscript>
+		<style>body{display:block !important;}</style>
+	</noscript>
+
 	<!-- Resource Hints for Improved Performance -->
 	<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -829,7 +843,7 @@
 									policy creation, and simplifying complex troubleshooting, representing a major step toward
 									AI-driven security operations.</li>
 								<li><b>Security Incident Response:</b> Led my team's rapid and effective response to the <a
-										href=https://nvd.nist.gov/vuln/detail/cve-2024-3596 target="_blank"
+										href="https://nvd.nist.gov/vuln/detail/cve-2024-3596" target="_blank"
 										rel="noopener">Blast-RADIUS (CVE-2024-3596)</a> vulnerability. This involved expedited
 									triage, cross-functional collaboration with Cisco's PSIRT and Talos teams, and architecting a
 									robust solution that addressed the immediate threat and strengthened the product's long-term
@@ -860,7 +874,7 @@
 							</h3>
 							<p>Worked on design, development and testing of software solutions for Cisco's <a
 									href="https://www.cisco.com/site/us/en/products/security/firewalls/firewall-management-center/index.html"
-									target="_blank rel=" noopener"">Secure Firewall Management Center</a>.</p>
+									target="_blank" rel="noopener">Secure Firewall Management Center</a>.</p>
 						</div>
 						<div class=item>
 							<h3 class=title>Graduate Research Assistant - <span class=place><a
@@ -932,7 +946,7 @@
 								<p>As part of my Doctoral dissertation, I built Mithril, a framework for capturing user access control policies that were
 									fine-grained, context-sensitive and were represented using Semantic Web technologies
 									and thereby managed access control decisions for user data on mobile devices. Read
-									the paper from IEEE CIC 2016 <a class=more-link href="https://ebiquity.umbc.edu/paper/html/id/763/Capturing-policies-for-fine-grained-access-control-on-mobile-devices" target="_blank" rel="noopener" target="_blank rel="noopener"">here <i class="fa fa-external-link"></i></a></br>
+									the paper from IEEE CIC 2016 <a class=more-link href="https://ebiquity.umbc.edu/paper/html/id/763/Capturing-policies-for-fine-grained-access-control-on-mobile-devices" target="_blank" rel="noopener">here <i class="fa fa-external-link"></i></a></br>
 												 <a class=more-link href="assets/docs/presentations/IEEECIC2016/capturing-policies-for-fine-grained-access-control-on-mobile-devices-ieee-cic-2016.pdf" target="_blank" rel="noopener">Check out presentation to find out more <i class="fa fa-external-link"></i></a></br>
 												 <a class=more-link href="https://www.slideshare.net/prajitdas/capturing-policies-for-finegrained-access-control-on-mobile-devices" target="_blank" rel="noopener">Slides also available on SlideShare <i class="fa fa-external-link"></i></a></br>
 												 <a class=more-link href="https://youtu.be/ilICNyQrKfo" target="_blank" rel="noopener">See demo video here <i class="fa fa-external-link"></i></a></p></div>
@@ -946,7 +960,7 @@
 								<p>The Heimdall project focused on the analysis of system calls with a goal of classifying apps into their perceived behavior category. Thereby it enabled detection of outlier apps that tried to do more than described in Google Play Store or what was informed to the user. Read
 									the paper <a class=more-link
 												 href="https://ebiquity.umbc.edu/paper/html/id/771/App-behavioral-analysis-using-system-calls"
-												 target="_blank rel="noopener""><i class="fa fa-external-link"></i>here</a><a
+												 target="_blank" rel="noopener"><i class="fa fa-external-link"></i>here</a><a
 											class=more-link
 											href="assets/docs/presentations/MobiSec2017/app-behavioral-analysis-using-system-calls.pdf"
 											target="_blank" rel="noopener"><i class="fa fa-external-link"></i>Check out presentation to
@@ -1605,8 +1619,8 @@
 				<div class=section-inner><h2 class=heading>Academic services</h2>
 					<div class=content>
 						<div class=item><h3 class=title><i class="fa fa-university"></i>Reviewer</h3> <h4 class=university>Reviewer for <a
-								href="https://chi2017.acm.org" target="_blank rel="noopener"">ACM CHI 2017</a>,<a
-								href="https://www.computer.org/web/tsc" target="_blank rel="noopener"">IEEE Transactions on Services
+								href="https://chi2017.acm.org" target="_blank" rel="noopener">ACM CHI 2017</a>,<a
+								href="https://www.computer.org/web/tsc" target="_blank" rel="noopener">IEEE Transactions on Services
 							Computing 2016</a> and
 						<a href="https://industrial-knowledge-graphs.github.io/2017/" target="_blank" rel="noopener">Industrial Knowledge Graph workshop</a> co-located with the <a href="https://websci17.org/" target="_blank" rel="noopener">9th International ACM Web Science Conference 2017</a></h4></div>
 						<div class=item><h3 class=title><i class="fa fa-university"></i>Additional reviewer</h3> <h4 class=university>Additional reviewer and PC member for Emerging Applications of
@@ -1614,8 +1628,8 @@
 														   target="_blank" rel="noopener">EAIT 2014 webpage</a> for more details.</h4>
 						</div>
 						<div class=item><h3 class=title><i class="fa fa-university"></i>Sub-reviewer</h3> <h4 class=university>Sub-reviewer for <a href="https://www2016.ca"
-																					  target="_blank rel="noopener"">WWW 2016</a> and
-							<a href="https://www.ieeevtc.org/vtc2012fall" target="_blank" rel="noopener" target="_blank rel="noopener"">IEEE VTC 2012 - Fall in Qu&eacute;bec
+																					  target="_blank" rel="noopener">WWW 2016</a> and
+							<a href="https://www.ieeevtc.org/vtc2012fall" target="_blank" rel="noopener">IEEE VTC 2012 - Fall in Qu&eacute;bec
 								City, Canada</a></h4></div>
 					</div>
 				</div>
