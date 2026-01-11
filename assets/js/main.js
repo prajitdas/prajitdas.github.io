@@ -42,19 +42,20 @@
         // Note: RSS and GitHub Activity plugin initialization removed 
         // since target elements (#rss-feeds, #ghfeed) don't exist on the page
 
-        // Back to Top logic
-        var $backToTop = e('#back-to-top');
+        /* Back to Top */
+        var backToTop = e('#back-to-top');
         e(window).scroll(function () {
-            if (e(this).scrollTop() > 300) {
-                $backToTop.addClass('show');
+            if (e(this).scrollTop() > 200) {
+                backToTop.fadeIn();
             } else {
-                $backToTop.removeClass('show');
+                backToTop.fadeOut();
             }
         });
 
-        $backToTop.on('click', function (event) {
-            event.preventDefault();
-            e('html, body').animate({scrollTop: 0}, 600);
+        backToTop.on('click', function (e) {
+            e.preventDefault();
+            jQuery('html, body').animate({scrollTop: 0}, 600);
+            return false;
         });
     });
 }());
