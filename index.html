@@ -133,7 +133,7 @@
 	<link rel="preconnect" href="https://www.google-analytics.com">
 	
 	<!-- LCP Optimization - Preload the fallback image which is more reliable -->
-	<link rel="preload" href="assets/img/Profile.jpg?v=2025.10" as="image" type="image/jpeg">
+	<link rel="preload" href="assets/img/Profile.jpg?v=2025.11" as="image" type="image/jpeg">
 	
 	<!-- Critical CSS Inlined - Zero Network Requests for Above-the-Fold Rendering -->
 	<style>
@@ -516,27 +516,27 @@
 		}
 		
 		// Load critical CSS first (higher priority)
-		loadCSS('assets/css/bootstrap.min.css?v=2025.10');
+		loadCSS('assets/css/bootstrap.min.css?v=2025.11');
 		
 		// Defer non-critical CSS after critical path
 		setTimeout(function() {
-		loadCSS('assets/css/font-awesome.min.css?v=2025.10');
-		loadCSS('assets/css/styles.css?v=2025.10');
-		loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.10');
+		loadCSS('assets/css/font-awesome.min.css?v=2025.11');
+		loadCSS('assets/css/styles.css?v=2025.11');
+		loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.11');
 			// Mark secondary content as loaded
 			document.documentElement.classList.add('content-loaded');
 		}, 50);
 	</script>
 	
 	<!-- Critical Resource Preload - Only for LCP candidates -->
-	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.10" as="style">
+	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.11" as="style">
 	
 	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.10">
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.10">
-		<link rel="stylesheet" href="assets/css/styles.css?v=2025.10">
-		<link rel="stylesheet" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.10">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.11">
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.11">
+		<link rel="stylesheet" href="assets/css/styles.css?v=2025.11">
+		<link rel="stylesheet" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.11">
 	</noscript>
 	
 	<!-- Optimized Font Loading - Non-blocking, Zero Critical Chain Impact -->
@@ -559,11 +559,11 @@
 	</noscript>
 	
 	<!-- Optimized JavaScript Loading - Parallel Download, Sequential Execution -->
-	<script src="assets/js/jquery-3.7.1.min.js?v=2025.10" defer></script>
-	<script src="assets/js/jquery-migrate-3.5.2.min.js?v=2025.10" defer></script>
-	<script src="assets/js/bootstrap.min.js?v=2025.10" defer></script>
-	<script src="assets/plugins/vegas/jquery.vegas.min.js?v=2025.10" defer></script>
-	<script src="assets/js/main.js?v=2025.10" defer></script>
+	<script src="assets/js/jquery-3.7.1.min.js?v=2025.11" defer></script>
+	<script src="assets/js/jquery-migrate-3.5.2.min.js?v=2025.11" defer></script>
+	<script src="assets/js/bootstrap.min.js?v=2025.11" defer></script>
+	<script src="assets/plugins/vegas/jquery.vegas.min.js?v=2025.11" defer></script>
+	<script src="assets/js/main.js?v=2025.11" defer></script>
 	
 	<!-- Service Worker for Advanced Caching -->
 	<script>
@@ -582,18 +582,18 @@
 		
 		// Cache API implementation for manual resource caching
 		if ('caches' in window) {
-			const CACHE_NAME = 'prajitdas-v2025.09';
+			const CACHE_NAME = 'prajitdas-v2025.11';
 			const urlsToCache = [
 				'/',
-				'/assets/css/bootstrap.min.css?v=2025.10',
-				'/assets/css/font-awesome.min.css?v=2025.10',
-				'/assets/css/styles.css?v=2025.10',
-				'/assets/plugins/vegas/jquery.vegas.min.css?v=2025.10',
-				'/assets/js/jquery-3.7.1.min.js?v=2025.10',
-				'/assets/js/jquery-migrate-3.5.2.min.js?v=2025.10',
-				'/assets/plugins/vegas/jquery.vegas.min.js?v=2025.10',
-				'/assets/js/bootstrap.min.js?v=2025.10',
-				'/assets/js/main.js?v=2025.10'
+				'/assets/css/bootstrap.min.css?v=2025.11',
+				'/assets/css/font-awesome.min.css?v=2025.11',
+				'/assets/css/styles.css?v=2025.11',
+				'/assets/plugins/vegas/jquery.vegas.min.css?v=2025.11',
+				'/assets/js/jquery-3.7.1.min.js?v=2025.11',
+				'/assets/js/jquery-migrate-3.5.2.min.js?v=2025.11',
+				'/assets/plugins/vegas/jquery.vegas.min.js?v=2025.11',
+				'/assets/js/bootstrap.min.js?v=2025.11',
+				'/assets/js/main.js?v=2025.11'
 			];
 			
 			// Pre-cache critical resources
@@ -740,7 +740,7 @@
 	</div>
 	<header class=header>
 		<div class=container><img 
-			src="assets/img/Profile.jpg?v=2025.10"
+			src="assets/img/Profile.jpg?v=2025.11"
 			class="profile-image img-responsive pull-left pull-down img-circle" 
 			alt="Prajit Kumar Das" 
 			id="donottouch" 
@@ -1462,7 +1462,7 @@
 				<div class=section-inner>
 					<h2 class=heading>Publication word cloud</h2>
 					<div class=content>
-						<img src="assets/docs/publications/wordcloud.png?v=2025.10" 
+						<img src="assets/docs/publications/wordcloud.png?v=2025.11"
 							 width="100%" 
 							 alt="Word cloud of publications"
 							 loading="lazy"
