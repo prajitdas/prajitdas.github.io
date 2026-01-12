@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <script>
+    $(document).ready(function() {
+        console.log("Starting test");
+        var a = $("#nonexistent");
+        var count = 0;
+        function i() {
+            count++;
+            console.log("Loop " + count);
+            if (count > 5) return;
+            // On empty set, effects are NO-OP and callback is NOT called by default in newer jQuery?
+            // Or maybe it is called immediately?
+            a.fadeIn(100).delay(100).fadeOut(100, i);
+
+            // If callback is not called, we won't see Loop 2
+        }
+        i();
+    });
+    </script>
+</body>
+</html>
