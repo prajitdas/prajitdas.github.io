@@ -1,30 +1,30 @@
 // Service Worker for Advanced Caching Strategy
 // Version: 2025.10.1
 
-const CACHE_NAME = 'prajitdas-cache-v2025.10.1';
-const STATIC_CACHE_NAME = 'prajitdas-static-v2025.10.1';
-const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.10.1';
+const CACHE_NAME = 'prajitdas-cache-v2025.11.0';
+const STATIC_CACHE_NAME = 'prajitdas-static-v2025.11.0';
+const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.11.0';
 
 // Critical resources for immediate caching (LCP optimization)
 const CRITICAL_ASSETS = [
   '/',
   '/index.html',
-  '/assets/img/Profile.jpg?v=2025.10'
+  '/assets/img/Profile.jpg?v=2025.11'
 ];
 
 // Resources to cache immediately
 const STATIC_ASSETS = [
   ...CRITICAL_ASSETS,
-  '/assets/css/bootstrap.min.css?v=2025.10',
-  '/assets/css/font-awesome.min.css?v=2025.10',
-  '/assets/css/styles.css?v=2025.10',
-  '/assets/plugins/vegas/jquery.vegas.min.css?v=2025.10',
-  '/assets/css/octicons.min.css?v=2025.10',
-  '/assets/js/jquery-3.7.1.min.js?v=2025.10',
-  '/assets/js/jquery-migrate-3.5.2.min.js?v=2025.10',
-  '/assets/plugins/vegas/jquery.vegas.min.js?v=2025.10',
-  '/assets/js/bootstrap.min.js?v=2025.10',
-  '/assets/js/main.js?v=2025.10',
+  '/assets/css/bootstrap.min.css?v=2025.11',
+  '/assets/css/font-awesome.min.css?v=2025.11',
+  '/assets/css/styles.css?v=2025.11',
+  '/assets/plugins/vegas/jquery.vegas.min.css?v=2025.11',
+  '/assets/css/octicons.min.css?v=2025.11',
+  '/assets/js/jquery-3.7.1.min.js?v=2025.11',
+  '/assets/js/jquery-migrate-3.5.2.min.js?v=2025.11',
+  '/assets/plugins/vegas/jquery.vegas.min.js?v=2025.11',
+  '/assets/js/bootstrap.min.js?v=2025.11',
+  '/assets/js/main.js?v=2025.11',
   '/assets/plugins/vegas/images/loading.gif',
   '/assets/plugins/vegas/overlays/01.png',
   '/assets/plugins/vegas/overlays/15.png',
@@ -33,7 +33,7 @@ const STATIC_ASSETS = [
   '/assets/img/3.jpg',
   '/assets/img/sw.jpg',
   '/assets/img/favicon.ico',
-  '/assets/docs/publications/wordcloud.png?v=2025.10',
+  '/assets/docs/publications/wordcloud.png?v=2025.11',
   '/assets/img/projects/MobipediaLogo.png'
 ];
 
