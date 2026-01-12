@@ -36,6 +36,9 @@
         // Tooltip for level labels
         e('.level-label').tooltip();
 
+        // Tooltip for social links
+        e('.social a').tooltip({ placement: 'bottom' });
+
         // Note: RSS and GitHub Activity plugin initialization removed 
         // since target elements (#rss-feeds, #ghfeed) don't exist on the page
 
