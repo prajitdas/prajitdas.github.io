@@ -57,5 +57,25 @@
             jQuery('html, body').animate({scrollTop: 0}, 600);
             return false;
         });
+
+        /* ⚡ Bolt Optimization: Mobile Menu Handler
+           Consolidated from inline scripts to remove setTimeout polling and redundancy */
+        var $toggleButton = e('.navbar-toggle');
+        var $navbarCollapse = e('.navbar-collapse');
+
+        if ($toggleButton.length && $navbarCollapse.length) {
+            $toggleButton.on('click touchend', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                if ($navbarCollapse.hasClass('in')) {
+                    $navbarCollapse.removeClass('in');
+                    $navbarCollapse.css('display', 'none');
+                } else {
+                    $navbarCollapse.addClass('in');
+                    $navbarCollapse.css('display', 'block');
+                }
+            });
+        }
     });
 }());
