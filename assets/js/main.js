@@ -44,6 +44,10 @@
 
         /* Back to Top */
         var backToTop = e('#back-to-top');
+
+        // Initialize tooltip for accessibility and better UX
+        backToTop.tooltip({ placement: 'left' });
+
         e(window).scroll(function () {
             if (e(this).scrollTop() > 200) {
                 backToTop.fadeIn();
@@ -54,7 +58,12 @@
 
         backToTop.on('click', function (e) {
             e.preventDefault();
-            jQuery('html, body').animate({scrollTop: 0}, 600);
+            backToTop.tooltip('hide');
+            jQuery('html, body').animate({scrollTop: 0}, 600).promise().then(function() {
+                // Move focus to the brand logo at the top to prevent lost focus
+                // when the button fades out
+                jQuery('.navbar-brand').focus();
+            });
             return false;
         });
     });

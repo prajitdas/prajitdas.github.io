@@ -7,7 +7,7 @@
 **Action:** Always add `role="progressbar"`, `aria-valuenow`, `aria-valuemin`, `aria-valuemax`, and `aria-label` to custom progress bar components.
 
 ## 2025-05-27 - Accessibility: Interactive Media Triggers
-**Learning:** Elements that trigger media playback (like custom YouTube thumbnails) must be keyboard-accessible. A clickable `div` is invisible to keyboard users. Using a semantic `<button>` ensures native keyboard support (Enter/Space) and focusability.
+**Learning:** Elements that trigger media playback (like custom YouTube thumbnails) must have keyboard accessibility. A clickable `div` is invisible to keyboard users. Using a semantic `<button>` ensures native keyboard support (Enter/Space) and focusability.
 **Action:** Replace `div` with `button type="button"` for custom media triggers, ensuring proper `aria-label` and style resets (`border: none`, `appearance: none`).
 
 ## 2025-05-27 - UX: Navigation efficiency on long pages
@@ -17,3 +17,7 @@
 ## 2025-05-27 - Accessibility: Tooltips on Icon-Only Buttons
 **Learning:** Icon-only buttons (like social links) often lack visible labels, relying on title attributes which aren't always accessible or styled consistently. Adding explicitly initialized tooltips (like Bootstrap's) improves UX for sighted users while 'aria-label' covers screen readers.
 **Action:** Always initialize accessible tooltips for icon-only buttons to provide context on hover/focus, and ensure they have a visible focus state.
+
+## 2025-05-28 - Accessibility: Focus Management on Dynamic Elements
+**Learning:** When interactive elements (like a "Back to Top" button) disappear or are removed from the DOM after activation, keyboard focus is often lost, confusing users.
+**Action:** Explicitly move focus to a logical landing spot (e.g., the site logo or main heading) after the action completes to maintain context and keyboard navigability.
