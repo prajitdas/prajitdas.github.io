@@ -57,5 +57,23 @@
             jQuery('html, body').animate({scrollTop: 0}, 600);
             return false;
         });
+
+        // ⚡ Bolt Optimization: Mobile Menu Toggle
+        // Replaces polling/timeouts in index.html with deterministic event handling
+        // We use .off() to remove any conflicting listeners (e.g. from Bootstrap)
+        e('.navbar-toggle').off('click').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            var $navbarCollapse = e('.navbar-collapse');
+            if ($navbarCollapse.hasClass('in')) {
+                $navbarCollapse.removeClass('in');
+                // Use empty string to let CSS take over (hiding it)
+                $navbarCollapse.css('display', '');
+            } else {
+                $navbarCollapse.addClass('in');
+                // Force display block to ensure visibility
+                $navbarCollapse.css('display', 'block');
+            }
+        });
     });
 }());

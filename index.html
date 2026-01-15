@@ -543,13 +543,12 @@
 	<script>
 		// Defer font loading to not impact critical rendering path
 		(function() {
-			// Only load fonts after critical content is rendered
-			setTimeout(function() {
-				var fontLink = document.createElement('link');
-				fontLink.rel = 'stylesheet';
-				fontLink.href = 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional';
-				document.head.appendChild(fontLink);
-			}, 200); // Delay font loading until after critical content
+			// ⚡ Bolt Optimization: Removed artificial 200ms delay that caused FOIT/fallback issues
+			// with font-display: optional. Loading starts immediately but asynchronously.
+			var fontLink = document.createElement('link');
+			fontLink.rel = 'stylesheet';
+			fontLink.href = 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional';
+			document.head.appendChild(fontLink);
 		})();
 	</script>
 	
@@ -1724,40 +1723,6 @@
 			return;
 		}
 		
-		// Mobile hamburger menu fallback (in case Bootstrap doesn't initialize properly)
-		function initMobileMenu() {
-			// Wait for DOM to be ready
-			function setupMenu() {
-				var toggleButton = document.querySelector('.navbar-toggle');
-				var navbarCollapse = document.querySelector('.navbar-collapse');
-				
-				if (toggleButton && navbarCollapse) {
-					// Remove any existing listeners
-					toggleButton.onclick = null;
-					
-					toggleButton.addEventListener('click', function(e) {
-						e.preventDefault();
-						e.stopPropagation();
-						
-						if (navbarCollapse.classList.contains('in')) {
-							navbarCollapse.classList.remove('in');
-						} else {
-							navbarCollapse.classList.add('in');
-						}
-					});
-				} else {
-					console.error('Mobile menu elements not found');
-				}
-			}
-			
-			// Try to setup immediately, and also after a delay
-			setupMenu();
-			setTimeout(setupMenu, 1000);
-		}
-		
-		// Initialize mobile menu
-		initMobileMenu();
-		
 		!function (e) {
 			"use strict";
 			e(function () {
@@ -1783,12 +1748,6 @@
 			console.error('CRITICAL: window.jQuery is undefined at IIFE execution!');
 			return {};
 		})());
-
-		// Re-initialize mobile menu after jQuery is fully loaded and DOM is ready
-		if (typeof initMobileMenu === 'function') {
-			initMobileMenu();
-		}
-		
 	});
 })();
 </script>
@@ -1934,74 +1893,6 @@
 })();
 </script>
 
-<!-- Final Mobile Menu Initialization -->
-<script>
-// Ensure mobile menu works - final attempt with multiple triggers
-(function() {
-	function setupMobileMenu() {
-		var toggleButton = document.querySelector('.navbar-toggle');
-		var navbarCollapse = document.querySelector('.navbar-collapse');
-		
-		if (toggleButton && navbarCollapse) {
-			// Remove any existing listeners to avoid duplicates
-			var newButton = toggleButton.cloneNode(true);
-			toggleButton.parentNode.replaceChild(newButton, toggleButton);
-			
-			newButton.addEventListener('click', function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				
-				var collapse = document.querySelector('.navbar-collapse');
-				if (collapse) {
-					if (collapse.classList.contains('in')) {
-						collapse.classList.remove('in');
-						collapse.style.display = 'none';
-					} else {
-						collapse.classList.add('in');
-						collapse.style.display = 'block';
-					}
-				}
-			});
-			
-			// Also try with touch events for mobile (using touchend for better mobile compatibility)
-			newButton.addEventListener('touchend', function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				
-				var collapse = document.querySelector('.navbar-collapse');
-				if (collapse) {
-					if (collapse.classList.contains('in')) {
-						collapse.classList.remove('in');
-						collapse.style.display = 'none';
-					} else {
-						collapse.classList.add('in');
-						collapse.style.display = 'block';
-					}
-				}
-			});
-			
-			// Add pointer events for any touch device
-			newButton.style.cursor = 'pointer';
-			newButton.style.webkitTapHighlightColor = 'rgba(0,0,0,0.1)';
-			newButton.style.userSelect = 'none';
-			
-			return true;
-		}
-		return false;
-	}
-	
-	// Try multiple times to ensure it works
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', setupMobileMenu);
-	} else {
-		setupMobileMenu();
-	}
-	
-	window.addEventListener('load', setupMobileMenu);
-	
-	// Fallback - try after 2 seconds
-	setTimeout(setupMobileMenu, 2000);
-})();
-</script>
+<!-- ⚡ Bolt Optimization: Mobile Menu logic moved to main.js to avoid polling and redundant listeners -->
 </body>
 </html>
