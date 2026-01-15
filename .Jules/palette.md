@@ -17,3 +17,7 @@
 ## 2025-05-27 - Accessibility: Tooltips on Icon-Only Buttons
 **Learning:** Icon-only buttons (like social links) often lack visible labels, relying on title attributes which aren't always accessible or styled consistently. Adding explicitly initialized tooltips (like Bootstrap's) improves UX for sighted users while 'aria-label' covers screen readers.
 **Action:** Always initialize accessible tooltips for icon-only buttons to provide context on hover/focus, and ensure they have a visible focus state.
+
+## 2026-01-15 - Accessibility: Focus Management for Scroll Interactions
+**Learning:** Animated scroll interactions (like "Back to Top") create a disconnect for keyboard users if focus isn't moved. The viewport moves, but focus remains at the bottom, creating a "keyboard trap" or disorientation.
+**Action:** Always programmatically move focus to a logical top-level element (like the logo or main header) after a scroll-to-top animation completes.

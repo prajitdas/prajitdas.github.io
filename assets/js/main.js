@@ -54,7 +54,10 @@
 
         backToTop.on('click', function (e) {
             e.preventDefault();
-            jQuery('html, body').animate({scrollTop: 0}, 600);
+            jQuery('html, body').animate({scrollTop: 0}, 600).promise().then(function() {
+                // Focus on the brand link to reset keyboard context after scrolling to top
+                jQuery('.navbar-brand').focus();
+            });
             return false;
         });
     });
