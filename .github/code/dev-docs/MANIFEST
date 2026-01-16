@@ -12,7 +12,6 @@ assets/css/octicons.min.css: assets/plugins/github-activity/dist/octicons/octico
 assets/js/jquery-1.11.2.min.js: assets/plugins/jquery-1.11.2.min.js
 assets/js/bootstrap.min.js: assets/plugins/bootstrap/js/bootstrap.min.js
 assets/js/jquery.rss.min.js: assets/plugins/jquery-rss/dist/jquery.rss.min.js
-assets/js/jquery-1.10.2.js: assets/plugins/jquery-1.10.2.js
 assets/js/bootstrap.js: assets/js/bootstrap.js
 assets/js/mustache.min.js: assets/plugins/github-activity/dist/mustache/mustache.min.js
 assets/js/github-activity-0.1.1.min.js: assets/plugins/github-activity/dist/github-activity-0.1.1.min.js
