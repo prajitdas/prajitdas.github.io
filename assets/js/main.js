@@ -52,9 +52,13 @@
             }
         });
 
-        backToTop.on('click', function (e) {
-            e.preventDefault();
-            jQuery('html, body').animate({scrollTop: 0}, 600);
+        backToTop.on('click', function (evt) {
+            evt.preventDefault();
+            jQuery('html, body').animate({scrollTop: 0}, 600).promise().then(function() {
+                // Accessibility: Move focus to the top of the page (branding link)
+                // so keyboard users aren't stranded on a hidden button
+                jQuery('.navbar-brand').focus();
+            });
             return false;
         });
     });

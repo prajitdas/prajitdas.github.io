@@ -24,7 +24,7 @@ const STATIC_ASSETS = [
   '/assets/js/jquery-migrate-3.5.2.min.js?v=2025.11',
   '/assets/plugins/vegas/jquery.vegas.min.js?v=2025.11',
   '/assets/js/bootstrap.min.js?v=2025.11',
-  '/assets/js/main.js?v=2025.11',
+  '/assets/js/main.js?v=2025.11.1',
   '/assets/plugins/vegas/images/loading.gif',
   '/assets/plugins/vegas/overlays/01.png',
   '/assets/plugins/vegas/overlays/15.png',
