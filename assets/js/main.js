@@ -52,9 +52,12 @@
             }
         });
 
-        backToTop.on('click', function (e) {
-            e.preventDefault();
-            jQuery('html, body').animate({scrollTop: 0}, 600);
+        backToTop.on('click', function (event) {
+            event.preventDefault();
+            jQuery('html, body').animate({scrollTop: 0}, 600).promise().then(function() {
+                // Focus on the brand link to restore keyboard context
+                jQuery('.navbar-brand').focus();
+            });
             return false;
         });
     });
