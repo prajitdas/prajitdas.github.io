@@ -9,3 +9,7 @@
 ## 2026-01-17 - Removing jQuery Migrate
 **Learning:** Legacy jQuery plugins (like Vegas 1.x) often rely on deprecated methods like `.load()` (for event handling) or `.bind()`. To remove `jquery-migrate` for performance, these plugins must be patched (e.g., replacing `.load(fn)` with `.on('load', fn)`).
 **Action:** Inspect plugins for deprecated methods before removing migrate. If source is unavailable, patching the minified/compiled code is a viable strategy if done carefully. Also, verify usage patterns (e.g., `$.plugin` vs `$.fn.plugin`) as legacy code might have incorrect checks that were masked or ignored.
+
+## 2026-01-18 - JS-Injected Images vs Static Srcset
+**Learning:** Found an LCP anti-pattern where a local placeholder image was being swapped for a Gravatar image via JavaScript `onload`. This forces double downloads (placeholder + final), increases LCP time (waiting for JS execution), and risks layout shifts.
+**Action:** Replace dynamic JS image injection with static `<img>` tags using `srcset` for resolution switching. This allows the browser to preload the correct resource immediately without waiting for JavaScript.
