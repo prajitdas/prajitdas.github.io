@@ -33,7 +33,7 @@ window.onload = function() {
 				if (isPublications && container) {
 					container.innerHTML = '<div class="publications-error">' +
 						'<i class="fa fa-exclamation-triangle"></i> ' +
-						'Unable to load publications. <a href="' + url + '" target="_blank">' +
+						'Unable to load publications. <a href="' + url + '" target="_blank" rel="noopener noreferrer">' +
 						'<i class="fa fa-external-link"></i> View Publications</a>' +
 						'</div>';
 				}
@@ -48,7 +48,7 @@ window.onload = function() {
 			if (isPublications && container) {
 				container.innerHTML = '<div class="publications-error">' +
 					'<i class="fa fa-exclamation-triangle"></i> ' +
-					'Error loading publications. <a href="' + url + '" target="_blank">' +
+					'Error loading publications. <a href="' + url + '" target="_blank" rel="noopener noreferrer">' +
 					'<i class="fa fa-external-link"></i> View Publications</a>' +
 					'</div>';
 			}

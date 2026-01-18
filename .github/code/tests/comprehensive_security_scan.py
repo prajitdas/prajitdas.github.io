@@ -253,18 +253,59 @@ def is_public_file(rel_path):
         return True
     return any(normalized.startswith(prefix) for prefix in PUBLIC_ALLOW_PREFIXES)
 
+def scan_for_insecure_links(base_dir):
+    """Scan for links with target="_blank" missing rel="noopener" or rel="noreferrer"."""
+
+    issues = []
+    scanned_files = 0
+
+    # Regex to find anchor tags with target="_blank"
+    target_blank_pattern = re.compile(r'<a\s+[^>]*target=["\']_blank["\'][^>]*>', re.IGNORECASE)
+
+    for file_path in base_dir.rglob('*'):
+        if not file_path.is_file():
+            continue
+
+        # Skip hidden directories and git files
+        if any(part.startswith('.git') for part in file_path.parts):
+            continue
+
+        if file_path.suffix not in ['.html', '.js', '.md', '.php']:
+            continue
+
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+                scanned_files += 1
+
+            matches = target_blank_pattern.findall(content)
+            for match in matches:
+                # Check if rel="noopener" or rel="noreferrer" is present in the tag
+                if 'noopener' not in match and 'noreferrer' not in match:
+                    issues.append({
+                        'file': file_path.relative_to(base_dir),
+                        'type': 'insecure_link_target',
+                        'matches': [match[:100]] # Truncate for display
+                    })
+
+        except Exception as e:
+            pass # Ignore errors
+
+    return issues, scanned_files
+
 def main():
     """Run comprehensive security analysis suite"""
     
     base_url = "https://prajitdas.github.io/"
-    base_dir = Path(__file__).parent.parent.parent  # Repository root
+    base_dir = Path(__file__).parent.parent.parent.parent  # Repository root
     
     print("🛡️ COMPREHENSIVE SECURITY ANALYSIS SUITE")
     print("=" * 60)
-    print("Running three-tier security analysis:")
+    print("Running four-tier security analysis:")
     print("  1. Credential & Sensitive Data Scanning (File System)")
-    print("  2. High-Risk File Protection Testing (Web Access)")
-    print("  3. General Web Security Scanning (Web Access)")
+    print("  2. Insecure Link Scanning (File System)")
+    print("  3. High-Risk File Protection Testing (Web Access)")
+    print("  4. General Web Security Scanning (Web Access)")
     print("=" * 60)
     
     all_issues = []
@@ -286,8 +327,25 @@ def main():
     else:
         print(f"✅ No credential issues found in {scanned_files} files")
     
-    # === PHASE 2: HIGH-RISK FILE TESTING ===
-    print(f"\n🔥 PHASE 2: HIGH-RISK FILE PROTECTION TESTING")
+    # === PHASE 2: INSECURE LINK SCANNING ===
+    print("\n🔍 PHASE 2: INSECURE LINK SCANNING")
+    print("-" * 50)
+    print("🔗 Scanning local files for insecure target='_blank' links...")
+
+    link_issues, link_scanned_files = scan_for_insecure_links(base_dir)
+
+    if link_issues:
+        print(f"\n🚨 INSECURE LINK ISSUES FOUND ({len(link_issues)}):")
+        for issue in link_issues:
+            print(f"   📁 {issue['file']} → {issue['type']}")
+            for match in issue['matches']:
+                print(f"      • {match}")
+        all_issues.extend(link_issues)
+    else:
+        print(f"✅ No insecure link issues found in {link_scanned_files} files")
+
+    # === PHASE 3: HIGH-RISK FILE TESTING ===
+    print(f"\n🔥 PHASE 3: HIGH-RISK FILE PROTECTION TESTING")
     print("-" * 50)
     print("🎯 Testing critical files that must be protected...")
     
@@ -301,8 +359,8 @@ def main():
     else:
         print(f"✅ All {len(protected_high_risk)} high-risk files properly protected")
     
-    # === PHASE 3: GENERAL WEB SECURITY SCANNING ===
-    print(f"\n🌐 PHASE 3: GENERAL WEB SECURITY SCANNING")
+    # === PHASE 4: GENERAL WEB SECURITY SCANNING ===
+    print(f"\n🌐 PHASE 4: GENERAL WEB SECURITY SCANNING")
     print("-" * 50)
     
     # Discover all potentially sensitive files
