@@ -17,3 +17,7 @@
 ## 2025-05-27 - Accessibility: Tooltips on Icon-Only Buttons
 **Learning:** Icon-only buttons (like social links) often lack visible labels, relying on title attributes which aren't always accessible or styled consistently. Adding explicitly initialized tooltips (like Bootstrap's) improves UX for sighted users while 'aria-label' covers screen readers.
 **Action:** Always initialize accessible tooltips for icon-only buttons to provide context on hover/focus, and ensure they have a visible focus state.
+
+## 2025-05-27 - Accessibility: Focus Management on Navigation
+**Learning:** Skip links and scroll-to-top buttons are ineffective for keyboard users if they don't move focus. A skip link targeting a non-focusable container (missing `tabindex="-1"`) scrolls the page but leaves focus behind, requiring the user to tab through everything again.
+**Action:** Always add `tabindex="-1"` and `style="outline:none"` to skip link targets, and programmatically move focus (e.g., `.focus()`) after JavaScript scroll animations.

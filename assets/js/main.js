@@ -54,7 +54,15 @@
 
         backToTop.on('click', function (e) {
             e.preventDefault();
-            jQuery('html, body').animate({scrollTop: 0}, 600);
+
+            // Respect reduced motion preference
+            var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var duration = reducedMotion ? 0 : 600;
+
+            jQuery('html, body').animate({scrollTop: 0}, duration).promise().then(function() {
+                // Move focus to the top for accessibility
+                jQuery('.navbar-brand').focus();
+            });
             return false;
         });
     });
