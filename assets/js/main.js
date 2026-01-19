@@ -57,5 +57,32 @@
             jQuery('html, body').animate({scrollTop: 0}, 600);
             return false;
         });
+
+        /* Mobile Menu Initialization */
+        // Consolidated from multiple inline scripts in index.html for better performance
+        var $navbarToggle = jQuery('.navbar-toggle');
+        var $navbarCollapse = jQuery('.navbar-collapse');
+
+        if ($navbarToggle.length && $navbarCollapse.length) {
+            // Remove any existing listeners to avoid duplicates
+            $navbarToggle.off('click').on('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                if ($navbarCollapse.hasClass('in')) {
+                    $navbarCollapse.removeClass('in');
+                    $navbarCollapse.css('display', '');
+                } else {
+                    $navbarCollapse.addClass('in');
+                    $navbarCollapse.css('display', 'block');
+                }
+            });
+
+            // Add pointer events for touch devices
+            $navbarToggle.css({
+                'cursor': 'pointer',
+                'touch-action': 'manipulation'
+            });
+        }
     });
 }());

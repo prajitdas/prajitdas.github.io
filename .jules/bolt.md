@@ -9,3 +9,7 @@
 ## 2026-01-17 - Removing jQuery Migrate
 **Learning:** Legacy jQuery plugins (like Vegas 1.x) often rely on deprecated methods like `.load()` (for event handling) or `.bind()`. To remove `jquery-migrate` for performance, these plugins must be patched (e.g., replacing `.load(fn)` with `.on('load', fn)`).
 **Action:** Inspect plugins for deprecated methods before removing migrate. If source is unavailable, patching the minified/compiled code is a viable strategy if done carefully. Also, verify usage patterns (e.g., `$.plugin` vs `$.fn.plugin`) as legacy code might have incorrect checks that were masked or ignored.
+
+## 2026-01-20 - Redundant Mobile Menu Logic
+**Learning:** The codebase contained multiple redundant and overlapping attempts to initialize the mobile menu (inline scripts, timeouts, etc.). Consolidating this into a single, clean jQuery event handler in `assets/js/main.js` reduces execution overhead and cleans up the HTML.
+**Action:** Check for defensive coding "hacks" (like repeated timeouts) in legacy code and replace them with robust event handlers.
