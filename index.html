@@ -559,10 +559,10 @@
 	</noscript>
 	
 	<!-- Optimized JavaScript Loading - Parallel Download, Sequential Execution -->
-	<script src="assets/js/jquery-3.7.1.min.js?v=2025.11" defer></script>
+	<script src="assets/js/jquery-3.7.1.min.js?v=2025.11" integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" defer></script>
 	<!-- jquery-migrate removed for performance - vegas plugin patched -->
-	<script src="assets/js/bootstrap.min.js?v=2025.11" defer></script>
-	<script src="assets/plugins/vegas/jquery.vegas.min.js?v=2025.11" defer></script>
+	<script src="assets/js/bootstrap.min.js?v=2025.11" integrity="sha384-a5jtiYH5jy2C9nk8lKcS1rJKNol+cJ9NJsVMDkCOm9QKXwm5Rq9bpSzg6zmnr48D" defer></script>
+	<script src="assets/plugins/vegas/jquery.vegas.min.js?v=2025.11" integrity="sha384-coBErv0EgCI7VkSd++JmHxhjwxROUhJ37ZNTnevFBMK4ukZOMTiD+wLfguBX205T" defer></script>
 	<script src="assets/js/main.js?v=2025.11" defer></script>
 	
 	<!-- Service Worker for Advanced Caching -->
@@ -580,26 +580,6 @@
 			});
 		}
 		
-		// Cache API implementation for manual resource caching
-		if ('caches' in window) {
-			const CACHE_NAME = 'prajitdas-v2025.11';
-			const urlsToCache = [
-				'/',
-				'/assets/css/bootstrap.min.css?v=2025.11',
-				'/assets/css/font-awesome.min.css?v=2025.11',
-				'/assets/css/styles.css?v=2025.11',
-				'/assets/plugins/vegas/jquery.vegas.min.css?v=2025.11',
-				'/assets/js/jquery-3.7.1.min.js?v=2025.11',
-				'/assets/plugins/vegas/jquery.vegas.min.js?v=2025.11',
-				'/assets/js/bootstrap.min.js?v=2025.11',
-				'/assets/js/main.js?v=2025.11'
-			];
-			
-			// Pre-cache critical resources
-			caches.open(CACHE_NAME).then(function(cache) {
-				return cache.addAll(urlsToCache);
-			});
-		}
 	</script>
 	
 	<!-- YouTube Lazy Loading Optimization -->
