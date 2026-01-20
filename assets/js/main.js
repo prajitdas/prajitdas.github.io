@@ -52,9 +52,19 @@
             }
         });
 
-        backToTop.on('click', function (e) {
-            e.preventDefault();
-            jQuery('html, body').animate({scrollTop: 0}, 600);
+        backToTop.on('click', function (evt) {
+            evt.preventDefault();
+
+            // Respect reduced motion preference
+            var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var duration = prefersReducedMotion ? 0 : 600;
+
+            jQuery('html, body').animate({scrollTop: 0}, duration).promise().then(function() {
+                // Move focus to top-level element to maintain keyboard context
+                // This ensures keyboard users aren't lost after the button disappears
+                jQuery('.navbar-brand').focus();
+            });
+
             return false;
         });
     });
