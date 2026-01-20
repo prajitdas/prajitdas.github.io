@@ -580,26 +580,6 @@
 			});
 		}
 		
-		// Cache API implementation for manual resource caching
-		if ('caches' in window) {
-			const CACHE_NAME = 'prajitdas-v2025.11';
-			const urlsToCache = [
-				'/',
-				'/assets/css/bootstrap.min.css?v=2025.11',
-				'/assets/css/font-awesome.min.css?v=2025.11',
-				'/assets/css/styles.css?v=2025.11',
-				'/assets/plugins/vegas/jquery.vegas.min.css?v=2025.11',
-				'/assets/js/jquery-3.7.1.min.js?v=2025.11',
-				'/assets/plugins/vegas/jquery.vegas.min.js?v=2025.11',
-				'/assets/js/bootstrap.min.js?v=2025.11',
-				'/assets/js/main.js?v=2025.11'
-			];
-			
-			// Pre-cache critical resources
-			caches.open(CACHE_NAME).then(function(cache) {
-				return cache.addAll(urlsToCache);
-			});
-		}
 	</script>
 	
 	<!-- YouTube Lazy Loading Optimization -->

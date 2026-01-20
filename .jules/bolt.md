@@ -9,3 +9,7 @@
 ## 2026-01-17 - Removing jQuery Migrate
 **Learning:** Legacy jQuery plugins (like Vegas 1.x) often rely on deprecated methods like `.load()` (for event handling) or `.bind()`. To remove `jquery-migrate` for performance, these plugins must be patched (e.g., replacing `.load(fn)` with `.on('load', fn)`).
 **Action:** Inspect plugins for deprecated methods before removing migrate. If source is unavailable, patching the minified/compiled code is a viable strategy if done carefully. Also, verify usage patterns (e.g., `$.plugin` vs `$.fn.plugin`) as legacy code might have incorrect checks that were masked or ignored.
+
+## 2025-10-27 - Write-Only Cache (Dead Code)
+**Learning:** Found an inline script in `index.html` that opened a cache (`prajitdas-v2025.11`) and added files to it, but this cache was NEVER read by the Service Worker or any other script. The Service Worker used a completely different cache name.
+**Action:** Always verify that caches populated by inline scripts or "fallbacks" are actually consumed by the application. If not, they are just wasting bandwidth and disk space (and main thread time).
