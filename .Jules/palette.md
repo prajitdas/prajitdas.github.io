@@ -17,3 +17,7 @@
 ## 2025-05-27 - Accessibility: Tooltips on Icon-Only Buttons
 **Learning:** Icon-only buttons (like social links) often lack visible labels, relying on title attributes which aren't always accessible or styled consistently. Adding explicitly initialized tooltips (like Bootstrap's) improves UX for sighted users while 'aria-label' covers screen readers.
 **Action:** Always initialize accessible tooltips for icon-only buttons to provide context on hover/focus, and ensure they have a visible focus state.
+
+## 2026-01-20 - Accessibility: Focus Management with jQuery Animations
+**Learning:** When using jQuery animations (like `animate`) to hide or move elements that had focus, standard focus calls might execute before the animation completes or the element is removed.
+**Action:** Chain `.promise().then()` to the animation to reliably execute focus management logic (e.g., shifting focus to a container) after the animation queue is fully drained.
