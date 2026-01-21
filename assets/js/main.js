@@ -67,5 +67,25 @@
 
             return false;
         });
+
+        /* ⚡ Bolt Optimization: Robust Mobile Menu Initialization */
+        // Replaces redundant inline scripts and polling from index.html
+        // Consolidates logic into the main bundle for better performance
+        var $toggleButton = e('.navbar-toggle');
+        var $navbarCollapse = e('.navbar-collapse');
+
+        if ($toggleButton.length && $navbarCollapse.length) {
+            // Replace the button to remove any existing/conflicting event listeners
+            // and remove data-toggle to prevent double-handling by Bootstrap
+            var $cleanButton = $toggleButton.clone();
+            $cleanButton.removeAttr('data-toggle');
+            $toggleButton.replaceWith($cleanButton);
+
+            $cleanButton.on('click', function(evt) {
+                evt.preventDefault();
+                evt.stopPropagation();
+                $navbarCollapse.toggleClass('in');
+            });
+        }
     });
 }());
