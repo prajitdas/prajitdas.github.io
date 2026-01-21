@@ -13,3 +13,7 @@
 ## 2025-10-27 - Write-Only Cache (Dead Code)
 **Learning:** Found an inline script in `index.html` that opened a cache (`prajitdas-v2025.11`) and added files to it, but this cache was NEVER read by the Service Worker or any other script. The Service Worker used a completely different cache name.
 **Action:** Always verify that caches populated by inline scripts or "fallbacks" are actually consumed by the application. If not, they are just wasting bandwidth and disk space (and main thread time).
+
+## 2025-10-27 - Anti-pattern: Recursive Polling for UI Initialization
+**Learning:** Found redundant inline scripts using recursive `setTimeout` to "fix" mobile menu initialization, likely due to past race conditions or broken dependencies. This polling keeps the main thread busy and is fragile.
+**Action:** Replace polling with deterministic, robust event handling in the main deferred bundle. Removing conflicting listeners (by replacing the element or unbinding) is often cleaner than trying to coordinate multiple "fixer" scripts.
