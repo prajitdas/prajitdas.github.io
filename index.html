@@ -1703,40 +1703,6 @@
 			return;
 		}
 		
-		// Mobile hamburger menu fallback (in case Bootstrap doesn't initialize properly)
-		function initMobileMenu() {
-			// Wait for DOM to be ready
-			function setupMenu() {
-				var toggleButton = document.querySelector('.navbar-toggle');
-				var navbarCollapse = document.querySelector('.navbar-collapse');
-				
-				if (toggleButton && navbarCollapse) {
-					// Remove any existing listeners
-					toggleButton.onclick = null;
-					
-					toggleButton.addEventListener('click', function(e) {
-						e.preventDefault();
-						e.stopPropagation();
-						
-						if (navbarCollapse.classList.contains('in')) {
-							navbarCollapse.classList.remove('in');
-						} else {
-							navbarCollapse.classList.add('in');
-						}
-					});
-				} else {
-					console.error('Mobile menu elements not found');
-				}
-			}
-			
-			// Try to setup immediately, and also after a delay
-			setupMenu();
-			setTimeout(setupMenu, 1000);
-		}
-		
-		// Initialize mobile menu
-		initMobileMenu();
-		
 		!function (e) {
 			"use strict";
 			e(function () {
@@ -1763,11 +1729,6 @@
 			return {};
 		})());
 
-		// Re-initialize mobile menu after jQuery is fully loaded and DOM is ready
-		if (typeof initMobileMenu === 'function') {
-			initMobileMenu();
-		}
-		
 	});
 })();
 </script>
@@ -1913,74 +1874,5 @@
 })();
 </script>
 
-<!-- Final Mobile Menu Initialization -->
-<script>
-// Ensure mobile menu works - final attempt with multiple triggers
-(function() {
-	function setupMobileMenu() {
-		var toggleButton = document.querySelector('.navbar-toggle');
-		var navbarCollapse = document.querySelector('.navbar-collapse');
-		
-		if (toggleButton && navbarCollapse) {
-			// Remove any existing listeners to avoid duplicates
-			var newButton = toggleButton.cloneNode(true);
-			toggleButton.parentNode.replaceChild(newButton, toggleButton);
-			
-			newButton.addEventListener('click', function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				
-				var collapse = document.querySelector('.navbar-collapse');
-				if (collapse) {
-					if (collapse.classList.contains('in')) {
-						collapse.classList.remove('in');
-						collapse.style.display = 'none';
-					} else {
-						collapse.classList.add('in');
-						collapse.style.display = 'block';
-					}
-				}
-			});
-			
-			// Also try with touch events for mobile (using touchend for better mobile compatibility)
-			newButton.addEventListener('touchend', function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				
-				var collapse = document.querySelector('.navbar-collapse');
-				if (collapse) {
-					if (collapse.classList.contains('in')) {
-						collapse.classList.remove('in');
-						collapse.style.display = 'none';
-					} else {
-						collapse.classList.add('in');
-						collapse.style.display = 'block';
-					}
-				}
-			});
-			
-			// Add pointer events for any touch device
-			newButton.style.cursor = 'pointer';
-			newButton.style.webkitTapHighlightColor = 'rgba(0,0,0,0.1)';
-			newButton.style.userSelect = 'none';
-			
-			return true;
-		}
-		return false;
-	}
-	
-	// Try multiple times to ensure it works
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', setupMobileMenu);
-	} else {
-		setupMobileMenu();
-	}
-	
-	window.addEventListener('load', setupMobileMenu);
-	
-	// Fallback - try after 2 seconds
-	setTimeout(setupMobileMenu, 2000);
-})();
-</script>
 </body>
 </html>
