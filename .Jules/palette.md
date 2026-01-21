@@ -21,3 +21,7 @@
 ## 2026-01-20 - Accessibility: Focus Management with jQuery Animations
 **Learning:** When using jQuery animations (like `animate`) to hide or move elements that had focus, standard focus calls might execute before the animation completes or the element is removed.
 **Action:** Chain `.promise().then()` to the animation to reliably execute focus management logic (e.g., shifting focus to a container) after the animation queue is fully drained.
+
+## 2026-01-21 - Accessibility: Descriptive Link Text
+**Learning:** Vague link text like "here", "read more", or "click here" forces screen reader users to backtrack for context (WCAG 2.4.4). It also creates small, hard-to-hit click targets on touch devices.
+**Action:** Always refactor sentences so the link text itself describes the destination (e.g., "Read the [paper from IEEE CIC 2016]" instead of "Read the paper [here]").
