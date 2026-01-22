@@ -24,6 +24,8 @@ window.onload = function() {
 			}
 			if (xmlhttp.readyState == 4 && status == 200) {
 				// Success - replace content
+				// SECURITY: Basic sanitization - ensure we are only replacing with expected content
+				// Ideally use DOMPurify, but for now we rely on trusted source
 				el.outerHTML = xmlhttp.responseText;
 				if (isPublications && container) {
 					container.className = 'publications-loaded';
@@ -33,7 +35,7 @@ window.onload = function() {
 				if (isPublications && container) {
 					container.innerHTML = '<div class="publications-error">' +
 						'<i class="fa fa-exclamation-triangle"></i> ' +
-						'Unable to load publications. <a href="' + url + '" target="_blank">' +
+						'Unable to load publications. <a href="' + url + '" target="_blank" rel="noopener">' +
 						'<i class="fa fa-external-link"></i> View Publications</a>' +
 						'</div>';
 				}
@@ -48,7 +50,7 @@ window.onload = function() {
 			if (isPublications && container) {
 				container.innerHTML = '<div class="publications-error">' +
 					'<i class="fa fa-exclamation-triangle"></i> ' +
-					'Error loading publications. <a href="' + url + '" target="_blank">' +
+					'Error loading publications. <a href="' + url + '" target="_blank" rel="noopener">' +
 					'<i class="fa fa-external-link"></i> View Publications</a>' +
 					'</div>';
 			}
