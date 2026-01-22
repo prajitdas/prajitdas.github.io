@@ -87,5 +87,18 @@
                 $navbarCollapse.toggleClass('in');
             });
         }
+
+        // ⚡ Palette Optimization: Accessible 'New Tab' Indicators
+        // Automatically adds screen reader announcements for external links
+        e('a[target="_blank"]').each(function() {
+            var $link = e(this);
+            var announcement = ' (opens in a new tab)';
+
+            if ($link.attr('aria-label')) {
+                $link.attr('aria-label', $link.attr('aria-label') + announcement);
+            } else {
+                $link.append('<span class="sr-only">' + announcement + '</span>');
+            }
+        });
     });
 }());
