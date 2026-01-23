@@ -17,3 +17,7 @@
 ## 2025-10-27 - Anti-pattern: Recursive Polling for UI Initialization
 **Learning:** Found redundant inline scripts using recursive `setTimeout` to "fix" mobile menu initialization, likely due to past race conditions or broken dependencies. This polling keeps the main thread busy and is fragile.
 **Action:** Replace polling with deterministic, robust event handling in the main deferred bundle. Removing conflicting listeners (by replacing the element or unbinding) is often cleaner than trying to coordinate multiple "fixer" scripts.
+
+## 2025-10-27 - Double Download Anti-Pattern
+**Learning:** Found a profile image loaded natively via <img>, but then immediately swapped to a Gravatar URL via an inline script. This caused two downloads for the same LCP slot, wasting bandwidth and delaying visual stability.
+**Action:** Remove the JavaScript-based swap. Rely on the native <img> tag and Service Worker caching for the critical LCP image. Avoid using JS to determine the source of critical above-the-fold images.

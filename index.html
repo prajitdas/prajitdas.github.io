@@ -67,7 +67,6 @@
 	<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 	<link rel="dns-prefetch" href="https://www.google-analytics.com">
-	<link rel="dns-prefetch" href="https://www.gravatar.com">
 	
 	<!-- JSON-LD Structured Data -->
 	<script type="application/ld+json">
@@ -1839,17 +1838,6 @@
 <script>
 // Idle resource prefetching and analytics
 (function() {
-	// Load Gravatar asynchronously to avoid preload timing issues
-	const gravatarImg = new Image();
-	gravatarImg.onload = function() {
-		const profileImg = document.getElementById('donottouch');
-		if (profileImg) {
-			profileImg.src = 'https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200';
-			profileImg.srcset = 'https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200 1x, https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=400 2x';
-		}
-	};
-	gravatarImg.src = 'https://www.gravatar.com/avatar/e5cfbe92fef3aa2d6e21a720bf22c2a7?s=200';
-	
 	if ('requestIdleCallback' in window) {
 		requestIdleCallback(() => {
 			['assets/docs/resume/resume-prajit-das-032225.pdf', 'assets/docs/cv/cv-prajit-kumar-das.pdf', 'assets/img/projects/MobipediaLogo.png'].forEach(href => {
