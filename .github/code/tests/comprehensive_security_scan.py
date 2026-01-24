@@ -257,7 +257,7 @@ def main():
     """Run comprehensive security analysis suite"""
     
     base_url = "https://prajitdas.github.io/"
-    base_dir = Path(__file__).parent.parent.parent  # Repository root
+    base_dir = Path(__file__).parent.parent.parent.parent  # Repository root
     
     print("🛡️ COMPREHENSIVE SECURITY ANALYSIS SUITE")
     print("=" * 60)
