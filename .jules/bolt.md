@@ -21,3 +21,7 @@
 ## 2025-10-27 - Double Download Anti-Pattern
 **Learning:** Found a profile image loaded natively via <img>, but then immediately swapped to a Gravatar URL via an inline script. This caused two downloads for the same LCP slot, wasting bandwidth and delaying visual stability.
 **Action:** Remove the JavaScript-based swap. Rely on the native <img> tag and Service Worker caching for the critical LCP image. Avoid using JS to determine the source of critical above-the-fold images.
+
+## 2025-01-26 - Scroll Performance & IntersectionObserver
+**Learning:** Legacy jQuery code often uses `$(window).scroll()` to toggle visibility of elements like "Back to Top". This fires heavily on the main thread.
+**Action:** Replace `window.scroll` listeners with `IntersectionObserver`. Observe a sentinel element (like `.header` or a 1px div at the top). When it leaves the viewport (`!entry.isIntersecting`), show the UI. This offloads the geometry check to the browser's compositor/optimized path.
