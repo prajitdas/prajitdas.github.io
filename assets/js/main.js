@@ -44,13 +44,44 @@
 
         /* Back to Top */
         var backToTop = e('#back-to-top');
-        e(window).scroll(function () {
-            if (e(this).scrollTop() > 200) {
-                backToTop.fadeIn();
+
+        // ⚡ Bolt Optimization: Use IntersectionObserver to toggle 'Back to Top' visibility
+        // This avoids high-frequency scroll event listeners on the main thread
+        if ('IntersectionObserver' in window) {
+            var headerObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    // If header is NOT intersecting (scrolled out of view), show button
+                    if (!entry.isIntersecting) {
+                        backToTop.fadeIn();
+                    } else {
+                        backToTop.fadeOut();
+                    }
+                });
+            }, { threshold: 0 });
+
+            var header = document.querySelector('.header');
+            if (header) {
+                headerObserver.observe(header);
             } else {
-                backToTop.fadeOut();
+                // Fallback if header not found
+                e(window).scroll(function () {
+                    if (e(this).scrollTop() > 200) {
+                        backToTop.fadeIn();
+                    } else {
+                        backToTop.fadeOut();
+                    }
+                });
             }
-        });
+        } else {
+            // Fallback for older browsers
+            e(window).scroll(function () {
+                if (e(this).scrollTop() > 200) {
+                    backToTop.fadeIn();
+                } else {
+                    backToTop.fadeOut();
+                }
+            });
+        }
 
         backToTop.on('click', function (evt) {
             evt.preventDefault();
