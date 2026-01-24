@@ -26,7 +26,7 @@ from pathlib import Path
 from typing import List, Dict, Tuple, Optional
 
 # Configuration
-LOCAL_PATH = Path(__file__).parent.parent.parent  # Root of repository
+LOCAL_PATH = Path(__file__).parent.parent.parent.parent  # Root of repository
 JS_EXTENSIONS = ['.js']
 EXCLUDED_PATTERNS = [
     '*.min.js',      # Minified files

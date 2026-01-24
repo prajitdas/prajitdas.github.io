@@ -361,7 +361,7 @@ def main():
         # Additional fallback for the reorganized structure
         if not Path('index.html').exists():
             script_dir = Path(__file__).parent
-            project_root = script_dir.parent.parent.parent
+            project_root = script_dir.parent.parent.parent.parent
             if (project_root / 'index.html').exists():
                 os.chdir(project_root)
     
