@@ -39,6 +39,24 @@
         // Tooltip for social links
         e('.social a').tooltip({ placement: 'bottom' });
 
+        // ⚡ Palette Enhancement: Accessibility for new tabs
+        // Automatically adds warning for screen readers on links opening in new tabs
+        e('a[target="_blank"]').each(function() {
+            var $link = e(this);
+
+            // Ensure security attribute is present
+            if (!$link.attr('rel')) {
+                $link.attr('rel', 'noopener');
+            } else if ($link.attr('rel').indexOf('noopener') === -1) {
+                $link.attr('rel', $link.attr('rel') + ' noopener');
+            }
+
+            // Check if it already has screen reader text or label
+            if ($link.find('.sr-only').length === 0 && !$link.attr('aria-label')) {
+                $link.append(' <span class="sr-only">(opens in a new tab)</span>');
+            }
+        });
+
         // Note: RSS and GitHub Activity plugin initialization removed 
         // since target elements (#rss-feeds, #ghfeed) don't exist on the page
 
