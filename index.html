@@ -515,7 +515,7 @@
 		}
 		
 		// Load critical CSS first (higher priority)
-		loadCSS('assets/css/bootstrap.min.css?v=2025.11');
+		loadCSS('assets/css/bootstrap.min.css?v=2025.11-bs3.4.1');
 		
 		// Defer non-critical CSS after critical path
 		setTimeout(function() {
@@ -528,11 +528,11 @@
 	</script>
 	
 	<!-- Critical Resource Preload - Only for LCP candidates -->
-	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.11" as="style">
+	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.11-bs3.4.1" as="style">
 	
 	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.11">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.11-bs3.4.1">
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.11">
 		<link rel="stylesheet" href="assets/css/styles.css?v=2025.11">
 		<link rel="stylesheet" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.11">
@@ -560,7 +560,7 @@
 	<!-- Optimized JavaScript Loading - Parallel Download, Sequential Execution -->
 	<script src="assets/js/jquery-3.7.1.min.js?v=2025.11" integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" defer></script>
 	<!-- jquery-migrate removed for performance - vegas plugin patched -->
-	<script src="assets/js/bootstrap.min.js?v=2025.11" integrity="sha384-a5jtiYH5jy2C9nk8lKcS1rJKNol+cJ9NJsVMDkCOm9QKXwm5Rq9bpSzg6zmnr48D" defer></script>
+	<script src="assets/js/bootstrap.min.js?v=2025.11-bs3.4.1" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" defer></script>
 	<script src="assets/plugins/vegas/jquery.vegas.min.js?v=2025.11" integrity="sha384-coBErv0EgCI7VkSd++JmHxhjwxROUhJ37ZNTnevFBMK4ukZOMTiD+wLfguBX205T" defer></script>
 	<script src="assets/js/main.js?v=2025.11" defer></script>
 	
