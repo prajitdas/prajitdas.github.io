@@ -25,3 +25,7 @@
 ## 2025-01-26 - Scroll Performance & IntersectionObserver
 **Learning:** Legacy jQuery code often uses `$(window).scroll()` to toggle visibility of elements like "Back to Top". This fires heavily on the main thread.
 **Action:** Replace `window.scroll` listeners with `IntersectionObserver`. Observe a sentinel element (like `.header` or a 1px div at the top). When it leaves the viewport (`!entry.isIntersecting`), show the UI. This offloads the geometry check to the browser's compositor/optimized path.
+
+## 2026-01-25 - Artificial Font Delay Anti-Pattern
+**Learning:** Found an inline script intentionally delaying Google Fonts loading by 200ms using `setTimeout`. This effectively defeats the purpose of `font-display: optional` on a fresh load, ensuring the web font is *never* shown (as the 100ms block period expires before the request starts).
+**Action:** Remove artificial delays for critical resources. Use `<link rel="stylesheet" media="print" onload="this.media='all'">` for non-blocking loading without arbitrary delays, allowing the browser to optimize resource scheduling.
