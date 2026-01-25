@@ -25,3 +25,7 @@
 ## 2026-01-21 - Accessibility: Descriptive Link Text
 **Learning:** Vague link text like "here", "read more", or "click here" forces screen reader users to backtrack for context (WCAG 2.4.4). It also creates small, hard-to-hit click targets on touch devices.
 **Action:** Always refactor sentences so the link text itself describes the destination (e.g., "Read the [paper from IEEE CIC 2016]" instead of "Read the paper [here]").
+
+## 2026-01-25 - UX: Dynamic Tooltip Content
+**Learning:** Static `title` attributes on tooltips for data-driven elements (like progress bars) can become stale or empty if not manually maintained.
+**Action:** Initialize tooltips via JavaScript with a dynamic `title` function that pulls the source of truth (e.g., `data-level` or `aria-valuenow`) directly from the DOM, ensuring the tooltip always matches the visual/accessible state without duplicating data in HTML.

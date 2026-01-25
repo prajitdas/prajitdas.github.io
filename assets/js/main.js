@@ -34,7 +34,15 @@
         }
 
         // Tooltip for level labels
-        e('.level-label').tooltip();
+        e('.level-label').tooltip({
+            placement: 'left',
+            animation: true,
+            title: function() {
+                var $bar = e(this).closest('.item').find('.level-bar-inner');
+                var val = $bar.data('level');
+                return val ? val + " Proficiency" : "";
+            }
+        });
 
         // Tooltip for social links
         e('.social a').tooltip({ placement: 'bottom' });
