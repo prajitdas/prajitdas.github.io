@@ -34,6 +34,14 @@
         }
 
         // Tooltip for level labels
+        e('.level-label').each(function() {
+            var $label = e(this);
+            var $bar = $label.closest('.item').find('.level-bar-inner');
+            var level = $bar.data('level');
+            if (level) {
+                $label.attr('title', level);
+            }
+        });
         e('.level-label').tooltip();
 
         // Tooltip for social links
