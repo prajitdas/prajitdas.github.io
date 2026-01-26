@@ -1681,51 +1681,6 @@
 	<i class="fa fa-chevron-up" aria-hidden="true"></i>
 </button>
 <!-- JavaScript Already Loaded Optimally in Head - No Additional Loading Needed -->
-<script>
-// Wait for DOMContentLoaded to ensure deferred scripts (like jQuery) are loaded
-(function() {
-	document.addEventListener('DOMContentLoaded', function() {
-		// Triple-check jQuery is available and functional
-		if (!window.jQuery || typeof window.jQuery !== 'function') {
-			console.error('jQuery still not available or not functional in DOMContentLoaded');
-			return;
-		}
-		
-		// Ensure jQuery.fn exists
-		if (!window.jQuery.fn) {
-			console.error('jQuery.fn not available');
-			return;
-		}
-		
-		!function (e) {
-			"use strict";
-			e(function () {
-				if (e.vegas) {
-					e.vegas("slideshow", {
-						backgrounds: [{
-							src: "assets/img/1.jpg",
-							fade: 1e3,
-							delay: 9e3
-						}, {src: "assets/img/2.jpg", fade: 1e3, delay: 9e3}, {
-							src: "assets/img/3.jpg",
-							fade: 1e3,
-							delay: 9e3
-						}, {
-							src: "assets/img/sw.jpg",
-							fade: 1e3,
-							delay: 9e3
-						}]
-					})("overlay", {src: "assets/plugins/vegas/overlays/15.png"})
-				}
-			});
-		}(window.jQuery || (function() {
-			console.error('CRITICAL: window.jQuery is undefined at IIFE execution!');
-			return {};
-		})());
-
-	});
-})();
-</script>
 <!-- Performance Monitoring with Web Vitals -->
 <script>
 (function() {
@@ -1814,25 +1769,6 @@
 })();
 </script>
 
-<!-- Calculate years of experience dynamically (non-blocking) -->
-<script>
-(function() {
-	const today = new Date();
-	const pastDate = new Date(2025, 3, 12); // April 12, 2025
-	
-	// Calculate the difference in milliseconds
-	const timeDifference = today.getTime() - pastDate.getTime();
-	
-	// Convert milliseconds to years
-	const years = (4012+2465)/365.25 + Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25));
-	
-	// Update the DOM element (non-blocking)
-	const yearsElement = document.getElementById('years-experience');
-	if (yearsElement) {
-		yearsElement.textContent = Math.floor(years) + ' years';
-	}
-})();
-</script>
 
 <!-- Performance Optimizations -->
 <script>

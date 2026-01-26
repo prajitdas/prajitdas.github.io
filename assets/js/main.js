@@ -136,5 +136,43 @@
                 $navbarCollapse.toggleClass('in');
             });
         }
+
+        /* ⚡ Bolt Optimization: Dynamic Years Experience Calculation */
+        // Moved from inline script in index.html to reduce main thread blocking
+        var today = new Date();
+        var pastDate = new Date(2025, 3, 12); // April 12, 2025
+        var timeDifference = today.getTime() - pastDate.getTime();
+        // Fixed logic: Add fractional years before flooring to avoid integer step issues
+        var years = (4012 + 2465) / 365.25 + (timeDifference / (1000 * 60 * 60 * 24 * 365.25));
+        var $yearsElement = e('#years-experience');
+        if ($yearsElement.length) {
+            $yearsElement.text(Math.floor(years) + ' years');
+        }
+
+        /* ⚡ Bolt Optimization: Vegas Slideshow Initialization */
+        // Moved from inline script to main bundle
+        if (e.vegas) {
+            e.vegas("slideshow", {
+                backgrounds: [{
+                    src: "assets/img/1.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }, {
+                    src: "assets/img/2.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }, {
+                    src: "assets/img/3.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }, {
+                    src: "assets/img/sw.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }]
+            })("overlay", {
+                src: "assets/plugins/vegas/overlays/15.png"
+            });
+        }
     });
 }());
