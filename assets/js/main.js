@@ -136,5 +136,48 @@
                 $navbarCollapse.toggleClass('in');
             });
         }
+
+        /* ⚡ Bolt Optimization: Initialize Vegas Slideshow */
+        // Moved from inline script in index.html for better caching and performance
+        if (e.vegas) {
+            e.vegas("slideshow", {
+                backgrounds: [{
+                    src: "assets/img/1.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }, {src: "assets/img/2.jpg", fade: 1e3, delay: 9e3}, {
+                    src: "assets/img/3.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }, {
+                    src: "assets/img/sw.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }]
+            })("overlay", {src: "assets/plugins/vegas/overlays/15.png"});
+        }
+
+        /* ⚡ Bolt Optimization: Lazy Load YouTube Video */
+        // Replaces inline onclick and global function with event delegation
+        e(document).on('click', '.js-play-youtube', function() {
+            var videoId = e(this).data('video-id');
+            var containerId = 'youtube-' + videoId;
+            var container = document.getElementById(containerId);
+
+            if (container) {
+                var iframe = document.createElement('iframe');
+                iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+                iframe.frameBorder = '0';
+                iframe.allowFullscreen = true;
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                iframe.title = '3 Minute Thesis competition video';
+
+                // Clear container and append iframe
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                container.appendChild(iframe);
+            }
+        });
     });
 }());
