@@ -25,3 +25,7 @@
 ## 2026-01-21 - Accessibility: Descriptive Link Text
 **Learning:** Vague link text like "here", "read more", or "click here" forces screen reader users to backtrack for context (WCAG 2.4.4). It also creates small, hard-to-hit click targets on touch devices.
 **Action:** Always refactor sentences so the link text itself describes the destination (e.g., "Read the [paper from IEEE CIC 2016]" instead of "Read the paper [here]").
+
+## 2026-01-27 - Accessibility: Skip Link Target Focus
+**Learning:** A "Skip to main content" link that targets a non-interactive element (like a `div`) will scroll the page but fail to move keyboard focus unless the target has `tabindex="-1"`. This leaves keyboard users stranded at the top of the page.
+**Action:** Always add `tabindex="-1"` and `style="outline:none"` to the target container of a skip link to ensure it receives programmatic focus without a visual focus ring.
