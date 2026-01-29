@@ -177,6 +177,11 @@
                     container.removeChild(container.firstChild);
                 }
                 container.appendChild(iframe);
+
+                // ⚡ Palette Enhancement: Focus Management
+                // Move focus to the iframe/container to prevent loss of context for keyboard users
+                container.setAttribute('tabindex', '-1');
+                container.focus();
             }
         });
     });
