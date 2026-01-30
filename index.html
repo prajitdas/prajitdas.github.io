@@ -539,18 +539,8 @@
 	</noscript>
 	
 	<!-- Optimized Font Loading - Non-blocking, Zero Critical Chain Impact -->
-	<script>
-		// Defer font loading to not impact critical rendering path
-		(function() {
-			// Only load fonts after critical content is rendered
-			setTimeout(function() {
-				var fontLink = document.createElement('link');
-				fontLink.rel = 'stylesheet';
-				fontLink.href = 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional';
-				document.head.appendChild(fontLink);
-			}, 200); // Delay font loading until after critical content
-		})();
-	</script>
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional" as="style">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional" media="print" onload="this.media='all'">
 	
 	<!-- Fallback for browsers without JavaScript -->
 	<noscript>

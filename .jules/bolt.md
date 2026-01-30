@@ -25,3 +25,7 @@
 ## 2025-01-26 - Scroll Performance & IntersectionObserver
 **Learning:** Legacy jQuery code often uses `$(window).scroll()` to toggle visibility of elements like "Back to Top". This fires heavily on the main thread.
 **Action:** Replace `window.scroll` listeners with `IntersectionObserver`. Observe a sentinel element (like `.header` or a 1px div at the top). When it leaves the viewport (`!entry.isIntersecting`), show the UI. This offloads the geometry check to the browser's compositor/optimized path.
+
+## 2026-01-30 - Resource Loading: setTimeout vs Preload
+**Learning:** Found legacy code using `setTimeout(..., 200)` to inject a CSS link for Google Fonts. This pattern artificially delays resource discovery and fetching, worsening FCP and increasing the risk of FOUT.
+**Action:** Replace JS-based injection with standard `<link rel="preload" as="style">` and `<link rel="stylesheet" media="print" onload="this.media='all'">`. This allows the browser's preload scanner to discover the resource immediately while keeping the render path unblocked.
