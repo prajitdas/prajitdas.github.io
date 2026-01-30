@@ -34,7 +34,13 @@
         }
 
         // Tooltip for level labels
-        e('.level-label').tooltip();
+        e('.level-label').tooltip({
+            placement: 'left',
+            animation: true,
+            title: function () {
+                return e(this).closest('.item').find('.level-bar-inner').attr('data-level');
+            }
+        });
 
         // Tooltip for social links
         e('.social a').tooltip({ placement: 'bottom' });
@@ -139,7 +145,11 @@
 
         /* ⚡ Bolt Optimization: Initialize Vegas Slideshow */
         // Moved from inline script in index.html for better caching and performance
-        if (e.vegas) {
+        // Enhanced to respect user preferences and save bandwidth on mobile
+        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var isMobile = window.innerWidth < 768; // Bootstrap xs breakpoint
+
+        if (e.vegas && !prefersReducedMotion && !isMobile) {
             e.vegas("slideshow", {
                 backgrounds: [{
                     src: "assets/img/1.jpg",

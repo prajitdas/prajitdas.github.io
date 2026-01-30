@@ -25,3 +25,7 @@
 ## 2025-01-26 - Scroll Performance & IntersectionObserver
 **Learning:** Legacy jQuery code often uses `$(window).scroll()` to toggle visibility of elements like "Back to Top". This fires heavily on the main thread.
 **Action:** Replace `window.scroll` listeners with `IntersectionObserver`. Observe a sentinel element (like `.header` or a 1px div at the top). When it leaves the viewport (`!entry.isIntersecting`), show the UI. This offloads the geometry check to the browser's compositor/optimized path.
+
+## 2026-01-28 - Conditional Heavy Component Loading
+**Learning:** Found that the heavy Vegas slideshow plugin was initializing unconditionally, even on mobile devices where bandwidth and battery are premium, and ignoring `prefers-reduced-motion`.
+**Action:** Wrapped the initialization in a check for `!isMobile` and `!prefersReducedMotion`. This saves ~1MB of image downloads on mobile and respects user accessibility settings.
