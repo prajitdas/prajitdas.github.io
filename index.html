@@ -1768,26 +1768,6 @@
 })();
 </script>
 
-<!-- Calculate years of experience dynamically (non-blocking) -->
-<script>
-(function() {
-	const today = new Date();
-	const pastDate = new Date(2025, 3, 12); // April 12, 2025
-	
-	// Calculate the difference in milliseconds
-	const timeDifference = today.getTime() - pastDate.getTime();
-	
-	// Convert milliseconds to years
-	const years = (4012+2465)/365.25 + Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25));
-	
-	// Update the DOM element (non-blocking)
-	const yearsElement = document.getElementById('years-experience');
-	if (yearsElement) {
-		yearsElement.textContent = Math.floor(years) + ' years';
-	}
-})();
-</script>
-
 <!-- Performance Optimizations -->
 <script>
 // Idle resource prefetching and analytics
