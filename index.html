@@ -44,10 +44,9 @@
 	
 	<!-- Security Headers for Enhanced Protection (Meta tag compatible) -->
 	<meta http-equiv="X-Content-Type-Options" content="nosniff">
-	<meta http-equiv="X-XSS-Protection" content="1; mode=block">
 	<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://www.gravatar.com https://img.youtube.com https://prajitdas.github.io; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; media-src 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
-	<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+	<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), vr=(), gyroscope=(), accelerometer=(), magnetometer=(), midi=(), sync-xhr=()">
 	
 	<!-- Anti-Clickjacking (Frame-busting) script for static site security -->
 	<style id="antiClickjack">body{display:none !important;}</style>
@@ -539,18 +538,8 @@
 	</noscript>
 	
 	<!-- Optimized Font Loading - Non-blocking, Zero Critical Chain Impact -->
-	<script>
-		// Defer font loading to not impact critical rendering path
-		(function() {
-			// Only load fonts after critical content is rendered
-			setTimeout(function() {
-				var fontLink = document.createElement('link');
-				fontLink.rel = 'stylesheet';
-				fontLink.href = 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional';
-				document.head.appendChild(fontLink);
-			}, 200); // Delay font loading until after critical content
-		})();
-	</script>
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional" as="style">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@400;700&family=Open+Sans&display=optional" media="print" onload="this.media='all'">
 	
 	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
@@ -562,7 +551,7 @@
 	<!-- jquery-migrate removed for performance - vegas plugin patched -->
 	<script src="assets/js/bootstrap.min.js?v=2025.11" integrity="sha384-a5jtiYH5jy2C9nk8lKcS1rJKNol+cJ9NJsVMDkCOm9QKXwm5Rq9bpSzg6zmnr48D" defer></script>
 	<script src="assets/plugins/vegas/jquery.vegas.min.js?v=2025.11" integrity="sha384-coBErv0EgCI7VkSd++JmHxhjwxROUhJ37ZNTnevFBMK4ukZOMTiD+wLfguBX205T" defer></script>
-	<script src="assets/js/main.js?v=2025.11" defer></script>
+	<script src="assets/js/main.js?v=2025.12" defer></script>
 	
 	<!-- Service Worker for Advanced Caching -->
 	<script>
@@ -1430,7 +1419,7 @@
 						<div class=skillset>
 							<div class=item><h3 class=level-title>Android<span class=level-label data-toggle=tooltip
 																			   data-placement=left data-animation=true
-																			   title="">Expert</span></h3>
+																			   >Expert</span></h3>
 								<div class=level-bar>
 									<div class="level-bar-inner" data-level="97%" role="progressbar" aria-valuenow="97" aria-valuemin="0" aria-valuemax="100" aria-label="Android"></div>
 								</div>
@@ -1439,7 +1428,7 @@
 																						data-toggle=tooltip
 																						data-placement=left
 																						data-animation=true
-																						title="">Pro</span></h3>
+																						>Pro</span></h3>
 								<div class=level-bar>
 									<div class="level-bar-inner" data-level="90%" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Mobile Computing"></div>
 								</div>
@@ -1448,21 +1437,21 @@
 																							data-toggle=tooltip
 																							data-placement=left
 																							data-animation=true
-																							title="">Pro</span></h3>
+																							>Pro</span></h3>
 								<div class=level-bar>
 									<div class="level-bar-inner" data-level="90%" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="RDBMS: MySQL, Oracle"></div>
 								</div>
 							</div>
 							<div class=item><h3 class=level-title>Java<span class=level-label data-toggle=tooltip
 																			data-placement=left data-animation=true
-																			title="">Pro</span></h3>
+																			>Pro</span></h3>
 								<div class=level-bar>
 									<div class="level-bar-inner" data-level="90%" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Java"></div>
 								</div>
 							</div>
 							<div class=item><h3 class=level-title>Python<span class=level-label data-toggle=tooltip
 																			  data-placement=left data-animation=true
-																			  title="">Experienced</span></h3>
+																			  >Experienced</span></h3>
 								<div class=level-bar>
 									<div class="level-bar-inner" data-level="80%" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Python"></div>
 								</div>
@@ -1470,7 +1459,7 @@
 							<div class=item><h3 class=level-title>Machine Learning<span class=level-label
 																						data-toggle=tooltip
 																						data-placement=left
-																						data-animation=true title="">Experienced</span>
+																						data-animation=true >Experienced</span>
 							</h3>
 								<div class=level-bar>
 									<div class="level-bar-inner" data-level="80%" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Machine Learning"></div>
@@ -1479,7 +1468,7 @@
 							<div class=item><h3 class=level-title>Semantic Web<span class=level-label
 																					data-toggle=tooltip
 																					data-placement=left
-																					data-animation=true title="">Experienced</span>
+																					data-animation=true >Experienced</span>
 							</h3>
 								<div class=level-bar>
 									<div class="level-bar-inner" data-level="80%" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Semantic Web"></div>
@@ -1488,7 +1477,7 @@
 							<div class=item><h3 class=level-title>Web Development<span class=level-label
 																					   data-toggle=tooltip
 																					   data-placement=left
-																					   data-animation=true title="">Experienced</span>
+																					   data-animation=true >Experienced</span>
 							</h3>
 								<div class=level-bar>
 									<div class="level-bar-inner" data-level="75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Web Development"></div>
@@ -1766,26 +1755,6 @@
 		anonymize_ip: true,
 		respect_dnt: true
 	});
-})();
-</script>
-
-<!-- Calculate years of experience dynamically (non-blocking) -->
-<script>
-(function() {
-	const today = new Date();
-	const pastDate = new Date(2025, 3, 12); // April 12, 2025
-	
-	// Calculate the difference in milliseconds
-	const timeDifference = today.getTime() - pastDate.getTime();
-	
-	// Convert milliseconds to years
-	const years = (4012+2465)/365.25 + Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25));
-	
-	// Update the DOM element (non-blocking)
-	const yearsElement = document.getElementById('years-experience');
-	if (yearsElement) {
-		yearsElement.textContent = Math.floor(years) + ' years';
-	}
 })();
 </script>
 
