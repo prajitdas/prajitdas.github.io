@@ -145,7 +145,11 @@
 
         /* ⚡ Bolt Optimization: Initialize Vegas Slideshow */
         // Moved from inline script in index.html for better caching and performance
-        if (e.vegas) {
+        // Enhanced to respect user preferences and save bandwidth on mobile
+        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var isMobile = window.innerWidth < 768; // Bootstrap xs breakpoint
+
+        if (e.vegas && !prefersReducedMotion && !isMobile) {
             e.vegas("slideshow", {
                 backgrounds: [{
                     src: "assets/img/1.jpg",
