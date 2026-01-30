@@ -134,6 +134,8 @@
                 evt.preventDefault();
                 evt.stopPropagation();
                 $navbarCollapse.toggleClass('in');
+                var expanded = $navbarCollapse.hasClass('in');
+                $cleanButton.attr('aria-expanded', expanded);
             });
         }
 
