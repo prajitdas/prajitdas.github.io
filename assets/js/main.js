@@ -34,7 +34,13 @@
         }
 
         // Tooltip for level labels
-        e('.level-label').tooltip();
+        e('.level-label').tooltip({
+            placement: 'left',
+            animation: true,
+            title: function () {
+                return e(this).closest('.item').find('.level-bar-inner').attr('data-level');
+            }
+        });
 
         // Tooltip for social links
         e('.social a').tooltip({ placement: 'bottom' });
