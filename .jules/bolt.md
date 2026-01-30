@@ -26,6 +26,6 @@
 **Learning:** Legacy jQuery code often uses `$(window).scroll()` to toggle visibility of elements like "Back to Top". This fires heavily on the main thread.
 **Action:** Replace `window.scroll` listeners with `IntersectionObserver`. Observe a sentinel element (like `.header` or a 1px div at the top). When it leaves the viewport (`!entry.isIntersecting`), show the UI. This offloads the geometry check to the browser's compositor/optimized path.
 
-## 2025-01-29 - Service Worker Precache Bloat
-**Learning:** The Service Worker was configured to precache large background images (~1MB) in `STATIC_ASSETS` unconditionally during the `install` phase. This forced all users (including mobile) to download these heavy assets immediately, even if the slideshow logic in `main.js` might eventually skip using them.
-**Action:** Remove heavy, non-critical decorative assets (like slideshow backgrounds) from the SW `install` precache list. Rely on runtime caching (stale-while-revalidate or cache-first) when/if the application actually requests them.
+## 2026-01-30 - Resource Loading: setTimeout vs Preload
+**Learning:** Found legacy code using `setTimeout(..., 200)` to inject a CSS link for Google Fonts. This pattern artificially delays resource discovery and fetching, worsening FCP and increasing the risk of FOUT.
+**Action:** Replace JS-based injection with standard `<link rel="preload" as="style">` and `<link rel="stylesheet" media="print" onload="this.media='all'">`. This allows the browser's preload scanner to discover the resource immediately while keeping the render path unblocked.
