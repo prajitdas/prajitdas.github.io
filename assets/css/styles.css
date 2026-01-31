@@ -14,3 +14,79 @@
 }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+/* 🎨 Palette: Print-Friendly Styles for Better Offline Accessibility */
+@media print {
+    /* Optimize colors for ink saving and readability */
+    body, .header, .footer, .section-inner {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    /* Remove background images and overlays */
+    .vegas-overlay, .vegas-background {
+        display: none !important;
+    }
+
+    /* Hide navigation and interactive elements not useful in print */
+    .navbar,
+    .navbar-toggle,
+    #back-to-top,
+    .skip-link,
+    .youtube-play-button,
+    .youtube-click-text {
+        display: none !important;
+    }
+
+    /* Reset layout constraints to utilize full page width */
+    .container, .col-md-8, .col-md-4, .secondary {
+        width: 100% !important;
+        float: none !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Avoid breaking content inside items */
+    .item, .section {
+        page-break-inside: avoid;
+        border: none !important;
+    }
+
+    /* Expand meaningful links to show URLs */
+    a[href^="http"]:not(.bibtexitem a):not(.navbar-brand):not(.social a):after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
+        word-wrap: break-word;
+    }
+
+    /* Clean up header area */
+    .header {
+        padding: 20px 0 !important;
+        border: none !important;
+        text-align: left !important;
+    }
+
+    .header .profile-content .name {
+        color: #000 !important;
+        margin-top: 0 !important;
+    }
+
+    .header .profile-content .desc {
+        color: #333 !important;
+    }
+
+    /* Ensure social icons are visible against white */
+    .social a {
+        color: #000 !important;
+        border: 1px solid #ccc;
+        background: transparent !important;
+    }
+
+    /* Hide footer background but keep copyright */
+    .footer {
+        border-top: 1px solid #eee;
+        margin-top: 20px;
+    }
+}
