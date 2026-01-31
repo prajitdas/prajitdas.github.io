@@ -33,3 +33,7 @@
 ## 2026-01-30 - Accessibility: Mobile Menu State
 **Learning:** Collapsible mobile menus (common in Bootstrap) often toggle visibility visually but fail to communicate state changes to screen readers. The toggle button needs explicit `aria-expanded` updates to inform users if the menu is open or closed.
 **Action:** When implementing custom or framework-based collapsible menus, always pair the toggle logic with a state check that updates `aria-expanded="true/false"` on the control button.
+
+## 2026-02-04 - UX: Print Stylesheets as Invisible Accessibility
+**Learning:** Users often print portfolio sites to PDF for offline review or archival. Standard web layouts (dark mode, sticky navs) break this experience. Adding a simple print stylesheet is a high-value, low-effort "invisible" feature that respects the user's intent to consume content offline.
+**Action:** Always verify pages with `Emulate media print` in devtools or Playwright, ensuring navigation is hidden, contrast is high (black on white), and links are expanded for readability.
