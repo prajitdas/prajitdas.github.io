@@ -5,6 +5,26 @@
     'use strict';
 
     jQuery(document).ready(function (e) {
+        // ⚡ Bolt Optimization: Calculate years of experience dynamically
+        // Moved from inline script in index.html to reduce HTML size and improve caching
+        (function() {
+            var today = new Date();
+            var pastDate = new Date(2025, 3, 12); // April 12, 2025
+
+            // Calculate the difference in milliseconds
+            var timeDifference = today.getTime() - pastDate.getTime();
+
+            // Convert milliseconds to years
+            // 4012 + 2465 is the base days of experience calculated previously
+            var years = (4012+2465)/365.25 + Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365.25));
+
+            // Update the DOM element
+            var yearsElement = document.getElementById('years-experience');
+            if (yearsElement) {
+                yearsElement.textContent = Math.floor(years) + ' years';
+            }
+        })();
+
         // Skill level bars animation
         e('.level-bar-inner').css('width', '0');
 
@@ -34,7 +54,13 @@
         }
 
         // Tooltip for level labels
-        e('.level-label').tooltip();
+        e('.level-label').tooltip({
+            placement: 'left',
+            animation: true,
+            title: function () {
+                return e(this).closest('.item').find('.level-bar-inner').attr('data-level');
+            }
+        });
 
         // Tooltip for social links
         e('.social a').tooltip({ placement: 'bottom' });
@@ -134,12 +160,18 @@
                 evt.preventDefault();
                 evt.stopPropagation();
                 $navbarCollapse.toggleClass('in');
+                var expanded = $navbarCollapse.hasClass('in');
+                $cleanButton.attr('aria-expanded', expanded);
             });
         }
 
         /* ⚡ Bolt Optimization: Initialize Vegas Slideshow */
         // Moved from inline script in index.html for better caching and performance
-        if (e.vegas) {
+        // Only load on desktop (>768px) and if user prefers motion to save bandwidth
+        var isDesktop = window.matchMedia("(min-width: 769px)").matches;
+        var prefersMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+
+        if (e.vegas && isDesktop && prefersMotion) {
             e.vegas("slideshow", {
                 backgrounds: [{
                     src: "assets/img/1.jpg",
@@ -177,6 +209,11 @@
                     container.removeChild(container.firstChild);
                 }
                 container.appendChild(iframe);
+
+                // ⚡ Palette Enhancement: Focus Management
+                // Move focus to the iframe/container to prevent loss of context for keyboard users
+                container.setAttribute('tabindex', '-1');
+                container.focus();
             }
         });
     });

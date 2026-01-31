@@ -29,3 +29,7 @@
 ## 2026-01-27 - Accessibility: Skip Link Target Focus
 **Learning:** A "Skip to main content" link that targets a non-interactive element (like a `div`) will scroll the page but fail to move keyboard focus unless the target has `tabindex="-1"`. This leaves keyboard users stranded at the top of the page.
 **Action:** Always add `tabindex="-1"` and `style="outline:none"` to the target container of a skip link to ensure it receives programmatic focus without a visual focus ring.
+
+## 2026-01-30 - Accessibility: Mobile Menu State
+**Learning:** Collapsible mobile menus (common in Bootstrap) often toggle visibility visually but fail to communicate state changes to screen readers. The toggle button needs explicit `aria-expanded` updates to inform users if the menu is open or closed.
+**Action:** When implementing custom or framework-based collapsible menus, always pair the toggle logic with a state check that updates `aria-expanded="true/false"` on the control button.
