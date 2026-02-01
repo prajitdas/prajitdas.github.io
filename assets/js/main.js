@@ -96,9 +96,9 @@
                 entries.forEach(function(entry) {
                     // If header is NOT intersecting (scrolled out of view), show button
                     if (!entry.isIntersecting) {
-                        backToTop.fadeIn();
+                        backToTop.addClass('visible');
                     } else {
-                        backToTop.fadeOut();
+                        backToTop.removeClass('visible');
                     }
                 });
             }, { threshold: 0 });
@@ -110,9 +110,9 @@
                 // Fallback if header not found
                 e(window).scroll(function () {
                     if (e(this).scrollTop() > 200) {
-                        backToTop.fadeIn();
+                        backToTop.addClass('visible');
                     } else {
-                        backToTop.fadeOut();
+                        backToTop.removeClass('visible');
                     }
                 });
             }
@@ -120,9 +120,9 @@
             // Fallback for older browsers
             e(window).scroll(function () {
                 if (e(this).scrollTop() > 200) {
-                    backToTop.fadeIn();
+                    backToTop.addClass('visible');
                 } else {
-                    backToTop.fadeOut();
+                    backToTop.removeClass('visible');
                 }
             });
         }
