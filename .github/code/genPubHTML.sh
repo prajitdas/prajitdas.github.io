@@ -29,6 +29,10 @@ else
 	python "$SCRIPT_DIR/genWordCloud.py" $1
 fi
 
+# Apply security enhancements (CSP, HTTPS, rel=noopener)
+echo "Applying security enhancements..."
+python3 "$SCRIPT_DIR/secure_publications.py"
+
 rm word-cloud.txt
 date_time=`date +%F-%T | tr ':' '-'`
 git add .
