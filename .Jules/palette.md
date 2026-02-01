@@ -37,3 +37,7 @@
 ## 2026-02-04 - UX: Print Stylesheets as Invisible Accessibility
 **Learning:** Users often print portfolio sites to PDF for offline review or archival. Standard web layouts (dark mode, sticky navs) break this experience. Adding a simple print stylesheet is a high-value, low-effort "invisible" feature that respects the user's intent to consume content offline.
 **Action:** Always verify pages with `Emulate media print` in devtools or Playwright, ensuring navigation is hidden, contrast is high (black on white), and links are expanded for readability.
+
+## 2026-05-21 - Accessibility: Consistent Focus Visibility
+**Learning:** Browser default focus rings are often inconsistent or invisible on custom backgrounds (especially dark ones), causing keyboard users to lose their place. A global `:focus-visible` outline ensures a consistent experience, but high-contrast overrides are necessary for dark sections (like footers).
+**Action:** Define a global, high-contrast `:focus-visible` style (e.g., `outline: 3px solid #333`) and specifically override the outline color (e.g., `outline-color: #fff`) for dark containers to ensure WCAG 2.4.7 compliance everywhere.
