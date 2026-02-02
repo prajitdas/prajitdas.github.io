@@ -496,41 +496,19 @@
 	
 	<!-- Non-Critical CSS Loading Strategy - Reduces Critical Request Chain Length -->
 	<!-- Load CSS asynchronously to prevent render blocking -->
-	<script>
-		// Optimized CSS loading function to avoid render blocking
-		function loadCSS(href, before, media, callback) {
-			var link = document.createElement('link');
-			var ref = before || document.head.lastChild;
-			var sheets = document.styleSheets;
-			link.rel = 'stylesheet';
-			link.href = href;
-			link.media = 'only x'; // Temp media to avoid blocking
-			if (callback) link.onload = callback;
-			ref.parentNode.insertBefore(link, ref);
-			
-			// Set media after insert to trigger loading
-			setTimeout(function() { link.media = media || 'all'; });
-			return link;
-		}
-		
-		// Load critical CSS first (higher priority)
-		loadCSS('assets/css/bootstrap.min.css?v=2025.11');
-		
-		// Defer non-critical CSS after critical path
-		setTimeout(function() {
-		loadCSS('assets/css/font-awesome.min.css?v=2025.11');
-		loadCSS('assets/css/styles.css?v=2025.11');
-		loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.11');
-			// Mark secondary content as loaded
-			document.documentElement.classList.add('content-loaded');
-		}, 50);
-	</script>
-	
-	<!-- Critical Resource Preload - Only for LCP candidates -->
 	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.11" as="style">
+	<link rel="preload" href="assets/css/font-awesome.min.css?v=2025.11" as="style">
+	<link rel="preload" href="assets/css/styles.css?v=2025.11" as="style">
+	<link rel="preload" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.11" as="style">
+
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.11" media="print" onload="this.media='all'">
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.11" media="print" onload="this.media='all'">
+	<link rel="stylesheet" href="assets/css/styles.css?v=2025.11" media="print" onload="this.media='all';document.documentElement.classList.add('content-loaded')">
+	<link rel="stylesheet" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.11" media="print" onload="this.media='all'">
 	
 	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
+		<style>.secondary{opacity:1}</style>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.11">
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.11">
 		<link rel="stylesheet" href="assets/css/styles.css?v=2025.11">
