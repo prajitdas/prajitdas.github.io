@@ -69,6 +69,7 @@
         // Automatically adds warning for screen readers on links opening in new tabs
         e('a[target="_blank"]').each(function() {
             var $link = e(this);
+            var notice = ' (opens in a new tab)';
 
             // Ensure security attribute is present
             if (!$link.attr('rel')) {
@@ -77,9 +78,17 @@
                 $link.attr('rel', $link.attr('rel') + ' noopener');
             }
 
-            // Check if it already has screen reader text or label
-            if ($link.find('.sr-only').length === 0 && !$link.attr('aria-label')) {
-                $link.append(' <span class="sr-only">(opens in a new tab)</span>');
+            // ⚡ Palette Fix: Handle existing aria-labels
+            // If aria-label exists, child content (like .sr-only) is ignored by screen readers.
+            // We must append the notice to the aria-label itself.
+            var currentLabel = $link.attr('aria-label');
+
+            if (currentLabel) {
+                if (currentLabel.indexOf(notice) === -1) {
+                    $link.attr('aria-label', currentLabel + notice);
+                }
+            } else if ($link.find('.sr-only').length === 0) {
+                $link.append(' <span class="sr-only">' + notice + '</span>');
             }
         });
 

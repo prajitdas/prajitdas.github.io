@@ -41,3 +41,7 @@
 ## 2026-05-21 - Accessibility: Consistent Focus Visibility
 **Learning:** Browser default focus rings are often inconsistent or invisible on custom backgrounds (especially dark ones), causing keyboard users to lose their place. A global `:focus-visible` outline ensures a consistent experience, but high-contrast overrides are necessary for dark sections (like footers).
 **Action:** Define a global, high-contrast `:focus-visible` style (e.g., `outline: 3px solid #333`) and specifically override the outline color (e.g., `outline-color: #fff`) for dark containers to ensure WCAG 2.4.7 compliance everywhere.
+
+## 2026-06-05 - Accessibility: Aria-label Overrides
+**Learning:** When an element has an `aria-label`, screen readers ignore its child content (including visually hidden `.sr-only` text). This means generic "opens in new tab" spans are silent for icon buttons with explicit labels.
+**Action:** When enhancing `target="_blank"` links, check for `aria-label`. If present, append the warning text to the attribute string itself. Only use `.sr-only` spans for links without existing ARIA labels.
