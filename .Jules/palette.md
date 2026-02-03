@@ -41,3 +41,7 @@
 ## 2026-05-21 - Accessibility: Consistent Focus Visibility
 **Learning:** Browser default focus rings are often inconsistent or invisible on custom backgrounds (especially dark ones), causing keyboard users to lose their place. A global `:focus-visible` outline ensures a consistent experience, but high-contrast overrides are necessary for dark sections (like footers).
 **Action:** Define a global, high-contrast `:focus-visible` style (e.g., `outline: 3px solid #333`) and specifically override the outline color (e.g., `outline-color: #fff`) for dark containers to ensure WCAG 2.4.7 compliance everywhere.
+
+## 2026-02-03 - UX: External Link Indicators
+**Learning:** Users need visual cues when links take them to a new context (like a new tab), especially when `target="_blank"` is used. Relying solely on hover behavior or screen reader text leaves sighted users guessing.
+**Action:** Use CSS to automatically append an external link icon (e.g., `\f08e`) to `a[target="_blank"]` within content areas, carefully excluding images and links that already have manual icons to avoid visual clutter.

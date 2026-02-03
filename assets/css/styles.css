@@ -114,3 +114,16 @@
         outline-color: #fff;
     }
 }
+
+/* 🎨 Palette: Visual Indicator for External Links */
+.content a[target="_blank"]:not(.more-link):not([class*="col-"])::after {
+    content: "\f08e";
+    font-family: FontAwesome;
+    margin-left: 4px;
+    font-size: 0.75em;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: super;
+}
