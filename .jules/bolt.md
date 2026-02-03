@@ -29,3 +29,7 @@
 ## 2026-01-30 - Resource Loading: setTimeout vs Preload
 **Learning:** Found legacy code using `setTimeout(..., 200)` to inject a CSS link for Google Fonts. This pattern artificially delays resource discovery and fetching, worsening FCP and increasing the risk of FOUT.
 **Action:** Replace JS-based injection with standard `<link rel="preload" as="style">` and `<link rel="stylesheet" media="print" onload="this.media='all'">`. This allows the browser's preload scanner to discover the resource immediately while keeping the render path unblocked.
+
+## 2026-02-03 - CSS Transitions vs jQuery.animate
+**Learning:** Legacy code used jQuery's `.animate()` to animate width changes on scroll. This runs on the main thread and can cause jank. CSS transitions are handled by the browser's compositor and are much smoother.
+**Action:** Replace simple property animations (like width, opacity, transform) with CSS transitions and use JS only to trigger the state change (e.g., adding a class or setting the final property value).

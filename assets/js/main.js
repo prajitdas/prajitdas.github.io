@@ -26,7 +26,7 @@
         })();
 
         // Skill level bars animation
-        e('.level-bar-inner').css('width', '0');
+        // Initial width set in CSS to avoid FOUC and layout thrashing
 
         // ⚡ Bolt Optimization: Use IntersectionObserver to animate only when visible
         // This improves initial load performance and provides better UX
@@ -36,7 +36,7 @@
                     if (entry.isIntersecting) {
                         var $elem = e(entry.target);
                         var levelWidth = $elem.data('level');
-                        $elem.animate({width: levelWidth}, 800);
+                        $elem.css('width', levelWidth);
                         observer.unobserve(entry.target);
                     }
                 });
@@ -49,7 +49,7 @@
             // Fallback for older browsers: animate immediately on ready (faster than window.load)
             e('.level-bar-inner').each(function () {
                 var levelWidth = e(this).data('level');
-                e(this).animate({width: levelWidth}, 800);
+                e(this).css('width', levelWidth);
             });
         }
 
