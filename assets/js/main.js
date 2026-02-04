@@ -70,11 +70,16 @@
         e('a[target="_blank"]').each(function() {
             var $link = e(this);
 
-            // Ensure security attribute is present
-            if (!$link.attr('rel')) {
-                $link.attr('rel', 'noopener');
-            } else if ($link.attr('rel').indexOf('noopener') === -1) {
-                $link.attr('rel', $link.attr('rel') + ' noopener');
+            // Ensure security attributes are present
+            var rel = $link.attr('rel') || '';
+            if (rel.indexOf('noopener') === -1) {
+                rel = (rel ? rel + ' ' : '') + 'noopener';
+            }
+            if (rel.indexOf('noreferrer') === -1) {
+                rel = (rel ? rel + ' ' : '') + 'noreferrer';
+            }
+            if (rel !== ($link.attr('rel') || '')) {
+                $link.attr('rel', rel);
             }
 
             // Check if it already has screen reader text or label
