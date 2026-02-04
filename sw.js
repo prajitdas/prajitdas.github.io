@@ -1,9 +1,9 @@
 // Service Worker for Advanced Caching Strategy
-// Version: 2025.11.1
+// Version: 2025.11.2
 
-const CACHE_NAME = 'prajitdas-cache-v2025.11.1';
-const STATIC_CACHE_NAME = 'prajitdas-static-v2025.11.1';
-const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.11.1';
+const CACHE_NAME = 'prajitdas-cache-v2025.11.2';
+const STATIC_CACHE_NAME = 'prajitdas-static-v2025.11.2';
+const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.11.2';
 
 // Critical resources for immediate caching (LCP optimization)
 const CRITICAL_ASSETS = [
@@ -17,6 +17,7 @@ const STATIC_ASSETS = [
   ...CRITICAL_ASSETS,
   '/assets/css/bootstrap.min.css?v=2025.11',
   '/assets/css/font-awesome.min.css?v=2025.11',
+  '/assets/fonts/fontawesome-webfont.woff2?v=4.7.0',
   '/assets/css/styles.css?v=2025.11',
   '/assets/plugins/vegas/jquery.vegas.min.css?v=2025.11',
   '/assets/js/jquery-3.7.1.min.js?v=2025.11',

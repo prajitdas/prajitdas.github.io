@@ -29,3 +29,7 @@
 ## 2026-01-30 - Resource Loading: setTimeout vs Preload
 **Learning:** Found legacy code using `setTimeout(..., 200)` to inject a CSS link for Google Fonts. This pattern artificially delays resource discovery and fetching, worsening FCP and increasing the risk of FOUT.
 **Action:** Replace JS-based injection with standard `<link rel="preload" as="style">` and `<link rel="stylesheet" media="print" onload="this.media='all'">`. This allows the browser's preload scanner to discover the resource immediately while keeping the render path unblocked.
+
+## 2026-02-18 - Font Preloading for Icon Fonts
+**Learning:** Browsers do not discover font files referenced in CSS until the CSS is downloaded and parsed. For icon fonts used above the fold (like social icons), this causes a delay (FOIT) or shift.
+**Action:** Explicitly preload the specific font file (e.g., `fontawesome-webfont.woff2`) using `<link rel="preload" as="font" crossorigin>` to ensure it is fetched in parallel with the CSS.
