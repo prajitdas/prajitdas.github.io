@@ -216,5 +216,37 @@
                 container.focus();
             }
         });
+
+        // ⚡ Palette Enhancement: Add icons to publication links for better scanability
+        e('.publications-container .bibtexitem a').each(function() {
+            var $link = e(this);
+            var text = $link.text().trim().toLowerCase();
+            var iconClass = '';
+            var label = '';
+
+            if (text === 'bib') {
+                iconClass = 'fa-quote-left';
+                label = 'BibTeX entry';
+            } else if (text === 'arxiv') {
+                iconClass = 'fa-file-text-o';
+                label = 'arXiv version';
+            } else if (text === 'http' || text === 'doi') {
+                iconClass = 'fa-external-link';
+                label = 'External link';
+            } else if (text === 'abstract') {
+                iconClass = 'fa-info-circle';
+                label = 'Abstract';
+            } else if (text === '.pdf') {
+                iconClass = 'fa-file-pdf-o';
+                label = 'PDF document';
+            }
+
+            if (iconClass) {
+                $link.prepend('<i class="fa ' + iconClass + '" aria-hidden="true"></i> ');
+                if (!$link.attr('aria-label')) {
+                    $link.attr('aria-label', label);
+                }
+            }
+        });
     });
 }());

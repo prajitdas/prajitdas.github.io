@@ -41,3 +41,7 @@
 ## 2026-05-21 - Accessibility: Consistent Focus Visibility
 **Learning:** Browser default focus rings are often inconsistent or invisible on custom backgrounds (especially dark ones), causing keyboard users to lose their place. A global `:focus-visible` outline ensures a consistent experience, but high-contrast overrides are necessary for dark sections (like footers).
 **Action:** Define a global, high-contrast `:focus-visible` style (e.g., `outline: 3px solid #333`) and specifically override the outline color (e.g., `outline-color: #fff`) for dark containers to ensure WCAG 2.4.7 compliance everywhere.
+
+## 2026-02-04 - UX/Accessibility: Scannability of Dense Link Lists
+**Learning:** Dense lists of text links (like "bib | arXiv | abstract") are hard to scan visually and can be repetitive for screen readers. Adding intuitive icons acts as visual anchors, while enhancing `aria-label` provides necessary context (e.g., "BibTeX entry" vs just "bib") without changing the visual design significantly.
+**Action:** Enhance micro-links in lists with semantic icons (using `aria-hidden="true"`) and descriptive `aria-label` attributes to improve both scannability and accessibility.
