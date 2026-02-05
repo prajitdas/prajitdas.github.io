@@ -1,9 +1,9 @@
 // Service Worker for Advanced Caching Strategy
-// Version: 2025.11.1
+// Version: 2025.12.1
 
-const CACHE_NAME = 'prajitdas-cache-v2025.11.1';
-const STATIC_CACHE_NAME = 'prajitdas-static-v2025.11.1';
-const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.11.1';
+const CACHE_NAME = 'prajitdas-cache-v2025.12.1';
+const STATIC_CACHE_NAME = 'prajitdas-static-v2025.12.1';
+const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.12.1';
 
 // Critical resources for immediate caching (LCP optimization)
 const CRITICAL_ASSETS = [
@@ -22,7 +22,7 @@ const STATIC_ASSETS = [
   '/assets/js/jquery-3.7.1.min.js?v=2025.11',
   '/assets/plugins/vegas/jquery.vegas.min.js?v=2025.11',
   '/assets/js/bootstrap.min.js?v=2025.11',
-  '/assets/js/main.js?v=2025.12',
+  '/assets/js/main.js?v=2025.12.1',
   '/assets/plugins/vegas/overlays/15.png',
   '/assets/img/favicon.ico',
   '/assets/docs/publications/wordcloud.png?v=2025.11',

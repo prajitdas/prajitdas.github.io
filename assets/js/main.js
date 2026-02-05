@@ -88,6 +88,48 @@
         // Note: RSS and GitHub Activity plugin initialization removed 
         // since target elements (#rss-feeds, #ghfeed) don't exist on the page
 
+        // ⚡ Palette Enhancement: Add icons to publication links
+        // Adds visual cues and improves scannability for publication resources
+        e('.publications-container .bibtexitem a').each(function() {
+            var $link = e(this);
+            var text = $link.text().trim().toLowerCase();
+
+            // Skip if icon already exists
+            if ($link.find('i.fa').length > 0) return;
+
+            var iconMap = {
+                'bib': { icon: 'fa-file-code-o', label: 'BibTeX citation' },
+                'pdf': { icon: 'fa-file-pdf-o', label: 'PDF document' },
+                '.pdf': { icon: 'fa-file-pdf-o', label: 'PDF document' },
+                'doi': { icon: 'fa-external-link', label: 'DOI link' },
+                'arxiv': { icon: 'fa-archive', label: 'arXiv preprint' },
+                'http': { icon: 'fa-globe', label: 'External link' },
+                'https': { icon: 'fa-globe', label: 'External link' },
+                'link': { icon: 'fa-globe', label: 'External link' },
+                'slides': { icon: 'fa-slideshare', label: 'Presentation slides' },
+                'video': { icon: 'fa-play-circle', label: 'Watch video' },
+                'abstract': { icon: 'fa-align-left', label: 'Read abstract' }
+            };
+
+            var config = iconMap[text];
+
+            // Handle fuzzy matches
+            if (!config) {
+                if (text.indexOf('.pdf') !== -1) {
+                    config = iconMap.pdf;
+                } else if (text.indexOf('http') === 0) {
+                    config = iconMap.http;
+                }
+            }
+
+            if (config) {
+                $link.prepend('<i class="fa ' + config.icon + '" aria-hidden="true"></i> ');
+                if (!$link.attr('aria-label')) {
+                    $link.attr('aria-label', config.label);
+                }
+            }
+        });
+
         /* Back to Top */
         var backToTop = e('#back-to-top');
 
