@@ -260,5 +260,21 @@
                 container.focus();
             }
         });
+
+        // ⚡ Palette Enhancement: Section Permalinks
+        // Adds accessible permalinks to section headings
+        e('.section[id], .aside[id]').each(function() {
+            var $section = e(this);
+            var id = $section.attr('id');
+            var $heading = $section.find('.heading').first();
+            var title = $heading.text().trim();
+
+            if (id && $heading.length) {
+                $heading.append(
+                    ' <a href="#' + id + '" class="permalink" aria-label="Link to ' + title + ' section">' +
+                    '<i class="fa fa-link" aria-hidden="true"></i></a>'
+                );
+            }
+        });
     });
 }());
