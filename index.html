@@ -520,7 +520,6 @@
 		setTimeout(function() {
 		loadCSS('assets/css/font-awesome.min.css?v=2025.11');
 		loadCSS('assets/css/styles.css?v=2025.11');
-		loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.11');
 			// Mark secondary content as loaded
 			document.documentElement.classList.add('content-loaded');
 		}, 50);
@@ -534,7 +533,6 @@
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.11">
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.11">
 		<link rel="stylesheet" href="assets/css/styles.css?v=2025.11">
-		<link rel="stylesheet" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.11">
 	</noscript>
 	
 	<!-- Optimized Font Loading - Non-blocking, Zero Critical Chain Impact -->
@@ -671,7 +669,7 @@
 			</div>
 		</div>
 	</div>
-	<header class=header>
+	<div class=header>
 		<div class=container><img 
 			src="assets/img/Profile.jpg?v=2025.11"
 			class="profile-image img-responsive pull-left pull-down img-circle" 
@@ -696,12 +694,12 @@
 					<li><a href="https://orcid.org/0000-0001-5176-1289" target="_blank" rel="noopener" title="ORCID Profile" aria-label="ORCID Profile"><i class="fa fa-university" aria-hidden="true"></i></a></li>
 				</ul>
 			</div>
-	</header>
+	</div>
 </header>
 <div class="container sections-wrapper">
 	<div class=row>
 		<div id="main-content" class="primary col-md-8 col-sm-12 col-xs-12" tabindex="-1" style="outline:none">
-			<section class="about section">
+			<section id="about" class="about section">
 				<div class=section-inner><h2 class=heading>About Me</h2>
 					<div class=content>
 						<p>I am a Security Researcher & Software Engineering Leader at Cisco's Security Business Group (SBG), where I lead a talented team focused on the <a href=https://www.cisco.com/site/us/en/products/security/firewalls/firewall-management-center/index.html target="_blank" rel="noopener">Secure Firewall Management Center</a>. Our work centers on building core platform components like Authentication, Authorization, and Auditing (AAA), REST API frameworks, and cloud service integrations. I am deeply committed to driving security-focused development and have led several key initiatives around SAML SSO, external authentication, and software compliance standardization.</p></br>
@@ -711,7 +709,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="experience section">
+			<section id="experience" class="experience section">
 				<div class=section-inner>
 					<h2 class=heading>Work Experience</h2>
 					<div class=content>
@@ -825,7 +823,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="latest section">
+			<section id="projects" class="latest section">
 				<div class=section-inner><h2 class=heading>Projects</h2>
 					<div class=content>
 						<div class="item row"><a class="col-md-4 col-sm-4 col-xs-12" href="https://ebiquity.umbc.edu/paper/html/id/763/Capturing-policies-for-fine-grained-access-control-on-mobile-devices"
@@ -953,7 +951,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="publications section">
+			<section id="publications" class="publications section">
 				<div class=section-inner><h2 class=heading>Publications</h2>
 					<div class=content>
 						<!-- Direct inline publications (most efficient - immediate load) -->
@@ -1377,7 +1375,7 @@
 		</div>
 
 		<div class="secondary col-md-4 col-sm-12 col-xs-12">
-			<aside class="education aside section">
+			<aside id="education" class="education aside section">
 				<div class=section-inner><h2 class=heading>Education</h2>
 					<div class=content>
 						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-graduation-cap"></i> Doctorate in Computer Science</h3>
@@ -1386,7 +1384,7 @@
 					</div>
 				</div>
 			</aside>
-			<aside class="info aside section">
+			<aside id="wordcloud" class="info aside section">
 				<div class=section-inner>
 					<h2 class=heading>Publication word cloud</h2>
 					<div class=content>
@@ -1398,7 +1396,7 @@
 					</div>
 				</div>
 			</aside>
-			<aside class="skills aside section">
+			<aside id="skills" class="skills aside section">
 				<div class=section-inner><h2 class=heading>Skills</h2>
 					<div class=content><p class=intro>I am a Security Researcher & Software Engineering Leader with extensive R&D experience in the Mobile Computing, Network Security and Cybersecurity domains. I have held positions with varying levels of responsibility including Software Engineer, Software Engineering Leader, Security & Privacy Researcher, Project Auditor, research & teaching assistant. The highlights of my skills are listed below.</p>
 						<div class=skillset>
@@ -1473,7 +1471,7 @@
 					</div>
 				</div>
 			</aside>
-			<aside class="education aside section">
+			<aside id="other-projects" class="education aside section">
 				<div class=section-inner><h2 class=heading>Other Projects</h2>
 					<div class=content>
 						<div class=item><h3 class=title>Semantics for Privacy and Shared Context</h3>
@@ -1502,7 +1500,7 @@
 					</div>
 				</div>
 			</aside>
-			<aside class="education aside section">
+			<aside id="academic-services" class="education aside section">
 				<div class=section-inner><h2 class=heading>Academic services</h2>
 					<div class=content>
 						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-university"></i>Reviewer</h3> <h4 class=university>Reviewer for <a
@@ -1521,7 +1519,7 @@
 					</div>
 				</div>
 			</aside>
-			<aside class="education aside section">
+			<aside id="awards" class="education aside section">
 				<div class=section-inner><h2 class=heading>Travel awards received</h2>
 					<div class=content>
 						<div class=item><h3 class=title>ISWC Travel Grant 2016</h3>
@@ -1547,7 +1545,7 @@
 					</div>
 				</div>
 			</aside>
-			<aside class="education aside section">
+			<aside id="organizations" class="education aside section">
 				<div class=section-inner><h2 class=heading>Organizations</h2>
 					<div class=content>
 						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-building-o"></i> UMBC ACM Student Chapter - 2014
@@ -1563,7 +1561,7 @@
 					</div>
 				</div>
 			</aside>
-			<aside class="languages aside section">
+			<aside id="languages" class="languages aside section">
 				<div class=section-inner><h2 class=heading>Languages</h2>
 					<div class=content>
 						<ul class=list-unstyled>
@@ -1595,7 +1593,7 @@
 					</div>
 				</div>
 			</aside>
-			<aside class="list music aside section">
+			<aside id="music" class="list music aside section">
 				<div class=section-inner><h2 class=heading>Favourite coding music</h2>
 					<div class=content>
 						<ul class=list-unstyled>

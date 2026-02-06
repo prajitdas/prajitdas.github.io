@@ -114,3 +114,23 @@
         outline-color: #fff;
     }
 }
+
+/* 🎨 Palette: Section Permalinks */
+.permalink {
+    margin-left: 10px;
+    font-size: 0.8em;
+    color: #ccc;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-decoration: none;
+}
+.permalink:hover, .permalink:focus, .heading:hover .permalink {
+    opacity: 1;
+    color: #3aaa64;
+    text-decoration: none;
+}
+
+/* 🎨 Palette: Fix scroll position for deep links */
+.section[id], .aside[id] {
+    scroll-margin-top: 100px;
+}

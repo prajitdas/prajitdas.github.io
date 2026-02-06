@@ -215,22 +215,38 @@
         var isDesktop = window.matchMedia("(min-width: 769px)").matches;
         var prefersMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
-        if (e.vegas && isDesktop && prefersMotion) {
-            e.vegas("slideshow", {
-                backgrounds: [{
-                    src: "assets/img/1.jpg",
-                    fade: 1e3,
-                    delay: 9e3
-                }, {src: "assets/img/2.jpg", fade: 1e3, delay: 9e3}, {
-                    src: "assets/img/3.jpg",
-                    fade: 1e3,
-                    delay: 9e3
-                }, {
-                    src: "assets/img/sw.jpg",
-                    fade: 1e3,
-                    delay: 9e3
-                }]
-            })("overlay", {src: "assets/plugins/vegas/overlays/15.png"});
+        if (isDesktop && prefersMotion) {
+            // Load Vegas CSS
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'assets/plugins/vegas/jquery.vegas.min.css?v=2025.11';
+            document.head.appendChild(link);
+
+            // Load Vegas JS
+            var script = document.createElement('script');
+            script.src = 'assets/plugins/vegas/jquery.vegas.min.js?v=2025.11';
+            script.integrity = 'sha384-coBErv0EgCI7VkSd++JmHxhjwxROUhJ37ZNTnevFBMK4ukZOMTiD+wLfguBX205T';
+            script.crossOrigin = 'anonymous';
+            script.onload = function() {
+                if (e.vegas) {
+                    e.vegas("slideshow", {
+                        backgrounds: [{
+                            src: "assets/img/1.jpg",
+                            fade: 1e3,
+                            delay: 9e3
+                        }, {src: "assets/img/2.jpg", fade: 1e3, delay: 9e3}, {
+                            src: "assets/img/3.jpg",
+                            fade: 1e3,
+                            delay: 9e3
+                        }, {
+                            src: "assets/img/sw.jpg",
+                            fade: 1e3,
+                            delay: 9e3
+                        }]
+                    })("overlay", {src: "assets/plugins/vegas/overlays/15.png"});
+                }
+            };
+            document.head.appendChild(script);
         }
 
         /* ⚡ Bolt Optimization: Lazy Load YouTube Video */
@@ -258,6 +274,22 @@
                 // Move focus to the iframe/container to prevent loss of context for keyboard users
                 container.setAttribute('tabindex', '-1');
                 container.focus();
+            }
+        });
+
+        // ⚡ Palette Enhancement: Section Permalinks
+        // Adds accessible permalinks to section headings
+        e('.section[id], .aside[id]').each(function() {
+            var $section = e(this);
+            var id = $section.attr('id');
+            var $heading = $section.find('.heading').first();
+            var title = $heading.text().trim();
+
+            if (id && $heading.length) {
+                $heading.append(
+                    ' <a href="#' + id + '" class="permalink" aria-label="Link to ' + title + ' section">' +
+                    '<i class="fa fa-link" aria-hidden="true"></i></a>'
+                );
             }
         });
     });

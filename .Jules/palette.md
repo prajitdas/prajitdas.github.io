@@ -41,3 +41,7 @@
 ## 2026-05-21 - Accessibility: Consistent Focus Visibility
 **Learning:** Browser default focus rings are often inconsistent or invisible on custom backgrounds (especially dark ones), causing keyboard users to lose their place. A global `:focus-visible` outline ensures a consistent experience, but high-contrast overrides are necessary for dark sections (like footers).
 **Action:** Define a global, high-contrast `:focus-visible` style (e.g., `outline: 3px solid #333`) and specifically override the outline color (e.g., `outline-color: #fff`) for dark containers to ensure WCAG 2.4.7 compliance everywhere.
+
+## 2025-05-28 - UX: Deep Linking for Portfolio Sections
+**Learning:** Users often want to share specific parts of a single-page portfolio (e.g., "Check out my experience"). Without IDs on sections and visible permalinks, this is difficult.
+**Action:** Add descriptive IDs to all major sections and inject accessible permalinks (anchors) into section headings via JavaScript to enable deep linking without cluttering the initial UI.
