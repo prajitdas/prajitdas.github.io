@@ -36,9 +36,9 @@ except ImportError:
 # Website configuration
 BASE_URL = 'https://prajitdas.github.io'
 LOCAL_PATH = Path(__file__).parent.parent.parent.parent  # Root of repository
-TIMEOUT = 10  # Reduced from 30 to 10 seconds
-MAX_RETRIES = 2  # Reduced from 3 to 2 retries
-RETRY_DELAY = 1  # Reduced from 2 to 1 second
+TIMEOUT = 30  # Increased from 10 to 30 seconds for stability
+MAX_RETRIES = 3  # Increased from 2 to 3 retries for stability
+RETRY_DELAY = 2  # Increased from 1 to 2 seconds for stability
 MAX_EXTERNAL_LINKS = 20  # Limit external link testing for performance
 
 # Fast mode for development (skip external link validation)
@@ -149,7 +149,7 @@ class WebsiteValidationTest(unittest.TestCase):
                 external_links.add(href)
         
         # Limit external link testing for performance - sample key links only
-        external_links = list(external_links)[:MAX_EXTERNAL_LINKS]
+        external_links = sorted(list(external_links))[:MAX_EXTERNAL_LINKS]
         print(f"Testing {len(external_links)} external links (limited for performance)...")
         failed_links = []
         
