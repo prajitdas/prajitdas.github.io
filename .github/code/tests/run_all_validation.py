@@ -34,7 +34,7 @@ def run_test(test_name, script_path, description=""):
     try:
         # Run the test script
         # Set longer timeout for comprehensive tests
-        timeout = 180 if 'website_validation.py' in script_path or 'test_resource_accessibility.py' in script_path else 60
+        timeout = 300 if 'website_validation.py' in script_path or 'test_resource_accessibility.py' in script_path else 60
         result = subprocess.run([sys.executable, script_path], 
                               capture_output=True, 
                               text=True, 
