@@ -26,7 +26,7 @@
         })();
 
         // Skill level bars animation
-        // ⚡ Bolt Optimization: Removed JS-based width reset, now handled by CSS for better performance
+        e('.level-bar-inner').css('width', '0');
 
         // ⚡ Bolt Optimization: Use IntersectionObserver to animate only when visible
         // This improves initial load performance and provides better UX
@@ -36,8 +36,7 @@
                     if (entry.isIntersecting) {
                         var $elem = e(entry.target);
                         var levelWidth = $elem.data('level');
-                        // ⚡ Bolt: Use CSS transitions instead of jQuery animation
-                        $elem.css('width', levelWidth);
+                        $elem.animate({width: levelWidth}, 800);
                         observer.unobserve(entry.target);
                     }
                 });
@@ -50,8 +49,7 @@
             // Fallback for older browsers: animate immediately on ready (faster than window.load)
             e('.level-bar-inner').each(function () {
                 var levelWidth = e(this).data('level');
-                // ⚡ Bolt: Use CSS transitions instead of jQuery animation
-                e(this).css('width', levelWidth);
+                e(this).animate({width: levelWidth}, 800);
             });
         }
 
@@ -88,48 +86,6 @@
         // Note: RSS and GitHub Activity plugin initialization removed 
         // since target elements (#rss-feeds, #ghfeed) don't exist on the page
 
-        // ⚡ Palette Enhancement: Add icons to publication links
-        // Adds visual cues and improves scannability for publication resources
-        e('.publications-container .bibtexitem a').each(function() {
-            var $link = e(this);
-            var text = $link.text().trim().toLowerCase();
-
-            // Skip if icon already exists
-            if ($link.find('i.fa').length > 0) return;
-
-            var iconMap = {
-                'bib': { icon: 'fa-file-code-o', label: 'BibTeX citation' },
-                'pdf': { icon: 'fa-file-pdf-o', label: 'PDF document' },
-                '.pdf': { icon: 'fa-file-pdf-o', label: 'PDF document' },
-                'doi': { icon: 'fa-external-link', label: 'DOI link' },
-                'arxiv': { icon: 'fa-archive', label: 'arXiv preprint' },
-                'http': { icon: 'fa-globe', label: 'External link' },
-                'https': { icon: 'fa-globe', label: 'External link' },
-                'link': { icon: 'fa-globe', label: 'External link' },
-                'slides': { icon: 'fa-slideshare', label: 'Presentation slides' },
-                'video': { icon: 'fa-play-circle', label: 'Watch video' },
-                'abstract': { icon: 'fa-align-left', label: 'Read abstract' }
-            };
-
-            var config = iconMap[text];
-
-            // Handle fuzzy matches
-            if (!config) {
-                if (text.indexOf('.pdf') !== -1) {
-                    config = iconMap.pdf;
-                } else if (text.indexOf('http') === 0) {
-                    config = iconMap.http;
-                }
-            }
-
-            if (config) {
-                $link.prepend('<i class="fa ' + config.icon + '" aria-hidden="true"></i> ');
-                if (!$link.attr('aria-label')) {
-                    $link.attr('aria-label', config.label);
-                }
-            }
-        });
-
         /* Back to Top */
         var backToTop = e('#back-to-top');
 
@@ -140,9 +96,9 @@
                 entries.forEach(function(entry) {
                     // If header is NOT intersecting (scrolled out of view), show button
                     if (!entry.isIntersecting) {
-                        backToTop.addClass('visible');
+                        backToTop.fadeIn();
                     } else {
-                        backToTop.removeClass('visible');
+                        backToTop.fadeOut();
                     }
                 });
             }, { threshold: 0 });
@@ -154,9 +110,9 @@
                 // Fallback if header not found
                 e(window).scroll(function () {
                     if (e(this).scrollTop() > 200) {
-                        backToTop.addClass('visible');
+                        backToTop.fadeIn();
                     } else {
-                        backToTop.removeClass('visible');
+                        backToTop.fadeOut();
                     }
                 });
             }
@@ -164,9 +120,9 @@
             // Fallback for older browsers
             e(window).scroll(function () {
                 if (e(this).scrollTop() > 200) {
-                    backToTop.addClass('visible');
+                    backToTop.fadeIn();
                 } else {
-                    backToTop.removeClass('visible');
+                    backToTop.fadeOut();
                 }
             });
         }
@@ -215,38 +171,22 @@
         var isDesktop = window.matchMedia("(min-width: 769px)").matches;
         var prefersMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
-        if (isDesktop && prefersMotion) {
-            // Load Vegas CSS
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'assets/plugins/vegas/jquery.vegas.min.css?v=2025.11';
-            document.head.appendChild(link);
-
-            // Load Vegas JS
-            var script = document.createElement('script');
-            script.src = 'assets/plugins/vegas/jquery.vegas.min.js?v=2025.11';
-            script.integrity = 'sha384-coBErv0EgCI7VkSd++JmHxhjwxROUhJ37ZNTnevFBMK4ukZOMTiD+wLfguBX205T';
-            script.crossOrigin = 'anonymous';
-            script.onload = function() {
-                if (e.vegas) {
-                    e.vegas("slideshow", {
-                        backgrounds: [{
-                            src: "assets/img/1.jpg",
-                            fade: 1e3,
-                            delay: 9e3
-                        }, {src: "assets/img/2.jpg", fade: 1e3, delay: 9e3}, {
-                            src: "assets/img/3.jpg",
-                            fade: 1e3,
-                            delay: 9e3
-                        }, {
-                            src: "assets/img/sw.jpg",
-                            fade: 1e3,
-                            delay: 9e3
-                        }]
-                    })("overlay", {src: "assets/plugins/vegas/overlays/15.png"});
-                }
-            };
-            document.head.appendChild(script);
+        if (e.vegas && isDesktop && prefersMotion) {
+            e.vegas("slideshow", {
+                backgrounds: [{
+                    src: "assets/img/1.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }, {src: "assets/img/2.jpg", fade: 1e3, delay: 9e3}, {
+                    src: "assets/img/3.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }, {
+                    src: "assets/img/sw.jpg",
+                    fade: 1e3,
+                    delay: 9e3
+                }]
+            })("overlay", {src: "assets/plugins/vegas/overlays/15.png"});
         }
 
         /* ⚡ Bolt Optimization: Lazy Load YouTube Video */
@@ -274,22 +214,6 @@
                 // Move focus to the iframe/container to prevent loss of context for keyboard users
                 container.setAttribute('tabindex', '-1');
                 container.focus();
-            }
-        });
-
-        // ⚡ Palette Enhancement: Section Permalinks
-        // Adds accessible permalinks to section headings
-        e('.section[id], .aside[id]').each(function() {
-            var $section = e(this);
-            var id = $section.attr('id');
-            var $heading = $section.find('.heading').first();
-            var title = $heading.text().trim();
-
-            if (id && $heading.length) {
-                $heading.append(
-                    ' <a href="#' + id + '" class="permalink" aria-label="Link to ' + title + ' section">' +
-                    '<i class="fa fa-link" aria-hidden="true"></i></a>'
-                );
             }
         });
     });

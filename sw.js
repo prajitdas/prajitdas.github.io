@@ -1,9 +1,9 @@
 // Service Worker for Advanced Caching Strategy
-// Version: 2025.12.2
+// Version: 2025.11.1
 
-const CACHE_NAME = 'prajitdas-cache-v2025.12.2';
-const STATIC_CACHE_NAME = 'prajitdas-static-v2025.12.2';
-const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.12.2';
+const CACHE_NAME = 'prajitdas-cache-v2025.11.1';
+const STATIC_CACHE_NAME = 'prajitdas-static-v2025.11.1';
+const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.11.1';
 
 // Critical resources for immediate caching (LCP optimization)
 const CRITICAL_ASSETS = [
@@ -18,9 +18,15 @@ const STATIC_ASSETS = [
   '/assets/css/bootstrap.min.css?v=2025.11',
   '/assets/css/font-awesome.min.css?v=2025.11',
   '/assets/css/styles.css?v=2025.11',
+  '/assets/plugins/vegas/jquery.vegas.min.css?v=2025.11',
+  '/assets/css/octicons.min.css?v=2025.11',
   '/assets/js/jquery-3.7.1.min.js?v=2025.11',
+  '/assets/plugins/vegas/jquery.vegas.min.js?v=2025.11',
   '/assets/js/bootstrap.min.js?v=2025.11',
-  '/assets/js/main.js?v=2025.12.2',
+  '/assets/js/main.js?v=2025.11',
+  '/assets/plugins/vegas/images/loading.gif',
+  '/assets/plugins/vegas/overlays/01.png',
+  '/assets/plugins/vegas/overlays/15.png',
   '/assets/img/favicon.ico',
   '/assets/docs/publications/wordcloud.png?v=2025.11',
   '/assets/img/projects/MobipediaLogo.png'
