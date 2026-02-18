@@ -70,12 +70,15 @@
         e('a[target="_blank"]').each(function() {
             var $link = e(this);
 
-            // Ensure security attribute is present
-            if (!$link.attr('rel')) {
-                $link.attr('rel', 'noopener');
-            } else if ($link.attr('rel').indexOf('noopener') === -1) {
-                $link.attr('rel', $link.attr('rel') + ' noopener');
+            // Ensure security attributes (noopener noreferrer) are present
+            var rel = $link.attr('rel') || '';
+            if (rel.indexOf('noopener') === -1) {
+                rel = rel ? rel + ' noopener' : 'noopener';
             }
+            if (rel.indexOf('noreferrer') === -1) {
+                rel = rel ? rel + ' noreferrer' : 'noreferrer';
+            }
+            $link.attr('rel', rel);
 
             // Check if it already has screen reader text or label
             if ($link.find('.sr-only').length === 0 && !$link.attr('aria-label')) {
@@ -193,6 +196,13 @@
         // Replaces inline onclick and global function with event delegation
         e(document).on('click', '.js-play-youtube', function() {
             var videoId = e(this).data('video-id');
+
+            // Sentinel Security: Validate videoId to prevent potential injection
+            if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
+                console.error('Invalid YouTube Video ID');
+                return;
+            }
+
             var containerId = 'youtube-' + videoId;
             var container = document.getElementById(containerId);
 
