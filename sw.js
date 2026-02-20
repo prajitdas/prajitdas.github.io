@@ -1,9 +1,9 @@
 // Service Worker for Advanced Caching Strategy
-// Version: 2025.11.2
+// Version: 2025.12.1
 
-const CACHE_NAME = 'prajitdas-cache-v2025.11.2';
-const STATIC_CACHE_NAME = 'prajitdas-static-v2025.11.2';
-const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.11.2';
+const CACHE_NAME = 'prajitdas-cache-v2025.12.1';
+const STATIC_CACHE_NAME = 'prajitdas-static-v2025.12.1';
+const DYNAMIC_CACHE_NAME = 'prajitdas-dynamic-v2025.12.1';
 
 // Critical resources for immediate caching (LCP optimization)
 const CRITICAL_ASSETS = [
