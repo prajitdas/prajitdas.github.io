@@ -65,10 +65,12 @@
         // Tooltip for social links
         e('.social a').tooltip({ placement: 'bottom' });
 
-        // ⚡ Palette Enhancement: Accessibility for new tabs
+        // ⚡ Palette Enhancement: Accessibility and Security for new tabs
         // Automatically adds warning for screen readers on links opening in new tabs
+        // AND ensures rel="noopener noreferrer" for security and privacy
         e('a[target="_blank"]').each(function() {
             var $link = e(this);
+            var rel = $link.attr('rel') || '';
 
             // Ensure security attributes are present
             var rel = $link.attr('rel') || '';
