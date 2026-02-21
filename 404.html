@@ -8,8 +8,22 @@
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-EXDMElPmHkgQ0zK8NIkNl5lxOfeOhGKsFbB0TZRxAIQ=' 'sha256-P/tYj7pG4Cv2NnMCcvFFuOLm2uO//ZqTcjbj0S6LefA=' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://www.gravatar.com https://img.youtube.com https://prajitdas.github.io; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net; media-src 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-EXDMElPmHkgQ0zK8NIkNl5lxOfeOhGKsFbB0TZRxAIQ=' 'sha256-P/tYj7pG4Cv2NnMCcvFFuOLm2uO//ZqTcjbj0S6LefA=' 'sha256-sEt0rNl3duchgivLQYJc+SzrKxMp8EWvJok7N2znUls=' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://www.gravatar.com https://img.youtube.com https://prajitdas.github.io; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net; media-src 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), vr=(), gyroscope=(), accelerometer=(), magnetometer=(), midi=(), sync-xhr=()">
+
+    <!-- Anti-Clickjacking (Frame-busting) script for static site security -->
+    <style id="antiClickjack">body{display:none !important;}</style>
+    <script>
+        if (self === top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            antiClickjack.parentNode.removeChild(antiClickjack);
+        } else {
+            top.location = self.location;
+        }
+    </script>
+    <noscript>
+        <style>body{display:block !important;}</style>
+    </noscript>
 
     <title>Sorry! Prajit's homepage doesn't have this page...</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
