@@ -9,3 +9,8 @@
 **Vulnerability:** The `404.html` page had a weaker Content Security Policy (CSP) allowing `'unsafe-inline'` and lacked the essential security initialization script (`assets/js/security-init.js`) found in `index.html`. This created a potential attack vector if an attacker could lure a user to a non-existent URL.
 **Learning:** Security configurations (CSP, SRI, Headers) must be consistent across all pages, including error pages (404, 500). Error pages are often overlooked during security audits but share the same origin and can be exploited.
 **Prevention:** Treat `404.html` as a first-class citizen in the security architecture. Ensure it imports the same security-hardened scripts and uses the same strict CSP headers as the main application. Verify error pages during security testing.
+
+## 2025-02-24 - [Anti-Clickjacking on Error Pages]
+**Vulnerability:** The `404.html` page lacked the frame-busting (anti-clickjacking) script present on the main page. Since error pages share the same origin, they can be framed and used for UI redressing attacks or to spoof the legitimate site.
+**Learning:** Consistency in defense-in-depth measures is crucial. When applying security controls (like frame-busting) to the main entry point, ensure they are replicated on all public-facing pages, including error pages.
+**Prevention:** audit all HTML files for consistent security headers and scripts, not just the main `index.html`.
