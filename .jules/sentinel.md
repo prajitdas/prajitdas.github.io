@@ -9,3 +9,8 @@
 **Vulnerability:** The `404.html` page had a weaker Content Security Policy (CSP) allowing `'unsafe-inline'` and lacked the essential security initialization script (`assets/js/security-init.js`) found in `index.html`. This created a potential attack vector if an attacker could lure a user to a non-existent URL.
 **Learning:** Security configurations (CSP, SRI, Headers) must be consistent across all pages, including error pages (404, 500). Error pages are often overlooked during security audits but share the same origin and can be exploited.
 **Prevention:** Treat `404.html` as a first-class citizen in the security architecture. Ensure it imports the same security-hardened scripts and uses the same strict CSP headers as the main application. Verify error pages during security testing.
+
+## 2025-02-26 - [SRI Hash Drift]
+**Vulnerability:** Subresource Integrity (SRI) hashes in `index.html` and `404.html` did not match the actual `assets/js/main.js` and `assets/js/security-init.js` files on disk, causing browsers to block script execution.
+**Learning:** Manual updates to static assets without recalculating and updating the corresponding SRI hash in HTML files leads to broken functionality. This highlights the risk of relying on manual synchronization for security features like SRI.
+**Prevention:** Always verify SRI hashes after modifying any static asset.
