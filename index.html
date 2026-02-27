@@ -498,12 +498,16 @@
 	<!-- Load CSS asynchronously to prevent render blocking -->
 	<script>
 		// Optimized CSS loading function to avoid render blocking
-		function loadCSS(href, before, media, callback) {
+		function loadCSS(href, before, media, callback, integrity) {
 			var link = document.createElement('link');
 			var ref = before || document.head.lastChild;
 			var sheets = document.styleSheets;
 			link.rel = 'stylesheet';
 			link.href = href;
+			if (integrity) {
+				link.integrity = integrity;
+				link.crossOrigin = "anonymous";
+			}
 			link.media = 'only x'; // Temp media to avoid blocking
 			if (callback) link.onload = callback;
 			ref.parentNode.insertBefore(link, ref);
@@ -514,27 +518,27 @@
 		}
 		
 		// Load critical CSS first (higher priority)
-		loadCSS('assets/css/bootstrap.min.css?v=2025.11');
+		loadCSS('assets/css/bootstrap.min.css?v=2025.11', null, null, null, 'sha384-YmXmRS2icWmtsJxAu+BiKEDZnWz03yGq6/bRu8BZox24ySGB7RBUx9WVr9QGMC/r');
 		
 		// Defer non-critical CSS after critical path
 		setTimeout(function() {
-		loadCSS('assets/css/font-awesome.min.css?v=2025.11');
-		loadCSS('assets/css/styles.css?v=2025.11');
-		loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.11');
+		loadCSS('assets/css/font-awesome.min.css?v=2025.11', null, null, null, 'sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN');
+		loadCSS('assets/css/styles.css?v=2025.11', null, null, null, 'sha384-JeotYv6bx4hDOSAR9nrH0XSwVy9MPSiVZErYIGoil3N0We1UTE8qdjVcPjmQfzTa');
+		loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.11', null, null, null, 'sha384-OjJ30VtoC89LX5+Xw+w98tGEd8RzyJFkUaiWoNg12GMmYg4MDloGWHo10iNeiWiJ');
 			// Mark secondary content as loaded
 			document.documentElement.classList.add('content-loaded');
 		}, 50);
 	</script>
 	
 	<!-- Critical Resource Preload - Only for LCP candidates -->
-	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.11" as="style">
+	<link rel="preload" href="assets/css/bootstrap.min.css?v=2025.11" as="style" integrity="sha384-YmXmRS2icWmtsJxAu+BiKEDZnWz03yGq6/bRu8BZox24ySGB7RBUx9WVr9QGMC/r" crossorigin="anonymous">
 	
 	<!-- Fallback for browsers without JavaScript -->
 	<noscript>
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.11">
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.11">
-		<link rel="stylesheet" href="assets/css/styles.css?v=2025.11">
-		<link rel="stylesheet" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.11">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css?v=2025.11" integrity="sha384-YmXmRS2icWmtsJxAu+BiKEDZnWz03yGq6/bRu8BZox24ySGB7RBUx9WVr9QGMC/r" crossorigin="anonymous">
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css?v=2025.11" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link rel="stylesheet" href="assets/css/styles.css?v=2025.11" integrity="sha384-JeotYv6bx4hDOSAR9nrH0XSwVy9MPSiVZErYIGoil3N0We1UTE8qdjVcPjmQfzTa" crossorigin="anonymous">
+		<link rel="stylesheet" href="assets/plugins/vegas/jquery.vegas.min.css?v=2025.11" integrity="sha384-OjJ30VtoC89LX5+Xw+w98tGEd8RzyJFkUaiWoNg12GMmYg4MDloGWHo10iNeiWiJ" crossorigin="anonymous">
 	</noscript>
 	
 	<!-- Optimized Font Loading - Non-blocking, Zero Critical Chain Impact -->
@@ -550,8 +554,8 @@
 	<!-- jquery-migrate removed for performance - vegas plugin patched -->
 	<script src="assets/js/bootstrap.min.js?v=2025.11" integrity="sha384-a5jtiYH5jy2C9nk8lKcS1rJKNol+cJ9NJsVMDkCOm9QKXwm5Rq9bpSzg6zmnr48D" defer></script>
 	<script src="assets/plugins/vegas/jquery.vegas.min.js?v=2025.11" integrity="sha384-coBErv0EgCI7VkSd++JmHxhjwxROUhJ37ZNTnevFBMK4ukZOMTiD+wLfguBX205T" defer></script>
-	<script src="assets/js/security-init.js?v=2025.11" integrity="sha384-pErhzH0PSA1f7EnrS4Dfo0t3Y1SM0VRvnHUjbUXVawqrdVB3kTGmRRcNIUJiXCr/" defer></script>
-	<script src="assets/js/main.js?v=2025.12.1" integrity="sha384-0VRup29DOBxGZBMqfpqmKMPUz0kNRDjDS3Res32dR76CBzyXyt5yAyLGwM3Waz2Q" defer></script>
+	<script src="assets/js/security-init.js?v=2025.12.1" integrity="sha384-HtjdZg9XhhrYQHyQKjMExMGTNwdLhE5HOTkRhsE5dFpFxWtqZF/ke60hjQ/WZexW" defer></script>
+	<script src="assets/js/main.js?v=2025.12.2" integrity="sha384-ZTgQOyL4YAJazTkV2Tqxe92RZFzRJMzx1EufOtWqcAd5TsL4303iq8VdI6SErdVs" defer></script>
 	
 	<!-- Service Worker registration moved to assets/js/security-init.js -->
 	
