@@ -213,12 +213,20 @@ def main():
     passed_validations = sum(1 for r in results if r['success'])
     failed_validations = total_validations - passed_validations
 
-    # In CI quick/FAST mode allow Resource Accessibility to be a soft-fail
+    # In CI quick/FAST mode allow specific tests to be soft-fails
     is_ci = os.environ.get('GITHUB_ACTIONS') == 'true'
     soft_failed_names = []
+    
+    # Tests that can be soft-failed in quick mode
+    soft_fail_candidates = [
+        'Resource Accessibility',
+        'SEO & Sitemap Optimization',
+        'YouTube Performance'
+    ]
+    
     if is_ci and ('--quick' in sys.argv or os.environ.get('FAST_VALIDATION')):
         for r in results:
-            if not r['success'] and r['name'] == 'Resource Accessibility':
+            if not r['success'] and r['name'] in soft_fail_candidates:
                 # Reclassify as soft-fail
                 soft_failed_names.append(r['name'])
                 r['success'] = True

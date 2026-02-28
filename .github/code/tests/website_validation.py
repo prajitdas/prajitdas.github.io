@@ -123,7 +123,7 @@ class WebsiteValidationTest(unittest.TestCase):
         self.assertIsNotNone(viewport, "Viewport meta tag missing")
         
         # Check for charset declaration
-        charset = soup.find('meta', attrs={'charset': True}) or soup.find('meta', attrs={'http-equiv': 'Content-Type'})
+        charset = soup.find('meta', attrs={'charset': True}) or soup.find('meta', attrs={'http-equiv': re.compile(r'content-type', re.I)})
         self.assertIsNotNone(charset, "Character encoding meta tag missing")
         
         # Check for description
