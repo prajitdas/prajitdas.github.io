@@ -86,6 +86,10 @@ class WebsiteValidationTest(unittest.TestCase):
                 file_path.exists(),
                 f"Required HTML file '{filename}' not found at {file_path}"
             )
+            
+        # Check for .nojekyll to ensure proper static serving
+        if not (LOCAL_PATH / '.nojekyll').exists():
+            print("⚠️  Warning: .nojekyll file missing. This may cause 404 errors on GitHub Pages.")
     
     def test_02_html_basic_structure(self):
         """Test basic HTML structure of main pages."""
@@ -353,7 +357,13 @@ class WebsiteValidationTest(unittest.TestCase):
                     
                     # Provide more specific error if local file exists but remote is 404
                     if response.status_code == 404 and (LOCAL_PATH / page).exists():
-                        self.fail(f"Page '{page}' exists locally but returned 404 on live site. Changes may not be deployed yet. URL: {url}")
+                        print(f"\n❌ DEBUG INFO for {page}:")
+                        print(f"   - Local file found: Yes")
+                        print(f"   - Remote URL: {url}")
+                        print(f"   - Status: 404 Not Found")
+                        print(f"   - Suggestion: Check GitHub Actions 'pages-build-deployment' workflow.")
+                        print(f"   - Note: Added .nojekyll to root to bypass Jekyll processing issues.")
+                        self.fail(f"Page '{page}' exists locally but returned 404 on live site. Changes may not be deployed or Jekyll build failed.")
 
                     self.assertEqual(
                         response.status_code, 200,
