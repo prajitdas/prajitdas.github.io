@@ -1,203 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Security Headers -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-EXDMElPmHkgQ0zK8NIkNl5lxOfeOhGKsFbB0TZRxAIQ=' 'sha256-P/tYj7pG4Cv2NnMCcvFFuOLm2uO//ZqTcjbj0S6LefA=' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://www.google-analytics.com https://img.youtube.com https://prajitdas.github.io; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net; media-src 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://youtube.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
-    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), vr=(), gyroscope=(), accelerometer=(), magnetometer=(), midi=(), sync-xhr=()">
-
-    <title>Sorry! Prajit's homepage doesn't have this page...</title>
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/styles.css" />
-    <!-- Anti-Clickjacking (Frame-busting) script for static site security -->
-	<style id="antiClickjack">body{display:none !important;}</style>
-	<script>
-		if (self === top) {
-			var antiClickjack = document.getElementById("antiClickjack");
-			antiClickjack.parentNode.removeChild(antiClickjack);
-		} else {
-			top.location = self.location;
-		}
-	</script>
-	<noscript>
-		<style>body{display:block !important;}</style>
-	</noscript>
-    <!-- Non-Critical CSS Loading Strategy - Reduces Critical Request Chain Length -->
-	<!-- Load CSS asynchronously to prevent render blocking -->
-	<script>
-		// Optimized CSS loading function to avoid render blocking
-		function loadCSS(href, before, media, callback) {
-			var link = document.createElement('link');
-			var ref = before || document.head.lastChild;
-			var sheets = document.styleSheets;
-			link.rel = 'stylesheet';
-			link.href = href;
-			link.media = 'only x'; // Temp media to avoid blocking
-			if (callback) link.onload = callback;
-			ref.parentNode.insertBefore(link, ref);
-
-			// Set media after insert to trigger loading
-			setTimeout(function() { link.media = media || 'all'; });
-			return link;
-		}
-
-		// Load critical CSS first (higher priority)
-		loadCSS('assets/css/bootstrap.min.css?v=2025.11');
-
-		// Defer non-critical CSS after critical path
-		setTimeout(function() {
-		loadCSS('assets/css/font-awesome.min.css?v=2025.11');
-		loadCSS('assets/css/styles.css?v=2025.11');
-		loadCSS('assets/plugins/vegas/jquery.vegas.min.css?v=2025.11');
-			// Mark secondary content as loaded
-			document.documentElement.classList.add('content-loaded');
-		}, 50);
-	</script>
+    <title>Page Not Found | Prajit Kumar Das</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/redesign.css">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        .error-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+    </style>
 </head>
-<style>
-    html,
-    body {
-        margin: 0;
-        padding: 0;
-        min-height: 100%;
-    }
-    
-    body {
-        background-image: url('/assets/img/404-not-found.jpg');
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
-    
-    #wrapper {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    #content {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-    
-    .error-template {
-        text-align: center;
-        background: rgba(255, 255, 255, 0.9);
-        padding: 40px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    
-    .error-template h1 {
-        font-size: 2.5em;
-        color: #333;
-        margin-bottom: 20px;
-        animation: fadeInDown 1s ease-in-out;
-    }
-    
-    @keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .error-template {
-        animation: fadeInUp 1s ease-in-out;
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .error-details h3 {
-        color: #666;
-        margin-bottom: 30px;
-    }
-    
-    #footer {
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        text-align: center;
-        padding: 10px;
-    }
-    
-    #footer a {
-        color: #ccc;
-        text-decoration: none;
-    }
-    
-    #footer a:hover {
-        color: white;
-    }
-    
-    @media screen and (orientation: portrait) {
-        body {
-            background-position: center top;
-            background-attachment: scroll;
-        }
-        
-        .error-template {
-            padding: 20px;
-        }
-        
-        .error-template h1 {
-            font-size: 2em;
-        }
-    }
-</style>
-
 <body>
-    <div id="wrapper">
-        <div id="content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="error-template">
-                            <h1>One does not simply get a 404!</h1>
-                            <div class="error-details">
-                                <h3>Out of bounds!</h3> </div>
-                            <div class="error-actions">
-                                <a href="https://prajitdas.github.io" class="btn btn-primary btn-lg">
-                                    <span class="glyphicon glyphicon-home"></span>Take Me Home
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <nav class="main-nav">
+        <div class="container">
+            <a href="index-redesign.html">Home</a>
+            <a href="experience.html">Experience</a>
+            <a href="projects.html">Projects</a>
+            <a href="service.html">Service</a>
+            <a href="publications.html">Publications</a>
         </div>
-    </div>
-    <script src="/assets/js/jquery-3.7.1.min.js?v=2025.11" integrity="sha384-1H217gwSVyLSIfaLxHbE7dRb3v4mYCKbpQvzx0cegeju1MVsGrX5xXxAvs/HgeFs" defer></script>
-    <script src="/assets/js/bootstrap.min.js?v=2025.11" integrity="sha384-a5jtiYH5jy2C9nk8lKcS1rJKNol+cJ9NJsVMDkCOm9QKXwm5Rq9bpSzg6zmnr48D" defer></script>
-    <script src="/assets/js/security-init.js?v=2025.11" integrity="sha384-pErhzH0PSA1f7EnrS4Dfo0t3Y1SM0VRvnHUjbUXVawqrdVB3kTGmRRcNIUJiXCr/" defer></script>
-</body>
+    </nav>
 
+    <div class="container error-container">
+        <img src="assets/img/404-not-found.jpg" alt="404 Not Found" class="error-img">
+        <h1>Page Not Found</h1>
+        <p>The page you are looking for does not exist or has been moved.</p>
+        <a href="index-redesign.html" class="btn">Return Home</a>
+    </div>
+</body>
 </html>

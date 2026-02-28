@@ -17,6 +17,13 @@ This repository hosts a professional personal website built with HTML/CSS/JavaSc
 - **Security-first approach** with multiple layers of protection
 - **Performance optimization** including Core Web Vitals and mobile experience
 
+## 🚀 Recent Research Highlights
+
+**[2025] PRvL: Quantifying the Capabilities and Risks of Large Language Models for PII Redaction**  
+*Leon Garza, Anantaa Kotal, Aritran Piplai, Lavanya Elluri, Prajit Kumar Das, Aman Chadha*  
+A comprehensive analysis of LLMs as privacy-preserving PII Redaction systems, releasing PRvL, an open-source suite of fine-tuned models and evaluation tools.  
+[Read on arXiv](https://arxiv.org/abs/2508.05545)
+
 ## 🧪 Comprehensive Website Validation Suite
 
 This repository features a complete, non-redundant test suite validating website functionality, security, performance, and accessibility across **11 comprehensive categories**:
