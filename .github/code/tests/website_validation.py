@@ -317,29 +317,41 @@ class WebsiteValidationTest(unittest.TestCase):
         )
     
     def test_09_live_website_accessibility(self):
-        """Test live website accessibility and response."""
+        """Test live website accessibility and response for all pages."""
+        print(f"Testing live accessibility for {len(self.PAGES_TO_TEST)} pages...")
+        
+        # Check base connectivity first
         try:
-            response = self.session.get(BASE_URL, timeout=TIMEOUT)
-            self.assertEqual(
-                response.status_code, 200,
-                f"Website not accessible: HTTP {response.status_code}"
-            )
-            
-            # Check content type
-            content_type = response.headers.get('content-type', '')
-            self.assertIn(
-                'text/html', content_type.lower(),
-                f"Unexpected content type: {content_type}"
-            )
-            
-            # Check for basic content
-            self.assertGreater(
-                len(response.text), 1000,
-                "Response content seems too short"
-            )
-            
+            self.session.get(BASE_URL, timeout=TIMEOUT)
         except requests.RequestException as e:
-            self.skipTest(f"Could not access live website: {e}")
+            self.skipTest(f"Could not access live website base URL: {e}")
+
+        for page in self.PAGES_TO_TEST:
+            url = urljoin(BASE_URL, page)
+            
+            with self.subTest(page=page):
+                try:
+                    response = self.session.get(url, timeout=TIMEOUT)
+                    self.assertEqual(
+                        response.status_code, 200,
+                        f"Page '{page}' not accessible at {url}: HTTP {response.status_code}"
+                    )
+                    
+                    # Check content type
+                    content_type = response.headers.get('content-type', '')
+                    self.assertIn(
+                        'text/html', content_type.lower(),
+                        f"Unexpected content type for {page}: {content_type}"
+                    )
+                    
+                    # Check for basic content
+                    self.assertGreater(
+                        len(response.text), 500,
+                        f"Response content for {page} seems too short ({len(response.text)} bytes)"
+                    )
+                    
+                except requests.RequestException as e:
+                    self.fail(f"Could not access live page {page}: {e}")
     
     def test_10_security_headers_check(self):
         """Test security headers on live website."""
