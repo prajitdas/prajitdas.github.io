@@ -332,6 +332,11 @@ class WebsiteValidationTest(unittest.TestCase):
             with self.subTest(page=page):
                 try:
                     response = self.session.get(url, timeout=TIMEOUT)
+                    
+                    # Provide more specific error if local file exists but remote is 404
+                    if response.status_code == 404 and (LOCAL_PATH / page).exists():
+                        self.fail(f"Page '{page}' exists locally but returned 404 on live site. Changes may not be deployed yet. URL: {url}")
+
                     self.assertEqual(
                         response.status_code, 200,
                         f"Page '{page}' not accessible at {url}: HTTP {response.status_code}"
