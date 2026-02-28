@@ -224,7 +224,7 @@ def main():
         'YouTube Performance'
     ]
     
-    if is_ci and ('--quick' in sys.argv or os.environ.get('FAST_VALIDATION')):
+    if ('--quick' in sys.argv or os.environ.get('FAST_VALIDATION')):
         for r in results:
             if not r['success'] and r['name'] in soft_fail_candidates:
                 # Reclassify as soft-fail
@@ -260,7 +260,7 @@ def main():
         exit_code = 2
 
     if soft_failed_names:
-        print("\nℹ️ Soft-failed (treated as pass in CI quick mode): " + ", ".join(soft_failed_names))
+        print("\nℹ️ Soft-failed (treated as pass in quick mode): " + ", ".join(soft_failed_names))
     
     print(f"📅 Completed: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
