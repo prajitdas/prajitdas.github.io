@@ -337,9 +337,13 @@ class WebsiteResourceTester:
             'keybase.txt',
             'robots.txt', 
             'sitemap.xml',
-            'assets/docs/resume/resume-prajit-das-032225.pdf',
-            'assets/img/Profile.jpg',
-            'index.html'
+            'assets/docs/cv/cv-prajit-kumar-das.pdf',
+            'assets/img/ProfileThumb.jpg',
+            'index.html',
+            'experience.html',
+            'projects.html',
+            'service.html',
+            'publications.html'
         ]
         
         print(f"\n🔑 KEY FILE ACCESSIBILITY:")

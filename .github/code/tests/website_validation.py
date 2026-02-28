@@ -47,6 +47,16 @@ FAST_MODE = os.environ.get('FAST_VALIDATION', '').lower() in ('1', 'true', 'yes'
 class WebsiteValidationTest(unittest.TestCase):
     """Comprehensive website validation test suite."""
     
+    # New pages to validate
+    PAGES_TO_TEST = [
+        'index.html',
+        'experience.html',
+        'projects.html',
+        'service.html',
+        'publications.html',
+        '404.html'
+    ]
+
     @classmethod
     def setUpClass(cls):
         """Set up test environment and validate base URL accessibility."""
@@ -70,11 +80,7 @@ class WebsiteValidationTest(unittest.TestCase):
     
     def test_01_html_file_existence(self):
         """Test that required HTML files exist locally."""
-        required_files = [
-            'index.html'
-        ]
-        
-        for filename in required_files:
+        for filename in self.PAGES_TO_TEST:
             file_path = LOCAL_PATH / filename
             self.assertTrue(
                 file_path.exists(),
@@ -83,11 +89,7 @@ class WebsiteValidationTest(unittest.TestCase):
     
     def test_02_html_basic_structure(self):
         """Test basic HTML structure of main pages."""
-        html_files = [
-            'index.html'
-        ]
-        
-        for filename in html_files:
+        for filename in self.PAGES_TO_TEST:
             with self.subTest(file=filename):
                 file_path = LOCAL_PATH / filename
                 if not file_path.exists():
@@ -133,20 +135,22 @@ class WebsiteValidationTest(unittest.TestCase):
         if FAST_MODE:
             self.skipTest("Skipping external link validation in fast mode")
             
-        index_path = LOCAL_PATH / 'index.html'
-        if not index_path.exists():
-            self.skipTest("index.html not found")
-        
-        with open(index_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        soup = BeautifulSoup(content, 'html.parser')
+        # Collect links from all pages
         external_links = set()
         
-        for link in soup.find_all('a', href=True):
-            href = link['href']
-            if href.startswith(('http://', 'https://')) and not href.startswith(BASE_URL):
-                external_links.add(href)
+        for filename in self.PAGES_TO_TEST:
+            file_path = LOCAL_PATH / filename
+            if not file_path.exists():
+                continue
+                
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            soup = BeautifulSoup(content, 'html.parser')
+            for link in soup.find_all('a', href=True):
+                href = link['href']
+                if href.startswith(('http://', 'https://')) and not href.startswith(BASE_URL):
+                    external_links.add(href)
         
         # Limit external link testing for performance - sample key links only
         external_links = sorted(list(external_links))[:MAX_EXTERNAL_LINKS]
