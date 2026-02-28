@@ -88,8 +88,8 @@ def test_seo_optimizations():
         
         # Test 6: Twitter Card Tags
         total_tests += 1
-        twitter_tags = soup.find_all('meta', attrs={'name': lambda x: x and x.startswith('twitter:')})
-        twitter_tags += soup.find_all('meta', attrs={'property': lambda x: x and x.startswith('twitter:')})
+        twitter_tags = list(soup.find_all('meta', attrs={'name': lambda x: x and x.startswith('twitter:')}))
+        twitter_tags.extend(list(soup.find_all('meta', attrs={'property': lambda x: x and x.startswith('twitter:')})))
         required_twitter = ['twitter:card', 'twitter:title', 'twitter:description']
         twitter_properties = {tag.get('name') or tag.get('property') for tag in twitter_tags}
         if all(prop in twitter_properties for prop in required_twitter):
