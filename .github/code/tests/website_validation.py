@@ -318,6 +318,9 @@ class WebsiteValidationTest(unittest.TestCase):
     
     def test_09_live_website_accessibility(self):
         """Test live website accessibility and response for all pages."""
+        if FAST_MODE:
+            self.skipTest("Skipping live website check in fast mode")
+            
         print(f"Testing live accessibility for {len(self.PAGES_TO_TEST)} pages...")
         
         # Check base connectivity first
@@ -360,6 +363,9 @@ class WebsiteValidationTest(unittest.TestCase):
     
     def test_10_security_headers_check(self):
         """Test security headers on live website."""
+        if FAST_MODE:
+            self.skipTest("Skipping security headers check in fast mode")
+            
         try:
             response = self.session.get(BASE_URL, timeout=TIMEOUT)
             headers = response.headers
