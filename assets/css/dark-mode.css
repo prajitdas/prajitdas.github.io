@@ -1,0 +1,91 @@
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .main-nav {
+    background-color: #1f1f1f;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .main-nav a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .main-nav a:hover,
+body.dark-mode .main-nav a.active {
+    color: #64b5f6;
+    background-color: rgba(100, 181, 246, 0.1);
+}
+
+body.dark-mode .card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    color: #e0e0e0;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode h5, 
+body.dark-mode h6 {
+    color: #ffffff;
+}
+
+body.dark-mode a {
+    color: #64b5f6;
+}
+
+body.dark-mode a:hover {
+    color: #9be7ff;
+}
+
+body.dark-mode .btn, 
+body.dark-mode .btn-outline {
+    border-color: #64b5f6;
+    color: #64b5f6;
+}
+
+body.dark-mode .btn:hover, 
+body.dark-mode .btn-outline:hover {
+    background-color: #64b5f6;
+    color: #121212;
+}
+
+body.dark-mode footer {
+    background-color: #1f1f1f;
+    color: #888;
+    border-top: 1px solid #333;
+}
+
+body.dark-mode .tag {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+/* Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0 1rem;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    color: #007bff;
+}
+
+body.dark-mode .theme-toggle {
+    color: #ffeb3b;
+}
+
+body.dark-mode .theme-toggle:hover {
+    color: #fff;
+}
