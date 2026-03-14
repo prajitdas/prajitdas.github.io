@@ -9,3 +9,8 @@
 **Vulnerability:** The `404.html` page had a weaker Content Security Policy (CSP) allowing `'unsafe-inline'` and lacked the essential security initialization script (`assets/js/security-init.js`) found in `index.html`. This created a potential attack vector if an attacker could lure a user to a non-existent URL.
 **Learning:** Security configurations (CSP, SRI, Headers) must be consistent across all pages, including error pages (404, 500). Error pages are often overlooked during security audits but share the same origin and can be exploited.
 **Prevention:** Treat `404.html` as a first-class citizen in the security architecture. Ensure it imports the same security-hardened scripts and uses the same strict CSP headers as the main application. Verify error pages during security testing.
+
+## 2026-03-14 - Removed unsafe-inline from Content Security Policy
+**Vulnerability:** The Content Security Policy in `index.html`, other HTML pages, and `.htaccess` allowed `unsafe-inline` scripts in `script-src` (or indirectly via `default-src`), creating a risk for Cross-Site Scripting (XSS) attacks. This was because `index.html` contained an inline script for 'Read More' logic.
+**Learning:** CSP should be as restrictive as possible, preventing arbitrary script injection. Having `unsafe-inline` effectively bypasses most of the benefits of a strict CSP. Separating JS logic from the HTML structure is required to lock down `script-src`.
+**Prevention:** Avoid writing inline `<script>` tags in HTML files. Always externalize scripts into separate `.js` files and serve them statically. Ensure that any future CSP definitions restrict `script-src` to trusted domains and `'self'`, omitting `'unsafe-inline'`.
