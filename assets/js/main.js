@@ -214,6 +214,8 @@
                 iframe.frameBorder = '0';
                 iframe.allowFullscreen = true;
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                // 🛡️ Sentinel: Security Enhancement - Sandbox the iframe to restrict third-party privileges
+                iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-presentation';
                 iframe.title = '3 Minute Thesis competition video';
 
                 // Clear container and append iframe
