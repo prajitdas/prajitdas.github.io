@@ -7,7 +7,7 @@ lxml==6.0.2
 html5lib==1.1
 
 # HTTP requests and web testing
-requests==2.33.0
+requests==2.33.1
 
 # Security and performance testing
 # (All built-in Python modules used for security scanning)
