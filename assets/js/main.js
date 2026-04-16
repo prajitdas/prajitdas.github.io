@@ -70,8 +70,6 @@
         // AND ensures rel="noopener noreferrer" for security and privacy
         e('a[target="_blank"]').each(function() {
             var $link = e(this);
-            var rel = $link.attr('rel') || '';
-
             // Ensure security attributes are present
             var rel = $link.attr('rel') || '';
             // Add noopener if missing
@@ -215,6 +213,7 @@
                 iframe.allowFullscreen = true;
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
                 iframe.title = '3 Minute Thesis competition video';
+                iframe.setAttribute('sandbox', 'allow-scripts allow-popups allow-presentation allow-same-origin');
 
                 // Clear container and append iframe
                 while (container.firstChild) {
