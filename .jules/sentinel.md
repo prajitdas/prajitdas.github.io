@@ -9,3 +9,7 @@
 **Vulnerability:** The `404.html` page had a weaker Content Security Policy (CSP) allowing `'unsafe-inline'` and lacked the essential security initialization script (`assets/js/security-init.js`) found in `index.html`. This created a potential attack vector if an attacker could lure a user to a non-existent URL.
 **Learning:** Security configurations (CSP, SRI, Headers) must be consistent across all pages, including error pages (404, 500). Error pages are often overlooked during security audits but share the same origin and can be exploited.
 **Prevention:** Treat `404.html` as a first-class citizen in the security architecture. Ensure it imports the same security-hardened scripts and uses the same strict CSP headers as the main application. Verify error pages during security testing.
+## 2026-04-19 - Ensure all external links include noreferrer to improve privacy
+**Vulnerability:** External links (`target="_blank"`) lacking `rel="noopener noreferrer"`.
+**Learning:** Hardcoded links and dynamic append logic missed the `noreferrer` attribute, which could expose referral information and pose a security/privacy risk.
+**Prevention:** Ensured that `noreferrer` is correctly added dynamically within JavaScript along with `noopener`, and that all static HTML files include it explicitly.
