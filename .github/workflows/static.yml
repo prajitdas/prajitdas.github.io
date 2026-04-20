@@ -42,7 +42,7 @@ jobs:
           cp -R .well-known public/.well-known
           cp 404.html index.html keybase.txt robots.txt ror.xml sitemap.xml sw.js public/
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           # Upload curated public site files only
           path: 'public'
