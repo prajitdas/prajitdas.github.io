@@ -213,6 +213,8 @@
                 iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
                 iframe.frameBorder = '0';
                 iframe.allowFullscreen = true;
+                // 🛡️ Sentinel: Enforce strict iframe sandboxing for third-party content
+                iframe.sandbox = 'allow-scripts allow-popups allow-presentation allow-same-origin';
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
                 iframe.title = '3 Minute Thesis competition video';
 
