@@ -214,6 +214,8 @@
                 iframe.frameBorder = '0';
                 iframe.allowFullscreen = true;
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                // Security Enhancement: Restrict privileges for third-party embeds to prevent potentially malicious actions
+                iframe.sandbox = 'allow-scripts allow-popups allow-presentation allow-same-origin';
                 iframe.title = '3 Minute Thesis competition video';
 
                 // Clear container and append iframe
