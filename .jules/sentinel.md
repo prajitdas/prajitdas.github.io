@@ -9,3 +9,8 @@
 **Vulnerability:** The `404.html` page had a weaker Content Security Policy (CSP) allowing `'unsafe-inline'` and lacked the essential security initialization script (`assets/js/security-init.js`) found in `index.html`. This created a potential attack vector if an attacker could lure a user to a non-existent URL.
 **Learning:** Security configurations (CSP, SRI, Headers) must be consistent across all pages, including error pages (404, 500). Error pages are often overlooked during security audits but share the same origin and can be exploited.
 **Prevention:** Treat `404.html` as a first-class citizen in the security architecture. Ensure it imports the same security-hardened scripts and uses the same strict CSP headers as the main application. Verify error pages during security testing.
+
+## 2025-02-24 - [Medium - Third-Party Iframe Sandboxing]
+**Vulnerability:** Third-party iframes (e.g., YouTube embeds in `assets/js/main.js`) were missing the `sandbox` attribute, potentially exposing the application to exploits if the embedded content is compromised (e.g., executing malicious scripts, accessing the parent context).
+**Learning:** Even when embedding trusted third-party content, the principle of least privilege should be applied. The `sandbox` attribute restricts iframe capabilities. For YouTube, `allow-scripts allow-popups allow-presentation allow-same-origin` is required for functionality but still limits other risky behaviors.
+**Prevention:** Always include a strictly configured `sandbox` attribute when dynamically or statically creating third-party iframes to restrict their privileges and protect the parent application.
