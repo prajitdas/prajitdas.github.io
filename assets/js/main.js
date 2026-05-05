@@ -214,6 +214,10 @@
                 iframe.frameBorder = '0';
                 iframe.allowFullscreen = true;
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+
+                // 🛡️ Sentinel: Enforce strict sandboxing for third-party embeds
+                // allow-same-origin is required for YouTube player functionality
+                iframe.sandbox = 'allow-scripts allow-popups allow-presentation allow-same-origin';
                 iframe.title = '3 Minute Thesis competition video';
 
                 // Clear container and append iframe
