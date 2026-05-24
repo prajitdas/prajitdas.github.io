@@ -73,7 +73,6 @@
             var rel = $link.attr('rel') || '';
 
             // Ensure security attributes are present
-            var rel = $link.attr('rel') || '';
             // Add noopener if missing
             if (rel.indexOf('noopener') === -1) {
                 rel += (rel ? ' ' : '') + 'noopener';
@@ -214,6 +213,7 @@
                 iframe.frameBorder = '0';
                 iframe.allowFullscreen = true;
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                iframe.sandbox = 'allow-scripts allow-popups allow-presentation allow-same-origin';
                 iframe.title = '3 Minute Thesis competition video';
 
                 // Clear container and append iframe
