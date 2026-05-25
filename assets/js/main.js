@@ -72,8 +72,6 @@
             var $link = e(this);
             var rel = $link.attr('rel') || '';
 
-            // Ensure security attributes are present
-            var rel = $link.attr('rel') || '';
             // Add noopener if missing
             if (rel.indexOf('noopener') === -1) {
                 rel += (rel ? ' ' : '') + 'noopener';
