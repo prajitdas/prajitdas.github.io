@@ -9,3 +9,8 @@
 **Vulnerability:** The `404.html` page had a weaker Content Security Policy (CSP) allowing `'unsafe-inline'` and lacked the essential security initialization script (`assets/js/security-init.js`) found in `index.html`. This created a potential attack vector if an attacker could lure a user to a non-existent URL.
 **Learning:** Security configurations (CSP, SRI, Headers) must be consistent across all pages, including error pages (404, 500). Error pages are often overlooked during security audits but share the same origin and can be exploited.
 **Prevention:** Treat `404.html` as a first-class citizen in the security architecture. Ensure it imports the same security-hardened scripts and uses the same strict CSP headers as the main application. Verify error pages during security testing.
+
+## 2026-05-25 - [Secondary HTML Pages CSP Hardening]
+**Vulnerability:** Secondary HTML pages (like modern.html, projects.html, publications.html) had a weaker Content Security Policy (CSP) allowing `'unsafe-inline'` in the `script-src` directive, and .htaccess similarly allowed `'unsafe-inline'` in `default-src`. This created XSS vulnerabilities across multiple entry points.
+**Learning:** CSP directives must be strictly applied across all configurations (.htaccess) and all HTML entry points to maintain a strong security posture. Removing `'unsafe-inline'` from `script-src` requires externalizing inline scripts (like those found in modern.html).
+**Prevention:** Externalize all script logic into dedicated `.js` files during development. Apply strict CSP rules consistently in .htaccess and sync these rules across all HTML meta tags to ensure no page degrades the site's overall security.
