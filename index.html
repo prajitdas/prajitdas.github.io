@@ -393,10 +393,22 @@
 			padding:0 15px;
 			position:relative;
 		}
+		.content-primary-wide{
+			flex:0 0 56.666667%;
+			max-width:56.666667%;
+			padding:0 15px;
+			position:relative;
+		}
+		.content-sidebar-wide{
+			flex:0 0 43.333333%;
+			max-width:43.333333%;
+			padding:0 15px;
+			position:relative;
+		}
 		
 		/* Mobile responsive - critical breakpoints */
 		@media (max-width:768px){
-			.col-md-8,.col-md-4{
+			.col-md-8,.col-md-4,.content-primary-wide,.content-sidebar-wide{
 				flex:0 0 100%;
 				max-width:100%;
 			}
@@ -700,12 +712,13 @@
 </header>
 <div class="container sections-wrapper">
 	<div class=row>
-		<div id="main-content" class="primary col-md-8 col-sm-12 col-xs-12" tabindex="-1" style="outline:none">
+		<div id="main-content" class="primary content-primary-wide col-sm-12 col-xs-12" tabindex="-1" style="outline:none">
 			<section class="about section">
 				<div class=section-inner><h2 class=heading>About Me</h2>
 					<div class=content>
 						<p>I am a Security Researcher & Software Engineering Leader at Cisco's Security Business Group (SBG), where I lead a talented team focused on the <a href=https://www.cisco.com/site/us/en/products/security/firewalls/firewall-management-center/index.html target="_blank" rel="noopener">Secure Firewall Management Center</a>. Our work centers on building core platform components like Authentication, Authorization, and Auditing (AAA), REST API frameworks, and cloud service integrations. I am deeply committed to driving security-focused development and have led several key initiatives around SAML SSO, external authentication, and software compliance standardization.</p></br>
 						<p>A core part of my role is leading the engineering response to complex, critical vulnerabilities. For example, for the <a href=https://nvd.nist.gov/vuln/detail/cve-2024-3596 target="_blank" rel="noopener">Blast-RADIUS (CVE-2024-3596)</a> CVE, my team was instrumental in the triage and effective remediation efforts across Cisco. This experience demonstrates my proficiency in managing high-stakes situations, combining deep technical knowledge with a strategic, collaborative approach to crisis management.</p></br>
+						<p>I also remain active in the research community through peer review and academic service, including recent review work for leading venues such as IEEE Transactions on Dependable and Secure Computing, IEEE Transactions on Services Computing, ESORICS, Social Network Analysis and Mining, Qeios Open Source Journal, and PerCom 2026 Artifacts. I am also helping organize workshops in the domain of AI, trust, privacy, and security, including TRUST-BD-AI at IEEE BigData 2026, where I aim to bring together researchers working on trustworthy AI, cybersecurity, and access control for Big Data and Enterprise AI systems.</p></br>
 						<p>With over <span id="years-experience">18 years</span> of combined experience across industry and academia, I bring a unique perspective to software development—grounded in deep technical knowledge and a passion for security and scalable systems. My expertise includes developing solutions for Single Sign-On (SSO) and Multi-Factor Authentication (MFA), and deploying technologies using modern infrastructure like Docker and Kubernetes. My Ph.D. in Computer Science from the  University of Maryland, Baltimore County, and internships at Apple, Samsung, and Symantec have uniquely prepared me to build secure, reliable, and user-centric systems.</p></br>
 						<p>Today, I am interested in Senior Leadership positions where I can drive delivery across multiple teams, influence architectural direction, and mentor the next generation of engineering talent. While cybersecurity is my core domain, I am always open to exploring new problem spaces where I can bring value through thoughtful leadership, technical vision, and a commitment to building and delivering high-quality software.</p></br>
 					</div>
@@ -1324,25 +1337,9 @@
 					</div>
 				</div>
 			</section>
-			<section class="in the news section">
+			<section class="in-the-news section">
 				<div class=section-inner>
-					<h2 class=heading>In the News...</h2>
-					<div class=content>
-						<div class=item>
-							<h4 class=title>
-								<i aria-hidden="true" class="fa fa-bookmark"></i> <a href="https://www.csee.umbc.edu/2015/09/anupam-joshi-quoted-in-nature-news-article-on-wearable-technology/?utm_campaign=19420&utm_medium=twitter&utm_source=twitter" target="_blank" rel="noopener">
-								Prof. Anupam Joshi quoted in Nature news article on wearable technology</a>
-							</h4>
-							<div class="pdf-link-container">
-								<i aria-hidden="true" class="fa fa-file-pdf-o pdf-icon"></i>
-								<h5>Nature News Article</h5>
-								<p>The Trouble with Wearables - by Kat Austen</p>
-								<a href="assets/docs/nature-article/kat-austen-the-trouble-with-wearables.pdf" target="_blank" rel="noopener" class="btn btn-primary">
-									<i aria-hidden="true" class="fa fa-download"></i> View PDF Article
-								</a>
-							</div>
-						</div>
-					</div>
+					<h2 class=heading>Academic Recognition</h2>
 					<div class=content>
 						<div class=item>
 							<h4 class=title>
@@ -1350,14 +1347,14 @@
 							</h4>
 							<div class="youtube-embed-container" id="youtube-qv_a9YfG_20">
 								<button type="button" class="youtube-thumbnail js-play-youtube" data-video-id="qv_a9YfG_20" aria-label="Play video: 3 Minute Thesis competition">
-									<img 
-										src="https://img.youtube.com/vi/qv_a9YfG_20/sddefault.jpg" 
+									<img
+										src="https://img.youtube.com/vi/qv_a9YfG_20/sddefault.jpg"
 										srcset="https://img.youtube.com/vi/qv_a9YfG_20/mqdefault.jpg 320w,
 												https://img.youtube.com/vi/qv_a9YfG_20/hqdefault.jpg 480w,
 												https://img.youtube.com/vi/qv_a9YfG_20/sddefault.jpg 640w,
 												https://img.youtube.com/vi/qv_a9YfG_20/maxresdefault.jpg 1280w"
 										sizes="(max-width: 480px) 320px, (max-width: 768px) 480px, 640px"
-										alt="3 Minute Thesis competition video thumbnail" 
+										alt="3 Minute Thesis competition video thumbnail"
 										loading="lazy"
 										width="640"
 										height="360">
@@ -1376,7 +1373,108 @@
 			</section>
 		</div>
 
-		<div class="secondary col-md-4 col-sm-12 col-xs-12">
+		<div class="secondary content-sidebar-wide col-sm-12 col-xs-12">
+			<aside class="recent-updates aside section">
+				<div class=section-inner><h2 class=heading>Recent Updates</h2>
+					<div class=content>
+						<div class=update-item>
+							<div class=update-meta>
+								<span class=update-badge>IEEE BigData 2026</span>
+								<span class=update-date>Workshop Co-Chair</span>
+							</div>
+							<h3 class=update-title>
+								<a href="https://trustai-bd-2026.github.io/TrustAI-BD/" target="_blank" rel="noopener">TrustAI-BD workshop</a>
+							</h3>
+							<p>I am co-chairing the TrustAI-BD workshop at IEEE BigData 2026 to bring together researchers advancing trustworthy AI, cybersecurity, privacy, and data governance for large-scale systems. The workshop is designed as a focused venue for new ideas on secure and accountable AI, including mobile access control, enterprise data access control, policy-aware AI systems, privacy-preserving analytics, and responsible AI deployment.</p>
+							<p>Researchers working in these areas are encouraged to submit papers and use the workshop as a high-visibility forum to shape the next phase of trustworthy AI and Big Data research. I am especially interested in work that moves the field beyond abstract principles and toward deployable security, privacy, and access-control mechanisms for real systems.</p>
+							<a class=more-link href="https://trustai-bd-2026.github.io/TrustAI-BD/" target="_blank" rel="noopener"><i aria-hidden="true" class="fa fa-external-link"></i> Visit the workshop site and submit your work</a>
+						</div>
+						<div class=update-item>
+							<div class=update-meta>
+								<span class=update-badge>Latest Research</span>
+								<span class=update-date>PII Redaction with LLMs</span>
+							</div>
+							<h3 class=update-title>
+								<a href="https://arxiv.org/abs/2508.05545" target="_blank" rel="noopener">PRvL: Quantifying the capabilities and risks of large language models for PII redaction</a>
+							</h3>
+							<p>My recent PRvL paper contributes to the rapidly evolving research frontier on LLM privacy, PII redaction, and trustworthy deployment of generative AI. The work evaluates how large language models perform as privacy-preserving redaction systems while quantifying the accuracy, leakage, latency, and deployment tradeoffs that matter when sensitive data is handled in practice.</p>
+							<p>Researchers interested in the latest advancements in LLM privacy should review PRvL as a practical benchmark for understanding both the promise and the risk of using modern language models for PII protection. The paper is already being cited by researchers in the field and connects directly to emerging questions around secure Enterprise AI, responsible data access, and privacy-aware model deployment.</p>
+							<div class=update-links>
+								<a class=more-link href="https://arxiv.org/abs/2508.05545" target="_blank" rel="noopener"><i aria-hidden="true" class="fa fa-file-text-o"></i> Read the paper</a>
+								<a class=more-link href="https://scholar.google.com/scholar?oi=bibs&amp;hl=en&amp;cites=14079846260473667099&amp;as_sdt=5" target="_blank" rel="noopener"><i aria-hidden="true" class="fa fa-graduation-cap"></i> View citing work</a>
+							</div>
+						</div>
+						<div class=research-focus-list aria-label="Research focus areas">
+							<span>Cybersecurity</span>
+							<span>Mobile Access Control</span>
+							<span>Enterprise AI Data Access Control</span>
+							<span>PII Redaction</span>
+						</div>
+					</div>
+				</div>
+			</aside>
+			<aside class="education aside section">
+				<div class=section-inner><h2 class=heading>Academic services</h2>
+					<div class=content>
+						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-university"></i>Technical Program Committee</h3> <h4 class=university>TPC member for the <a
+								href="https://percom.org/2026/call-for-artifacts/" target="_blank" rel="noopener">PerCom 2026 Artifacts Review</a>, supporting artifact evaluation and reproducibility review for the IEEE International Conference on Pervasive Computing and Communications.</h4></div>
+						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-university"></i>Journal reviewer</h3> <h4 class=university>Reviewer for IEEE Transactions on Dependable and Secure Computing, <a
+								href="https://www.computer.org/web/tsc" target="_blank" rel="noopener">IEEE Transactions on Services
+							Computing</a>, Social Network Analysis and Mining, and Qeios Open Source Journal.</h4></div>
+						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-university"></i>Conference and workshop reviewer</h3> <h4 class=university>Reviewer for <a
+								href="https://chi2017.acm.org" target="_blank" rel="noopener">ACM CHI 2017</a>, ESORICS 2025, and the
+						<a href="https://industrial-knowledge-graphs.github.io/2017/" target="_blank" rel="noopener">Industrial Knowledge Graph workshop</a> co-located with the <a href="https://websci17.org/" target="_blank" rel="noopener">9th International ACM Web Science Conference 2017</a>.</h4></div>
+						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-university"></i>Additional reviewer</h3> <h4 class=university>Additional reviewer and PC member for Emerging Applications of
+							Information Technology. See <a href="https://sites.google.com/site/csieait/pc"
+														   target="_blank" rel="noopener">EAIT 2014 webpage</a> for more details.</h4>
+						</div>
+						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-university"></i>Sub-reviewer</h3> <h4 class=university>Sub-reviewer for <a href="https://www2016.ca"
+																					  target="_blank" rel="noopener">WWW 2016</a> and
+							<a href="https://www.ieeevtc.org/vtc2012fall" target="_blank" rel="noopener">IEEE VTC 2012 - Fall in Qu&eacute;bec
+								City, Canada</a></h4></div>
+					</div>
+				</div>
+			</aside>
+			<aside class="education aside section">
+				<div class=section-inner><h2 class=heading>Organizations</h2>
+					<div class=content>
+						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-building-o"></i> TRUST-BD-AI - 2026
+						</h3> <h4 class=university>Co-chair for <a
+								href="https://trustai-bd-2026.github.io/TrustAI-BD/" target="_blank" rel="noopener">TRUST-BD-AI at IEEE BigData 2026</a>, helping organize a research venue focused on trustworthy AI, cybersecurity, privacy, and access control for Big Data and Enterprise AI systems.</h4></div>
+						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-building-o"></i> UMBC ACM Student Chapter - 2014
+						</h3> <h4 class=university>Chair of the UMBC ACM Student Chapter. See <a
+								href="https://acm.umbc.edu/" target="_blank" rel="noopener">ACM Blog</a> for more details.</h4></div>
+						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-building-o"></i> UMBC ACM Student Chapter - 2013
+						</h3> <h4 class=university>Treasurer of the UMBC ACM Student Chapter. See <a
+								href="https://acm.umbc.edu/" target="_blank" rel="noopener">ACM Blog</a> for more details.</h4></div>
+						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-building-o"></i> hackUMBC - 2013</h3> <h4
+								class=university>Co-Organizers of hackUMBC, first one day hackathon for students at
+							UMBC. See <a href="https://hackumbc.org/" target="_blank" rel="noopener">hackUMBC.org</a> for more details.
+						</h4></div>
+					</div>
+				</div>
+			</aside>
+			<aside class="in-the-news aside section">
+				<div class=section-inner>
+					<h2 class=heading>In the News...</h2>
+					<div class=content>
+						<div class=item>
+							<h4 class=title>
+								<i aria-hidden="true" class="fa fa-bookmark"></i> <a href="https://www.csee.umbc.edu/2015/09/anupam-joshi-quoted-in-nature-news-article-on-wearable-technology/?utm_campaign=19420&utm_medium=twitter&utm_source=twitter" target="_blank" rel="noopener">
+								My privacy-aware wearable computing research was discussed in a Nature article on wearable technology</a>
+							</h4>
+							<div class="pdf-link-container">
+								<i aria-hidden="true" class="fa fa-file-pdf-o pdf-icon"></i>
+								<h5>Nature News Article</h5>
+								<p>The Trouble with Wearables - by Kat Austen</p>
+								<a href="assets/docs/nature-article/kat-austen-the-trouble-with-wearables.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+									<i aria-hidden="true" class="fa fa-download"></i> View PDF Article
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</aside>
 			<aside class="education aside section">
 				<div class=section-inner><h2 class=heading>Education</h2>
 					<div class=content>
@@ -1503,25 +1601,6 @@
 				</div>
 			</aside>
 			<aside class="education aside section">
-				<div class=section-inner><h2 class=heading>Academic services</h2>
-					<div class=content>
-						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-university"></i>Reviewer</h3> <h4 class=university>Reviewer for <a
-								href="https://chi2017.acm.org" target="_blank" rel="noopener">ACM CHI 2017</a>,<a
-								href="https://www.computer.org/web/tsc" target="_blank" rel="noopener">IEEE Transactions on Services
-							Computing 2016</a> and
-						<a href="https://industrial-knowledge-graphs.github.io/2017/" target="_blank" rel="noopener">Industrial Knowledge Graph workshop</a> co-located with the <a href="https://websci17.org/" target="_blank" rel="noopener">9th International ACM Web Science Conference 2017</a></h4></div>
-						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-university"></i>Additional reviewer</h3> <h4 class=university>Additional reviewer and PC member for Emerging Applications of
-							Information Technology. See <a href="https://sites.google.com/site/csieait/pc"
-														   target="_blank" rel="noopener">EAIT 2014 webpage</a> for more details.</h4>
-						</div>
-						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-university"></i>Sub-reviewer</h3> <h4 class=university>Sub-reviewer for <a href="https://www2016.ca"
-																					  target="_blank" rel="noopener">WWW 2016</a> and
-							<a href="https://www.ieeevtc.org/vtc2012fall" target="_blank" rel="noopener">IEEE VTC 2012 - Fall in Qu&eacute;bec
-								City, Canada</a></h4></div>
-					</div>
-				</div>
-			</aside>
-			<aside class="education aside section">
 				<div class=section-inner><h2 class=heading>Travel awards received</h2>
 					<div class=content>
 						<div class=item><h3 class=title>ISWC Travel Grant 2016</h3>
@@ -1544,22 +1623,6 @@
 								<a href="https://sites.google.com/site/privon2014/" target="_blank" rel="noopener">PrivOn workshop</a> in the <a
 										href="https://iswc2014.semanticweb.org/" target="_blank" rel="noopener">13th International Semantic Web
 									Conference (ISWC)</a>, 2014.</a> </p></div>
-					</div>
-				</div>
-			</aside>
-			<aside class="education aside section">
-				<div class=section-inner><h2 class=heading>Organizations</h2>
-					<div class=content>
-						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-building-o"></i> UMBC ACM Student Chapter - 2014
-						</h3> <h4 class=university>Chair of the UMBC ACM Student Chapter. See <a
-								href="https://acm.umbc.edu/" target="_blank" rel="noopener">ACM Blog</a> for more details.</h4></div>
-						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-building-o"></i> UMBC ACM Student Chapter - 2013
-						</h3> <h4 class=university>Treasurer of the UMBC ACM Student Chapter. See <a
-								href="https://acm.umbc.edu/" target="_blank" rel="noopener">ACM Blog</a> for more details.</h4></div>
-						<div class=item><h3 class=title><i aria-hidden="true" class="fa fa-building-o"></i> hackUMBC - 2013</h3> <h4
-								class=university>Co-Organizers of hackUMBC, first one day hackathon for students at
-							UMBC. See <a href="https://hackumbc.org/" target="_blank" rel="noopener">hackUMBC.org</a> for more details.
-						</h4></div>
 					</div>
 				</div>
 			</aside>
