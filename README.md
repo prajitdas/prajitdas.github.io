@@ -22,7 +22,7 @@ This repository hosts a professional personal website built with HTML/CSS/JavaSc
 **[2025] PRvL: Quantifying the Capabilities and Risks of Large Language Models for PII Redaction**  
 *Leon Garza, Anantaa Kotal, Aritran Piplai, Lavanya Elluri, Prajit Kumar Das, Aman Chadha*  
 A comprehensive analysis of LLMs as privacy-preserving PII Redaction systems, releasing PRvL, an open-source suite of fine-tuned models and evaluation tools.  
-[Read on arXiv](https://arxiv.org/abs/2508.05545)
+[Read on arXiv](https://ieeexplore.ieee.org/abstract/document/11410189)
 
 ## 🧪 Comprehensive Website Validation Suite
 
