@@ -14,3 +14,7 @@
 **Vulnerability:** The `modern.html` file contained inline JavaScript for handling UI logic (a "Read More" button and email obfuscation). This practice violates strict Content Security Policy (CSP) best practices by requiring `'unsafe-inline'` in `script-src`, which leaves the site vulnerable to Cross-Site Scripting (XSS).
 **Learning:** Even seemingly harmless UI logic must be externalized when aiming for a strict CSP. When extracting inline scripts into external files (e.g., `assets/js/modern.js`), remember to update the Service Worker (`sw.js`) cache lists and bump cache versions to ensure offline functionality and cache invalidation work correctly.
 **Prevention:** Avoid inline `<script>` tags entirely when creating new pages or adding functionality. Always place JavaScript logic in external `.js` files and explicitly manage their caching in the Service Worker.
+## 2026-06-28 - CSP Enhancement: Replaced unsafe-inline with hashes
+**Vulnerability:** The website's Content Security Policy (CSP) allowed `'unsafe-inline'` in `script-src`, leaving it vulnerable to Cross-Site Scripting (XSS).
+**Learning:** Hardening CSP requires calculating SHA-256 hashes for all inline scripts and styles to replace `'unsafe-inline'`.
+**Prevention:** Avoid inline scripts and styles where possible. If necessary, explicitly allow them using SHA-256 hashes in the CSP meta tag.
