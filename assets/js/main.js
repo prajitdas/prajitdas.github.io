@@ -214,6 +214,9 @@
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
                 iframe.title = '3 Minute Thesis competition video';
 
+                // 🛡️ Sentinel: Enforce strict sandbox policies on third-party iframes to prevent unauthorized top-level navigation and malicious code execution
+                iframe.sandbox = 'allow-scripts allow-popups allow-presentation allow-same-origin';
+
                 // Clear container and append iframe
                 while (container.firstChild) {
                     container.removeChild(container.firstChild);
