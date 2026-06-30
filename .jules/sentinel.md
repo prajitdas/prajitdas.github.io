@@ -14,3 +14,7 @@
 **Vulnerability:** The `modern.html` file contained inline JavaScript for handling UI logic (a "Read More" button and email obfuscation). This practice violates strict Content Security Policy (CSP) best practices by requiring `'unsafe-inline'` in `script-src`, which leaves the site vulnerable to Cross-Site Scripting (XSS).
 **Learning:** Even seemingly harmless UI logic must be externalized when aiming for a strict CSP. When extracting inline scripts into external files (e.g., `assets/js/modern.js`), remember to update the Service Worker (`sw.js`) cache lists and bump cache versions to ensure offline functionality and cache invalidation work correctly.
 **Prevention:** Avoid inline `<script>` tags entirely when creating new pages or adding functionality. Always place JavaScript logic in external `.js` files and explicitly manage their caching in the Service Worker.
+## 2026-06-30 - XSS Protection Header Deprecation
+**Vulnerability:** Use of `X-XSS-Protection: 1; mode=block`
+**Learning:** The `X-XSS-Protection` header is a deprecated security practice. The browser's XSS auditor can be exploited to block legitimate scripts.
+**Prevention:** Do not add `X-XSS-Protection: 1; mode=block`. Rely on Content-Security-Policy (CSP) instead. If the header must be included for legacy reasons, set it to `0`.

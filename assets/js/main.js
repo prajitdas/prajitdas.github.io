@@ -213,6 +213,8 @@
                 iframe.allowFullscreen = true;
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
                 iframe.title = '3 Minute Thesis competition video';
+                // ⚡ Sentinel: Enforce Principle of Least Privilege for YouTube iframe
+                iframe.setAttribute('sandbox', 'allow-scripts allow-popups allow-presentation allow-same-origin');
 
                 // Clear container and append iframe
                 while (container.firstChild) {
