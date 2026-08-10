@@ -112,7 +112,7 @@
     // 5. Performance Optimizations (Prefetch & Page Load Time)
     if ('requestIdleCallback' in window) {
         requestIdleCallback(() => {
-            ['assets/docs/resume/resume-prajit-das-032225.pdf', 'assets/docs/cv/cv-prajit-kumar-das.pdf', 'assets/img/projects/MobipediaLogo.png'].forEach(href => {
+            ['assets/docs/resume/resume-prajit-das.pdf', 'assets/docs/cv/cv-prajit-kumar-das.pdf', 'assets/img/projects/MobipediaLogo.png'].forEach(href => {
                 const link = document.createElement('link');
                 link.rel = 'prefetch';
                 link.href = href;
